@@ -1,0 +1,56 @@
+{
+  "TextThreads":[
+    {
+      "IsDefaultThread":true,
+
+      "Name":"Test Thread",
+
+      "SequenceState":{
+        "Name":"Main", 
+        "MinCounter":0,
+        "MaxCounter":0
+      },
+
+      "TextContent":[
+        {
+          "ID":0,
+          "Speaker":"Test Battle NPC",
+          "Dialogue":"This conversation should trigger a battle...",
+          
+          "Options":[
+            { 
+            	"Text":"Continue", 
+            	"TargetID":1 
+            }
+          ],
+          
+          "DialogueEvents":[
+            {
+              "MessageName":"CueSounds",
+              "Args":[
+              	"Female Speaking Sound (Temp)",
+              	1
+              ]
+            }
+          ]
+        },
+        {
+          "ID":1,
+          "Speaker":"",
+          "Dialogue":"",
+          "Options":[],
+          "DialogueEvents":[
+            {
+              "MessageName":"TriggerBattle",
+              "Args":[
+              	"NormalBattle",
+              	"Battle Scene",
+              	"Test Enemy"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

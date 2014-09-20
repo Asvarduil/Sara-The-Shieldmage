@@ -1,0 +1,84 @@
+{
+  "TextThreads":[
+    {
+      "IsDefaultThread":true,
+      "Name":"Obtain Item",
+      "SequenceState":{
+        "Name":"Main", 
+        "MinCounter":0,
+        "MaxCounter":0
+      },
+      "TextContent":[
+        {
+          "ID":0,
+          "Speaker":"",
+          "Dialogue":"Eleanor found a Tonic!!",
+          
+          "Options":[
+            { 
+            	"Text":"Continue", 
+            	"TargetID":1 
+            }
+          ],
+          
+          "DialogueEvents":[
+            {
+              "MessageName":"GainItem",
+              "Args":[
+              	"Tonic",
+              	1
+              ]
+            }
+          ]
+        },
+        {
+          "ID":1,
+          "Speaker":"",
+          "Dialogue":"",
+          "Options":[],
+          "DialogueEvents":[
+            {
+              "MessageName":"EndConversation",
+              "Args":[]
+            }
+          ]
+        }
+      ]
+    },
+    {
+    	"IsDefaultThread":false,
+    	"Name":"Has Nothing",
+    	"SequenceState":{
+	        "Name":"Main", 
+    	    "MinCounter":0,
+        	"MaxCounter":0
+      	},
+      	"TextContent":[
+      		{
+      			"ID":0,
+      			"Speaker":"",
+      			"Dialogue":"This chest is empty...",
+      			"Options":[
+      				{ 
+            			"Text":"Continue", 
+            			"TargetID":1 
+            		}
+      			],
+      			"DialogueEvents":[]
+      		},
+      		{
+				"ID":1,
+				"Speaker":"",
+				"Dialogue":"",
+				"Options":[],
+				"DialogueEvents":[
+					{
+					"MessageName":"EndConversation",
+					"Args":[]
+					}
+				]
+        	}
+      	]
+    }
+  ]
+}
