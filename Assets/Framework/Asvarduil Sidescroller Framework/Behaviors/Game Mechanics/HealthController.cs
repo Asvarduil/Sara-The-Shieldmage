@@ -14,6 +14,11 @@ public class HealthController : DebuggableBehavior
 	private ParticleSystem _healEffect;
 	private ParticleSystem _damageEffect;
 
+	public bool IsFull
+	{
+		get { return Health.HP >= Health.MaxHP; }
+	}
+
 	#endregion Variables / Properties
 
 	#region Engine Hooks

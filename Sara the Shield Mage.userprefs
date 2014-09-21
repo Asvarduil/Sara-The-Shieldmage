@@ -1,6 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Base\Pickup.cs">
+    <Files>
+      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaController.cs" Line="20" Column="3" />
+      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\HealthController.cs" Line="20" Column="3" />
+      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaPickup.cs" Line="25" Column="32" />
+      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\HealthPickup.cs" Line="25" Column="32" />
+      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Base\Pickup.cs" Line="34" Column="14" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
