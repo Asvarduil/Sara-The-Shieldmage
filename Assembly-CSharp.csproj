@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_5_1;UNITY_4_5;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_5_4;UNITY_4_5;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -149,6 +149,8 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilFrame.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteAnimation.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteFrame.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Base\Pickup.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Control\DeathReloadManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Control\SidescrollingAnimationController.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Control\SidescrollingMovement.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Control\SidescrollingPlayerControl.cs" />
@@ -156,8 +158,11 @@
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\GUI Controllers\PlayerHudController.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\GUI Presenters\HealthHudPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\GUI Presenters\ManaHudPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\DamageSource.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\HealthController.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\HealthPickup.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaController.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaPickup.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Classes\SidescrollingMovementType.cs" />
      <None Include="Assets\Game-Specific Assets\Data\Chests\chest-tonic-test scene.txt" />
      <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />

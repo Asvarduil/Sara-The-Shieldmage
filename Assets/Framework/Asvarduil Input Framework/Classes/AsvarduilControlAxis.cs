@@ -46,7 +46,7 @@ public class AsvarduilControlAxis
 			case RuntimePlatform.LinuxPlayer:
 				return GetKey();
 
-			case RuntimePlatform.BB10Player:
+			case RuntimePlatform.BlackBerryPlayer:
 			case RuntimePlatform.IPhonePlayer:
 			case RuntimePlatform.Android:
 			case RuntimePlatform.WP8Player:

@@ -5,11 +5,14 @@ public class HealthController : DebuggableBehavior
 {
 	#region Variables / Properties
 
+	public bool ReloadSceneOnDeath = false;
 	public HealthSystem Health;
-	public GameObject DamageEffect;
+
 	public GameObject DeathEffect;
 
 	private PlayerHudController _playerHud;
+	private ParticleSystem _healEffect;
+	private ParticleSystem _damageEffect;
 
 	#endregion Variables / Properties
 
@@ -18,6 +21,8 @@ public class HealthController : DebuggableBehavior
 	public void Start()
 	{
 		_playerHud = PlayerHudController.Instance;
+		_healEffect = transform.FindChild("Heal Effect").GetComponent<ParticleSystem>();
+		_damageEffect = transform.FindChild("Damage Effect").GetComponent<ParticleSystem>();
 	}
 
 	#endregion Engine Hooks
@@ -26,20 +31,29 @@ public class HealthController : DebuggableBehavior
 
 	public void TakeDamage(int amount)
 	{
-		GameObject.Instantiate(DamageEffect, transform.position, transform.rotation);
+		if(_damageEffect != null)
+			_damageEffect.Emit(25);
+
 		Health.TakeDamage(amount);
 		_playerHud.UpdateHealthWidget(Health.HP, Health.MaxHP);
 
 		if(Health.IsDead)
 		{
-			GameObject.Instantiate(DeathEffect, transform.position, transform.rotation);
-			TransitionManager.Instance.ChangeScenes();
+			if(DeathEffect != null)
+				GameObject.Instantiate(DeathEffect, transform.position, transform.rotation);
+
 			gameObject.SetActive(false);
+
+			if(ReloadSceneOnDeath)
+				DeathReloadManager.Instance.ReloadLevel();
 		}
 	}
 
 	public void Heal(int amount)
 	{
+		if(_healEffect != null)
+			_healEffect.Emit(25);
+
 		Health.Heal(amount);
 		_playerHud.UpdateHealthWidget(Health.HP, Health.MaxHP);
 	}

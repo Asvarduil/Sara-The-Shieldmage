@@ -60,6 +60,21 @@ public class SidescrollingMovement : DebuggableBehavior, ISuspendable
 		AllowJumping = true;
 	}
 
+	public void RepelFromObject(GameObject thing, float repelForce)
+	{
+		//Vector3 repelDirection = thing.transform.position - gameObject.transform.position;
+		Vector3 repelDirection = gameObject.transform.position - thing.transform.position;
+		repelDirection = Vector3.Normalize(repelDirection) * repelForce;
+		if(repelDirection.y == 0.0f)
+			repelDirection.y = 19.6f;
+
+		DebugMessage(gameObject.name + " is being repelled from " + thing.name + " with velocity " + repelDirection);
+
+		_isMovingThisFrame = true;
+		_currentVelocity = repelDirection;
+		ApplyVelocity();
+	}
+
 	public void MoveCharacter()
 	{
 		CheckIfGrounded();
@@ -78,7 +93,7 @@ public class SidescrollingMovement : DebuggableBehavior, ISuspendable
 
 	private void CalculateFrameVelocity()
 	{
-		_frameVelocity = new Vector3(0, 0, 0);
+		_frameVelocity = Vector3.zero;
 
 		if(_isMovingThisFrame)
 			_frameVelocity += _currentVelocity * Time.deltaTime;
