@@ -150,7 +150,6 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteAnimation.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteFrame.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Base\Pickup.cs" />
-     <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Control\DeathReloadManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Control\SidescrollingAnimationController.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Control\SidescrollingMovement.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Control\SidescrollingPlayerControl.cs" />
@@ -159,6 +158,7 @@
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\GUI Presenters\HealthHudPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\GUI Presenters\ManaHudPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\DamageSource.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\DeathReloadManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\HealthController.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\HealthPickup.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaController.cs" />

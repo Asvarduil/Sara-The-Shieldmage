@@ -1,12 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Base\Pickup.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\AsvarduilSpriteSystem.cs">
     <Files>
-      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaController.cs" Line="20" Column="3" />
-      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\HealthController.cs" Line="20" Column="3" />
-      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaPickup.cs" Line="25" Column="32" />
-      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\HealthPickup.cs" Line="25" Column="32" />
-      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Base\Pickup.cs" Line="34" Column="14" />
+      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaPickup.cs" Line="8" Column="27" />
+      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\HealthPickup.cs" Line="20" Column="1" />
+      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Base\Pickup.cs" Line="26" Column="2" />
+      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\DamageSource.cs" Line="1" Column="1" />
+      <File FileName="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\HealthSystem.cs" Line="12" Column="1" />
+      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaController.cs" Line="46" Column="3" />
+      <File FileName="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\ManaSystem.cs" Line="4" Column="1" />
+      <File FileName="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\AsvarduilSpriteSystem.cs" Line="20" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -4,7 +4,9 @@ using System.Collections;
 public class ManaController : MonoBehaviour 
 {
 	#region Variables / Properties
-	
+
+	public bool RegenerateMana = true;
+
 	public ManaSystem Mana;
 	public float RegenerationInterval = 5;
 	public float RegenerationAmount = 1;
@@ -42,6 +44,9 @@ public class ManaController : MonoBehaviour
 
 	private void CheckRegeneration()
 	{
+		if(! RegenerateMana)
+			return;
+
 		if(Time.time < _lastRegeneration + RegenerationInterval)
 			return;
 
