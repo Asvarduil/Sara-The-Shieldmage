@@ -150,6 +150,12 @@ public class SidescrollingMovement : DebuggableBehavior, ISuspendable
 		_currentVelocity.y = JumpVelocity;
 	}
 
+	public void HaltJump()
+	{
+		MovementType = SidescrollingMovementType.Falling;
+		_currentVelocity.y = Mathf.Abs(Physics.gravity.y);
+	}
+
 	private void CheckIfGrounded()
 	{
 		if(MovementType == SidescrollingMovementType.Grounded

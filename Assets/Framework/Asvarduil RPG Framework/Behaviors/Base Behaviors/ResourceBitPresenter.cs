@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-public abstract class ResourceBitPresenter : PresenterBase
+public abstract class ResourceBitPresenter : PresenterBase, IDisposable
 {
 	#region Variables / Properties
 
@@ -33,6 +33,11 @@ public abstract class ResourceBitPresenter : PresenterBase
 	#region Hooks
 
 	public abstract void Initialize(GameObject playerCharacter);
+
+	public void Dispose()
+	{
+		_texture = null;
+	}
 	
 	public void UpdateImage(int current, int max)
 	{

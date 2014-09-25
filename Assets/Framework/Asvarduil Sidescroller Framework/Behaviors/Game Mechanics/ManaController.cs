@@ -10,11 +10,11 @@ public class ManaController : MonoBehaviour
 	public ManaSystem Mana;
 	public float RegenerationInterval = 5;
 	public float RegenerationAmount = 1;
-	public GameObject OutOfManaEffect;
 
 	private float _lastRegeneration;
+	private Maestro _maestro;
 	private PlayerHudController _playerHud;
-	private ParticleEmitter _manaGainEffect;
+	private ParticleSystem _manaGainEffect;
 
 	public bool IsFull
 	{
@@ -29,8 +29,9 @@ public class ManaController : MonoBehaviour
 	{
 		_playerHud = PlayerHudController.Instance;
 
+		_maestro = Maestro.Instance;
 		// Requires a Legacy Particle Emitter, because Shuriken can't do a 'black hole' effect.
-		_manaGainEffect = transform.FindChild("Mana Gain Effect").GetComponent<ParticleEmitter>();
+		_manaGainEffect = transform.FindChild("Mana Gain Effect").GetComponent<ParticleSystem>();
 	}
 
 	public void Update()
@@ -59,12 +60,6 @@ public class ManaController : MonoBehaviour
 	
 	public void Lose(int amount)
 	{
-		if(amount > Mana.MP)
-		{
-			GameObject.Instantiate(OutOfManaEffect, transform.position, transform.rotation);
-			return;
-		}
-
 		Mana.Lose(amount);
 		_playerHud.UpdateManaWidget(Mana.MP, Mana.MaxMP);
 	}

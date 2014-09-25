@@ -7,15 +7,15 @@ public class SidescrollingPlayerControl : DebuggableBehavior, ISuspendable
 	public bool canAcceptInput = true;
 	public bool isFacingRight = true;
 
-	private ControlManager _control;
-	private SidescrollingMovement _movement;
-	private SidescrollingAnimationController _animation;
+	protected ControlManager _control;
+	protected SidescrollingMovement _movement;
+	protected SidescrollingAnimationController _animation;
 	
 	#endregion Variables / Properties
 	
 	#region Engine Hooks
 	
-	public void Start()
+	public virtual void Start()
 	{
 		_control = ControlManager.Instance;
 		_movement = GetComponent<SidescrollingMovement>();
@@ -26,11 +26,7 @@ public class SidescrollingPlayerControl : DebuggableBehavior, ISuspendable
 	{
 		PrepMovementFrame();
 
-		if(canAcceptInput)
-		{
-			DetectHorizontalMovement();
-			DetectJumpCommand();
-		}
+		ProcessAxes();
 
 		_animation.Animate();
 		_movement.MoveCharacter();
@@ -50,13 +46,22 @@ public class SidescrollingPlayerControl : DebuggableBehavior, ISuspendable
 		canAcceptInput = true;
 	}
 
+	public virtual void ProcessAxes()
+	{
+		if(! canAcceptInput)
+			return;
+
+		DetectHorizontalMovement();
+		DetectJumpCommand();
+	}
+
 	private void PrepMovementFrame()
 	{
 		_movement.ClearHorizontalMovement();
 		_animation.isMovingHorizontallyThisTick = false;
 	}
 
-	private void DetectHorizontalMovement()
+	protected void DetectHorizontalMovement()
 	{
 		if(_control.GetAxis("Horizontal") > 0)
 		{
@@ -77,10 +82,15 @@ public class SidescrollingPlayerControl : DebuggableBehavior, ISuspendable
 		}
 	}
 
-	private void DetectJumpCommand()
+	protected void DetectJumpCommand()
 	{
 		if(_control.GetAxis("Jump") == 0)
+		{
+			if(_movement.MovementType == SidescrollingMovementType.Jumping)
+				_movement.HaltJump();
+
 			return;
+		}
 
 		_movement.Jump();
 	}

@@ -164,6 +164,12 @@
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaController.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaPickup.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Classes\SidescrollingMovementType.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\DecayingEffect.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SaraPlayerControl.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellManager.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellTargetingGhost.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellTargetingPresenter.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Classes\Spell.cs" />
      <None Include="Assets\Game-Specific Assets\Data\Chests\chest-tonic-test scene.txt" />
      <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-chest.txt" />
