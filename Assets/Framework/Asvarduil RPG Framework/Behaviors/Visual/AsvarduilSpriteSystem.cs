@@ -128,7 +128,13 @@ public class AsvarduilSpriteSystem : DebuggableBehavior
 	private void DrawCurrentFrame()
 	{
 		_lastFrameChange = Time.time;
-		_workingMaterial.SetTexture(TextureKey, _currentAnimation.Frames[CurrentFrame].Content);
+
+		Texture2D tex = _currentAnimation.Frames[CurrentFrame].Content;
+		DebugMessage("_currentAnimation.Frames[" + CurrentFrame + "].Content is null? " + (tex == null ? "Null!" : "Not Null."));
+
+		_workingMaterial.SetTexture(TextureKey, tex);
+		DebugMessage("_workingMaterial is null? " + (_workingMaterial == null ? "Null!" : "Not Null."));
+
 		renderer.material = _workingMaterial;
 	}
 

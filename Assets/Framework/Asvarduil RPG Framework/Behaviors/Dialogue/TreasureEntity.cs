@@ -11,7 +11,7 @@ public class TreasureEntity : EntityTextInterface
 	public string ItemGetThreadName;
 	public string OpenChestAnimation;
 	public string ClosedChestAnimation;
-
+	
 	private AsvarduilSpriteSystem _spriteSystem;
 	private TreasureManager _treasureManager;
 
@@ -26,7 +26,7 @@ public class TreasureEntity : EntityTextInterface
 		_treasureManager = TreasureManager.Instance;
 		_spriteSystem = GetComponentInChildren<AsvarduilSpriteSystem>();
 
-		LoadInitialState();
+        LoadInitialState();
 	}
 
 	#endregion Engine Hooks

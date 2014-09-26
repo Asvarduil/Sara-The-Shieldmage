@@ -1,0 +1,94 @@
+{
+  "TextThreads":[
+    {
+      "IsDefaultThread":true,
+      "Name":"Obtain Item",
+      "SequenceState":{
+        "Name":"Main", 
+        "MinCounter":0,
+        "MaxCounter":0
+      },
+      "TextContent":[
+        {
+          "ID":0,
+          "Speaker":"",
+          "Dialogue":"Sara got a Mana Crystal!",
+          
+          "Options":[
+            { 
+              "Text":"Continue", 
+              "TargetID":1 
+            }
+          ],
+          
+          "DialogueEvents":[
+            {
+              "MessageName":"IncreaseMaxMana",
+              "Args":[
+              ]
+            }
+          ]
+        },
+        {
+          "ID":1,
+          "Speaker":"",
+          "Dialogue":"Sara can now use an additional spell, before needing to regenerate mana.",
+          "Options":[
+            { 
+              "Text":"Continue", 
+              "TargetID":2
+            }
+          ],
+          "DialogueEvents":[]
+        },
+        {
+          "ID":2,
+          "Speaker":"",
+          "Dialogue":"",
+          "Options":[],
+          "DialogueEvents":[
+            {
+              "MessageName":"EndConversation",
+              "Args":[]
+            }
+          ]
+        }
+      ]
+    },
+    {
+    	"IsDefaultThread":false,
+    	"Name":"Has Nothing",
+    	"SequenceState":{
+	        "Name":"Main", 
+    	    "MinCounter":0,
+        	"MaxCounter":0
+      	},
+      	"TextContent":[
+      		{
+      			"ID":0,
+      			"Speaker":"",
+      			"Dialogue":"This chest is empty...",
+      			"Options":[
+      				{ 
+            			"Text":"Continue", 
+            			"TargetID":1 
+            		}
+      			],
+      			"DialogueEvents":[]
+      		},
+      		{
+				"ID":1,
+				"Speaker":"",
+				"Dialogue":"",
+				"Options":[],
+				"DialogueEvents":[
+					{
+					"MessageName":"EndConversation",
+					"Args":[]
+					}
+				]
+        	}
+      	]
+    }
+  ]
+}
