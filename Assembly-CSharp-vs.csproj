@@ -170,6 +170,7 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellTargetingGhost.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellTargetingPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Classes\Spell.cs" />
+     <None Include="Assets\Game-Specific Assets\Scripts\Shaders\RimAdditive.shader" />
      <None Include="Assets\Game-Specific Assets\Data\Chests\chest-tonic-test scene.txt" />
      <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-chest.txt" />

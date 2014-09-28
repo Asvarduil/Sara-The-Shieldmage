@@ -1,19 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\AsvarduilSpriteSystem.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game-Specific Assets\Scripts\Shaders\RimAdditive.shader">
     <Files>
-      <File FileName="Assets\Framework\Asvarduil Input Framework\Behaviors\ControlManager.cs" Line="48" Column="1" />
-      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\GUI Presenters\ManaHudPresenter.cs" Line="1" Column="1" />
-      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\GUI Controllers\PlayerHudController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\ResourceBitPresenter.cs" Line="1" Column="1" />
-      <File FileName="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\PresenterBase.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game-Specific Assets\Scripts\Behaviors\Control\DecayingEffect.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SaraPlayerControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game-Specific Assets\Data\Chests\chest-mana-crystal-test scene.txt" Line="43" Column="11" />
-      <File FileName="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\AsvarduilSpriteSystem.cs" Line="139" Column="3" />
-      <File FileName="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\TreasureEntity.cs" Line="15" Column="46" />
-      <File FileName="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\TreasureManager.cs" Line="21" Column="2" />
+      <File FileName="Assets\Game-Specific Assets\Scripts\Shaders\RimAdditive.shader" Line="23" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
