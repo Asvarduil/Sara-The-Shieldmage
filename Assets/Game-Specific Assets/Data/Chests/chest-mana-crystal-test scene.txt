@@ -26,6 +26,13 @@
               "MessageName":"IncreaseMaxMana",
               "Args":[
               ]
+            },
+            {
+              "MessageName":"PlayOneShot",
+              "Args":[
+              	"Item Get Fanfare",
+              	"1.0"
+              ]
             }
           ]
         },

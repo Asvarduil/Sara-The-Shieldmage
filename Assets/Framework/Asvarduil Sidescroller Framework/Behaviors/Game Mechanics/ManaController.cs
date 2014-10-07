@@ -72,6 +72,11 @@ public class ManaController : MonoBehaviour
 		Mana.Gain(amount);
 		_playerHud.UpdateManaWidget(Mana.MP, Mana.MaxMP);
 	}
+
+	public void IncrementMax()
+	{
+		Mana.RaiseMaxMP(1);
+	}
 	
 	#endregion Methods
 }

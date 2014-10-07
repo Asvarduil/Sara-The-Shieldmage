@@ -172,10 +172,10 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellManager.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellTargetingGhost.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellTargetingPresenter.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Game Mechanics\ResourceConversationEvents.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Classes\Spell.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\GUI Controllers\SpellCastingController.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\GUI Presenters\SpellCastingPresenter.cs" />
-     <None Include="Assets\Game-Specific Assets\Scripts\Shaders\RimAdditive.shader" />
      <None Include="Assets\Game-Specific Assets\Data\Chests\chest-tonic-test scene.txt" />
      <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-chest.txt" />
@@ -185,6 +185,7 @@
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-basic.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-tonic-chest.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-branches.txt" />
+     <None Include="Assets\Game-Specific Assets\Scripts\Shaders\Particle-Additive-Backculled.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

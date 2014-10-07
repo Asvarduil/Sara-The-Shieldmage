@@ -53,6 +53,13 @@ public class ManaSystem
 			MP = 0;
 		}
 	}
+
+	public void RaiseMaxMP(int amount)
+	{
+		MP += amount;
+		MaxMP += amount;
+		EffectiveMaxMP += amount;
+	}
 	
 	public void RaiseEffectiveMaxMP(int amount)
 	{

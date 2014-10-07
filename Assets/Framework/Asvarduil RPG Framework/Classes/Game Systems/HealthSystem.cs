@@ -54,6 +54,13 @@ public class HealthSystem
 		}
 	}
 
+	public void RaiseMaxHP(int amount)
+	{
+		HP += amount;
+		MaxHP += amount;
+		EffectiveMaxHP += amount;
+	}
+
 	public void RaiseEffectiveMaxHP(int amount)
 	{
 		EffectiveMaxHP += amount;

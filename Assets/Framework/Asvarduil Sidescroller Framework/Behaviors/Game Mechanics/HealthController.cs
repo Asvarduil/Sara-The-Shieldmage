@@ -63,5 +63,10 @@ public class HealthController : DebuggableBehavior
 		_playerHud.UpdateHealthWidget(Health.HP, Health.MaxHP);
 	}
 
+	public void IncrementMax()
+	{
+		Health.RaiseMaxHP(1);
+	}
+
 	#endregion Methods
 }
