@@ -132,6 +132,9 @@ public class AsvarduilSpriteSystem : DebuggableBehavior
 		Texture2D tex = _currentAnimation.Frames[CurrentFrame].Content;
 		DebugMessage("_currentAnimation.Frames[" + CurrentFrame + "].Content is null? " + (tex == null ? "Null!" : "Not Null."));
 
+		if(_workingMaterial == null)
+			return;
+
 		_workingMaterial.SetTexture(TextureKey, tex);
 		DebugMessage("_workingMaterial is null? " + (_workingMaterial == null ? "Null!" : "Not Null."));
 

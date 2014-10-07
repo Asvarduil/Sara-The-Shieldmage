@@ -44,7 +44,6 @@ public class ControlManager : ManagerBase<ControlManager>
 			throw new ArgumentException("Unexpected axis: " + axisName);
 		
 		AsvarduilControlAxis axis = ControlAxes.FirstOrDefault(a => a.Name == axisName);
-		//return axis.GetPositiveKey();
 		return axis.IsPositive();
 	}
 
@@ -54,26 +53,25 @@ public class ControlManager : ManagerBase<ControlManager>
 			throw new ArgumentException("Unexpected axis: " + axisName);
 		
 		AsvarduilControlAxis axis = ControlAxes.FirstOrDefault(a => a.Name == axisName);
-		//return axis.GetNegativeKey();
 		return axis.IsNegative();
 	}
 
-	public float GetAxisDown(string axisName)
+	public bool GetAxisDown(string axisName)
 	{
 		if(string.IsNullOrEmpty(axisName))
 			throw new ArgumentException("Unexpected axis: " + axisName);
 		
 		AsvarduilControlAxis axis = ControlAxes.FirstOrDefault(a => a.Name == axisName);
-		return axis.GetKeyDown();
+		return axis.PositiveKeyDown() || axis.NegativeKeyDown();
 	}
 
-	public float GetAxisUp(string axisName)
+	public bool GetAxisUp(string axisName)
 	{
 		if(string.IsNullOrEmpty(axisName))
 			throw new ArgumentException("Unexpected axis: " + axisName);
 
 		AsvarduilControlAxis axis = ControlAxes.FirstOrDefault(a => a.Name == axisName);
-		return axis.GetKeyUp();
+		return axis.PositiveKeyUp() || axis.NegativeKeyUp();
 	}
 
 	public float GetAxis(string axisName)

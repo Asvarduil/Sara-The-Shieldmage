@@ -20,6 +20,8 @@ public class DamageSource : DebuggableBehavior
 		if(! AllowedTags.Contains(who.tag))
 			return;
 
+		who.gameObject.SendMessage("OnDamageTaken", SendMessageOptions.DontRequireReceiver);
+
 		HealthController health = who.gameObject.GetComponent<HealthController>();
 		if(health != null)
 			health.TakeDamage(DamageAmount);

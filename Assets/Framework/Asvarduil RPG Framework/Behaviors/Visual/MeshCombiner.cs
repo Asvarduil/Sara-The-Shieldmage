@@ -119,6 +119,8 @@ public class MeshCombiner : MonoBehaviour
 	public void OnDestroy()
 	{
 		SkinnedMeshRenderer smr = GetComponent<SkinnedMeshRenderer>();
+		if(smr == null)
+			return;
 		
 		smr.material.mainTexture = null;
 		smr.material = null;

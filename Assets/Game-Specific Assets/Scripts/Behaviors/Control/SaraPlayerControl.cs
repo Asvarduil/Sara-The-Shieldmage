@@ -4,19 +4,13 @@ using System.Collections;
 
 public class SaraPlayerControl : SidescrollingPlayerControl 
 {
-	#region Enumerations
-
-	public enum SaraControlState
-	{
-		Moving,
-		Casting
-	}
-
-	#endregion Enumerations
-
 	#region Variables / Properties
-	
+
+	public string toggleCastAxis;
+	public string spellCastAxis;
 	public SaraControlState controlState;
+	
+	private bool _isCasting = false;
 
 	private const float _stateChangeLockout = 0.25f;
 	private float _lastChange;
@@ -38,21 +32,54 @@ public class SaraPlayerControl : SidescrollingPlayerControl
 		if(! canAcceptInput)
 			return;
 
-		switch(controlState)
+		if(!_isCasting)
 		{
-			case SaraControlState.Moving:
-				DetectHorizontalMovement();
-				DetectJumpCommand();
-				DetectSpellcasting();
-				break;
+			DetectHorizontalMovement();
+			DetectJumpCommand();
+			DetectSpellcasting();
+		}
+		else
+		{
+			DetectSpellPlacement();
+			DetectCanceledCasting();
+		}
+	}
 
-			case SaraControlState.Casting:
-				DetectSpellPlacement();
-				DetectCanceledCasting();
-				break;
+	public override void DetermineControlState()
+	{
+		_isJumping = _movement.MovementType == SidescrollingMovementType.Jumping;
+		_isFalling = _movement.MovementType == SidescrollingMovementType.Falling;
 
-			default:
-				throw new Exception("Unexpected SaraPlayerControl state: " + controlState);
+		controlState = isFacingRight ? SaraControlState.IdleRight : SaraControlState.IdleLeft;
+
+		if(_isHit)
+		{
+			controlState = isFacingRight ? SaraControlState.HitRight : SaraControlState.HitLeft;
+			return;
+		}
+
+		if(_isCasting)
+		{
+			controlState = isFacingRight ? SaraControlState.CastRight : SaraControlState.CastLeft;
+			return;
+		}
+
+		if(_isFalling)
+		{
+			controlState = isFacingRight ? SaraControlState.FallRight : SaraControlState.FallLeft;
+			return;
+		}
+
+		if(_isJumping)
+		{
+			controlState = isFacingRight ? SaraControlState.JumpRight : SaraControlState.JumpLeft;
+			return;
+		}
+
+		if(_isMovingHorizontally)
+		{
+			controlState = isFacingRight ? SaraControlState.MoveRight : SaraControlState.MoveLeft;
+			return;
 		}
 	}
 
@@ -64,44 +91,37 @@ public class SaraPlayerControl : SidescrollingPlayerControl
 
 	public void DetectSpellcasting()
 	{
-		if(! _control.GetPositiveAxis("Cast"))
+		if(! _control.GetAxisDown(toggleCastAxis))
 			return;
 
 		if(Time.time < _lastChange + _stateChangeLockout)
 			return;
 
+		_isCasting = true;
 		_lastChange = Time.time;
 		_movement.Suspend();
 		_spellManager.PrepareSpell();
-		controlState = SaraControlState.Casting;
 	}
 
 	private void DetectSpellPlacement()
 	{
-		if(! _control.GetPositiveAxis("Cast"))
+		if(! _control.GetPositiveAxis(spellCastAxis))
 			return;
 
-		if(Time.time < _lastChange + _stateChangeLockout)
-			return;
-		
-		_lastChange = Time.time;
+		_isCasting = false;
 		_movement.Resume();
 		_spellManager.CastSpell();
-		controlState = SaraControlState.Moving;
 	}
 
 	private void DetectCanceledCasting()
 	{
-		if(! _control.GetPositiveAxis("Cancel Cast"))
+		if(! _control.GetAxisUp(toggleCastAxis) && _isCasting)
 			return;
 
-		if(Time.time < _lastChange + _stateChangeLockout)
-			return;
-
+		_isCasting = false;
 		_lastChange = Time.time;
 		_movement.Resume();
 		_spellManager.CancelSpell();
-		controlState = SaraControlState.Moving;
 	}
 
 	#endregion Methods

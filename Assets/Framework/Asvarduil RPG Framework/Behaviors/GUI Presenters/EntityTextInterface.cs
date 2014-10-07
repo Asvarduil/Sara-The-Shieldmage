@@ -61,7 +61,7 @@ public class EntityTextInterface : PresenterBase, ISuspendable
 	public override void DrawMe()
 	{
 		if(InteractButton.IsClicked()
-		   || _controlManager.GetAxisUp("Interact") > 0)
+		   || _controlManager.GetAxisUp("Interact"))
 		{
 			_maestro.PlayOneShot(ButtonSound);
 

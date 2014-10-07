@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 
-public class SidescrollingPlayerControl : DebuggableBehavior, ISuspendable
+public abstract class SidescrollingPlayerControl : DebuggableBehavior, ISuspendable
 {
 	#region Variables / Properties
 
 	public bool canAcceptInput = true;
+	public bool canMove = true;
+	public bool canJump = true;
 	public bool isFacingRight = true;
+
+	protected bool _isHit = false;
+	protected bool _isFalling = false;
+	protected bool _isJumping = false;
+	protected bool _isMovingHorizontally = false;
 
 	protected ControlManager _control;
 	protected SidescrollingMovement _movement;
@@ -27,6 +34,7 @@ public class SidescrollingPlayerControl : DebuggableBehavior, ISuspendable
 		PrepMovementFrame();
 
 		ProcessAxes();
+		DetermineControlState();
 
 		_animation.Animate();
 		_movement.MoveCharacter();
@@ -36,14 +44,21 @@ public class SidescrollingPlayerControl : DebuggableBehavior, ISuspendable
 	
 	#region Methods
 
-	public void Suspend()
+	public virtual void Suspend()
 	{
 		canAcceptInput = false;
+		_isJumping = false;
+		_isMovingHorizontally = false;
 	}
 
-	public void Resume()
+	public virtual void Resume()
 	{
 		canAcceptInput = true;
+	}
+
+	public virtual void OnDamageTaken()
+	{
+		_isHit = true;
 	}
 
 	public virtual void ProcessAxes()
@@ -55,28 +70,36 @@ public class SidescrollingPlayerControl : DebuggableBehavior, ISuspendable
 		DetectJumpCommand();
 	}
 
+	public abstract void DetermineControlState();
+
 	private void PrepMovementFrame()
 	{
 		_movement.ClearHorizontalMovement();
-		_animation.isMovingHorizontallyThisTick = false;
+		_isMovingHorizontally = false;
+
+		// If you're previously hit, you're hit until you're grounded again.
+		if(_isHit)
+			_isHit = _movement.MovementType != SidescrollingMovementType.Grounded;
 	}
 
 	protected void DetectHorizontalMovement()
 	{
+		if(! canMove)
+			return;
+
 		if(_control.GetAxis("Horizontal") > 0)
 		{
-			_animation.isMovingHorizontallyThisTick = true;
+			_isMovingHorizontally = true;
 			isFacingRight = true;
 		}
 		
 		if(_control.GetAxis("Horizontal") < 0)
 		{
-			_animation.isMovingHorizontallyThisTick = true;
+			_isMovingHorizontally = true;
 			isFacingRight = false;
 		}
 
-		_animation.isFacingRight = isFacingRight;
-		if(_animation.isMovingHorizontallyThisTick)
+		if(_isMovingHorizontally)
 		{		
 			_movement.MoveHorizontally(isFacingRight);
 		}
@@ -84,6 +107,9 @@ public class SidescrollingPlayerControl : DebuggableBehavior, ISuspendable
 
 	protected void DetectJumpCommand()
 	{
+		if(! canJump)
+			return;
+
 		if(_control.GetAxis("Jump") == 0)
 		{
 			if(_movement.MovementType == SidescrollingMovementType.Jumping)
@@ -93,6 +119,7 @@ public class SidescrollingPlayerControl : DebuggableBehavior, ISuspendable
 		}
 
 		_movement.Jump();
+		_isJumping = true;
 	}
 
 	#endregion Methods
