@@ -36,6 +36,17 @@ public class Maestro : MonoBehaviour
 
 	#region Methods
 
+	public void StopBGM()
+	{
+		_soundSource.Stop();
+	}
+
+	public void ResumeBGM()
+	{
+		_soundSource.time = 0.0f;
+		_soundSource.Play();
+	}
+
 	public void PlayOneShot(AudioClip oneShot, float? effectVolume = null)
 	{
 		if(oneShot == null)

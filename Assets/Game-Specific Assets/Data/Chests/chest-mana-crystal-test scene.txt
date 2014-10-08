@@ -28,6 +28,10 @@
               ]
             },
             {
+              "MessageName":"StopBGM",
+              "Args":[]
+            },
+            {
               "MessageName":"PlayOneShot",
               "Args":[
               	"Item Get Fanfare",
@@ -46,7 +50,12 @@
               "TargetID":2
             }
           ],
-          "DialogueEvents":[]
+          "DialogueEvents":[
+          	{
+              "MessageName":"ResumeBGM",
+              "Args":[]
+            }
+          ]
         },
         {
           "ID":2,

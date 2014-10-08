@@ -24,6 +24,16 @@ public class ConversationSoundEvents : DebuggableBehavior
 
 	#region Methods
 
+	public void StopBGM(List<string> args)
+	{
+		_maestro.StopBGM();
+	}
+
+	public void ResumeBGM(List<string> args)
+	{
+		_maestro.ResumeBGM();
+	}
+
 	public void CueSounds(List<string> args)
 	{
 		PlayOneShot(args);
