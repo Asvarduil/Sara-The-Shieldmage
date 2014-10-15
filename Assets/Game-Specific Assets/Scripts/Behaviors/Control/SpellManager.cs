@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class SpellManager : ManagerBase<SpellManager>
+public class SpellManager : ManagerBase<SpellManager>, ISuspendable
 {
 	#region Variables / Properties
 
+	public bool isTargetingEnabled = true;
 	public bool isPlacingSpell = false;
 	public AudioClip OutOfManaEffect;
 	
@@ -44,8 +45,29 @@ public class SpellManager : ManagerBase<SpellManager>
 
 	#region Methods
 
+	public void Suspend()
+	{
+		isTargetingEnabled = false;
+		CancelSpell();
+	}
+
+	public void Resume()
+	{
+		isTargetingEnabled = true;
+	}
+
 	public void PrepareSpell()
 	{
+		if(! isTargetingEnabled)
+			return;
+
+		if(! ActiveSpell.IsTargeted)
+		{
+			DebugMessage("The current spell is not targeted.  Doing a relative placement instead.");
+
+			return;
+		}
+
 		isPlacingSpell = true;
 		// TODO: Ref ghost effect of current spell.
 		_targetPresenter.SetEffectGhost(ActiveSpell.GhostEffect);
@@ -60,6 +82,9 @@ public class SpellManager : ManagerBase<SpellManager>
 
 	public void CastSpell()
 	{
+		if(! isTargetingEnabled)
+			return;
+
 		Vector3 position = _targetPresenter.SpellPosition;
 		_targetPresenter.SetVisibility(false);
 

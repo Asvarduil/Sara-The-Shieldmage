@@ -15,8 +15,9 @@ public class DialoguePresenter : PresenterBase
 	public float AdvanceLockout = 0.25f;
 
 	private float _lastAdvance = 0f;
+	private ControlManager _control;
+	private TextContent _currentContent;
 	private DialogueController _dialogueController;
-	private TextContent _currentContent;	
 
 	#endregion Variables / Properties
 
@@ -26,6 +27,7 @@ public class DialoguePresenter : PresenterBase
 	{
 		base.Start();
 
+		_control = ControlManager.Instance;
 		_dialogueController = DialogueController.Instance;
 	}
 
@@ -57,14 +59,11 @@ public class DialoguePresenter : PresenterBase
 	    {
 			AsvarduilButton button = AdvanceButtons[i];
 
-			// TODO: Implement alternate advance buttons for 
-			//       branching text in the Control Manager.
-			//       Then, make sure that each advance axis
-			//       is represented here.
-
-		    if(button.IsClicked()
+		    if((button.IsClicked() || _control.GetAxisDown(button.ActivationAxis))
 			   && Time.time >= _lastAdvance + AdvanceLockout)
 		    {
+				DebugMessage("Options: " + _currentContent.Options);
+
 		        _dialogueController.AdvanceThread(_currentContent.Options[i].TargetID);
 		        break;
 		    }

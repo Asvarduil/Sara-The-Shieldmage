@@ -62,7 +62,6 @@ public class DialogueController : ManagerBase<DialogueController>
 
 		_controlManager.RadiateResumeCommand();
 		_dialogueGUI.SetVisibility(false);
-		//_pauseController.PresentInterface(true);
 	}
 
 	public void AdvanceThread(int targetID)

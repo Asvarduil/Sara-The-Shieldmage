@@ -9,6 +9,7 @@ public class Spell
 	public string Name;
 	public Texture2D Thumbnail;
 
+	public bool IsTargeted = false;
 	public bool CanCast = false;
 	public int ManaCost = 1;
 

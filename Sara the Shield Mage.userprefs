@@ -1,15 +1,55 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\Maestro.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellManager.cs">
     <Files>
-      <File FileName="Assets\Game-Specific Assets\Scripts\GUI Presenters\SpellCastingPresenter.cs" Line="42" Column="3" />
-      <File FileName="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\ConversationSoundEvents.cs" Line="20" Column="20" />
-      <File FileName="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\Maestro.cs" Line="12" Column="37" />
-      <File FileName="Assets\Game-Specific Assets\Data\Chests\chest-mana-crystal-test scene.txt" Line="56" Column="24" />
+      <File FileName="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DialoguePresenter.cs" Line="85" Column="2" />
+      <File FileName="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\DialogueController.cs" Line="44" Column="27" />
+      <File FileName="Assets\Framework\Asvarduil Input Framework\Behaviors\ControlManager.cs" Line="26" Column="2" />
+      <File FileName="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellManager.cs" Line="52" Column="3" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Framework" expanded="True">
+              <Node name="Asvarduil Input Framework" expanded="True">
+                <Node name="Behaviors" expanded="True" />
+              </Node>
+              <Node name="Asvarduil RPG Framework" expanded="True">
+                <Node name="Behaviors" expanded="True">
+                  <Node name="GUI Controllers" expanded="True" />
+                  <Node name="GUI Presenters" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+            <Node name="Game-Specific Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Behaviors" expanded="True">
+                  <Node name="Control" expanded="True">
+                    <Node name="SpellManager.cs" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>_currentContent.Options._items</Value>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Andrew\Desktop\Unity Productions\Sara the Shield Mage\Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DialoguePresenter.cs" line="65" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DialoguePresenter.cs" line="65" offsetX="616" offsetY="1086" expression="_currentContent" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

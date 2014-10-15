@@ -9,6 +9,11 @@ using System;
 public class AsvarduilButton : TweenableElement, IClickable, ICloneable
 {
 	#region Public Fields
+
+	/// <summary>
+	/// The input axis that will also count towards activating this button.
+	/// </summary>
+	public string ActivationAxis;
 	
 	/// <summary>
 	/// The dimensions of the button.

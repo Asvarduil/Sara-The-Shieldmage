@@ -60,6 +60,14 @@ public class ManaController : MonoBehaviour
 	
 	public void Lose(int amount)
 	{
+		// If Mana is full, start the regeneration timer immediately,
+		// to prevent the Mana from gaining a charge immediately after
+		// a cast or loss.
+		if(Mana.MP == Mana.MaxMP)
+		{
+			_lastRegeneration = Time.time;
+		}
+
 		Mana.Lose(amount);
 		_playerHud.UpdateManaWidget(Mana.MP, Mana.MaxMP);
 	}
@@ -76,6 +84,7 @@ public class ManaController : MonoBehaviour
 	public void IncrementMax()
 	{
 		Mana.RaiseMaxMP(1);
+		_playerHud.UpdateManaWidget(Mana.MP, Mana.MaxMP);
 	}
 	
 	#endregion Methods

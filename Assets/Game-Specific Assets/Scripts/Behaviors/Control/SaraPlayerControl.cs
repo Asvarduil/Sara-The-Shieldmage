@@ -5,8 +5,7 @@ using System.Collections;
 public class SaraPlayerControl : SidescrollingPlayerControl 
 {
 	#region Variables / Properties
-
-	public string toggleCastAxis;
+	
 	public string spellCastAxis;
 	public SaraControlState controlState;
 	
@@ -41,7 +40,6 @@ public class SaraPlayerControl : SidescrollingPlayerControl
 		else
 		{
 			DetectSpellPlacement();
-			DetectCanceledCasting();
 		}
 	}
 
@@ -91,7 +89,7 @@ public class SaraPlayerControl : SidescrollingPlayerControl
 
 	public void DetectSpellcasting()
 	{
-		if(! _control.GetAxisDown(toggleCastAxis))
+		if(! _control.GetAxisDown(spellCastAxis))
 			return;
 
 		if(Time.time < _lastChange + _stateChangeLockout)
@@ -105,23 +103,12 @@ public class SaraPlayerControl : SidescrollingPlayerControl
 
 	private void DetectSpellPlacement()
 	{
-		if(! _control.GetPositiveAxis(spellCastAxis))
+		if(! _control.GetAxisUp(spellCastAxis))
 			return;
 
 		_isCasting = false;
 		_movement.Resume();
 		_spellManager.CastSpell();
-	}
-
-	private void DetectCanceledCasting()
-	{
-		if(! _control.GetAxisUp(toggleCastAxis) && _isCasting)
-			return;
-
-		_isCasting = false;
-		_lastChange = Time.time;
-		_movement.Resume();
-		_spellManager.CancelSpell();
 	}
 
 	#endregion Methods
