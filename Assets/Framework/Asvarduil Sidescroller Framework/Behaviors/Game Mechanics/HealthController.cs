@@ -7,12 +7,17 @@ public class HealthController : DebuggableBehavior
 
 	public bool ReloadSceneOnDeath = false;
 	public HealthSystem Health;
+	public int GainParticleCount = 5;
+	public int DamageParticleCount = 25;
+	public AudioClip HealSoundEffect;
+	public AudioClip DamageSoundEffect;
 
 	public GameObject DeathEffect;
 
-	private PlayerHudController _playerHud;
+	private Maestro _maestro;
 	private ParticleSystem _healEffect;
 	private ParticleSystem _damageEffect;
+	private PlayerHudController _playerHud;
 
 	public bool IsFull
 	{
@@ -25,6 +30,7 @@ public class HealthController : DebuggableBehavior
 
 	public void Start()
 	{
+		_maestro = Maestro.Instance;
 		_playerHud = PlayerHudController.Instance;
 		_healEffect = transform.FindChild("Heal Effect").GetComponent<ParticleSystem>();
 		_damageEffect = transform.FindChild("Damage Effect").GetComponent<ParticleSystem>();
@@ -37,7 +43,10 @@ public class HealthController : DebuggableBehavior
 	public void TakeDamage(int amount)
 	{
 		if(_damageEffect != null)
-			_damageEffect.Emit(25);
+			_damageEffect.Emit(DamageParticleCount);
+
+		if(DamageSoundEffect != null)
+			_maestro.PlayOneShot(DamageSoundEffect);
 
 		Health.TakeDamage(amount);
 		_playerHud.UpdateHealthWidget(Health.HP, Health.MaxHP);
@@ -57,7 +66,10 @@ public class HealthController : DebuggableBehavior
 	public void Heal(int amount)
 	{
 		if(_healEffect != null)
-			_healEffect.Emit(25);
+			_healEffect.Emit(GainParticleCount);
+
+		if(HealSoundEffect != null)
+			_maestro.PlayOneShot(HealSoundEffect);
 
 		Health.Heal(amount);
 		_playerHud.UpdateHealthWidget(Health.HP, Health.MaxHP);

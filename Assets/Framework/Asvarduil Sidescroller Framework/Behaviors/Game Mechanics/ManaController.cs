@@ -10,6 +10,8 @@ public class ManaController : MonoBehaviour
 	public ManaSystem Mana;
 	public float RegenerationInterval = 5;
 	public float RegenerationAmount = 1;
+	public int GainParticleCount = 5;
+	public AudioClip RegenSoundEffect;
 
 	private float _lastRegeneration;
 	private Maestro _maestro;
@@ -75,7 +77,10 @@ public class ManaController : MonoBehaviour
 	public void Gain(int amount)
 	{
 		if(_manaGainEffect != null)
-			_manaGainEffect.Emit(25);
+			_manaGainEffect.Emit(GainParticleCount);
+
+		if(RegenSoundEffect != null)
+			_maestro.PlayOneShot(RegenSoundEffect);
 
 		Mana.Gain(amount);
 		_playerHud.UpdateManaWidget(Mana.MP, Mana.MaxMP);
