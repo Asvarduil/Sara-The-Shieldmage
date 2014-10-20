@@ -164,7 +164,9 @@
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaController.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ManaPickup.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Classes\SidescrollingMovementType.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\AI\GenericTestEnemy.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\DecayingEffect.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\FlashingDecayEffect.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SaraAnimationController.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SaraAnimationState.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SaraControlState.cs" />
