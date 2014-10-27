@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellTargetingGhost.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game-Specific Assets\Data\Chests\chest-mana-crystal-hall-of-spikes.txt">
     <Files>
-      <File FileName="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellTargetingGhost.cs" Line="50" Column="27" />
+      <File FileName="Assets\Game-Specific Assets\Data\Chests\chest-mana-crystal-hall-of-spikes.txt" Line="46" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

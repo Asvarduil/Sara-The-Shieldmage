@@ -11,5 +11,6 @@
 	FallLeft,
 	FallRight,
 	HitLeft,
-	HitRight
+	HitRight,
+	ItemGet
 }

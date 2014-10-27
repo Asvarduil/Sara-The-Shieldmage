@@ -8,6 +8,7 @@ public class SaraAnimationController : SidescrollingAnimationController
 
 	public List<SaraAnimationState> animationStates;
 
+	private bool _overrideAnimation = false;
 	private SaraPlayerControl _control;
 
 	#endregion Variables / Properties
@@ -27,6 +28,9 @@ public class SaraAnimationController : SidescrollingAnimationController
 
 	protected override void SelectCurrentAnimation()
 	{
+		if(_overrideAnimation)
+			return;
+
 		SaraAnimationState sequence = animationStates.FirstOrDefault(a => a.ControlState == _control.controlState);
 		if(sequence == default(SaraAnimationState))
 			return;
@@ -37,6 +41,22 @@ public class SaraAnimationController : SidescrollingAnimationController
 	#endregion Hooks
 
 	#region Methods
+
+	public void OverrideAnimation(string animation)
+	{
+		_overrideAnimation = true;
+
+		SaraAnimationState sequence = animationStates.FirstOrDefault(a => a.ControlState.ToString() == animation);
+		if(sequence == default(SaraAnimationState))
+			return;
+		
+		_currentAnimation = sequence.Animation;
+	}
+
+	public void StopAnimationOverride()
+	{
+		_overrideAnimation = false;
+	}
 
 	#endregion Methods
 }

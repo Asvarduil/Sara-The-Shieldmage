@@ -22,6 +22,20 @@
           ],
           
           "DialogueEvents":[
+          	{
+          	  "MessageName":"PerformAnimation",
+          	  "Args":[
+          	  	"ItemGet"
+          	  ]
+          	},
+          	{
+          	  "MessageName":"ShowLoot",
+          	  "Args":[
+          	  	"Mana Upgrade",
+          	  	"0",
+          	  	"0.05"
+          	  ]
+          	},
             {
               "MessageName":"IncreaseMaxMana",
               "Args":[
@@ -51,6 +65,14 @@
             }
           ],
           "DialogueEvents":[
+          	{
+          	  "MessageName":"ResumeOriginalAnimation",
+          	  "Args":[]
+          	},
+          	{
+          	  "MessageName":"HideLoot",
+          	  "Args":[]
+          	},
           	{
               "MessageName":"ResumeBGM",
               "Args":[]
