@@ -41,6 +41,18 @@ public class SpellManager : ManagerBase<SpellManager>, ISuspendable
 		_targetPresenter = GetComponentInChildren<SpellTargetingPresenter>();
 	}
 
+	public void Update()
+	{
+		if(! Spells[_currentSpell].IsTargeted)
+			return;
+
+		if(! isTargetingEnabled)
+			return;
+
+		bool canCast = _mana.Mana.MP >= Spells[_currentSpell].ManaCost;
+		_targetPresenter.UpdateTargetingCursor(canCast);
+	}
+
 	#endregion Engine Hooks
 
 	#region Methods
@@ -64,13 +76,10 @@ public class SpellManager : ManagerBase<SpellManager>, ISuspendable
 		if(! ActiveSpell.IsTargeted)
 		{
 			DebugMessage("The current spell is not targeted.  Doing a relative placement instead.");
-
 			return;
 		}
 
 		isPlacingSpell = true;
-		// TODO: Ref ghost effect of current spell.
-		_targetPresenter.SetEffectGhost(ActiveSpell.GhostEffect);
 		_targetPresenter.SetVisibility(true);
 	}
 
@@ -97,7 +106,6 @@ public class SpellManager : ManagerBase<SpellManager>, ISuspendable
 		}
 
 		_mana.Lose(ActiveSpell.ManaCost);
-		// TODO: Instantiate the current spell at the cursor location.
 		GameObject.Instantiate(ActiveSpell.Effect, position, Quaternion.identity);
 	}
 

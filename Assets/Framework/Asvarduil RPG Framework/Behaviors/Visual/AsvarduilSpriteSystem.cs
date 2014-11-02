@@ -5,18 +5,6 @@ using System.Collections.Generic;
 
 public class AsvarduilSpriteSystem : DebuggableBehavior
 {
-	#region Enumerations
-
-	public enum AsvarduilAnimationType
-	{
-		None,
-		OneShot,
-		Loop,
-		PingPong
-	}
-
-	#endregion Enumerations
-
 	#region Variables / Properties
 
 	public bool AutomaticallyPlay = true;

@@ -14,7 +14,6 @@ public class Spell
 	public int ManaCost = 1;
 
 	public GameObject Effect;
-	public GameObject GhostEffect;
 
 	#endregion Variables / Properties
 }

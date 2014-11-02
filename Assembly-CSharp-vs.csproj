@@ -146,6 +146,9 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\TextThread.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Interfaces\INamed.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilAnimation.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilAnimationType.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilCursorAnimation.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilCursorFrame.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilFrame.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteAnimation.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteFrame.cs" />
@@ -172,7 +175,6 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SaraControlState.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SaraPlayerControl.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellManager.cs" />
-     <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellTargetingGhost.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellTargetingPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Game Mechanics\AnimationConversationEvents.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Game Mechanics\LootConversationEvents.cs" />
