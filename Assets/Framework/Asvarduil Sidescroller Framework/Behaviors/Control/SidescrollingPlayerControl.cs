@@ -8,6 +8,8 @@ public abstract class SidescrollingPlayerControl : DebuggableBehavior, ISuspenda
 	public bool canMove = true;
 	public bool canJump = true;
 	public bool isFacingRight = true;
+	public string HorizontalAxis;
+	public string JumpAxis;
 
 	protected bool _isHit = false;
 	protected bool _isFalling = false;
@@ -87,13 +89,13 @@ public abstract class SidescrollingPlayerControl : DebuggableBehavior, ISuspenda
 		if(! canMove)
 			return;
 
-		if(_control.GetAxis("Horizontal") > 0)
+		if(_control.GetAxis(HorizontalAxis) > 0)
 		{
 			_isMovingHorizontally = true;
 			isFacingRight = true;
 		}
 		
-		if(_control.GetAxis("Horizontal") < 0)
+		if(_control.GetAxis(HorizontalAxis) < 0)
 		{
 			_isMovingHorizontally = true;
 			isFacingRight = false;
@@ -110,7 +112,7 @@ public abstract class SidescrollingPlayerControl : DebuggableBehavior, ISuspenda
 		if(! canJump)
 			return;
 
-		if(_control.GetAxis("Jump") == 0)
+		if(_control.GetAxis(JumpAxis) == 0)
 		{
 			if(_movement.MovementType == SidescrollingMovementType.Jumping)
 				_movement.HaltJump();

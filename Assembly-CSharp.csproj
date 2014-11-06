@@ -177,9 +177,12 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellManager.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellTargetingPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Game Mechanics\AnimationConversationEvents.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Game Mechanics\CharacterManager.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Game Mechanics\LootConversationEvents.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Game Mechanics\LootPrefabPair.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Game Mechanics\ResourceConversationEvents.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Classes\GameCharacter.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Classes\PlayerCharacter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Classes\Spell.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\GUI Controllers\SpellCastingController.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\GUI Presenters\SpellCastingPresenter.cs" />

@@ -32,8 +32,14 @@ public class HealthController : DebuggableBehavior
 	{
 		_maestro = Maestro.Instance;
 		_playerHud = PlayerHudController.Instance;
-		_healEffect = transform.FindChild("Heal Effect").GetComponent<ParticleSystem>();
-		_damageEffect = transform.FindChild("Damage Effect").GetComponent<ParticleSystem>();
+
+		Transform healEffectChild = transform.FindChild("Heal Effect");
+		if(healEffectChild != null)
+			_healEffect = healEffectChild.GetComponent<ParticleSystem>();
+
+		Transform damageEffectChild = transform.FindChild("Damage Effect");
+		if(damageEffectChild != null)
+			_damageEffect = damageEffectChild.GetComponent<ParticleSystem>();
 	}
 
 	#endregion Engine Hooks

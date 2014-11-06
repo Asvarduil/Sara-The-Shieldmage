@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System;
+using System.Linq;
 using System.Collections.Generic;
 
 public class SpellManager : ManagerBase<SpellManager>, ISuspendable
@@ -16,25 +18,31 @@ public class SpellManager : ManagerBase<SpellManager>, ISuspendable
 	private ManaController _mana;
 	private GameObject _effectGhost;
 
+	private CharacterManager _characters;
 	// TODO: Implement spell selection presenter...
 	//private SpellSelectionPresenter _selectPresenter;
 	private SpellTargetingPresenter _targetPresenter;
 
 	public Spell ActiveSpell
 	{
-		get { return Spells[_currentSpell]; }
+		get 
+		{ 
+			List<Spell> characterSpells = Spells.Where(s => s.Character == _characters.ActiveCharacter).ToList();
+			return characterSpells[_currentSpell]; 
+		}
 	}
 
 	#endregion Variables / Properties
 
 	#region Engine Hooks
 
-	public void Start()
+	public void Awake()
 	{
 		_maestro = Maestro.Instance;
+		_characters = CharacterManager.Instance;
 
 		// Acquire mana system, so that we can tell spells to consume mana charges.
-		GameObject playerCharacter = FindObjectOfType<SidescrollingPlayerControl>().gameObject;
+		GameObject playerCharacter = GameObject.FindGameObjectWithTag("Player");
 		_mana = playerCharacter.GetComponent<ManaController>();
 
 		//_selectPresenter = GetComponentInChildren<SpellSelectionPresenter>();

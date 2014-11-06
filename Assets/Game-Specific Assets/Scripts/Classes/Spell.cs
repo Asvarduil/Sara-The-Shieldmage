@@ -8,6 +8,7 @@ public class Spell
 
 	public string Name;
 	public Texture2D Thumbnail;
+	public PlayerCharacter Character;
 
 	public bool IsTargeted = false;
 	public bool CanCast = false;

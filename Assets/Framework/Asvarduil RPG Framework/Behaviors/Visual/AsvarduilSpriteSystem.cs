@@ -135,6 +135,7 @@ public class AsvarduilSpriteSystem : DebuggableBehavior
 
 		switch(_currentAnimation.AnimationType)
 		{
+			// Works!
 			case AsvarduilAnimationType.Loop:
 				if(IsAnimationDone)
 					CurrentFrame = 0;
@@ -142,7 +143,10 @@ public class AsvarduilSpriteSystem : DebuggableBehavior
 
 			case AsvarduilAnimationType.OneShot:
 				if(IsAnimationDone)
+				{
 					_flipDirection = 0;
+					CurrentFrame = _currentAnimation.Frames.Count - 1;
+				}
 				break;
 
 			case AsvarduilAnimationType.PingPong:
@@ -150,6 +154,11 @@ public class AsvarduilSpriteSystem : DebuggableBehavior
 			       || HasAnimationReset)
 				{
 					_flipDirection = -_flipDirection;
+
+					if(_flipDirection > 0)
+						CurrentFrame = 0;
+					else
+						CurrentFrame = _currentAnimation.Frames.Count - 1;
 				}
 				break;
 

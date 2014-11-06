@@ -12,5 +12,7 @@
 	FallRight,
 	HitLeft,
 	HitRight,
+	AttackLeft,
+	AttackRight,
 	ItemGet
 }

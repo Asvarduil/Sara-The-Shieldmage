@@ -7,12 +7,17 @@ public class SaraPlayerControl : SidescrollingPlayerControl
 	#region Variables / Properties
 	
 	public string spellCastAxis;
+	public string attackAxis;
 	public SaraControlState controlState;
-	
+
+	private bool _isAttacking = false;
 	private bool _isCasting = false;
 
-	private const float _stateChangeLockout = 0.25f;
-	private float _lastChange;
+	private const float _attackLockout = 0.25f;
+	private const float _spellCastLockout = 0.25f;
+
+	private float _lastAttack;
+	private float _lastSpellCast;
 
 	private SpellManager _spellManager;
 
@@ -36,6 +41,7 @@ public class SaraPlayerControl : SidescrollingPlayerControl
 			DetectHorizontalMovement();
 			DetectJumpCommand();
 			DetectSpellcasting();
+			DetectAttacking();
 		}
 		else
 		{
@@ -62,6 +68,12 @@ public class SaraPlayerControl : SidescrollingPlayerControl
 			return;
 		}
 
+		if(_isAttacking)
+		{
+			controlState = isFacingRight ? SaraControlState.AttackRight : SaraControlState.AttackLeft;
+			return;
+		}
+
 		if(_isFalling)
 		{
 			controlState = isFacingRight ? SaraControlState.FallRight : SaraControlState.FallLeft;
@@ -85,18 +97,33 @@ public class SaraPlayerControl : SidescrollingPlayerControl
 
 	#region Methods
 
-	// TODO: These methods are going to interact poorly with pausing/unpausing the menu.
+	public void DetectAttacking()
+	{
+		if(_control.GetAxisUp(attackAxis))
+		{
+			_isAttacking = false;	
+		}
+		else if(_control.GetAxisDown(attackAxis))
+		{
+			if(Time.time < _lastAttack + _attackLockout)
+				return;
+
+			_isAttacking = true;
+			_lastAttack = Time.time;
+			_isMovingHorizontally = false;
+		}
+	}
 
 	public void DetectSpellcasting()
 	{
 		if(! _control.GetAxisDown(spellCastAxis))
 			return;
 
-		if(Time.time < _lastChange + _stateChangeLockout)
+		if(Time.time < _lastSpellCast + _spellCastLockout)
 			return;
 
 		_isCasting = true;
-		_lastChange = Time.time;
+		_lastSpellCast = Time.time;
 		_movement.Suspend();
 		_spellManager.PrepareSpell();
 	}
