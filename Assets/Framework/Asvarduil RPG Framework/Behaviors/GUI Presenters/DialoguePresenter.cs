@@ -55,15 +55,19 @@ public class DialoguePresenter : PresenterBase
 		SpeakerName.DrawMe();
 		SpeakerText.DrawMe();
 
+		if(_currentContent == null)
+			return;
+
 		for(int i = 0; i < AdvanceButtons.Count; i++)
 	    {
+			if(i >= _currentContent.Options.Count)
+				return;
+
 			AsvarduilButton button = AdvanceButtons[i];
 
 		    if((button.IsClicked() || _control.GetAxisDown(button.ActivationAxis))
 			   && Time.time >= _lastAdvance + AdvanceLockout)
 		    {
-				DebugMessage("Options: " + _currentContent.Options);
-
 		        _dialogueController.AdvanceThread(_currentContent.Options[i].TargetID);
 		        break;
 		    }

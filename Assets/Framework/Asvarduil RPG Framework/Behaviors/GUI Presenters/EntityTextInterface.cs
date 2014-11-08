@@ -77,12 +77,12 @@ public class EntityTextInterface : PresenterBase, ISuspendable
 		InteractButton.Tween();
 	}
 
-	public void Suspend()
+	public virtual void Suspend()
 	{
 		CanActivate = false;
 	}
 
-	public void Resume()
+	public virtual void Resume()
 	{
 		CanActivate = true;
 	}

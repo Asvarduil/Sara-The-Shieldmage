@@ -11,7 +11,10 @@ public class TreasureEntity : EntityTextInterface
 	public string ItemGetThreadName;
 	public string OpenChestAnimation;
 	public string ClosedChestAnimation;
-	
+
+	private const float _activateLockout = 0.25f;
+	private float _lastActivation;
+
 	private AsvarduilSpriteSystem _spriteSystem;
 	private TreasureManager _treasureManager;
 
@@ -33,6 +36,12 @@ public class TreasureEntity : EntityTextInterface
 
 	#region Methods
 
+	public override void Resume()
+	{
+		base.Resume();
+		_lastActivation = Time.time;
+	}
+
 	public void LoadInitialState()
 	{
 		IsTaken = _treasureManager.HasObtainedTreasure(TreasureName);
@@ -45,6 +54,9 @@ public class TreasureEntity : EntityTextInterface
 
 	public override void DrawMe()
 	{
+		if(Time.time < _lastActivation + _activateLockout)
+			return;
+
 		if(InteractButton.IsClicked()
 		   || _controlManager.GetAxisUp("Interact"))
 		{
