@@ -1,6 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilHorizontalElementPositioning.cs">
+    <Files>
+      <File FileName="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilHorizontalElementPositioning.cs" Line="4" Column="7" />
+      <File FileName="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilVerticalElementPositioning.cs" Line="4" Column="8" />
+      <File FileName="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilGUIBase.cs" Line="153" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="C:\Users\Andrew\Desktop\Unity Productions\Sara the Shield Mage\Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellManager.cs" line="106" />

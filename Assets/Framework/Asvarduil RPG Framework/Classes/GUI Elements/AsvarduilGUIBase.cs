@@ -19,6 +19,16 @@ public abstract class AsvarduilGUICore
 	///                  to be the middle of the screen.)
 	/// </summary>
 	public bool IsRelative;
+
+	/// <summary>
+	/// How is the GUI element placed, relative to the left/right of the screen?
+	/// </summary>
+	public AsvarduilHorizontalElementPositioning HorizontalPositioning;
+
+	/// <summary>
+	/// How is the GUI element placed, relative to the top/bottom of the screen?
+	/// </summary>
+	public AsvarduilVerticalElementPositioning VerticalPositioning;
 	
 	/// <summary>
 	/// The GUI element's current position.
@@ -53,15 +63,102 @@ public abstract class AsvarduilGUICore
 	/// <param name='dims'>2-dimensional vector of the element's dimensions</param>
 	public virtual Rect GetElementRect(Vector2 dims)
 	{
+		Vector2 offset = new Vector2(JustifyHorizontal(dims), JustifyVertical(dims));
+		Vector2 scale = new Vector2(ScaleHorizontal(dims), ScaleVertical(dims));
+		return new Rect(offset.x, offset.y, scale.x, scale.y);
+	}
+
+	/// <summary>
+	/// Based on the Horizontal Positioning setting, return where the
+	/// GUI element should be placed, in whole pixels.
+	/// </summary>
+	/// <returns>The X pixel.</returns>
+	protected virtual float JustifyHorizontal(Vector2 dims)
+	{
+		float result = 0.0f;
+
+		if(IsRelative)
+		{
+			switch(HorizontalPositioning)
+			{
+				case AsvarduilHorizontalElementPositioning.Left:
+					return Position.x * Screen.width;
+					
+				case AsvarduilHorizontalElementPositioning.Right:
+					float proportionalOffset = Position.x * Screen.width;
+					float proportionalWidth = dims.x * Screen.width;
+					return Screen.width - proportionalWidth - proportionalOffset;
+			}
+		}
+		else
+		{
+			switch(HorizontalPositioning)
+			{
+				case AsvarduilHorizontalElementPositioning.Left:
+					return Position.x;
+
+				case AsvarduilHorizontalElementPositioning.Right:
+					return Screen.width - dims.x - Position.x;
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Based on the Vertical Positioning setting, return where the
+	/// GUI element should be placed, in whole pixels.
+	/// </summary>
+	/// <returns>The Y pixel.</returns>
+	protected virtual float JustifyVertical(Vector2 dims)
+	{
+		float result = 0.0f;
+
+		if(IsRelative)
+		{
+			switch(VerticalPositioning)
+			{
+				case AsvarduilVerticalElementPositioning.Top:
+					return Position.y * Screen.height;
+					
+				case AsvarduilVerticalElementPositioning.Bottom:
+					float proportionalOffset = Position.y * Screen.height;
+					float proportionalHeight = dims.y * Screen.height;
+					return Screen.height - proportionalHeight - proportionalOffset;
+			}
+		}
+		else
+		{
+			switch(VerticalPositioning)
+			{
+				case AsvarduilVerticalElementPositioning.Top:
+					return Position.y;
+					
+				case AsvarduilVerticalElementPositioning.Bottom:
+					return Screen.height - dims.y - Position.y;
+			}
+		}
+
+		return result;
+	}
+
+	protected virtual float ScaleHorizontal(Vector2 dims)
+	{
 		return IsRelative
-			? new Rect(Position.x * Screen.width, Position.y * Screen.height,
-			           dims.x * Screen.width,     dims.y * Screen.height)
-			: new Rect(Position.x, Position.y, dims.x, dims.y);
+			? dims.x * Screen.width
+			: dims.x;
+	}
+
+	protected virtual float ScaleVertical(Vector2 dims)
+	{
+		return IsRelative
+			? dims.y * Screen.height
+			: dims.y;
 	}
 	
 	#endregion Inherited Methods
 	
 	#region Abstract Methods
 	
-	#endregion Abstract Methods
+	#endregion Abstract Methods	
 }

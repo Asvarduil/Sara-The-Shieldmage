@@ -112,6 +112,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilCheckbox.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilGUIBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilGUIInterfaces.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilHorizontalElementPositioning.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilImage.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilImageButton.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilLabel.cs" />
@@ -120,6 +121,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilStaticImage.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilStaticLabel.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilTooltip.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilVerticalElementPositioning.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\FloatingButton.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\FloatingGUIBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\FloatingTexture.cs" />

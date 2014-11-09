@@ -53,10 +53,73 @@ public class AsvarduilImage : TweenableElement, IDrawable
 	
 	public override Rect GetElementRect(Vector2 dims)
 	{
-		return IsRelative
-			? new Rect(Position.x * Screen.width, Position.y * Screen.height, dims.x, dims.y)
-			: new Rect(Position.x, Position.y, dims.x, dims.y);
+		Vector2 offset = new Vector2(JustifyHorizontal(dims), JustifyVertical(dims));
+		return new Rect(offset.x, offset.y, dims.x, dims.y);
 	}
 	
+	protected override float JustifyHorizontal(Vector2 dims)
+	{
+		float result = 0.0f;
+		
+		if(IsRelative)
+		{
+			switch(HorizontalPositioning)
+			{
+				case AsvarduilHorizontalElementPositioning.Left:
+					return Position.x * Screen.width;
+					
+				case AsvarduilHorizontalElementPositioning.Right:
+					float proportionalOffset = Position.x * Screen.width;
+					// NOTE: In Images, we never give 'relative' dimensions.
+					return Screen.width - dims.x - proportionalOffset;
+			}
+		}
+		else
+		{
+			switch(HorizontalPositioning)
+			{
+				case AsvarduilHorizontalElementPositioning.Left:
+					return Position.x;
+					
+				case AsvarduilHorizontalElementPositioning.Right:
+					return Screen.width - dims.x - Position.x;
+			}
+		}
+		
+		return result;
+	}
+
+	protected override float JustifyVertical(Vector2 dims)
+	{
+		float result = 0.0f;
+		
+		if(IsRelative)
+		{
+			switch(VerticalPositioning)
+			{
+				case AsvarduilVerticalElementPositioning.Top:
+					return Position.y * Screen.height;
+					
+				case AsvarduilVerticalElementPositioning.Bottom:
+					float proportionalOffset = Position.y * Screen.height;
+					// NOTE: In images, we never give 'relative' dimensions.
+					return Screen.height - dims.y - proportionalOffset;
+			}
+		}
+		else
+		{
+			switch(VerticalPositioning)
+			{
+				case AsvarduilVerticalElementPositioning.Top:
+					return Position.y;
+					
+				case AsvarduilVerticalElementPositioning.Bottom:
+					return Screen.height - dims.y - Position.y;
+			}
+		}
+		
+		return result;
+	}
+
 	#endregion Public Methods
 }
