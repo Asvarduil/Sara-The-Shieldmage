@@ -51,6 +51,12 @@
               	"Item Get Fanfare",
               	"1.0"
               ]
+            },
+            {
+              "MessageName":"EnableObject",
+              "Args":[
+              	"Bottom Route's Fire Trap"
+              ]
             }
           ]
         },
