@@ -12,7 +12,7 @@ public class DialogueController : ManagerBase<DialogueController>
 	public int TextContentCount = 0;
 
 	private ControlManager _controlManager;
-	private PauseController _pauseController;
+	//private PauseController _pauseController;
 	private DialoguePresenter _dialogueGUI;
 
 	#endregion Variables / Properties
@@ -22,7 +22,7 @@ public class DialogueController : ManagerBase<DialogueController>
 	public void Start()
 	{
 		_controlManager = ControlManager.Instance;
-		_pauseController = PauseController.Instance;
+		//_pauseController = PauseController.Instance;
 		_dialogueGUI = GetComponentInChildren<DialoguePresenter>();
 	}
 

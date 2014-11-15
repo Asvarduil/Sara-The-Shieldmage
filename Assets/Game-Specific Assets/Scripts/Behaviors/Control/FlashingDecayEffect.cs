@@ -18,7 +18,6 @@ public class FlashingDecayEffect : DebuggableBehavior
 	private float _currentAlphaStrength;
 	private float _spawnTime;
 	private float _expireTime;
-	private Material _objectMaterial;
 
 	private Maestro _maestro;
 
@@ -39,8 +38,6 @@ public class FlashingDecayEffect : DebuggableBehavior
 		_expireTime = _spawnTime + EffectDuration;
 		_remainingFlashes = NumberOfFlashes;
 		_nextFlash = _spawnTime + FlashInterval;
-		
-		_objectMaterial = renderer.materials[0];
 	}
 
 	public void Update()

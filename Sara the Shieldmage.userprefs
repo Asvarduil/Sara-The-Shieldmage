@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game-Specific Assets\Data\Chests\chest-mana-crystal-hall-of-spikes.txt">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game-Specific Assets\Scripts\Behaviors\AI\BloodPinionCultist.cs">
     <Files>
-      <File FileName="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Game Mechanics\ActivateSceneObjectConversationEvents.cs" Line="43" Column="36" />
-      <File FileName="Assets\Game-Specific Assets\Data\Chests\chest-mana-crystal-hall-of-spikes.txt" Line="58" Column="42" />
+      <File FileName="Assets\Game-Specific Assets\Scripts\Behaviors\AI\BloodPinionCultist.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
