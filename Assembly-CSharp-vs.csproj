@@ -156,6 +156,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteAnimation.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteFrame.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Base\Pickup.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Control\PropelledObject.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Control\SidescrollingAnimationController.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Control\SidescrollingMovement.cs" />
      <Compile Include="Assets\Framework\Asvarduil Sidescroller Framework\Behaviors\Control\SidescrollingPlayerControl.cs" />
@@ -174,6 +175,7 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\AI\BloodPinionCultist.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\FlashingDecayEffect.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SaraAnimationController.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SaraMeleeAttack.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SaraPlayerControl.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellManager.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Behaviors\Control\SpellTargetingPresenter.cs" />

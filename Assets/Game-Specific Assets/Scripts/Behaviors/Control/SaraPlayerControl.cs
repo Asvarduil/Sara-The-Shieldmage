@@ -20,6 +20,7 @@ public class SaraPlayerControl : SidescrollingPlayerControl
 	private float _lastSpellCast;
 
 	private SpellManager _spellManager;
+	private SaraMeleeAttack _meleeAttack;
 
 	#endregion Variables / Properties
 
@@ -29,6 +30,7 @@ public class SaraPlayerControl : SidescrollingPlayerControl
 	{
 		base.Start();
 		_spellManager = SpellManager.Instance;
+		_meleeAttack = GetComponent<SaraMeleeAttack>();
 	}
 
 	public override void ProcessAxes ()
@@ -111,6 +113,8 @@ public class SaraPlayerControl : SidescrollingPlayerControl
 			_isAttacking = true;
 			_lastAttack = Time.time;
 			_isMovingHorizontally = false;
+
+			_meleeAttack.LaunchAttack(isFacingRight);
 		}
 	}
 

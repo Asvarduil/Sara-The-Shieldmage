@@ -14,6 +14,8 @@ public class HealthController : DebuggableBehavior
 
 	public GameObject DeathEffect;
 
+	private bool _hasTakenDamage = false;
+
 	private Maestro _maestro;
 	private ParticleSystem _healEffect;
 	private ParticleSystem _damageEffect;
@@ -42,20 +44,34 @@ public class HealthController : DebuggableBehavior
 			_damageEffect = damageEffectChild.GetComponent<ParticleSystem>();
 	}
 
+	public void Update()
+	{
+		// Reset the double-tap flag...
+		if(_hasTakenDamage)
+			_hasTakenDamage = false;
+	}
+
 	#endregion Engine Hooks
 
 	#region Methods
 
 	public void TakeDamage(int amount)
 	{
+		// Double-tapping is not allowed!
+		if (_hasTakenDamage)
+			return;
+
 		if(_damageEffect != null)
 			_damageEffect.Emit(DamageParticleCount);
 
 		if(DamageSoundEffect != null)
 			_maestro.PlayOneShot(DamageSoundEffect);
 
+		_hasTakenDamage = true;
 		Health.TakeDamage(amount);
-		_playerHud.UpdateHealthWidget(Health.HP, Health.MaxHP);
+
+		if(tag == "Player")
+			_playerHud.UpdateHealthWidget(Health.HP, Health.MaxHP);
 
 		if(Health.IsDead)
 		{
