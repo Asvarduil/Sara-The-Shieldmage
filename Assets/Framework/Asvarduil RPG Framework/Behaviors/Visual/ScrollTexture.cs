@@ -21,7 +21,6 @@ public class ScrollTexture : MonoBehaviour
 	public void Update()
 	{
 		_workingMaterial.mainTextureOffset += (ScrollDirection * Time.deltaTime);
-
 		renderer.material = _workingMaterial;
 	}
 
