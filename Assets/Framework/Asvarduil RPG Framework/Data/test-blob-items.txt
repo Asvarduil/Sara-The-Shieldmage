@@ -1,0 +1,136 @@
+{
+	"Items":[
+		{
+			"Name":"Tonic",
+			"Description":"Restores a small amount of HP.",
+			"Value":25,
+			"ItemType":"Consumable",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[
+				{
+					"TargetStat":"HP",
+					"FixedEffect":100,
+					"ScalingEffect":1,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Heart Rune",
+			"Description":"Raises your Max HP",
+			"Value":0,
+			"ItemType":"Consumable",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[
+				{
+					"TargetStat":"MaxHP",
+					"FixedEffect":250,
+					"ScalingEffect":1,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Might Rune",
+			"Description":"Raises your attack",
+			"Value":0,
+			"ItemType":"Consumable",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[
+				{
+					"TargetStat":"Attack",
+					"FixedEffect":3,
+					"ScalingEffect":1,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Mind Rune",
+			"Description":"Raises your magic",
+			"Value":0,
+			"ItemType":"Consumable",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[
+				{
+					"TargetStat":"Magic",
+					"FixedEffect":3,
+					"ScalingEffect":1,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Body Rune",
+			"Description":"Raises your max ATB capacity",
+			"Value":0,
+			"ItemType":"Consumable",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[
+				{
+					"TargetStat":"Max ATB",
+					"FixedEffect":1,
+					"ScalingEffect":1,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Fleeting Rune",
+			"Description":"Raises your ATB speed",
+			"Value":0,
+			"ItemType":"Consumable",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[
+				{
+					"TargetStat":"ATB Speed",
+					"FixedEffect":0,
+					"ScalingEffect":1.05,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Intcalimer",
+			"Description":"A holy sword granted by the Guardstone",
+			"Value":0,
+			"ItemType":"Weapon",
+			"EquipmentEffects:"[
+				{
+					"TargetStat":"Attack",
+					"FixedEffect":5,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				},
+				{
+					"TargetStat":"Magic",
+					"FixedEffect":2,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				}
+			],
+			"ConsumeEffects":[]
+		},
+		{
+			"Name":"Cortana",
+			"Description":"The sword of an ancient Warlock",			
+			"Value":0,
+			"ItemType":"Weapon",
+			"EquipmentEffects:"[
+				{
+					"TargetStat":"Attack",
+					"FixedEffect":7,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				},
+				{
+					"TargetStat":"Magic",
+					"FixedEffect":10,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				}
+			],
+			"ConsumeEffects":[]
+		}
+	]
+}

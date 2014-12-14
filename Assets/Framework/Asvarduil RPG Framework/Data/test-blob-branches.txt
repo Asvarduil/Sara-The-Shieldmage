@@ -1,0 +1,90 @@
+{
+  "TextThreads":[
+    {
+      "IsDefaultThread":true,
+
+      "Name":"Test Thread",
+
+      "SequenceState":{
+        "Name":"Main", 
+        "MinCounter":0,
+        "MaxCounter":0
+      },
+
+      "TextContent":[
+        {
+          "ID":0,
+          "Speaker":"Test Speaker",
+          "Dialogue":"Answer this choice, will you?",
+          
+          "Options":[
+            { 
+            	"Text":"Sure, I will!", 
+            	"TargetID":1 
+            },
+            {
+            	"Text":"Not right now...",
+            	"TargetID":2
+            }
+          ],
+          
+          "DialogueEvents":[
+            {
+              "MessageName":"CueSounds",
+              "Args":[
+              	"Female Speaking Sound (Temp)",
+              	1
+              ]
+            }
+          ]
+        },
+        {
+          "ID":1,
+          "Speaker":"Test Speaker",
+          "Dialogue":"Yay!  You answered me.  Thanks!",
+          "Options":[
+          	{
+          		"Text":"Continue",
+          		"TargetID":3
+          	}
+          ],
+          "DialogueEvents":[
+            {
+              "MessageName":"",
+              "Args":[]
+            }
+          ]
+        },
+		{
+          "ID":2,
+          "Speaker":"Test Speaker",
+          "Dialogue":"Awww, man...",
+          "Options":[
+          	{
+          		"Text":"Continue",
+          		"TargetID":3
+          	}
+          ],
+          "DialogueEvents":[
+            {
+              "MessageName":"",
+              "Args":[]
+            }
+          ]
+        },
+        {
+          "ID":3,
+          "Speaker":"",
+          "Dialogue":"",
+          "Options":[],
+          "DialogueEvents":[
+            {
+              "MessageName":"EndConversation",
+              "Args":[]
+            }
+          ]
+        },
+      ]
+    }
+  ]
+}
