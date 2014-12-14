@@ -5,33 +5,19 @@ public class ScrollTexture : MonoBehaviour
 {
 	#region Variables / Properties
 
+	public string textureProperty = "_MainTex";
 	public Vector2 ScrollDirection = new Vector2(0.1f, 0.1f);
 
-	private Material _workingMaterial;
+	private Vector2 _textureOffset;
 
 	#endregion Variables / Properties
 
 	#region Engine Hooks
 
-	public void Start()
-	{
-		_workingMaterial = renderer.material;
-	}
-
 	public void Update()
 	{
-		_workingMaterial.mainTextureOffset += (ScrollDirection * Time.deltaTime);
-		renderer.material = _workingMaterial;
-	}
-
-	public void OnDestroy()
-	{
-		_workingMaterial = null;
-	}
-
-	public void OnLevelLoaded()
-	{
-		_workingMaterial = null;
+		_textureOffset += ScrollDirection * Time.deltaTime;
+		renderer.material.SetTextureOffset(textureProperty, _textureOffset);
 	}
 
 	#endregion Engine Hooks

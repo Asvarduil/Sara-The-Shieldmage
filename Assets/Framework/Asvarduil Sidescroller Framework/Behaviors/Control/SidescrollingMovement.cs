@@ -112,6 +112,11 @@ public class SidescrollingMovement : DebuggableBehavior, ISuspendable
 		_frameVelocity.z = 0;
 	}
 
+	public void SetVelocity(Vector3 newVelocity)
+	{
+		_frameVelocity = newVelocity;
+	}
+
 	private void ApplyVelocity()
 	{
 		CollisionDirection = _controller.Move(_frameVelocity);
