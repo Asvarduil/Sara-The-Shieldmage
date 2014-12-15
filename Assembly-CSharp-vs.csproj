@@ -75,6 +75,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\DialogueController.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\PauseController.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\BattlePresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\CommandPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ControlsPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DefeatPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DialoguePresenter.cs" />
@@ -89,6 +90,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PausePresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\SettingsPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\VictoryPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleEntity.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleReferee.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleTrigger.cs" />

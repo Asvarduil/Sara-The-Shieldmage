@@ -7,6 +7,10 @@ public class BattleReferee : ManagerBase<BattleReferee>
 {
 	#region Variables / Properties
 
+	private const string ATBName = "ATB";
+	private const string maxATBName = "Max ATB";
+	private const string ATBSpeedName = "ATB Speed";
+
 	public bool EvaluateBattleState = true;
 	public string TitleScene;
 
@@ -34,12 +38,15 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		get { return Enemies.Where(e => !e.Health.IsDead).ToList().Count; }
 	}
 
+	private bool _commandOpen = false;
+
 	private Maestro _maestro;
 	private EnemyDatabase _enemies;
 	private PartyManager _partyManager;
 	private BattleManager _battleManager;
 	private TransitionManager _transitionManager;
 
+	private CommandPresenter _command;
 	private VictoryPresenter _victory;
 	private BattlePresenter _battle;
 	private DefeatPresenter _defeat;
@@ -61,6 +68,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		_battle = GetComponentInChildren<BattlePresenter>();
 		_defeat = GetComponentInChildren<DefeatPresenter>();
 		_victory = GetComponentInChildren<VictoryPresenter>();
+		_command = GetComponentInChildren<CommandPresenter>();
 
 		_maestro.ChangeTunes(_battleManager.BattleTheme);
 		LoadPlayers();
@@ -76,7 +84,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
 		if(BattleInProgress)
 		{
-			// TODO: Increment all entities' ATB stat by their ATB speed stat.
+			AdvanceATB();
 			return;
 		}
 
@@ -153,6 +161,63 @@ public class BattleReferee : ManagerBase<BattleReferee>
 				DebugMessage(enemy.Name + " has no Battle Prefab!", LogLevel.LogicError);
 			}
 		}
+	}
+
+	public void UseAbility(PlayableCharacter character, Ability ability)
+	{
+		_commandOpen = false;
+		_command.SetVisibility(false);
+
+		// Clear ATB progress...
+		character.GetStatByName ("ATB").Value = 0;
+
+		// Stuff.
+	}
+
+	private void AdvanceATB()
+	{
+		AdvancePlayerATB();
+		AdvanceEnemyATB();
+	}
+
+	private void AdvancePlayerATB()
+	{
+		PlayableCharacter player;
+
+		ModifiableStat ATB;
+		ModifiableStat speed;
+		ModifiableStat maxATB;
+
+		for (int i = 0; i < Players.Count; i++) 
+		{
+			player = Players[i];
+			
+			ATB = player.GetStatByName(ATBName);
+			maxATB = player.GetStatByName(maxATBName);
+			speed = player.GetStatByName(ATBSpeedName);
+			
+			if(ATB.Value < maxATB.Value)
+			{
+				DebugMessage("Player " + player.Name + " cannot execute a command yet.");
+				ATB.Value += speed.Value;
+			}
+			
+			if(ATB.Value >= maxATB.Value)
+			{
+				DebugMessage("Player " + player.Name + " is ready for a command.");
+				if(! _commandOpen)
+				{
+					DebugMessage("Player " + player.Name + " is being prompted for a command.");
+					_commandOpen = true;
+					_command.Prompt(player);
+				}
+			}
+		}
+	}
+
+	private void AdvanceEnemyATB()
+	{
+
 	}
 
 	private void Victory()
