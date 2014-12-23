@@ -46,6 +46,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	private BattleManager _battleManager;
 	private TransitionManager _transitionManager;
 
+	private TargetingPresenter _targeting;
 	private CommandPresenter _command;
 	private VictoryPresenter _victory;
 	private BattlePresenter _battle;
@@ -69,6 +70,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		_defeat = GetComponentInChildren<DefeatPresenter>();
 		_victory = GetComponentInChildren<VictoryPresenter>();
 		_command = GetComponentInChildren<CommandPresenter>();
+		_targeting = GetComponentInChildren<TargetingPresenter>();
 
 		_maestro.ChangeTunes(_battleManager.BattleTheme);
 		LoadPlayers();
@@ -163,15 +165,46 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		}
 	}
 
-	public void UseAbility(PlayableCharacter character, Ability ability)
+	public void PromptForTarget(AbilityTargetType targetType)
+	{
+		switch (targetType) 
+		{
+			case AbilityTargetType.TargetAlly:
+				List<ICombatEntity> players = Players.Select(p => p as ICombatEntity).ToList();
+				_targeting.Prompt(players, "Allies");
+				break;
+
+			case AbilityTargetType.TargetEnemy:
+				List<ICombatEntity> enemies = Enemies.Select(e => e as ICombatEntity).ToList();
+				_targeting.Prompt(enemies, "Enemies");
+				break;
+
+			default:
+				DebugMessage("Target Type " + targetType + " is not supported.");
+				break;
+		}
+	}
+
+	public void ApplyTargetToCommand(ICombatEntity target)
+	{
+		_command.ApplyTarget(target);
+	}
+
+	public void UseAbility(ICombatEntity source, ICombatEntity target, Ability ability)
 	{
 		_commandOpen = false;
 		_command.SetVisibility(false);
 
-		// Clear ATB progress...
-		character.GetStatByName ("ATB").Value = 0;
+		DebugMessage("Character " + source.EntityName + " consumed " + ability.AtbCost + " ATB.");
+		source.GetStatByName ("ATB").Value -= ability.AtbCost;
 
-		// Stuff.
+		// TODO: Instantiate ability in game world.
+	}
+
+	public void DamageEntity(ICombatEntity source, ICombatEntity target, int damage)
+	{
+		// TODO: Note the source of the damage for achievements or whatever.
+		target.HealthSystem.TakeDamage(damage);
 	}
 
 	private void AdvanceATB()
@@ -191,6 +224,10 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		for (int i = 0; i < Players.Count; i++) 
 		{
 			player = Players[i];
+
+			// Dead players can't act!
+			if(player.Health.IsDead)
+				continue;
 			
 			ATB = player.GetStatByName(ATBName);
 			maxATB = player.GetStatByName(maxATBName);
@@ -217,7 +254,36 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
 	private void AdvanceEnemyATB()
 	{
+		Enemy enemy;
 
+		ModifiableStat ATB;
+		ModifiableStat speed;
+		ModifiableStat maxATB;
+		
+		for (int i = 0; i < Enemies.Count; i++) 
+		{
+			enemy = Enemies[i];
+			
+			// Dead players can't act!
+			if(enemy.Health.IsDead)
+				continue;
+			
+			ATB = enemy.GetStatByName(ATBName);
+			maxATB = enemy.GetStatByName(maxATBName);
+			speed = enemy.GetStatByName(ATBSpeedName);
+			
+			if(ATB.Value < maxATB.Value)
+			{
+				DebugMessage("Enemy " + enemy.Name + " cannot execute a command yet.");
+				ATB.Value += speed.Value;
+			}
+			
+			if(ATB.Value >= maxATB.Value)
+			{
+				DebugMessage("Enemy " + enemy.Name + " is acting!");
+				// TODO: Implement Enemy AI...
+			}
+		}
 	}
 
 	private void Victory()

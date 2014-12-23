@@ -5,12 +5,29 @@ using System.Collections.Generic;
 
 public class CommandPresenter : PresenterBase
 {
+	#region Enumerations
+
+	private enum CommandPresenterState
+	{
+		Standby,
+		WaitingCommand,
+		WaitingTarget,
+		CommandReady
+	}
+
+	#endregion Enumerations
+
 	#region Variables / Properties
 
+	public AudioClip PromptSound;
 	public AsvarduilBox Background;
 	public AsvarduilLabel CharacterName;
 	public List<AsvarduilButton> Commands;
 
+	private CommandPresenterState _state;
+	private Ability _selectedAbility;
+
+	private ICombatEntity _target;
 	private PlayableCharacter _character;
 	private BattleReferee _referee;
 
@@ -23,6 +40,17 @@ public class CommandPresenter : PresenterBase
 		base.Start();
 
 		_referee = GetComponentInParent<BattleReferee>();
+	}
+
+	public override void Update()
+	{
+		base.Update();
+
+		if(_state == CommandPresenterState.CommandReady)
+		{
+			_state = CommandPresenterState.Standby;
+			_referee.UseAbility(_character, _target, _selectedAbility);
+		}
 	}
 
 	public override void SetVisibility(bool isVisible)
@@ -47,8 +75,14 @@ public class CommandPresenter : PresenterBase
 		Background.DrawMe();
 		CharacterName.DrawMe();
 
-		Ability usedAbility;
 		AsvarduilButton command;
+
+		if (_character == null)
+			return;
+
+		if (_character.Abilities.IsNullOrEmpty())
+			return;
+
 		for (int i = 0; i < _character.Abilities.Count; i++) 
 		{
 			command = Commands[i];
@@ -56,8 +90,27 @@ public class CommandPresenter : PresenterBase
 			{
 				_maestro.PlayOneShot(ButtonSound);
 
-				usedAbility = _character.Abilities[i];
-				_referee.UseAbility(_character, usedAbility);
+				_selectedAbility = _character.Abilities[i];
+
+				switch(_selectedAbility.TargetType)
+				{
+					case AbilityTargetType.Self:
+						_state = CommandPresenterState.CommandReady;
+						_target = _character;	
+						break;
+
+					case AbilityTargetType.TargetEnemy:
+					case AbilityTargetType.TargetAlly:
+						_state = CommandPresenterState.WaitingTarget;
+						_referee.PromptForTarget(_selectedAbility.TargetType);
+						// TODO: Request target from the Controller.
+						break;
+
+					// TODO: Implement target all enemies/allies
+					default:
+						DebugMessage("Target Type: " + _selectedAbility.TargetType + " not implemented.");
+						break;
+				}
 			}
 		}
 	}
@@ -83,6 +136,9 @@ public class CommandPresenter : PresenterBase
 	{
 		SetVisibility(true);
 
+		if(PromptSound != null)
+			_maestro.PlayOneShot(PromptSound);
+
 		_character = character;
 		CharacterName.Text = character.Name;
 
@@ -91,6 +147,9 @@ public class CommandPresenter : PresenterBase
 		for (int i = 0; i < character.Abilities.Count; i++) 
 		{
 			ability = character.Abilities[i];
+			if(! ability.IsAvailable)
+				continue;
+
 			command = Commands[i];
 			command.ButtonText = ability.Name;
 		}
@@ -100,6 +159,12 @@ public class CommandPresenter : PresenterBase
 			command = Commands[i];
 			command.ButtonText = string.Empty;
 		}
+	}
+
+	public void ApplyTarget(ICombatEntity target)
+	{
+		_target = target;
+		_state = CommandPresenterState.CommandReady;
 	}
 
 	#endregion Methods

@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
 
-public enum AbilityResourceUsageType
+public enum AbilityTargetType
 {
-	Immediate,
-	Channeled
+	Self,
+	AllEnemy,
+	AllAlly,
+	All,
+	TargetEnemy,
+	TargetAlly,
+	Targeted
 }
 
 [Serializable]
@@ -15,9 +21,10 @@ public class Ability : INamed
 
 	public string Name;
 	public string Description;
+	public GameObject BattleEffect;
 	public bool Available;
-	public float AtbCost;
-	public AbilityResourceUsageType ResourceUse;
+	public int AtbCost;
+	public AbilityTargetType TargetType;
 
 	public List<AbilityEffect> Effects;
 

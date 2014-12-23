@@ -63,8 +63,6 @@ public class MagicPresenter : PresenterBase
 		builder.Append(" - ");
 		builder.Append(ability.AtbCost);
 		builder.Append(" ATB");
-		if(ability.ResourceUse == AbilityResourceUsageType.Channeled)
-			builder.Append("/second");
 
 		builder.Append(Environment.NewLine);
 		builder.Append(ability.Description);

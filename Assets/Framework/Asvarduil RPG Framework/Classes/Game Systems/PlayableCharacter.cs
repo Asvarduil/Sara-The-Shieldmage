@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 [Serializable]
-public class PlayableCharacter
+public class PlayableCharacter : ICombatEntity
 {
 	#region Variables / Properties
 
@@ -24,6 +24,21 @@ public class PlayableCharacter
 	public InventoryItem Accessory;
 
 	public List<Ability> Abilities;
+
+	public string EntityName
+	{
+		get { return Name; }
+	}
+
+	public HealthSystem HealthSystem
+	{
+		get { return Health; }
+	}
+
+	public List<ModifiableStat> StatSystems
+	{
+		get { return StatSystems; }
+	}
 
 	#endregion Variables / Properties
 

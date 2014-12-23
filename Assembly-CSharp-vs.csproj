@@ -52,6 +52,7 @@
      <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\CharacterControlDirection.cs" />
      <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\CharacterControlHook.cs" />
      <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\ISuspendable.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Abilities\DamageBattleEntity.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\AudioManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\ConversationSoundEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\Maestro.cs" />
@@ -89,6 +90,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PauseInterface.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PausePresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\SettingsPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\TargetingPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\VictoryPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleEntity.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleManager.cs" />
@@ -149,6 +151,8 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\SequenceState.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\TextContent.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\TextThread.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Interfaces\IBattleEffect.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Interfaces\ICombatEntity.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Interfaces\INamed.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilAnimation.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilAnimationType.cs" />
