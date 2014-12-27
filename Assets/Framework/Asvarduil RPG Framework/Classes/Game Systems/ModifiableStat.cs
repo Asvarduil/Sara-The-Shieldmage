@@ -47,5 +47,13 @@ public class ModifiableStat
 			Value = 1;
 	}
 
+    public void ApplyEffect(int amount)
+    {
+        if (amount > 0)
+            Increase(amount);
+        else
+            Reduce(amount);
+    }
+
 	#endregion Methods
 }

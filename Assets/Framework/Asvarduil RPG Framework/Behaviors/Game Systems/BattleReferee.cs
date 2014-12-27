@@ -11,6 +11,9 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	private const string maxATBName = "Max ATB";
 	private const string ATBSpeedName = "ATB Speed";
 
+    private float _lastATBPollTime;
+    private float _ATBPollRate = 0.5f;
+
 	public bool EvaluateBattleState = true;
 	public string TitleScene;
 
@@ -49,7 +52,6 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	private TargetingPresenter _targeting;
 	private CommandPresenter _command;
 	private VictoryPresenter _victory;
-	private BattlePresenter _battle;
 	private DefeatPresenter _defeat;
 	private LootPresenter _loot;
 
@@ -66,7 +68,6 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		_transitionManager = TransitionManager.Instance;
 
 		_loot = GetComponentInChildren<LootPresenter>();
-		_battle = GetComponentInChildren<BattlePresenter>();
 		_defeat = GetComponentInChildren<DefeatPresenter>();
 		_victory = GetComponentInChildren<VictoryPresenter>();
 		_command = GetComponentInChildren<CommandPresenter>();
@@ -75,8 +76,6 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		_maestro.ChangeTunes(_battleManager.BattleTheme);
 		LoadPlayers();
 		LoadEnemies();
-
-		_battle.SetVisibility(true);
 	}
 
 	public void Update()
@@ -105,24 +104,25 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
 	#endregion Engine Hooks
 
-	#region Methods
+	#region Initialization Methods
 
 	private void LoadPlayers()
 	{
 		Players = _partyManager.FindAvailableCharacters().ToList();
-
+		
 		// If no players in the party manager, use what's in the Referee already.
 		if (Players.Count == 0)
 			return;
-
+		
 		for (int i = 0; i < Players.Count; i++) 
 		{
 			PlayableCharacter player = Players[i];
-
+			
 			if(player.BattlePrefab != null)
 			{
 				Vector3 position = PlayerPositions[i].transform.position;
-				GameObject.Instantiate(player.BattlePrefab, position, Quaternion.identity);
+                player.ScenePosition = position;
+                player.BattlePiece = (GameObject)GameObject.Instantiate(player.BattlePrefab, position, Quaternion.identity);
 			}
 			else
 			{
@@ -140,23 +140,25 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			{
 				Enemy enemy = Enemies[i];
 				Vector3 position = EnemyPositions[i].transform.position;
-				GameObject.Instantiate(enemy.BattlePrefab, position, Quaternion.identity);
+                enemy.ScenePosition = position;
+                enemy.BattlePiece = (GameObject)GameObject.Instantiate(enemy.BattlePrefab, position, Quaternion.identity);
 			}
-
+			
 			return;
 		}
-
+		
 		Enemies = new List<Enemy>();
 		for(int i = 0; i < _battleManager.EnemyNames.Count; i++)
 		{
 			string enemyName = _battleManager.EnemyNames[i];
 			Enemy enemy = _enemies.FindEnemyByName(enemyName);
 			Enemies.Add(enemy);
-
+			
 			if(enemy.BattlePrefab != null)
 			{
 				Vector3 position = EnemyPositions[i].transform.position;
-				GameObject.Instantiate(enemy.BattlePrefab, position, Quaternion.identity);
+                enemy.ScenePosition = position;
+				enemy.BattlePiece = (GameObject) GameObject.Instantiate(enemy.BattlePrefab, position, Quaternion.identity);
 			}
 			else
 			{
@@ -165,66 +167,33 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		}
 	}
 
-	public void PromptForTarget(AbilityTargetType targetType)
-	{
-		switch (targetType) 
-		{
-			case AbilityTargetType.TargetAlly:
-				List<ICombatEntity> players = Players.Select(p => p as ICombatEntity).ToList();
-				_targeting.Prompt(players, "Allies");
-				break;
+	#endregion Initialization Methods
 
-			case AbilityTargetType.TargetEnemy:
-				List<ICombatEntity> enemies = Enemies.Select(e => e as ICombatEntity).ToList();
-				_targeting.Prompt(enemies, "Enemies");
-				break;
-
-			default:
-				DebugMessage("Target Type " + targetType + " is not supported.");
-				break;
-		}
-	}
-
-	public void ApplyTargetToCommand(ICombatEntity target)
-	{
-		_command.ApplyTarget(target);
-	}
-
-	public void UseAbility(ICombatEntity source, ICombatEntity target, Ability ability)
-	{
-		_commandOpen = false;
-		_command.SetVisibility(false);
-
-		DebugMessage("Character " + source.EntityName + " consumed " + ability.AtbCost + " ATB.");
-		source.GetStatByName ("ATB").Value -= ability.AtbCost;
-
-		// TODO: Instantiate ability in game world.
-	}
-
-	public void DamageEntity(ICombatEntity source, ICombatEntity target, int damage)
-	{
-		// TODO: Note the source of the damage for achievements or whatever.
-		target.HealthSystem.TakeDamage(damage);
-	}
+	#region ATB Methods
 
 	private void AdvanceATB()
 	{
+        float currentTime = Time.time;
+        if (currentTime < _lastATBPollTime + _ATBPollRate)
+            return;
+
+        _lastATBPollTime = currentTime;
 		AdvancePlayerATB();
 		AdvanceEnemyATB();
 	}
-
+	
 	private void AdvancePlayerATB()
 	{
 		PlayableCharacter player;
-
+		
 		ModifiableStat ATB;
 		ModifiableStat speed;
 		ModifiableStat maxATB;
-
+		
 		for (int i = 0; i < Players.Count; i++) 
 		{
 			player = Players[i];
-
+			
 			// Dead players can't act!
 			if(player.Health.IsDead)
 				continue;
@@ -235,7 +204,6 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			
 			if(ATB.Value < maxATB.Value)
 			{
-				DebugMessage("Player " + player.Name + " cannot execute a command yet.");
 				ATB.Value += speed.Value;
 			}
 			
@@ -251,11 +219,11 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			}
 		}
 	}
-
+	
 	private void AdvanceEnemyATB()
 	{
 		Enemy enemy;
-
+		
 		ModifiableStat ATB;
 		ModifiableStat speed;
 		ModifiableStat maxATB;
@@ -274,7 +242,6 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			
 			if(ATB.Value < maxATB.Value)
 			{
-				DebugMessage("Enemy " + enemy.Name + " cannot execute a command yet.");
 				ATB.Value += speed.Value;
 			}
 			
@@ -286,48 +253,116 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		}
 	}
 
+	#endregion ATB Methods
+
+	#region Battle Action Methods
+
+	public void PromptForTarget(AbilityTargetType targetType)
+	{
+		switch (targetType) 
+		{
+			case AbilityTargetType.TargetAlly:
+				List<CombatEntity> players = Players.Select(p => p as CombatEntity).ToList();
+				_targeting.Prompt(players, "Allies");
+				break;
+				
+			case AbilityTargetType.TargetEnemy:
+				List<CombatEntity> enemies = Enemies.Select(e => e as CombatEntity).ToList();
+				_targeting.Prompt(enemies, "Enemies");
+				break;
+				
+			default:
+				DebugMessage("Target Type " + targetType + " is not supported.");
+				break;
+		}
+	}
+	
+	public void ApplyTargetToCommand(CombatEntity target)
+	{
+		_command.ApplyTarget(target);
+	}
+	
+	public void UseAbility(Ability ability, CombatEntity source, CombatEntity target)
+	{
+		_commandOpen = false;
+		_command.SetVisibility(false);
+		
+		DebugMessage("Character " + source.EntityName + " consumed " + ability.AtbCost + " ATB.");
+		source.GetStatByName("ATB").Value -= ability.AtbCost;
+		
+        if (ability.BattleEffect != null)
+            GameObject.Instantiate(ability.BattleEffect, target.ScenePosition, Quaternion.identity);
+        else
+            DebugMessage("The ability needs to create a self-destructing 'battle effect'!", LogLevel.LogicError);
+
+        ApplyAbilityEffect(ability, source, target);
+	}
+	
+	public void ApplyAbilityEffect(Ability ability, CombatEntity source, CombatEntity target)
+    {
+        if (ability == null
+           || ability.Effects == null)
+            throw new ArgumentNullException("An ability with at least one effect must be passed in.");
+
+        for(int i = 0; i < ability.Effects.Count; i++)
+        {
+            AbilityEffect effect = ability.Effects[i];
+
+            // First, make the appropriate effect calculation.
+            int amount = effect.PerformEffectCalculation(source);
+            DebugMessage("Ability " + ability.Name + " Effect #" + (i + 1) + " will change stat " + effect.TargetStat + " by " + amount);
+
+            // Then, apply the effect to the target.
+            target.ApplyAbilityEffect(effect, amount);
+        }
+    }
+
+	#endregion Battle Action Methods
+
+	#region End of Battle Methods
+
 	private void Victory()
 	{
 		_maestro.ChangeTunes(VictoryTheme);
 		_victory.SetVisibility(true);
 	}
-
+	
 	private void RollForLoot()
 	{
 		List<InventoryItem> loot = new List<InventoryItem>();
-
+		
 		for(int i = 0; i < Enemies.Count; i++)
 		{
 			Enemy enemy = Enemies[i];
 			List<InventoryItem> enemyLoot = enemy.RollForLoot().ToList();
 			loot.AddRange(enemyLoot);
 		}
-
+		
 		if(loot.Count == 0)
 		{
 			ReturnToOriginalScene();
 			return;
 		}
-
+		
 		// TODO: Pass list of obtained loot to the Loot Presenter!
 		_loot.SetVisibility(true);
 	}
-
+	
 	private void ReturnToOriginalScene()
 	{
 		_transitionManager.ChangeScenes(true);
 	}
-
+	
 	private void Defeat()
 	{
 		_maestro.ChangeTunes(GameOverTheme);
 		_defeat.SetVisibility(true);
 	}
-
+	
 	private void ReturnToTitleScreen()
 	{
 		Application.LoadLevel(TitleScene);
 	}
 
-	#endregion Methods
+	#endregion End of Battle Methods
 }

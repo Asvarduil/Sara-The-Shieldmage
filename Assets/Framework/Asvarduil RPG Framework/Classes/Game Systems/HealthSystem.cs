@@ -79,38 +79,28 @@ public class HealthSystem
 		}
 	}
 
+    public bool ApplyAbilityEffect(AbilityEffect effect, int amount)
+    {
+        int hpChangeIndicator = GetStatByName(effect.TargetStat);
+        if (hpChangeIndicator == -1)
+            return false;
+
+        string statName = effect.TargetStat.ToLower();
+        ChangeHealthSystemStat(statName, amount);
+
+        return true;
+    }
+
 	public bool ApplyItemEffect(ItemEffect effect)
 	{
 		int hpChangeIndicator = GetStatByName(effect.TargetStat);
 		if(hpChangeIndicator == -1)
 			return false;
 
-		int hpChange = (int)(effect.FixedEffect * effect.ScalingEffect);
+        // TODO: This is wrong.  Fix it.
+		int amount = (int)(effect.FixedEffect * effect.ScalingEffect);
 		string statName = effect.TargetStat.ToLower();
-		
-		switch(statName)
-		{
-			case "hp":
-				if(hpChange > 0)
-					Heal(hpChange);
-				else
-					TakeDamage(hpChange);
-				break;
-				
-			case "max hp":
-				MaxHP += hpChange;
-				break;
-				
-			case "effective max hp":
-				if(hpChange > 0)
-					RaiseEffectiveMaxHP(hpChange);
-				else
-					LowerEffectiveMaxHP(hpChange);
-				break;
-				
-			default:
-				throw new Exception("Unexpected Health System stat name: " + statName);
-		}
+        ChangeHealthSystemStat(statName, amount);
 
 		return true;
 	}
@@ -121,29 +111,40 @@ public class HealthSystem
 		if(hpChangeIndicator == -1)
 			return false;
 		
-		int hpChange = (int)(effect.FixedEffect * effect.ScalingEffect);
+        // TODO: This is wrong.  Fix it.
+		int amount = (int)(effect.FixedEffect * effect.ScalingEffect) * -1;
 		string statName = effect.TargetStat.ToLower();
-		
-		switch(statName)
-		{
-			case "hp":
-				HP -= hpChangeIndicator;
-				break;
-				
-			case "max hp":
-				MaxHP -= hpChange;
-				break;
-				
-			case "effective max hp":
-				EffectiveMaxHP -= hpChange;
-				break;
-				
-			default:
-				throw new Exception("Unexpected Health System stat name: " + statName);
-		}
+        ChangeHealthSystemStat(statName, amount);
 		
 		return true;
 	}
+
+    private void ChangeHealthSystemStat(string statName, int effect)
+    {
+        switch (statName)
+        {
+            case "hp":
+                if (effect > 0)
+                    Heal(effect);
+                else
+                    TakeDamage(Math.Abs(effect));
+                break;
+
+            case "max hp":
+                MaxHP += effect;
+                break;
+
+            case "effective max hp":
+                if (effect > 0)
+                    RaiseEffectiveMaxHP(effect);
+                else
+                    LowerEffectiveMaxHP(Math.Abs(effect));
+                break;
+
+            default:
+                throw new Exception("Unexpected Health System stat name: " + statName);
+        }
+    }
 
 	#endregion Methods
 }

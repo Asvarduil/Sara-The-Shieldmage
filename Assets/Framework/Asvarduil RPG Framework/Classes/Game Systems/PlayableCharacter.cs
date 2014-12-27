@@ -4,72 +4,20 @@ using System.Linq;
 using System.Collections.Generic;
 
 [Serializable]
-public class PlayableCharacter : ICombatEntity
+public class PlayableCharacter : CombatEntity
 {
 	#region Variables / Properties
 
-	public string Name;
-
-	public GameObject BattlePrefab;
-
 	public bool IsUsable;
 	public int PartyIndex = 0;
-	
-	public HealthSystem Health;
-	public List<LevelupSystem> LevelableStats;
-	public List<ModifiableStat> ModifiableStats;
 
 	public InventoryItem Weapon;
 	public InventoryItem Armor;
 	public InventoryItem Accessory;
 
-	public List<Ability> Abilities;
-
-	public string EntityName
-	{
-		get { return Name; }
-	}
-
-	public HealthSystem HealthSystem
-	{
-		get { return Health; }
-	}
-
-	public List<ModifiableStat> StatSystems
-	{
-		get { return StatSystems; }
-	}
-
 	#endregion Variables / Properties
 
 	#region Methods
-
-	public int GetModifiedStatValue(string statName)
-	{
-		int result = Health.GetStatByName(statName);
-		if(result > -1)
-			return result;
-
-		LevelupSystem system = GetLevelSystemByName(statName);
-		if(system != default(LevelupSystem))
-			return system.Level;
-
-		ModifiableStat stat = GetStatByName(statName);
-		if(stat != default(ModifiableStat))
-			return stat.ModifiedValue;
-
-		return -1;
-	}
-
-	public LevelupSystem GetLevelSystemByName(string name)
-	{
-		return LevelableStats.FirstOrDefault(s => s.Name == name);
-	}
-
-	public ModifiableStat GetStatByName(string name)
-	{
-		return ModifiableStats.FirstOrDefault(s => s.Name == name);
-	}
 
 	public void UnequipItem(ItemType slot)
 	{

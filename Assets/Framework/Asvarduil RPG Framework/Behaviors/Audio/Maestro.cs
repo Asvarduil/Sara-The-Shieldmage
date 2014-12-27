@@ -3,11 +3,13 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-
-public class Maestro : MonoBehaviour 
+ 
+public class Maestro : DebuggableBehavior
 {
 	#region Variables / Properties
-	
+
+    public float loopTime = 0.0f;
+
 	private AudioSource _soundSource;
 	private AudioManager _audioManager;
 

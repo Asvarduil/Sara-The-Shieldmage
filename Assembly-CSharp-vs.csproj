@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -52,7 +52,6 @@
      <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\CharacterControlDirection.cs" />
      <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\CharacterControlHook.cs" />
      <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\ISuspendable.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Abilities\DamageBattleEntity.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\AudioManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\ConversationSoundEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\Maestro.cs" />
@@ -133,6 +132,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\TweenableElement.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\Ability.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\AbilityEffect.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\CombatEntity.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\DialogueEvent.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\DialogueOption.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\Enemy.cs" />
@@ -151,8 +151,6 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\SequenceState.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\TextContent.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\TextThread.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Interfaces\IBattleEffect.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Interfaces\ICombatEntity.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Interfaces\INamed.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilAnimation.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilAnimationType.cs" />
@@ -170,7 +168,7 @@
      <None Include="Assets\Game-Specific Assets\Shaders\Particle-Additive-Backculled.shader" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-branches.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

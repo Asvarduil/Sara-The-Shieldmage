@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Random = UnityEngine.Random;
+
 [Serializable]
 public class AbilityEffect
 {
@@ -7,17 +9,37 @@ public class AbilityEffect
 
 	public string Name;
 
-	// Source Power
-	public string PowerStat;
-	public float PowerRatio = 1.0f;
-	public float Accuracy = 1.0f;
+    public string PowerStat;
+    public int EffectFloor;
+    public float EffectMultiplier;
+    public int MinimumRandomEffect;
+    public int MaximumRandomEffect;
 
-	public string MultiplierStat;
-	public float MultiplierRatio = 1.0f;
-
-	// Things to do to the target...
-	public string TargetStat;
-	public string StatusEffect;
+    public string TargetStat;
 
 	#endregion Variables / Properties
+
+    #region Methods
+
+    public int PerformEffectCalculation(CombatEntity source)
+    {
+        if (source == null)
+            throw new ArgumentNullException("The source entity cannot be null!");
+
+        // If there is no power stat driving the effectiveness of the attack,
+        // Use 0 as the contributed power.
+        int powerValue = string.IsNullOrEmpty(PowerStat) 
+            ? 0 
+            : source.GetStatByName(PowerStat).Value;
+
+        // Roll for some randomized variance, and store that as well.
+        int randomValue = Random.Range(MinimumRandomEffect, MaximumRandomEffect);
+
+        // Build and return the composite total effect.
+        int effect = (int)((EffectFloor + powerValue) * EffectMultiplier) + randomValue;
+
+        return effect;
+    }
+
+    #endregion Methods
 }

@@ -5,18 +5,6 @@ using System.Collections.Generic;
 
 public class CommandPresenter : PresenterBase
 {
-	#region Enumerations
-
-	private enum CommandPresenterState
-	{
-		Standby,
-		WaitingCommand,
-		WaitingTarget,
-		CommandReady
-	}
-
-	#endregion Enumerations
-
 	#region Variables / Properties
 
 	public AudioClip PromptSound;
@@ -24,10 +12,9 @@ public class CommandPresenter : PresenterBase
 	public AsvarduilLabel CharacterName;
 	public List<AsvarduilButton> Commands;
 
-	private CommandPresenterState _state;
 	private Ability _selectedAbility;
 
-	private ICombatEntity _target;
+	private CombatEntity _target;
 	private PlayableCharacter _character;
 	private BattleReferee _referee;
 
@@ -39,18 +26,7 @@ public class CommandPresenter : PresenterBase
 	{
 		base.Start();
 
-		_referee = GetComponentInParent<BattleReferee>();
-	}
-
-	public override void Update()
-	{
-		base.Update();
-
-		if(_state == CommandPresenterState.CommandReady)
-		{
-			_state = CommandPresenterState.Standby;
-			_referee.UseAbility(_character, _target, _selectedAbility);
-		}
+        _referee = BattleReferee.Instance;
 	}
 
 	public override void SetVisibility(bool isVisible)
@@ -95,13 +71,11 @@ public class CommandPresenter : PresenterBase
 				switch(_selectedAbility.TargetType)
 				{
 					case AbilityTargetType.Self:
-						_state = CommandPresenterState.CommandReady;
-						_target = _character;	
+                        ApplyTarget(_character);
 						break;
 
 					case AbilityTargetType.TargetEnemy:
 					case AbilityTargetType.TargetAlly:
-						_state = CommandPresenterState.WaitingTarget;
 						_referee.PromptForTarget(_selectedAbility.TargetType);
 						// TODO: Request target from the Controller.
 						break;
@@ -161,10 +135,11 @@ public class CommandPresenter : PresenterBase
 		}
 	}
 
-	public void ApplyTarget(ICombatEntity target)
+	public void ApplyTarget(CombatEntity target)
 	{
 		_target = target;
-		_state = CommandPresenterState.CommandReady;
+        _referee.UseAbility(_selectedAbility, _character, _target);
+        SetVisibility(false);
 	}
 
 	#endregion Methods

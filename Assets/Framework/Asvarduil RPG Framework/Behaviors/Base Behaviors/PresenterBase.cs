@@ -52,8 +52,8 @@ public abstract class PresenterBase : DebuggableBehavior, ITweenable, IDrawable
 	{
 		GUI.skin = Skin;
 
-		GUI.skin.label.fontSize = Screen.height / DefaultResolutionHeight  * LabelFontSize;
-		GUI.skin.button.fontSize = Screen.height / DefaultResolutionHeight  * ButtonFontSize;
+		GUI.skin.label.fontSize = (Screen.height / DefaultResolutionHeight) * LabelFontSize;
+		GUI.skin.button.fontSize = (Screen.height / DefaultResolutionHeight) * ButtonFontSize;
 	}
 
 	#endregion Methods
