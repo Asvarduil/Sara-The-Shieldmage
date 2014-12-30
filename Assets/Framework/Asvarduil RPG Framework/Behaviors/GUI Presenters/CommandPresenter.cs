@@ -56,17 +56,18 @@ public class CommandPresenter : PresenterBase
 		if (_character == null)
 			return;
 
-		if (_character.Abilities.IsNullOrEmpty())
+		if (_character.AvailableAbilities.IsNullOrEmpty())
 			return;
 
-		for (int i = 0; i < _character.Abilities.Count; i++) 
+        List<Ability> availableAbilities = _character.AvailableAbilities;
+        for (int i = 0; i < availableAbilities.Count; i++) 
 		{
 			command = Commands[i];
 			if(command.IsClicked())
 			{
 				_maestro.PlayOneShot(ButtonSound);
 
-				_selectedAbility = _character.Abilities[i];
+                _selectedAbility = availableAbilities[i];
 
 				switch(_selectedAbility.TargetType)
 				{
@@ -80,10 +81,15 @@ public class CommandPresenter : PresenterBase
 						// TODO: Request target from the Controller.
 						break;
 
-					// TODO: Implement target all enemies/allies
+					case AbilityTargetType.AllAlly:
+                    case AbilityTargetType.AllEnemy:
+                    case AbilityTargetType.All:
+                        _referee.UseAbilityOnAllTargets(_selectedAbility, _character);
+                        break;
+
 					default:
 						DebugMessage("Target Type: " + _selectedAbility.TargetType + " not implemented.");
-						break;
+                        return;
 				}
 			}
 		}
@@ -118,17 +124,16 @@ public class CommandPresenter : PresenterBase
 
 		Ability ability;
 		AsvarduilButton command;
-		for (int i = 0; i < character.Abilities.Count; i++) 
+        List<Ability> availableAbilities = character.AvailableAbilities;
+        for (int i = 0; i < availableAbilities.Count; i++) 
 		{
-			ability = character.Abilities[i];
-			if(! ability.IsAvailable)
-				continue;
+            ability = availableAbilities[i];
 
 			command = Commands[i];
 			command.ButtonText = ability.Name;
 		}
 
-		for (int i = Commands.Count - 1; i > character.Abilities.Count - 1; i--)
+        for (int i = Commands.Count - 1; i > availableAbilities.Count - 1; i--)
 		{
 			command = Commands[i];
 			command.ButtonText = string.Empty;

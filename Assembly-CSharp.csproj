@@ -55,6 +55,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\AudioManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\ConversationSoundEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\Maestro.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\AIBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\AnimationSystemBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\DebuggableBehavior.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\JsonBlobLoaderBase.cs" />
@@ -159,6 +160,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilFrame.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteAnimation.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteFrame.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\AI\CaveSlimeAI.cs" />
      <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-chest.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-battle.txt" />

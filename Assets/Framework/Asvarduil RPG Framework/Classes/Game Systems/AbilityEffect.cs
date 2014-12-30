@@ -17,6 +17,9 @@ public class AbilityEffect
 
     public string TargetStat;
 
+    public BattleEntityFeedbackType FeedbackType;
+    public string FeedbackValue;
+
 	#endregion Variables / Properties
 
     #region Methods

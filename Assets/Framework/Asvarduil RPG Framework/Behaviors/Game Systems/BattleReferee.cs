@@ -26,6 +26,18 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	public AudioClip VictoryTheme;
 	public AudioClip GameOverTheme;
 
+    public List<CombatEntity> AllCombatEntities
+    {
+        get 
+        {
+            List<CombatEntity> allEntities = new List<CombatEntity>();
+            allEntities.AddRange(Players.Select(p => p as CombatEntity));
+            allEntities.AddRange(Enemies.Select(e => e as CombatEntity));
+
+            return allEntities;
+        }
+    }
+
 	public bool BattleInProgress
 	{
 		get { return LivingPlayerCount > 0 && LivingEnemyCount > 0; }
@@ -122,7 +134,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			{
 				Vector3 position = PlayerPositions[i].transform.position;
                 player.ScenePosition = position;
-                player.BattlePiece = (GameObject)GameObject.Instantiate(player.BattlePrefab, position, Quaternion.identity);
+                player.BattlePiece = ((GameObject)GameObject.Instantiate(player.BattlePrefab, position, Quaternion.identity)).GetComponent<BattleEntity>();
 			}
 			else
 			{
@@ -141,7 +153,9 @@ public class BattleReferee : ManagerBase<BattleReferee>
 				Enemy enemy = Enemies[i];
 				Vector3 position = EnemyPositions[i].transform.position;
                 enemy.ScenePosition = position;
-                enemy.BattlePiece = (GameObject)GameObject.Instantiate(enemy.BattlePrefab, position, Quaternion.identity);
+
+                var battlePieceInstance = (GameObject)GameObject.Instantiate(enemy.BattlePrefab, position, Quaternion.identity);
+                enemy.BattlePiece = battlePieceInstance.GetComponent<BattleEntity>();
 			}
 			
 			return;
@@ -158,7 +172,9 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			{
 				Vector3 position = EnemyPositions[i].transform.position;
                 enemy.ScenePosition = position;
-				enemy.BattlePiece = (GameObject) GameObject.Instantiate(enemy.BattlePrefab, position, Quaternion.identity);
+
+                var battlePieceInstance = (GameObject) GameObject.Instantiate(enemy.BattlePrefab, position, Quaternion.identity);
+				enemy.BattlePiece = battlePieceInstance.GetComponent<BattleEntity>();
 			}
 			else
 			{
@@ -248,7 +264,11 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			if(ATB.Value >= maxATB.Value)
 			{
 				DebugMessage("Enemy " + enemy.Name + " is acting!");
-				// TODO: Implement Enemy AI...
+
+                Ability selectedAbility = enemy.DetermineAction(enemy.Abilities);
+                CombatEntity target = enemy.DetermineTarget(AllCombatEntities);
+
+                UseAbility(selectedAbility, enemy, target);
 			}
 		}
 	}
@@ -273,20 +293,57 @@ public class BattleReferee : ManagerBase<BattleReferee>
 				
 			default:
 				DebugMessage("Target Type " + targetType + " is not supported.");
-				break;
+                return;
 		}
 	}
 	
-	public void ApplyTargetToCommand(CombatEntity target)
+	public void ApplyTargetToPlayerCommand(CombatEntity target)
 	{
+        _commandOpen = false;
 		_command.ApplyTarget(target);
 	}
+
+    public void UseAbilityOnAllTargets(Ability ability, CombatEntity source)
+    {
+        List<CombatEntity> targets = GetTargetListForAbility(ability.TargetType);
+
+        for(int i = 0; i < targets.Count; i++)
+        {
+            CombatEntity target = targets[i];
+            UseAbility(ability, source, target);
+        }
+    }
+
+    private List<CombatEntity> GetTargetListForAbility(AbilityTargetType targetType)
+    {
+        List<CombatEntity> targets = new List<CombatEntity>();
+        switch (targetType)
+        {
+            case AbilityTargetType.AllAlly:
+                targets = Players.Select(p => p as CombatEntity).ToList();
+                break;
+
+            case AbilityTargetType.AllEnemy:
+                targets = Enemies.Select(e => e as CombatEntity).ToList();
+                break;
+
+            case AbilityTargetType.All:
+                targets = AllCombatEntities;
+                break;
+
+            default:
+                DebugMessage("Target Type " + targetType + " is not supported.");
+                break;
+        }
+
+        _commandOpen = false;
+        _command.SetVisibility(false);
+
+        return targets;
+    }
 	
 	public void UseAbility(Ability ability, CombatEntity source, CombatEntity target)
-	{
-		_commandOpen = false;
-		_command.SetVisibility(false);
-		
+	{	
 		DebugMessage("Character " + source.EntityName + " consumed " + ability.AtbCost + " ATB.");
 		source.GetStatByName("ATB").Value -= ability.AtbCost;
 		
@@ -314,6 +371,12 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
             // Then, apply the effect to the target.
             target.ApplyAbilityEffect(effect, amount);
+
+            // Tell the battle piece to provide feedback to the player.
+            if (target.HealthSystem.IsDead)
+                target.BattlePiece.DoDeathSequence();
+            else
+                target.BattlePiece.ProvideFeedback(effect.FeedbackType, effect.FeedbackValue);
         }
     }
 

@@ -67,7 +67,7 @@ public class TargetingPresenter : PresenterBase
 
 				SetVisibility(false);
 				var target = _entities[i];
-				_referee.ApplyTargetToCommand(target);
+				_referee.ApplyTargetToPlayerCommand(target);
 			}
 		}
 	}
