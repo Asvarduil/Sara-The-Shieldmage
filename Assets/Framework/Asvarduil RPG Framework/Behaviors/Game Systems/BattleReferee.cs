@@ -213,6 +213,8 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			// Dead players can't act!
 			if(player.Health.IsDead)
 				continue;
+
+            player.OnATBTick();
 			
 			ATB = player.GetStatByName(ATBName);
 			maxATB = player.GetStatByName(maxATBName);
@@ -251,6 +253,8 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			// Dead players can't act!
 			if(enemy.Health.IsDead)
 				continue;
+
+            enemy.OnATBTick();
 			
 			ATB = enemy.GetStatByName(ATBName);
 			maxATB = enemy.GetStatByName(maxATBName);
@@ -275,9 +279,21 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
 	#endregion ATB Methods
 
-	#region Battle Action Methods
+    #region Buff Management Methods
 
-	public void PromptForTarget(AbilityTargetType targetType)
+    public void ApplyEffectToTargetAsBuff(AbilityEffect effect, CombatEntity target)
+    {
+        DebugMessage("Applying " + effect.Name + " as a (de-)buff to " + target.Name + " for " + effect.Duration + " seconds.");
+
+        effect.ApplyTime = Time.time;
+        target.AddActiveEffect(effect);
+    }
+
+    #endregion Buff Management Methods
+
+    #region Battle Action Methods
+
+    public void PromptForTarget(AbilityTargetType targetType)
 	{
 		switch (targetType) 
 		{
@@ -344,7 +360,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	
 	public void UseAbility(Ability ability, CombatEntity source, CombatEntity target)
 	{	
-		DebugMessage("Character " + source.EntityName + " consumed " + ability.AtbCost + " ATB.");
+		DebugMessage("Character " + source.Name + " consumed " + ability.AtbCost + " ATB.");
 		source.GetStatByName("ATB").Value -= ability.AtbCost;
 		
         if (ability.BattleEffect != null)
@@ -366,18 +382,26 @@ public class BattleReferee : ManagerBase<BattleReferee>
             AbilityEffect effect = ability.Effects[i];
 
             // First, make the appropriate effect calculation.
-            int amount = effect.PerformEffectCalculation(source);
-            DebugMessage("Ability " + ability.Name + " Effect #" + (i + 1) + " will change stat " + effect.TargetStat + " by " + amount);
-
-            // Then, apply the effect to the target.
-            target.ApplyAbilityEffect(effect, amount);
-
-            // Tell the battle piece to provide feedback to the player.
-            if (target.HealthSystem.IsDead)
-                target.BattlePiece.DoDeathSequence();
+            effect.PerformEffectCalculation(source);
+            if (!effect.IsBuff)
+                ApplyEffectToTargetAsImmediate(effect, target);
             else
-                target.BattlePiece.ProvideFeedback(effect.FeedbackType, effect.FeedbackValue);
+                ApplyEffectToTargetAsBuff(effect, target);
         }
+    }
+
+    private void ApplyEffectToTargetAsImmediate(AbilityEffect effect, CombatEntity target)
+    {
+        DebugMessage("Applying effect " + effect.Name + ", which will change stat " + effect.TargetStat + " by " + effect.ActualAmount);
+
+        // Then, apply the effect to the target.
+        target.ApplyAbilityEffect(effect);
+
+        // Tell the battle piece to provide feedback to the player.
+        if (target.Health.IsDead)
+            target.BattlePiece.DoDeathSequence();
+        else
+            target.BattlePiece.ProvideFeedback(effect.FeedbackType, effect.FeedbackValue);
     }
 
 	#endregion Battle Action Methods

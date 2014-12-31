@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class HealthSystem
@@ -7,12 +8,20 @@ public class HealthSystem
 
 	public int HP;
 	public int MaxHP;
-	public int EffectiveMaxHP;
+    public int RegenAmount;
+    public float RegenRate;
 
 	public bool IsDead
 	{
 		get { return HP == 0; }
 	}
+
+    public float NextRegenTick
+    {
+        get { return _lastRegenTick + RegenRate; }
+    }
+
+    private float _lastRegenTick;
 
 	#endregion Variables / Properties
 
@@ -27,9 +36,9 @@ public class HealthSystem
 				
 			case "max hp":
 				return MaxHP;
-				
-			case "effective max hp":
-				return EffectiveMaxHP;
+
+            case "regen amount":
+                return RegenAmount;
 
 			default:
 				return -1;
@@ -39,11 +48,23 @@ public class HealthSystem
 	public void Heal(int amount)
 	{
 		HP += amount;
-		if(HP >= EffectiveMaxHP)
+		if(HP >= MaxHP)
 		{
-			HP = EffectiveMaxHP;
+			HP = MaxHP;
 		}
 	}
+
+    public void Regenerate()
+    {
+        if (RegenAmount == 0)
+            return;
+
+        if (Time.time <= NextRegenTick)
+            return;
+
+        _lastRegenTick = Time.time;
+        Heal(RegenAmount);
+    }
 
 	public void TakeDamage(int amount)
 	{
@@ -58,25 +79,6 @@ public class HealthSystem
 	{
 		HP += amount;
 		MaxHP += amount;
-		EffectiveMaxHP += amount;
-	}
-
-	public void RaiseEffectiveMaxHP(int amount)
-	{
-		EffectiveMaxHP += amount;
-		if(EffectiveMaxHP >= MaxHP)
-		{
-			EffectiveMaxHP = MaxHP;
-		}
-	}
-
-	public void LowerEffectiveMaxHP(int amount)
-	{
-		EffectiveMaxHP -= amount;
-		if(EffectiveMaxHP < 1)
-		{
-			EffectiveMaxHP = 1;
-		}
 	}
 
     public bool ApplyAbilityEffect(AbilityEffect effect, int amount)
@@ -131,14 +133,11 @@ public class HealthSystem
                 break;
 
             case "max hp":
-                MaxHP += effect;
+                RaiseMaxHP(effect);
                 break;
 
-            case "effective max hp":
-                if (effect > 0)
-                    RaiseEffectiveMaxHP(effect);
-                else
-                    LowerEffectiveMaxHP(Math.Abs(effect));
+            case "regen amount":
+                RegenAmount += effect;
                 break;
 
             default:

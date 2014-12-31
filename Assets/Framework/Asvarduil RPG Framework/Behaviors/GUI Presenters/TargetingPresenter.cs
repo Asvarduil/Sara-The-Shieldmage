@@ -57,7 +57,7 @@ public class TargetingPresenter : PresenterBase
 				continue;
 
 			// Don't show the option for dead targets.
-			if(_entities[i].HealthSystem.IsDead)
+			if(_entities[i].Health.IsDead)
 				continue;
 
 			button = TargetButtons[i];
@@ -99,7 +99,7 @@ public class TargetingPresenter : PresenterBase
 		for(int i = 0; i < entities.Count; i++)
 		{
 			button = TargetButtons[i];
-			button.ButtonText = entities[i].EntityName;
+			button.ButtonText = entities[i].Name;
 		}
 
 		// Hide any unused buttons!

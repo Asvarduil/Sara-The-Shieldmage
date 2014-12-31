@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 using Random = UnityEngine.Random;
 
@@ -14,20 +15,39 @@ public class AbilityEffect
     public float EffectMultiplier;
     public int MinimumRandomEffect;
     public int MaximumRandomEffect;
-
     public string TargetStat;
+
+    public bool IsBuff = false;
+    public float Duration;
+    public float ApplyTime;
 
     public BattleEntityFeedbackType FeedbackType;
     public string FeedbackValue;
+
+    public int ActualAmount { get; private set; }
+
+    public float ExpireTime
+    {
+        get { return ApplyTime + Duration; }
+    }
+
+    public bool IsExpired
+    {
+        get { return Time.time >= ExpireTime; }
+    }
+
+    private CombatEntity _source;
 
 	#endregion Variables / Properties
 
     #region Methods
 
-    public int PerformEffectCalculation(CombatEntity source)
+    public void PerformEffectCalculation(CombatEntity source)
     {
         if (source == null)
             throw new ArgumentNullException("The source entity cannot be null!");
+
+        _source = source;
 
         // If there is no power stat driving the effectiveness of the attack,
         // Use 0 as the contributed power.
@@ -39,9 +59,7 @@ public class AbilityEffect
         int randomValue = Random.Range(MinimumRandomEffect, MaximumRandomEffect);
 
         // Build and return the composite total effect.
-        int effect = (int)((EffectFloor + powerValue) * EffectMultiplier) + randomValue;
-
-        return effect;
+        ActualAmount = (int)((EffectFloor + powerValue) * EffectMultiplier) + randomValue;
     }
 
     #endregion Methods
