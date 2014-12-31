@@ -1,0 +1,12 @@
+C:\Users\andre_000\Desktop\Unity Works\Sara the Shieldmage (RPG)\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\andre_000\Desktop\Unity Works\Sara the Shieldmage (RPG)\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\andre_000\Desktop\Unity Works\Sara the Shieldmage (RPG)\Temp\bin\Debug\UnityEditor.dll
+C:\Users\andre_000\Desktop\Unity Works\Sara the Shieldmage (RPG)\Temp\bin\Debug\UnityEngine.dll
+C:\Users\andre_000\Desktop\Unity Works\Sara the Shieldmage (RPG)\Temp\bin\Debug\UnityEngine.UI.dll
+C:\Users\andre_000\Desktop\Unity Works\Sara the Shieldmage (RPG)\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\andre_000\Desktop\Unity Works\Sara the Shieldmage (RPG)\Temp\bin\Debug\nunit.framework.dll
+C:\Users\andre_000\Desktop\Unity Works\Sara the Shieldmage (RPG)\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\andre_000\Desktop\Unity Works\Sara the Shieldmage (RPG)\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\andre_000\Desktop\Unity Works\Sara the Shieldmage (RPG)\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+C:\Users\andre_000\Desktop\Unity Works\Sara the Shieldmage (RPG)\obj\Debug\Assembly-CSharp.dll
+C:\Users\andre_000\Desktop\Unity Works\Sara the Shieldmage (RPG)\obj\Debug\Assembly-CSharp.pdb
