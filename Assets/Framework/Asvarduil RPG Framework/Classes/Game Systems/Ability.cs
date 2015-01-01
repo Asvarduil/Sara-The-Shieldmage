@@ -15,7 +15,7 @@ public enum AbilityTargetType
 }
 
 [Serializable]
-public class Ability : INamed
+public class Ability : INamed, ICloneable
 {
 	#region Variables / Properties
 
@@ -42,4 +42,34 @@ public class Ability : INamed
 	}
 
 	#endregion Variables / Properties
+
+    #region Methods
+
+    public object Clone()
+    {
+        var clone = new Ability
+        {
+            Name = this.Name,
+            Description = this.Description,
+            BattleEffect = this.BattleEffect,
+            Available = this.Available,
+            AtbCost = this.AtbCost,
+            TargetType = this.TargetType,
+            Effects = new List<AbilityEffect>(),
+            ActionAnimation = this.ActionAnimation,
+            ReceiptAnimation = this.ReceiptAnimation
+        };
+
+        for (int i = 0; i < Effects.Count; i++)
+        {
+            var sourceEffect = Effects[i];
+            var clonedEffect = sourceEffect.Clone() as AbilityEffect;
+
+            Effects.Add(clonedEffect);
+        }
+
+        return clone;
+    }
+
+    #endregion Methods
 }

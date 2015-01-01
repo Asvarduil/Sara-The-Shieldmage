@@ -62,6 +62,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	private BattleManager _battleManager;
 	private TransitionManager _transitionManager;
 
+    private PlayerInformationPresenter _playerInfo;
 	private TargetingPresenter _targeting;
 	private CommandPresenter _command;
 	private VictoryPresenter _victory;
@@ -85,6 +86,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		_victory = GetComponentInChildren<VictoryPresenter>();
 		_command = GetComponentInChildren<CommandPresenter>();
 		_targeting = GetComponentInChildren<TargetingPresenter>();
+        _playerInfo = GetComponentInChildren<PlayerInformationPresenter>();
 
 		_maestro.ChangeTunes(_battleManager.BattleTheme);
 		LoadPlayers();
@@ -141,6 +143,8 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			{
 				DebugMessage(player.Name + " has no Battle Prefab!", LogLevel.LogicError);
 			}
+
+            _playerInfo.BindCharacterDisplay(player, i);
 		}
 	}
 	
@@ -166,7 +170,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		for(int i = 0; i < _battleManager.EnemyNames.Count; i++)
 		{
 			string enemyName = _battleManager.EnemyNames[i];
-			Enemy enemy = _enemies.FindEnemyByName(enemyName);
+			Enemy enemy = _enemies.FindEnemyByName(enemyName).Clone() as Enemy;
 			Enemies.Add(enemy);
 			
 			if(enemy.BattlePrefab != null)
@@ -224,11 +228,12 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			if(ATB.Value < maxATB.Value)
 			{
 				ATB.Value += speed.Value;
+                _playerInfo.UpdateATB(i);
 			}
 			
 			if(ATB.Value >= maxATB.Value)
 			{
-				DebugMessage("Player " + player.Name + " is ready for a command.");
+				//DebugMessage("Player " + player.Name + " is ready for a command.");
 				if(! _commandOpen)
 				{
 					DebugMessage("Player " + player.Name + " is being prompted for a command.");
@@ -237,6 +242,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 				}
 			}
 		}
+
 	}
 	
 	private void AdvanceEnemyATB()
@@ -371,8 +377,6 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
         target.BattlePiece.PlayAnimation(ability.ReceiptAnimation);
         ApplyAbilityEffect(ability, source, target);
-
-        source.GetStatByName("ATB").Value -= ability.AtbCost;
 	}
 
     private void CreateAbilityVisualEffect(Ability ability, CombatEntity target)
@@ -402,6 +406,13 @@ public class BattleReferee : ManagerBase<BattleReferee>
             else
                 ApplyEffectToTargetAsBuff(effect, target);
         }
+
+        if (target is PlayableCharacter)
+            _playerInfo.UpdateHealth(target);
+
+        source.GetStatByName("ATB").Reduce(ability.AtbCost);
+        if (source is PlayableCharacter)
+            _playerInfo.UpdateATB(source);
     }
 
     private void ApplyEffectToTargetAsImmediate(AbilityEffect effect, CombatEntity target)
@@ -422,11 +433,24 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
 	private void Victory()
 	{
+        ClearBattleEffects();
+
+        // TODO: Victory animations...
 		_maestro.ChangeTunes(VictoryTheme);
 		_victory.SetVisibility(true);
 	}
+
+    private void ClearBattleEffects()
+    {
+        for(int i = 0; i < Players.Count; i++)
+        {
+            CombatEntity current = Players[i];
+            current.GetStatByName("ATB").Value = 0;
+            current.ClearActiveEffects();
+        }
+    }
 	
-	private void RollForLoot()
+	public void RollForLoot()
 	{
 		List<InventoryItem> loot = new List<InventoryItem>();
 		
@@ -442,12 +466,18 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			ReturnToOriginalScene();
 			return;
 		}
-		
-		// TODO: Pass list of obtained loot to the Loot Presenter!
-		_loot.SetVisibility(true);
+
+        PartyInventory inventory = InventoryManager.Instance.ActiveInventory;
+        for (int i = 0; i < loot.Count; i++ )
+        {
+            InventoryItem item = loot[i];
+            inventory.GainItem(item, item.Quantity);
+        }
+
+        _loot.ShowLoot(loot);
 	}
 	
-	private void ReturnToOriginalScene()
+	public void ReturnToOriginalScene()
 	{
 		_transitionManager.ChangeScenes(true);
 	}

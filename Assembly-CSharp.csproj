@@ -75,13 +75,14 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\TreasureEntity.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\DialogueController.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\PauseController.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\BattlePresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ATBBitPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\CommandPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ControlsPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DefeatPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DialoguePresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\EntityTextInterface.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\EquipmentPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\HealthBitPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\InventoryPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\LootPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\MagicPresenter.cs" />
@@ -89,6 +90,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\MemberStatPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PauseInterface.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PausePresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PlayerInformationPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\SettingsPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\TargetingPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\VictoryPresenter.cs" />
@@ -169,6 +171,7 @@
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-tonic-chest.txt" />
      <None Include="Assets\Game-Specific Assets\Shaders\Particle-Additive-Backculled.shader" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-branches.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\item-list.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

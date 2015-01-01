@@ -1,0 +1,138 @@
+{
+	"Items":[
+		{
+			"Name":"Saphirium",
+			"Description":"Used to buy items from shops.",
+			"Value":1,
+			"ItemType":"KeyItem",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[]
+		},
+		{
+			"Name":"Tonic",
+			"Description":"Restores a small amount of HP.",
+			"Value":25,
+			"ItemType":"Consumable",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[
+				{
+					"TargetStat":"HP",
+					"FixedEffect":4,
+					"ScalingEffect":1,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Heart Rune",
+			"Description":"Raises your Max HP",
+			"Value":0,
+			"ItemType":"Consumable",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[
+				{
+					"TargetStat":"MaxHP",
+					"FixedEffect":4,
+					"ScalingEffect":1,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Might Rune",
+			"Description":"Raises your attack",
+			"Value":0,
+			"ItemType":"Consumable",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[
+				{
+					"TargetStat":"Attack",
+					"FixedEffect":1,
+					"ScalingEffect":1,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Mind Rune",
+			"Description":"Raises your magic",
+			"Value":0,
+			"ItemType":"Consumable",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[
+				{
+					"TargetStat":"Magic",
+					"FixedEffect":1,
+					"ScalingEffect":1,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Body Rune",
+			"Description":"Raises your max ATB capacity",
+			"Value":0,
+			"ItemType":"Consumable",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[
+				{
+					"TargetStat":"Max ATB",
+					"FixedEffect":10,
+					"ScalingEffect":1,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Fleeting Rune",
+			"Description":"Raises your ATB speed",
+			"Value":0,
+			"ItemType":"Consumable",
+			"EquipmentEffects":[],
+			"ConsumeEffects":[
+				{
+					"TargetStat":"ATB Speed",
+					"FixedEffect":1,
+					"ScalingEffect":1,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Order Buckler",
+			"Description":"A shield granted by the Order of the Luminescent Shield.",
+			"Value":50,
+			"ItemType":"Weapon",
+			"EquipmentEffects:"[
+				{
+					"TargetStat":"Attack",
+					"FixedEffect":1,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				},
+				{
+					"TargetStat":"Magic",
+					"FixedEffect":1,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				}
+			],
+			"ConsumeEffects":[]
+		},
+		{
+			"Name":"Order Armor",
+			"Description":"Light armor worn by initiates of the Order of the Luminescent Shield.",			
+			"Value":25,
+			"ItemType":"Armor",
+			"EquipmentEffects:"[
+				{
+					"TargetStat":"Max HP",
+					"FixedEffect":4,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				},
+			],
+			"ConsumeEffects":[]
+		}
+	]
+}

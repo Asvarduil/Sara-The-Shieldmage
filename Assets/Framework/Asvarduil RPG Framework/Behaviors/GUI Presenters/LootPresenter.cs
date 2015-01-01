@@ -1,26 +1,74 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Text;
+using System.Collections.Generic;
 
 public class LootPresenter : PresenterBase
 {
 	#region Variables / Properties
+
+    public AsvarduilBox Background;
+    public AsvarduilLabel Text;
+    public AsvarduilButton NextButton;
+
+    private BattleReferee _referee;
 	
 	#endregion Variables / Properties
 	
-	#region Methods
+	#region Hooks
+
+    public void ShowLoot(List<InventoryItem> items)
+    {
+        StringBuilder builder = new StringBuilder("Got ");
+        for (int i = 0; i < items.Count; i++)
+        {
+            InventoryItem item = items[i];
+            builder.Append(item.Name);
+            builder.Append("x ");
+            builder.Append(item.Quantity);
+
+            if (i < items.Count - 1)
+                builder.Append(", ");
+        }
+
+        Text.Text = builder.ToString();
+
+        SetVisibility(true);
+    }
+
+    public override void Start()
+    {
+        base.Start();
+
+        _referee = BattleReferee.Instance;
+    }
+
+    public override void SetVisibility(bool isVisible)
+    {
+        float opacity = DetermineOpacity(isVisible);
+
+        Background.TargetTint.a = opacity;
+        Text.TargetTint.a = opacity;
+        NextButton.TargetTint.a = opacity;
+    }
+
+    public override void DrawMe()
+    {
+        Background.DrawMe();
+        Text.DrawMe();
+
+        if (NextButton.IsClicked())
+        {
+            _maestro.PlayOneShot(ButtonSound);
+            _referee.ReturnToOriginalScene();
+        }
+    }
+
+    public override void Tween()
+    {
+        Background.Tween();
+        Text.Tween();
+        NextButton.Tween();
+    }
 	
-	public override void SetVisibility(bool isVisible)
-	{
-		float opacity = DetermineOpacity(isVisible);
-	}
-	
-	public override void DrawMe()
-	{
-	}
-	
-	public override void Tween()
-	{
-	}
-	
-	#endregion Methods
+	#endregion Hooks
 }

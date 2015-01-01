@@ -13,7 +13,11 @@ public class PauseController : ManagerBase<PauseController>
 	public int CurrentMagicPosition = 0;
 	public int LastWeaponPosition = 0;
 	public int LastArmorPosition = 0;
-	public int LastAccessoryPosition = 0; 
+	public int LastAccessoryPosition = 0;
+
+    private bool _pauseShown = false;
+    private float _lastToggle;
+    private float _toggleLockout = 0.5f;
 
 	private MagicPresenter _magic;
 	private PauseInterface _interface;
@@ -76,6 +80,25 @@ public class PauseController : ManagerBase<PauseController>
 	#endregion Engine Hooks
 
 	#region Methods
+
+    public void TogglePause()
+    {
+        if (Time.time < _lastToggle + _toggleLockout)
+            return;
+
+        _lastToggle = Time.time;
+
+        if(! _pauseShown)
+        {
+            Pause();
+            _pauseShown = true;
+        }
+        else
+        {
+            Unpause();
+            _pauseShown = false;
+        }
+    }
 
 	public void Pause()
 	{
@@ -237,7 +260,7 @@ public class PauseController : ManagerBase<PauseController>
 
 		_memberSelect.SetVisibility(true);
 		_member.SetVisibility(true);
-		_presenter.SetElementVisibility(true);
+		_presenter.SetVisibility(true);
 
 		_items.SetVisibility(false);
 		_magic.SetVisibility(false);
@@ -256,7 +279,7 @@ public class PauseController : ManagerBase<PauseController>
 		_equipment.SetVisibility(false);
 		_interface.SetVisibility(false);
 		_memberSelect.SetVisibility(false);
-		_presenter.SetElementVisibility(false);
+		_presenter.SetVisibility(false);
 	}
 
 	public void EquipItem(InventoryItem item)
@@ -268,7 +291,7 @@ public class PauseController : ManagerBase<PauseController>
 			case ItemType.Weapon:
 				DebugMessage(string.Format("Swapping {0}'s {1} for a {2}", character.Name, character.Weapon.Name, item.Name));
 				InventoryItem equippedWeapon = character.Weapon;
-				_inventory.GainItem(equippedWeapon.Clone());
+				_inventory.GainItem(equippedWeapon.Clone() as InventoryItem);
 				character.UnequipItem(ItemType.Weapon);
 				
 				character.EquipItem(ItemType.Weapon, item);
@@ -278,7 +301,7 @@ public class PauseController : ManagerBase<PauseController>
 			case ItemType.Armor:
 				DebugMessage(string.Format("Swapping {0}'s {1} for a {2}", character.Name, character.Armor.Name, item.Name));
 				InventoryItem equippedArmor = character.Armor;
-				_inventory.GainItem(equippedArmor.Clone());
+				_inventory.GainItem(equippedArmor.Clone() as InventoryItem);
 				character.UnequipItem(ItemType.Armor);
 				
 				character.EquipItem(ItemType.Armor, item);
@@ -288,7 +311,7 @@ public class PauseController : ManagerBase<PauseController>
 			case ItemType.Accessory:
 				DebugMessage(string.Format("Swapping {0}'s {1} for a {2}", character.Name, character.Accessory.Name, item.Name));
 				InventoryItem equippedAccessory = character.Accessory;
-				_inventory.GainItem(equippedAccessory.Clone());
+				_inventory.GainItem(equippedAccessory.Clone() as InventoryItem);
 				character.UnequipItem(ItemType.Accessory);
 				
 				character.EquipItem(ItemType.Accessory, item);

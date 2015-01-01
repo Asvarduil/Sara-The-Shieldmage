@@ -25,6 +25,7 @@ public class TransitionManager : ManagerBase<TransitionManager>
 		if(toSource)
 		{
 			DebugMessage("Transitioning back to the source scene...");
+            TargetState = OriginalState;
 			Application.LoadLevel(OriginalState.SceneName);
 		}
 		else

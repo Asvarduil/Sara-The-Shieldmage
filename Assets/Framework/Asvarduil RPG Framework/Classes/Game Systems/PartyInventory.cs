@@ -24,7 +24,7 @@ public class PartyInventory
 		else
 		{
 			Items.Add(item);
-			item.Quantity = 1;
+			item.Quantity = quantity;
 		}
 	}
 

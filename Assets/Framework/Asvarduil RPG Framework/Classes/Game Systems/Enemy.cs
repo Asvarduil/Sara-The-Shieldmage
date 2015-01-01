@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 [Serializable]
-public class Enemy : CombatEntity
+public class Enemy : CombatEntity, ICloneable
 {
 	#region Variables / Properties
 
@@ -41,6 +41,65 @@ public class Enemy : CombatEntity
 	#endregion Variables / Properties
 
 	#region Methods
+
+    public object Clone()
+    {
+        var clone = new Enemy
+        {
+            Name = this.Name,
+            BattlePrefab = this.BattlePrefab,
+            Health = new HealthSystem(),
+            ModifiableStats = new List<ModifiableStat>(),
+            Abilities = new List<Ability>(),
+            CounterAttackName = this.CounterAttackName,
+            ActiveEffects = new List<AbilityEffect>(),
+            Drops = new List<ItemDrop>()
+        };
+
+        // Map Health System...
+        clone.Health.HP = Health.HP;
+        clone.Health.MaxHP = Health.MaxHP;
+        clone.Health.RegenRate = Health.RegenRate;
+        clone.Health.RegenAmount = Health.RegenAmount;
+
+        // Map Modifiable Stats...
+        for (int i = 0; i < ModifiableStats.Count; i++)
+        {
+            var sourceStat = ModifiableStats[i];
+            var clonedStat = sourceStat.Clone() as ModifiableStat;
+
+            clone.ModifiableStats.Add(clonedStat);
+        }
+
+        // Map Abilities
+        for (int i = 0; i < Abilities.Count; i++)
+        {
+            var sourceAbility = Abilities[i];
+            var clonedAbility = sourceAbility.Clone() as Ability;
+
+            clone.Abilities.Add(clonedAbility);
+        }
+
+        // Map existing buffs.
+        for (int i = 0; i < ActiveEffects.Count; i++)
+        {
+            var sourceBuff = ActiveEffects[i];
+            var clonedBuff = sourceBuff.Clone() as AbilityEffect;
+
+            clone.ActiveEffects.Add(clonedBuff);
+        }
+
+        // Map drop table...
+        for (int i = 0; i < Drops.Count; i++)
+        {
+            var sourceDrop = Drops[i];
+            var clonedDrop = sourceDrop.Clone() as ItemDrop;
+
+            clone.Drops.Add(clonedDrop);
+        }
+
+        return clone;
+    }
 
 	public IEnumerable<InventoryItem> RollForLoot()
 	{

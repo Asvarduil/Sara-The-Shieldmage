@@ -34,6 +34,7 @@ public class JrpgMapControlSystem : DebuggableBehavior, ISuspendable
 		_sprite = GetComponentInChildren<AsvarduilSpriteSystem>();
 
 		_currentIdleHook = FindCurrentIdleHook();
+        PlaceFromTransitionManager();
 	}
 
 	public void Update()
@@ -46,6 +47,19 @@ public class JrpgMapControlSystem : DebuggableBehavior, ISuspendable
 	#endregion Engine Hooks
 
 	#region Methods
+
+    private void PlaceFromTransitionManager()
+    {
+        TransitionManager transition = TransitionManager.Instance;
+        if (string.IsNullOrEmpty(transition.TargetState.SceneName))
+            return;
+
+        Vector3 position = transition.TargetState.Position;
+        Quaternion rotation = Quaternion.Euler(transition.TargetState.Rotation);
+
+        transform.position = position;
+        transform.rotation = rotation;
+    }
 
 	public void Suspend()
 	{

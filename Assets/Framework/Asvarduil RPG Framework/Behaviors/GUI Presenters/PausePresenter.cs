@@ -5,8 +5,6 @@ public class PausePresenter : PresenterBase
 {
 	#region Variables / Properties
 
-	public float BackgroundOpacity = 0.8f;
-	public AsvarduilImage Background;
 	public AsvarduilButton EquipmentButton;
 	public AsvarduilButton ItemsButton;
 	public AsvarduilButton MagicButton;
@@ -32,17 +30,6 @@ public class PausePresenter : PresenterBase
 
 	public override void SetVisibility(bool isVisible)
 	{
-		SetBackgroundVisibility(isVisible);
-		SetElementVisibility(isVisible);
-	}
-
-	public void SetBackgroundVisibility(bool isVisible)
-	{
-		Background.TargetTint.a = (isVisible ? BackgroundOpacity : 0.0f);
-	}
-
-	public void SetElementVisibility(bool isVisible)
-	{
 		float opacity = DetermineOpacity(isVisible);
 
 		EquipmentButton.TargetTint.a = opacity;
@@ -55,8 +42,6 @@ public class PausePresenter : PresenterBase
 
 	public override void DrawMe()
 	{
-		Background.DrawMe();
-
 		if(EquipmentButton.IsClicked())
 		{
 			DebugMessage("The user is viewing stats and equipment...");
@@ -101,8 +86,6 @@ public class PausePresenter : PresenterBase
 
 	public override void Tween()
 	{
-		Background.Tween();
-
 		ItemsButton.Tween();
 		EquipmentButton.Tween();
 		MagicButton.Tween();

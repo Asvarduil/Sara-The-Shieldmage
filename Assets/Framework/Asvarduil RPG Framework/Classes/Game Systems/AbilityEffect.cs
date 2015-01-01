@@ -4,7 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class AbilityEffect
+public class AbilityEffect : ICloneable
 {
 	#region Variables / Properties
 
@@ -20,9 +20,6 @@ public class AbilityEffect
     public bool IsBuff = false;
     public float Duration;
     public float ApplyTime;
-
-    public BattleEntityFeedbackType FeedbackType;
-    public string FeedbackValue;
 
     public int ActualAmount { get; private set; }
 
@@ -41,6 +38,24 @@ public class AbilityEffect
 	#endregion Variables / Properties
 
     #region Methods
+
+    public object Clone()
+    {
+        var clone = new AbilityEffect()
+        {
+            Name = this.Name,
+            PowerStat = this.PowerStat,
+            EffectFloor = this.EffectFloor,
+            EffectMultiplier = this.EffectMultiplier,
+            MinimumRandomEffect = this.MinimumRandomEffect,
+            MaximumRandomEffect = this.MaximumRandomEffect,
+            TargetStat = this.TargetStat,
+            IsBuff = this.IsBuff,
+            Duration = this.Duration
+        };
+
+        return clone;
+    }
 
     public void PerformEffectCalculation(CombatEntity source)
     {

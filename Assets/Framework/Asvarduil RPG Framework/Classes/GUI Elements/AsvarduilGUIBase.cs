@@ -18,7 +18,7 @@ public abstract class AsvarduilGUICore
 	/// (e.g. Position = (0.5,0.5) relative causes the element's top left corner
 	///                  to be the middle of the screen.)
 	/// </summary>
-	public bool IsRelative;
+	public bool IsRelative = true;
 
 	/// <summary>
 	/// How is the GUI element placed, relative to the left/right of the screen?

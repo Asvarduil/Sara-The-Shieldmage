@@ -97,6 +97,15 @@ public abstract class CombatEntity
         return -1;
     }
 
+    public void ClearActiveEffects()
+    {
+        for(int i = 0; i < ActiveEffects.Count; i++)
+        {
+            AbilityEffect current = ActiveEffects[i];
+            RemoveActiveEffect(current);
+        }
+    }
+
     private void CheckForBuffExpiration()
     {
         for (int i = 0; i < ActiveEffects.Count; i++)

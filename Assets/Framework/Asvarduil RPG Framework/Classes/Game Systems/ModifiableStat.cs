@@ -1,7 +1,7 @@
 ﻿using System;
 
 [Serializable]
-public class ModifiableStat
+public class ModifiableStat : ICloneable
 {
 	#region Variables / Properties
 
@@ -29,6 +29,19 @@ public class ModifiableStat
 	#endregion Constructor
 
 	#region Methods
+
+    public object Clone()
+    {
+        var clone = new ModifiableStat
+        {
+            Name = this.Name,
+            Value = this.Value,
+            FixedModifier = this.FixedModifier,
+            ScalingModifier = this.ScalingModifier
+        };
+
+        return clone;
+    }
 
 	public void Reset()
 	{

@@ -60,10 +60,10 @@ public class InventoryManager : ManagerBase<InventoryManager>
 	{
 		// First try: Search from our position to an endpoint depending on the search direction.
 		int foundPosition = ActiveInventory.FindPositionOfNextAvailableItem(searchForward, searchPosition);
-		DebugMessage("Found an available item at position #" 
-		             + foundPosition + "/" + (ActiveInventory.Items.Count - 1)
-		             + " when searching " + (searchForward ? "forward" : "backward") 
-		             + " from position " + searchPosition);
+        //DebugMessage("Found an available item at position #" 
+        //             + foundPosition + "/" + (ActiveInventory.Items.Count - 1)
+        //             + " when searching " + (searchForward ? "forward" : "backward") 
+        //             + " from position " + searchPosition);
 
 		if(foundPosition == -1)
 		{
@@ -74,10 +74,10 @@ public class InventoryManager : ManagerBase<InventoryManager>
 			else
 				foundPosition = ActiveInventory.FindPositionOfNextAvailableItemInRange(ActiveInventory.Items.Count - 1, searchPosition + 1, -1);
 
-			DebugMessage("[Retry] Found an available item at position #" 
-			             + foundPosition + "/" + ActiveInventory.Items.Count
-			             + " when searching " + (searchForward ? "forward" : "backward") 
-			             + " from position " + searchPosition);
+            //DebugMessage("[Retry] Found an available item at position #" 
+            //             + foundPosition + "/" + ActiveInventory.Items.Count
+            //             + " when searching " + (searchForward ? "forward" : "backward") 
+            //             + " from position " + searchPosition);
 
 			if(foundPosition == -1)
 				throw new Exception("Could not find an item at all.");

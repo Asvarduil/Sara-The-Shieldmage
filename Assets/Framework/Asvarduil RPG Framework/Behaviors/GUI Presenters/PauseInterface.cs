@@ -7,6 +7,7 @@ public class PauseInterface : PresenterBase
 	
 	public AsvarduilButton PauseButton;
 
+    private ControlManager _controls;
 	private PauseController _controller;
 
 	#endregion Variables / Properties
@@ -16,6 +17,7 @@ public class PauseInterface : PresenterBase
 	public override void Start()
 	{
 		base.Start();
+        _controls = ControlManager.Instance;
 		_controller = PauseController.Instance;
 
 		if(_controller == null)
@@ -35,11 +37,17 @@ public class PauseInterface : PresenterBase
 
 	public override void DrawMe()
 	{
-		if(PauseButton.IsClicked())
-		{
-			_maestro.PlayOneShot(ButtonSound);
-			_controller.Pause();
-		}
+        if(_controls.GetAxisDown("Pause"))
+        {
+            _maestro.PlayOneShot(ButtonSound);
+            _controller.TogglePause();
+        }
+
+        //if(PauseButton.IsClicked())
+        //{
+        //    _maestro.PlayOneShot(ButtonSound);
+        //    _controller.Pause();
+        //}
 	}
 
 	public override void Tween()

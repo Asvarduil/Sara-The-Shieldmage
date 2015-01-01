@@ -37,6 +37,8 @@ public class BattleTrigger : DebuggableBehavior
 		if(e.tag != AffectedTag)
 			return;
 
+        ReacquirePlayerIfNotFound();
+
 		// Don't trigger random battles if the player is not moving.
 		if (! _movement.IsMoving)
 			return;
@@ -53,6 +55,15 @@ public class BattleTrigger : DebuggableBehavior
 		// TODO: Trigger Battle Transition...
 		_battleManager.InitiateBattle();
 	}
+
+    private void ReacquirePlayerIfNotFound()
+    {
+        if (_movement == null)
+            _movement = GameObject.FindGameObjectWithTag(AffectedTag).GetComponent<JrpgMapControlSystem>();
+
+        if (_movement == null)
+            throw new InvalidOperationException("There is no Game Object with tag " + AffectedTag + " with a JrpgMapControlSystem on it.");
+    }
 
 	#endregion Engine Hooks
 }

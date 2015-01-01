@@ -12,7 +12,7 @@ public enum ItemType
 }
 
 [Serializable]
-public class InventoryItem : INamed
+public class InventoryItem : INamed, ICloneable
 {
 	#region Variables / Properties
 
@@ -148,17 +148,19 @@ public class InventoryItem : INamed
 
 	#region Methods
 
-	public InventoryItem Clone()
+	public object Clone()
 	{
-		return new InventoryItem
-				   {
-					   Name = Name,
-					   Quantity = Quantity,
-					   Value = Value,
-					   ItemType = ItemType,
-					   EquipmentEffects = new List<ItemEffect>(EquipmentEffects),
-				       ConsumeEffects = new List<ItemEffect>(ConsumeEffects)
-				   };
+		var clone = new InventoryItem
+		{
+			Name = Name,
+			Quantity = Quantity,
+			Value = Value,
+			ItemType = ItemType,
+			EquipmentEffects = new List<ItemEffect>(EquipmentEffects),
+			ConsumeEffects = new List<ItemEffect>(ConsumeEffects)
+		};
+
+        return clone;
 	}
 
 	#endregion Methods

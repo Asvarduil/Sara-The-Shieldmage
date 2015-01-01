@@ -32,7 +32,7 @@ public abstract class ResourceBitPresenter : PresenterBase, IDisposable
 	
 	#region Hooks
 
-	public abstract void Initialize(GameObject playerCharacter);
+	public abstract void Initialize();
 
 	public void Dispose()
 	{

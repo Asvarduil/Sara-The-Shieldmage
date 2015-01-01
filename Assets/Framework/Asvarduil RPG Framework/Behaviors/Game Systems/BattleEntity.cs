@@ -16,6 +16,7 @@ public class BattleEntity : DebuggableBehavior
     public string CharacterName;
     public AIBase AI;
     public GameObject DeathEffect;
+    public string DeathAnimation;
 
     private AsvarduilSpriteSystem _sprite;
 
@@ -34,8 +35,13 @@ public class BattleEntity : DebuggableBehavior
 
     public void DoDeathSequence()
     {
-        GameObject.Instantiate(DeathEffect, transform.position, Quaternion.identity);
-        gameObject.SetActive(false);
+        if (DeathEffect != null)
+            GameObject.Instantiate(DeathEffect, transform.position, Quaternion.identity);
+
+        if (string.IsNullOrEmpty(DeathAnimation))
+            gameObject.SetActive(false);
+        else
+            _sprite.SetAnimation(DeathAnimation);
     }
 
     public void PlayAnimation(string animation)
