@@ -3,6 +3,8 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
+using Random = UnityEngine.Random;
+
 public abstract class CombatEntity
 {
     #region Variables / Properties
@@ -12,6 +14,7 @@ public abstract class CombatEntity
     public HealthSystem Health;
     public List<ModifiableStat> ModifiableStats;
     public List<Ability> Abilities;
+    public string CounterAttackName;
 
     public List<AbilityEffect> ActiveEffects;
 
@@ -48,6 +51,29 @@ public abstract class CombatEntity
         }
     }
 
+    /// <summary>
+    /// Rule-specific shortcut to get the Counter Rate's calculated value.
+    /// </summary>
+    private int _CounterRate
+    {
+        get
+        {
+            ModifiableStat stat = GetStatByName("Counter Rate");
+            if (stat == default(ModifiableStat))
+                throw new InvalidOperationException("No 'Counter Rate' stat exists on this combat entity!");
+
+            return stat.ModifiedValue;
+        }
+    }
+
+    /// <summary>
+    /// Gets an ability to use as a counterattack based on the given counterattack name.
+    /// </summary>
+    private Ability CounterAttack
+    {
+        get { return Abilities.FirstOrDefault(a => a.Name == CounterAttackName); }
+    }
+
     #endregion Variables / Properties
 
     #region Methods
@@ -73,9 +99,9 @@ public abstract class CombatEntity
 
     private void CheckForBuffExpiration()
     {
-        for (int j = 0; j < ActiveEffects.Count; j++)
+        for (int i = 0; i < ActiveEffects.Count; i++)
         {
-            AbilityEffect currentEffect = ActiveEffects[j];
+            AbilityEffect currentEffect = ActiveEffects[i];
 
             if (currentEffect.IsExpired)
             {
@@ -84,10 +110,35 @@ public abstract class CombatEntity
         }
     }
 
+    public void PrepareCounterAttack(CombatEntity source)
+    {
+        Health.OnDamageTaken = () =>
+        {
+            int roll = Random.Range(1, 100);
+            if (roll <= _CounterRate)
+                BattleReferee.Instance.UseAbility(CounterAttack, this, source);
+        };
+    }
+
     public void AddActiveEffect(AbilityEffect effect)
     {
+        if (IsBuffRefreshed(effect))
+            return;
+
         ActiveEffects.Add(effect);
         ApplyAbilityEffect(effect);
+    }
+
+    private bool IsBuffRefreshed(AbilityEffect effect)
+    {
+        if (!ActiveEffects.Any(e => e.Name == effect.Name))
+            return false;
+
+        // If an effect already exists on the entity, update the effect apply time so the
+        // buff gets refreshed.
+        var existingEffect = ActiveEffects.FirstOrDefault(e => e.Name == effect.Name);
+        existingEffect.ApplyTime = effect.ApplyTime;
+        return true;
     }
 
     public void RemoveActiveEffect(AbilityEffect effect)

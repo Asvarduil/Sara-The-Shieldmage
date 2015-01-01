@@ -377,6 +377,8 @@ public class BattleReferee : ManagerBase<BattleReferee>
            || ability.Effects == null)
             throw new ArgumentNullException("An ability with at least one effect must be passed in.");
 
+        target.PrepareCounterAttack(source);
+
         for(int i = 0; i < ability.Effects.Count; i++)
         {
             AbilityEffect effect = ability.Effects[i];

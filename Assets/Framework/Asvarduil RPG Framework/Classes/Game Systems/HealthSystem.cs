@@ -11,6 +11,8 @@ public class HealthSystem
     public int RegenAmount;
     public float RegenRate;
 
+    public Action OnDamageTaken;
+
 	public bool IsDead
 	{
 		get { return HP == 0; }
@@ -73,6 +75,10 @@ public class HealthSystem
 		{
 			HP = 0;
 		}
+
+        // Counter-effects!
+        if (HP > 0)
+            OnDamageTaken();
 	}
 
 	public void RaiseMaxHP(int amount)

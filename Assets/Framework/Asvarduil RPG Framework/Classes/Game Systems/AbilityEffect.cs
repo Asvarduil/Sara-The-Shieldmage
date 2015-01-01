@@ -36,7 +36,7 @@ public class AbilityEffect
         get { return Time.time >= ExpireTime; }
     }
 
-    private CombatEntity _source;
+    public CombatEntity Source { get; private set; }
 
 	#endregion Variables / Properties
 
@@ -47,7 +47,7 @@ public class AbilityEffect
         if (source == null)
             throw new ArgumentNullException("The source entity cannot be null!");
 
-        _source = source;
+        Source = source;
 
         // If there is no power stat driving the effectiveness of the attack,
         // Use 0 as the contributed power.
