@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 public enum BattleEntityFeedbackType
@@ -37,24 +38,7 @@ public class BattleEntity : DebuggableBehavior
         gameObject.SetActive(false);
     }
 
-    public void ProvideFeedback(BattleEntityFeedbackType type, string value)
-    {
-        switch(type)
-        {
-            case BattleEntityFeedbackType.Animation:
-                PlayAnimation(value);
-                break;
-
-            case BattleEntityFeedbackType.Flytext:
-                EmitFlytext(value);
-                break;
-
-            default:
-                throw new InvalidOperationException("Unexpected battle entity feedback type: " + type);
-        }
-    }
-
-    private void PlayAnimation(string animation)
+    public void PlayAnimation(string animation)
     {
         _sprite.SetAnimation(animation);
     }

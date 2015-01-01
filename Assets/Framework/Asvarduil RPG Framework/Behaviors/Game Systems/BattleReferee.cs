@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 
 public class BattleReferee : ManagerBase<BattleReferee>
@@ -359,17 +360,28 @@ public class BattleReferee : ManagerBase<BattleReferee>
     }
 	
 	public void UseAbility(Ability ability, CombatEntity source, CombatEntity target)
-	{	
-		DebugMessage("Character " + source.Name + " consumed " + ability.AtbCost + " ATB.");
-		source.GetStatByName("ATB").Value -= ability.AtbCost;
-		
+	{
+        // Code that does not include blocking animations.
+        // BUG: When using a Self ability, only the Receipt Animation shows.
+        //      I need to do something where the action animations shows, then
+        //      the effect appears, then the receipt animation shows, then
+        //      all Ability Effects are applied and ATB deducted from the source.
+        source.BattlePiece.PlayAnimation(ability.ActionAnimation);
+        CreateAbilityVisualEffect(ability, target);
+
+        target.BattlePiece.PlayAnimation(ability.ReceiptAnimation);
+        ApplyAbilityEffect(ability, source, target);
+
+        source.GetStatByName("ATB").Value -= ability.AtbCost;
+	}
+
+    private void CreateAbilityVisualEffect(Ability ability, CombatEntity target)
+    {
         if (ability.BattleEffect != null)
             GameObject.Instantiate(ability.BattleEffect, target.ScenePosition, Quaternion.identity);
         else
             DebugMessage("The ability needs to create a self-destructing 'battle effect'!", LogLevel.LogicError);
-
-        ApplyAbilityEffect(ability, source, target);
-	}
+    }
 	
 	public void ApplyAbilityEffect(Ability ability, CombatEntity source, CombatEntity target)
     {
@@ -402,8 +414,6 @@ public class BattleReferee : ManagerBase<BattleReferee>
         // Tell the battle piece to provide feedback to the player.
         if (target.Health.IsDead)
             target.BattlePiece.DoDeathSequence();
-        else
-            target.BattlePiece.ProvideFeedback(effect.FeedbackType, effect.FeedbackValue);
     }
 
 	#endregion Battle Action Methods

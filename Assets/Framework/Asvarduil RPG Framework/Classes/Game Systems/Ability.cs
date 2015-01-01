@@ -28,6 +28,9 @@ public class Ability : INamed
 
 	public List<AbilityEffect> Effects;
 
+    public string ActionAnimation;
+    public string ReceiptAnimation;
+
 	public string PresentableName
 	{
 		get { return Name; }

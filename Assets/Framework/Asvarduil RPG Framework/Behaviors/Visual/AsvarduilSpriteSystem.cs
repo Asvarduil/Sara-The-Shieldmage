@@ -18,6 +18,12 @@ public class AsvarduilSpriteSystem : DebuggableBehavior
 
 	public int CurrentFrame = 0;
 
+    private AsvarduilSpriteAnimation _defaultAnimation;
+    public string DefaultAnimationName
+    {
+        get { return _defaultAnimation.Name; }
+    }
+
 	private int FlipBoundary
 	{
 		get { return _flipDirection > 0 ? _currentAnimation.Frames.Count - 1 : 0; }
@@ -52,6 +58,7 @@ public class AsvarduilSpriteSystem : DebuggableBehavior
 			throw new Exception("An animation system must have at least one animation!");
 
 		_currentAnimation = Animations[0];
+        _defaultAnimation = Animations[0];
 	}
 
 	public void Update()
@@ -83,6 +90,7 @@ public class AsvarduilSpriteSystem : DebuggableBehavior
 			DebugMessage("Could not find animation " + animation, LogLevel.LogicError);
 		}
 
+        ResetAnimation();
 		_currentAnimation = newAnimation;
 	}
 
@@ -118,13 +126,13 @@ public class AsvarduilSpriteSystem : DebuggableBehavior
 		_lastFrameChange = Time.time;
 
 		Texture2D tex = _currentAnimation.Frames[CurrentFrame].Content;
-		DebugMessage("_currentAnimation.Frames[" + CurrentFrame + "].Content is null? " + (tex == null ? "Null!" : "Not Null."));
+		//DebugMessage("_currentAnimation.Frames[" + CurrentFrame + "].Content is null? " + (tex == null ? "Null!" : "Not Null."));
 
 		if(_workingMaterial == null)
 			return;
 
 		_workingMaterial.SetTexture(TextureKey, tex);
-		DebugMessage("_workingMaterial is null? " + (_workingMaterial == null ? "Null!" : "Not Null."));
+		//DebugMessage("_workingMaterial is null? " + (_workingMaterial == null ? "Null!" : "Not Null."));
 
 		renderer.material = _workingMaterial;
 	}
