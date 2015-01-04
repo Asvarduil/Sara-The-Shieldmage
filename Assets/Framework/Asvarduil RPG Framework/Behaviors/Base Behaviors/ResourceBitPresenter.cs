@@ -65,8 +65,8 @@ public abstract class ResourceBitPresenter : PresenterBase, IDisposable
 
 	private Texture2D PrepareCanvas()
 	{
-		int canvasWidth = (FullBit.width * bitsPerRow) / rows;
-		int canvasHeight = (FullBit.height * rows);
+		int canvasWidth = FullBit.width * bitsPerRow;
+		int canvasHeight = FullBit.height * rows;
 		DebugMessage(String.Format("Canvas: [{0} x {1}]", canvasWidth, canvasHeight));
 		Texture2D tex = new Texture2D(canvasWidth, canvasHeight);
 

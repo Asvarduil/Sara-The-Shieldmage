@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class HealthSystem
+public class HealthSystem : IDisposable
 {
 	#region Variables / Properties
 
@@ -12,6 +12,7 @@ public class HealthSystem
     public float RegenRate;
 
     public Action OnDamageTaken;
+    public Action OnHealthChanged;
 
 	public bool IsDead
 	{
@@ -28,6 +29,12 @@ public class HealthSystem
 	#endregion Variables / Properties
 
 	#region Methods
+
+    public void Dispose()
+    {
+        OnDamageTaken = null;
+        OnHealthChanged = null;
+    }
 
 	public int GetStatByName(string name)
 	{
@@ -54,6 +61,9 @@ public class HealthSystem
 		{
 			HP = MaxHP;
 		}
+
+        if (OnHealthChanged != null)
+            OnHealthChanged();
 	}
 
     public void Regenerate()
@@ -76,8 +86,12 @@ public class HealthSystem
 			HP = 0;
 		}
 
+        if (OnHealthChanged != null)
+            OnHealthChanged();
+
         // Counter-effects!
-        if (HP > 0)
+        if (HP > 0
+            && OnDamageTaken != null)
             OnDamageTaken();
 	}
 
@@ -85,6 +99,9 @@ public class HealthSystem
 	{
 		HP += amount;
 		MaxHP += amount;
+
+        if (OnHealthChanged != null)
+            OnHealthChanged();
 	}
 
     public bool ApplyAbilityEffect(AbilityEffect effect, int amount)

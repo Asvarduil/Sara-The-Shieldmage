@@ -71,9 +71,19 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
 	#endregion Variables / Properties
 
-	#region Engine Hooks
+    #region Hook Variables
 
-	public void Start()
+    private PlayableCharacter player;
+    private Enemy enemy;
+    private ModifiableStat ATB;
+    private ModifiableStat speed;
+    private ModifiableStat maxATB;
+
+    #endregion Hook Variables
+
+    #region Engine Hooks
+
+    public void Start()
 	{
 		_maestro = Maestro.Instance;
 		_enemies = EnemyDatabase.Instance;
@@ -145,6 +155,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			}
 
             _playerInfo.BindCharacterDisplay(player, i);
+            player.Health.OnHealthChanged = () => _playerInfo.UpdateHealth(player);
 		}
 	}
 	
@@ -205,12 +216,6 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	
 	private void AdvancePlayerATB()
 	{
-		PlayableCharacter player;
-		
-		ModifiableStat ATB;
-		ModifiableStat speed;
-		ModifiableStat maxATB;
-		
 		for (int i = 0; i < Players.Count; i++) 
 		{
 			player = Players[i];
@@ -246,13 +251,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	}
 	
 	private void AdvanceEnemyATB()
-	{
-		Enemy enemy;
-		
-		ModifiableStat ATB;
-		ModifiableStat speed;
-		ModifiableStat maxATB;
-		
+	{	
 		for (int i = 0; i < Enemies.Count; i++) 
 		{
 			enemy = Enemies[i];
@@ -377,6 +376,12 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
         target.BattlePiece.PlayAnimation(ability.ReceiptAnimation);
         ApplyAbilityEffect(ability, source, target);
+
+        ModifiableStat atbStat = source.GetStatByName(ATBName);
+        atbStat.Value -= ability.AtbCost;
+        DebugMessage("User " + source.Name + "'s ATB was reduced by " + ability.AtbCost + ", to " + atbStat.Value);
+        if (source is PlayableCharacter)
+            _playerInfo.UpdateATB(source);
 	}
 
     private void CreateAbilityVisualEffect(Ability ability, CombatEntity target)
@@ -406,13 +411,6 @@ public class BattleReferee : ManagerBase<BattleReferee>
             else
                 ApplyEffectToTargetAsBuff(effect, target);
         }
-
-        if (target is PlayableCharacter)
-            _playerInfo.UpdateHealth(target);
-
-        source.GetStatByName("ATB").Reduce(ability.AtbCost);
-        if (source is PlayableCharacter)
-            _playerInfo.UpdateATB(source);
     }
 
     private void ApplyEffectToTargetAsImmediate(AbilityEffect effect, CombatEntity target)
@@ -445,7 +443,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
         for(int i = 0; i < Players.Count; i++)
         {
             CombatEntity current = Players[i];
-            current.GetStatByName("ATB").Value = 0;
+            current.GetStatByName(ATBName).Value = 0;
             current.ClearActiveEffects();
         }
     }

@@ -121,10 +121,12 @@ public class PlayerInformationPresenter : PresenterBase
 
     public void UpdateHealth(CombatEntity character)
     {
-        var presenter = BattleCharacterPresenters.FirstOrDefault(p => p.Character == character);
+        var presenter = BattleCharacterPresenters.FirstOrDefault(p => p.Character.Name == character.Name);
         if (presenter == default(BattleCharacterInfo))
             return;
 
+        //DebugMessage("Updated " + presenter.Character.Name + "'s Health Presenter!");
+        DebugMessage(presenter.Character.Name + "'s HP is now: " + presenter.Character.Health.HP + "/" + presenter.Character.Health.MaxHP);
         presenter.UpdateHealth();
     }
 
