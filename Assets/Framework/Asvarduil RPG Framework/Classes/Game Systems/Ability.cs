@@ -65,7 +65,7 @@ public class Ability : INamed, ICloneable
             var sourceEffect = Effects[i];
             var clonedEffect = sourceEffect.Clone() as AbilityEffect;
 
-            Effects.Add(clonedEffect);
+            clone.Effects.Add(clonedEffect);
         }
 
         return clone;

@@ -70,20 +70,6 @@ steamwebhelper.exe (4768)
     filedesc: Steam Client WebHelper
     filever:  2.50.25.37
     prodver:  1.0.0.1
-VWDExpress.exe (5912)
-    path: C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\VWDExpress.exe
-    company:  Microsoft Corporation
-    product:  Microsoft® Visual Studio® 2013
-    filedesc: Microsoft Visual Studio Express 2013 for Web
-    filever:  12.0.31101.0
-    prodver:  12.0.31101.0
-PerfWatson2.exe (4164)
-    path: C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\PerfWatson2.exe
-    company:  Microsoft Corporation
-    product:  Microsoft® Visual Studio® 2013
-    filedesc: PerfWatson2.exe
-    filever:  12.0.30501.0
-    prodver:  12.0.30501.0
 chrome.exe (6192)
     path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
     company:  Google Inc.
@@ -140,7 +126,21 @@ chrome.exe (2752)
     filedesc: Google Chrome
     filever:  39.0.2171.95
     prodver:  39.0.2171.95
-UnityBugReporter.exe (6292)
+chrome.exe (5524)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  39.0.2171.95
+    prodver:  39.0.2171.95
+MonoDevelop.exe (860)
+    path: C:\Program Files (x86)\Unity\MonoDevelop\bin\MonoDevelop.exe
+    company:  
+    product:  MonoDevelop
+    filedesc: MonoDevelop
+    filever:  2.6.0.0
+    prodver:  2.6.0.0
+UnityBugReporter.exe (5736)
     path: C:\Program Files (x86)\Unity\Editor\UnityBugReporter.exe
     company:  Unity Technologies ApS
     product:  Unity Bug Reporter
