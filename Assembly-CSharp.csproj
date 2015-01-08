@@ -67,6 +67,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\Fader.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\RPGCamera.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\JrpgMapControlSystem.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\SceneChangeTrigger.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\SequenceDespawner.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\TransitionManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\DialogueLoader.cs" />
