@@ -39,6 +39,12 @@ public class ConversationSoundEvents : DebuggableBehavior
 		PlayOneShot(args);
 	}
 
+    public void HaltThenPlay(List<string> args)
+    {
+        _maestro.StopBGM();
+        PlayOneShot(args);
+    }
+
 	public void PlayOneShot(List<string> args)
 	{
 		string soundName;

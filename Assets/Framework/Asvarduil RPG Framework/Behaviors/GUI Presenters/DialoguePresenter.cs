@@ -65,8 +65,10 @@ public class DialoguePresenter : PresenterBase
 
 			AsvarduilButton button = AdvanceButtons[i];
 
-		    if((button.IsClicked() || _control.GetAxisDown(button.ActivationAxis))
-			   && Time.time >= _lastAdvance + AdvanceLockout)
+		    if((button.IsClicked() 
+               || (!string.IsNullOrEmpty(button.ActivationAxis) 
+                   && _control.GetAxisDown(button.ActivationAxis)))
+			   && (Time.time >= _lastAdvance + AdvanceLockout))
 		    {
 		        _dialogueController.AdvanceThread(_currentContent.Options[i].TargetID);
 		        break;

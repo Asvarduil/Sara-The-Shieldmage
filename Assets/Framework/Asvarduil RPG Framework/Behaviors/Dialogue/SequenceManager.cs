@@ -54,7 +54,11 @@ public class SequenceManager : ManagerBase<SequenceManager>
 		{
 			string message = string.Format("Sequence Manager has no thread named {0}.  Creating and initializing it.", name);
 			DebugMessage(message, DebuggableBehavior.LogLevel.Warning);
-			state = new SequenceState{ Name = name, Counter = 0 };
+            state = new SequenceState
+            {
+                Name = name,
+                Counter = 0
+            };
 		}
 
 		state.Counter++;
@@ -62,17 +66,43 @@ public class SequenceManager : ManagerBase<SequenceManager>
 		DebugMessage("Raised thread " + name + " to state #" + state.Counter);
 	}
 
-	public void UpdateQuest(string name, string questName, string questDetails)
+    public void UpdateSequence(string name, int phase)
+    {
+        SequenceState state = SequenceStates.FirstOrDefault(s => s.Name == name);
+        if (state == default(SequenceState))
+        {
+            string message = string.Format("Sequence Manager has no thread named {0}.  Creating and initializing it.", name);
+            DebugMessage(message, DebuggableBehavior.LogLevel.Warning);
+            state = new SequenceState
+            {
+                Name = name,
+                Counter = phase
+            };
+
+            SequenceStates.Add(state);
+        }
+
+        state.Counter = phase;
+
+        DebugMessage("Raised thread " + name + " to state #" + state.Counter);
+    }
+
+	public void UpdateQuest(string name, string questDetails)
 	{
 		QuestState state = QuestStates.FirstOrDefault(q => q.SequenceName == name);
 		if(state == default(QuestState))
 		{
 			string message = string.Format("Sequence Manager has no quest for thread {0}.  Creating and initializing it.", name);
 			DebugMessage(message, LogLevel.Warning);
-			state = new QuestState();
+            state = new QuestState
+            {
+                QuestName = name,
+                SequenceName = name
+            };
+
+            QuestStates.Add(state);
 		}
 
-		state.QuestName = questName;
 		state.QuestDetails = questDetails;
 
 		DebugMessage("Updated quest for thread " + name + " with new details.");

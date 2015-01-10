@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Fader : MonoBehaviour 
 {
@@ -11,7 +12,7 @@ public class Fader : MonoBehaviour
 	#region Variables / Properties
 	
 	public Texture2D FadeImage;
-	public float FadeRate = 0.1f;
+	public float FadeRate = 0.5f;
 	public Color Tint = new Color(0,0,0, 1);
 	public Color TargetTint = new Color(0,0,0, 0);
 	
@@ -38,21 +39,23 @@ public class Fader : MonoBehaviour
 	
 	void FixedUpdate() 
 	{
-		Tint = Color.Lerp(Tint, TargetTint, FadeRate * Time.deltaTime);
+		Tint = Color.Lerp(Tint, TargetTint, FadeRate);
 	}
 	
 	#endregion Engine Hooks
 	
 	#region Methods
 	
-	public void FadeOut()
+	public void FadeOut(float fadeRate = 0.1f)
 	{
+        FadeRate = fadeRate;
 		Tint = new Color(0,0,0, 0);
 		TargetTint = new Color(0,0,0, 1);
 	}
 	
-	public void FadeIn()
+	public void FadeIn(float fadeRate = 0.1f)
 	{
+        FadeRate = fadeRate;
 		Tint = new Color(0,0,0, 1);
 		TargetTint = new Color(0,0,0, 0);
 	}

@@ -103,7 +103,7 @@
 			"Description":"A shield granted by the Order of the Luminescent Shield.",
 			"Value":50,
 			"ItemType":"Weapon",
-			"EquipmentEffects:"[
+			"EquipmentEffects":[
 				{
 					"TargetStat":"Attack",
 					"FixedEffect":1,
@@ -124,7 +124,7 @@
 			"Description":"Light armor worn by initiates of the Order of the Luminescent Shield.",			
 			"Value":25,
 			"ItemType":"Armor",
-			"EquipmentEffects:"[
+			"EquipmentEffects":[
 				{
 					"TargetStat":"Max HP",
 					"FixedEffect":4,
@@ -132,6 +132,14 @@
 					"EffectDuration":0
 				},
 			],
+			"ConsumeEffects":[]
+		},
+		{
+			"Name":"Antique Shield",
+			"Description":"An antique shield use by the Order of the Luminescent Shield.  It was stolen from someone.",
+			"Value":0,
+			"ItemType":"KeyItem",
+			"EquipmentEffects":[],
 			"ConsumeEffects":[]
 		}
 	]

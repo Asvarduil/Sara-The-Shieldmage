@@ -101,6 +101,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleTrigger.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ConversationBattleEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ConversationItemEvents.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ConversationQuestEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\EnemyDatabase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\InventoryManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ItemDatabase.cs" />
@@ -164,14 +165,17 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteAnimation.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteFrame.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\CaveSlimeAI.cs" />
+     <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-1.txt" />
      <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-chest.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-battle.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-items.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-basic.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-tonic-chest.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-3.txt" />
      <None Include="Assets\Game-Specific Assets\Shaders\Particle-Additive-Backculled.shader" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-branches.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-2.txt" />
      <None Include="Assets\Game-Specific Assets\Data\item-list.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
