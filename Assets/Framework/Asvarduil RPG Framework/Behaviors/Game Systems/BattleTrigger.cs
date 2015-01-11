@@ -12,6 +12,7 @@ public class BattleTrigger : DebuggableBehavior
 	public string AffectedTag = "Player";
 
 	public bool CheckThisRegion = false;
+    public float LoadLockout = 3.0f;
 	public float BattleCheckRate = 0.5f;
 	public float BattleLikelihood = 0.1f;
 	public AudioClip BattleTheme;
@@ -30,6 +31,9 @@ public class BattleTrigger : DebuggableBehavior
 	{
 		_battleManager = BattleManager.Instance;
 		_movement = GameObject.FindGameObjectWithTag(AffectedTag).GetComponent<JrpgMapControlSystem>();
+
+        // On load lockout.
+        _lastCheck = Time.time + LoadLockout;
 	}
 
 	public void OnTriggerStay(Collider e)

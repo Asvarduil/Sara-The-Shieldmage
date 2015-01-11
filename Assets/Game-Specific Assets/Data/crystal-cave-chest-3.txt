@@ -1,0 +1,101 @@
+{
+	"TextThreads":[
+		{
+			"IsDefaultThread":true,
+			"Name":"Obtain Item",
+			"SequenceState":{
+				"Name":"Main", 
+				"MinCounter":0,
+				"MaxCounter":0
+			},
+			"TextContent":[
+				{
+					"ID":0,
+					"Speaker":"",
+					"Dialogue":"You found an Antique Shield!  This was likely stolen from someone.",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":1 
+						}
+					],
+					"DialogueEvents":[
+						{
+							"MessageName":"HaltThenPlay",
+							"Args":[
+								"Item Get Fanfare",
+								1.0
+							]
+						},
+						{
+							"MessageName":"GainItem",
+							"Args":[
+								"Antique Shield",
+								1
+							]
+						},
+						{
+							"MessageName":"UpdateQuest",
+							"Args":[
+								"A Favor Repaid",
+								"You've found the stolen shield.  Return it to Captain Gardor in Nuuria City.",
+								2
+							]
+						}
+					]
+				},
+				{
+					"ID":1,
+					"Speaker":"",
+					"Dialogue":"",
+					"Options":[],
+					"DialogueEvents":[
+						{
+							"MessageName":"ResumeBGM",
+							"Args":[]
+						},
+						{
+							"MessageName":"EndConversation",
+							"Args":[]
+						}
+					]
+				}
+			]
+		},
+		{
+			"IsDefaultThread":false,
+			"Name":"Has Nothing",
+			"SequenceState":{
+				"Name":"Main", 
+				"MinCounter":0,
+				"MaxCounter":0
+			},
+			"TextContent":[
+				{
+					"ID":0,
+					"Speaker":"",
+					"Dialogue":"This chest is empty...",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":1 
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":1,
+					"Speaker":"",
+					"Dialogue":"",
+					"Options":[],
+					"DialogueEvents":[
+						{
+							"MessageName":"EndConversation",
+							"Args":[]
+						}
+					]
+				}
+			]
+		}
+	]
+}

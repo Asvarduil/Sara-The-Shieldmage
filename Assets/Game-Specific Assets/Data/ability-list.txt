@@ -1,0 +1,123 @@
+{
+	"Effects":[
+		{
+			"Name":"Damage",
+			"IsBuff":false,
+			"Duration":0,
+			"PowerStat":"Attack",
+			"TargetStat":"HP",
+			"EffectFloor":1,
+			"EffectMultiplier":-1,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":1
+		},
+		{
+			"Name":"Healing",
+			"IsBuff":false,
+			"Duration":0,
+			"PowerStat":"Attack",
+			"TargetStat":"HP",
+			"EffectFloor":1,
+			"EffectMultiplier":4,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":1
+		},
+		{
+			"Name":"Shield",
+			"IsBuff":true,
+			"Duration":10,
+			"PowerStat":"",
+			"TargetStat":"Max HP",
+			"EffectFloor":1,
+			"EffectMultiplier":4,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":0
+		},
+		{
+			"Name":"Regeneration",
+			"IsBuff":true,
+			"Duration":10,
+			"PowerStat":"",
+			"TargetStat":"Regen Amount",
+			"EffectFloor":1,
+			"EffectMultiplier":1,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":0
+		},
+		{
+			"Name":"Guarantee Counter",
+			"IsBuff":true,
+			"Duration":10,
+			"PowerStat":"",
+			"TargetStat":"Counter Rate",
+			"EffectFloor":100,
+			"EffectMultiplier":1,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":0
+		}
+	],
+	"Abilities":[
+		{
+			"Name":"Holy Shield",
+			"Description":"Sara strikes an enemy for low damage.",
+			"VisualEffect":"Attack (Basic)",
+			"ATBCost":50,
+			"ActionAnimation":"Cast Spell",
+			"ReceiptAnimation":"Idle",
+			"TargetType":"TargetEnemy",
+			"Effects":[
+				"Damage"
+			]
+		},
+		{
+			"Name":"Restorum",
+			"Description":"Sara exudes holy power, healing party members' wounds.",
+			"VisualEffect":"",
+			"ATBCost":100,
+			"ActionAnimation":"Cast Spell",
+			"ReceiptAnimation":"Idle",
+			"TargetType":"AllAlly",
+			"Effects":[
+				"Healing"
+			]
+		},
+		{
+			"Name":"Mediguard",
+			"Description":"Sara shields an ally.  The shield regenerates some life over time.",
+			"VisualEffect":"",
+			"ATBCost":100,
+			"ActionAnimation":"Cast Spell",
+			"ReceiptAnimation":"Idle",
+			"TargetType":"TargetAlly",
+			"Effects":[
+				"Shield",
+				"Regeneration"
+			]
+		},
+		{
+			"Name":"Thornguard",
+			"Description":"Sara shields an ally with a shield that damages attackers.",
+			"VisualEffect":"",
+			"ATBCost":100,
+			"ActionAnimation":"Cast Spell",
+			"ReceiptAnimation":"Idle",
+			"TargetType":"TargetAlly",
+			"Effects":[
+				"Shield",
+				"Guarantee Counter"
+			]
+		},
+		{
+			"Name":"Attack",
+			"Description":"Enemy attacks a player!",
+			"VisualEffect":"Attack (Basic)",
+			"ATBCost":50,
+			"ActionAnimation":"Idle",
+			"ReceiptAnimation":"Bad Effect",
+			"TargetType":"TargetAlly",
+			"Effects":[
+				"Damage"
+			]
+		}
+	]
+}

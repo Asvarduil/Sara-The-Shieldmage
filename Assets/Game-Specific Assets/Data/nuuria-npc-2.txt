@@ -1,0 +1,304 @@
+{
+	"TextThreads":[
+		{
+			"IsDefaultThread":true,
+			"Name":"Sidequest - Captain Gardor",
+			"SequenceState":{
+				"Name":"A Favor Repaid", 
+				"MinCounter":0,
+				"MaxCounter":0
+			},
+
+			"TextContent":[
+				{
+					"ID":0,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"Welcome to Nuuria, traveler.  I see you're a member of the Order of the Luminescent Shield.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":1 
+						}
+					],
+          
+					"DialogueEvents":[
+						{
+							"MessageName":"CueSounds",
+							"Args":[
+								"Female Speaking Sound (Temp)",
+								1
+							]
+						}
+					]
+				},
+				{
+					"ID":1,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"My ancestors once helped the Order, and were given a special shield in thanks.",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":2 
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":2,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"However, we've had break-ins recently, and some thieves stole it!",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":3 
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":3,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"I have reason to believe they are based in a cave to the northeast of here, on the Renault Coast.",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":4
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":4,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"The return of the shield, or information leading to it, will be rewarded!",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":5
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":5,
+					"Speaker":"",
+					"Dialogue":"",
+					"Options":[],
+					"DialogueEvents":[
+						{
+							"MessageName":"UpdateQuest",
+							"Args":[
+								"A Favor Repaid",
+								"Go to the Crystal Cave northeast of Nuuria.  Find the Antique Shield.",
+								1
+							]
+						},
+						{
+							"MessageName":"EndConversation",
+							"Args":[]
+						}
+					]
+				}
+			]
+		},
+		{
+			"IsDefaultThread":false,
+			"Name":"Sidequest In Progress - Captain Gardor",
+			"SequenceState":{
+				"Name":"A Favor Repaid", 
+				"MinCounter":1,
+				"MaxCounter":1
+			},
+
+			"TextContent":[
+				{
+					"ID":0,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"The bounty on my family's Antique Shield still stands.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":1 
+						}
+					],
+          
+					"DialogueEvents":[
+						{
+							"MessageName":"CueSounds",
+							"Args":[
+								"Female Speaking Sound (Temp)",
+								1
+							]
+						}
+					]
+				},
+				{
+					"ID":1,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"The thieves are holed up northwest of Nuuria, in a crystal cave on the Renault Coast.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":2
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+				{
+					"ID":2,
+					"Speaker":"",
+					"Dialogue":"",
+					"Options":[],
+					"DialogueEvents":[
+						{
+							"MessageName":"EndConversation",
+							"Args":[]
+						}
+					]
+				}
+			]
+		}
+		{
+			"IsDefaultThread":false,
+			"Name":"Sidequest Completion - Captain Gardor",
+			"SequenceState":{
+				"Name":"A Favor Repaid", 
+				"MinCounter":2,
+				"MaxCounter":2
+			},
+
+			"TextContent":[
+				{
+					"ID":0,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"Hello, there.  You claim you've found something?",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":1 
+						}
+					],
+          
+					"DialogueEvents":[
+						{
+							"MessageName":"CueSounds",
+							"Args":[
+								"Female Speaking Sound (Temp)",
+								1
+							]
+						}
+					]
+				},
+				{
+					"ID":1,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"By the Goddess!  You've found my Antique Shield!",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":2 
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":2,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"I can't thank you enough for finding this; my family has long been officers of the Nuuria guard...",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":3 
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":3,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"...But our most treasured story is of the honor given us for helping the Order of the Luminescent Shield.",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":4
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":4,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"Allow me to complete the circle, and honor you.  And, please accept this reward...",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":5
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":5,
+					"Speaker":"",
+					"Dialogue":"",
+					"Options":[],
+					"DialogueEvents":[
+						{
+							"MessageName":"UpdateQuest",
+							"Args":[
+								"A Favor Repaid",
+								"You returned the Antique Shield to Captain Gardor, who rewarded you.",
+								3
+							]
+						},
+						{
+							"MessageName":"EndConversation",
+							"Args":[]
+						}
+					]
+				}
+			]
+		},
+		{
+			"IsDefaultThread":false,
+			"Name":"Sidquest Completed - Captain Gardor",
+			"SequenceState":{
+				"Name":"A Favor Repaid", 
+				"MinCounter":3,
+				"MaxCounter":3
+			},
+
+			"TextContent":[
+				{
+					"ID":0,
+					"Speaker":"Captain Gardor",
+					"Dialogue":"Hail Shieldmage Sara!  It's good to see you well.  Thanks again!",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":1
+						}
+					],
+					"DialogueEvents":[]
+				}
+				{
+					"ID":1,
+					"Speaker":"",
+					"Dialogue":"",
+					"Options":[],
+					"DialogueEvents":[
+						{
+							"MessageName":"EndConversation",
+							"Args":[]
+						}
+					]
+				}
+			]
+		}
+	]
+}

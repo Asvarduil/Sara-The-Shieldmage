@@ -1,0 +1,62 @@
+{
+	"TextThreads":[
+		{
+			"IsDefaultThread":true,
+			"Name":"Minor NPC Text - Nuuria Crier",
+			"SequenceState":{
+				"Name":"Main", 
+				"MinCounter":0,
+				"MaxCounter":0
+			},
+
+			"TextContent":[
+				{
+					"ID":0,
+					"Speaker":"Town Crier",
+					"Dialogue":"Hear ye, hear ye!",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":1 
+						}
+					],
+          
+					"DialogueEvents":[
+						{
+							"MessageName":"CueSounds",
+							"Args":[
+								"Female Speaking Sound (Temp)",
+								1
+							]
+						}
+					]
+				},
+				{
+					"ID":1,
+					"Speaker":"Town Crier",
+					"Dialogue":"...Nothing to report.  Carry on!",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":2 
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":2,
+					"Speaker":"",
+					"Dialogue":"",
+					"Options":[],
+					"DialogueEvents":[
+						{
+							"MessageName":"EndConversation",
+							"Args":[]
+						}
+					]
+				}
+			]
+		}
+	]
+}
