@@ -21,10 +21,13 @@ public class LootPresenter : PresenterBase
         StringBuilder builder = new StringBuilder("Got ");
         for (int i = 0; i < items.Count; i++)
         {
+            if (i > 0 && i == items.Count - 1)
+                builder.Append("and ");
+
             InventoryItem item = items[i];
-            builder.Append(item.Name);
-            builder.Append("x ");
             builder.Append(item.Quantity);
+            builder.Append(" ");
+            builder.Append(item.Name);
 
             if (i < items.Count - 1)
                 builder.Append(", ");

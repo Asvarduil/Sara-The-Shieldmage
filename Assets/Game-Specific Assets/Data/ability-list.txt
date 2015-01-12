@@ -58,7 +58,7 @@
 	],
 	"Abilities":[
 		{
-			"Name":"Holy Shield",
+			"Name":"Shield Bash",
 			"Description":"Sara strikes an enemy for low damage.",
 			"VisualEffect":"Attack (Basic)",
 			"ATBCost":50,

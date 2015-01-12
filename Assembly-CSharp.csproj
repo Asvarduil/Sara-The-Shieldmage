@@ -57,6 +57,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\Maestro.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\AIBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\AnimationSystemBase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\DatabaseBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\DebuggableBehavior.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\JsonBlobLoaderBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\ManagerBase.cs" />
@@ -179,6 +180,7 @@
      <None Include="Assets\Game-Specific Assets\Shaders\Particle-Additive-Backculled.shader" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-branches.txt" />
      <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-1.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\enemy-list.txt" />
      <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-2.txt" />
      <None Include="Assets\Game-Specific Assets\Data\item-list.txt" />
  <Reference Include="UnityEngine.UI">

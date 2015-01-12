@@ -106,8 +106,13 @@ public class Enemy : CombatEntity, ICloneable
 		List<InventoryItem> loot = new List<InventoryItem>();
 		for(int i = 0; i < Drops.Count; i++)
 		{
-			if(Drops[i].RollForThisDrop())
-				loot.Add(Drops[i].Item);
+            var drop = Drops[i];
+            if (drop.RollForThisDrop())
+            {
+                var item = drop.Item.Clone() as InventoryItem;
+                item.Quantity = drop.RollForQuantity();
+                loot.Add(item);
+            }
 		}
 
 		return loot;

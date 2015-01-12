@@ -6,15 +6,9 @@ using System.Collections.Generic;
 
 using SimpleJSON;
 
-public class AbilityDatabase : ManagerBase<AbilityDatabase>
+public class AbilityDatabase : DatabaseBase<AbilityDatabase>
 {
     #region Variables / Properties
-
-    public bool TryDownloadingBlob = false;
-
-    public TextAsset LocalBlob;
-    public string RemoteBlobUrl;
-    public string RawBlob;
 
     public List<GameObject> AllVisualEffects;
     public List<Ability> Abilities;
@@ -22,97 +16,75 @@ public class AbilityDatabase : ManagerBase<AbilityDatabase>
 
     #endregion Variables / Properties
 
-    #region Hooks
-
-    public void Start()
-    {
-        LoadItemsFromJson();
-    }
-
-    #endregion Hooks
-
     #region Data Management Methods
 
     public GameObject GetVisualEffectByName(string name)
     {
-        if (string.IsNullOrEmpty(name))
-            return null;
+        GameObject result = null;
+        for(int i = 0; i < AllVisualEffects.Count; i++)
+        {
+            GameObject current = AllVisualEffects[i];
+            if (current.name != name)
+                continue;
 
-        return AllVisualEffects.FirstOrDefault(v => v.name == name);
+            result = current;
+            break;
+        }
+
+        DebugMessage("Ability Visual Effect " + name + " " + (result == null ? "wasn't" : "was") + " found.");
+        return result;
     }
 
     public AbilityEffect GetAbilityEffectByName(string name)
     {
-        if (string.IsNullOrEmpty(name))
-            return null;
+        DebugMessage("Trying to find ability effect " + name + " out of a repository of " + AbilityEffects.Count + " effects...");
 
-        return AbilityEffects.FirstOrDefault(e => e.Name == name);
+        AbilityEffect result = null;
+        for(int i = 0; i < AbilityEffects.Count; i++)
+        {
+            AbilityEffect current = AbilityEffects[i];
+            if (current.Name != name)
+                continue;
+
+            result = current;
+            break;
+        }
+
+        DebugMessage("Ability Effect " + name + " " + (result == null ? "wasn't" : "was") + " found.");
+        return result;
     }
 
     public Ability GetAbilityByName(string name)
     {
-        if (string.IsNullOrEmpty(name))
-            return null;
+        DebugMessage("Trying to find ability " + name + " out of a repository of " + Abilities.Count + " abilities...");
 
-        return Abilities.FirstOrDefault(a => a.Name == name);
+        Ability result = null;
+        for (int i = 0; i < Abilities.Count; i++ )
+        {
+            Ability current = Abilities[i];
+            if (current.Name != name)
+                continue;
+
+            result = current;
+            break;
+        }
+
+        DebugMessage("Ability " + name + " " + (result == null ? "wasn't" : "was") + " found.");
+        return result;
     }
 
     #endregion Data Management Methods
 
     #region Data Access Methods
 
-    public void LoadItemsFromJson()
-    {
-        if (TryDownloadingBlob)
-            StartCoroutine(DownloadBlob());
-
-        if (string.IsNullOrEmpty(RawBlob))
-        {
-            RawBlob = FetchLocalBlob();
-
-            if (string.IsNullOrEmpty(RawBlob))
-                return;
-            else
-                MapBlob();
-        }
-        else
-        {
-            MapBlob();
-        }
-    }
-
-    private IEnumerator DownloadBlob()
-    {
-        if (!TryDownloadingBlob)
-            yield break;
-
-        WWW dataInterface = new WWW(RemoteBlobUrl);
-
-        while (!dataInterface.isDone)
-            yield return 0;
-
-        RawBlob = dataInterface.text;
-
-        // TODO: Check that the blob has not been corrupted.
-        //       If it has, set the raw blob to empty.
-
-        dataInterface.Dispose();
-    }
-
-    protected string FetchLocalBlob()
-    {
-        if (LocalBlob == null)
-            return string.Empty;
-
-        return LocalBlob.text;
-    }
-
-    public void MapBlob()
+    protected override void MapBlob()
     {
         JSONNode parsed = JSON.Parse(RawBlob);
 
         MapAbilityEffects(parsed);
         MapAbilities(parsed);
+
+        IsLoaded = Abilities.Count > 0;
     }
 
     private void MapAbilityEffects(JSONNode parsed)
@@ -158,7 +130,7 @@ public class AbilityDatabase : ManagerBase<AbilityDatabase>
             string targetType = ability["TargetType"];
             newAbility.TargetType = (AbilityTargetType)Enum.Parse(typeof(AbilityTargetType), targetType);
 
-            var abilityEffects = ability["AbilityEffects"].AsArray;
+            var abilityEffects = ability["Effects"].AsArray;
             newAbility.Effects = new List<AbilityEffect>();
 
             foreach(string effect in abilityEffects.Childs)

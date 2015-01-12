@@ -6,90 +6,37 @@ using System.Collections.Generic;
 
 using SimpleJSON;
 
-public class ItemDatabase : ManagerBase<ItemDatabase> 
+public class ItemDatabase : DatabaseBase<ItemDatabase> 
 {
 	#region Variables / Properties
-
-	public bool TryDownloadingBlob = false;
-
-	public TextAsset LocalBlob;
-	public string RemoteBlobUrl;
-	public string RawBlob;
 
 	public List<InventoryItem> Items;
 
 	#endregion Variables / Properties
 
-	#region Engine Hooks
-
-	public void Start()
-	{
-		LoadItemsFromJson();
-	}
-
-	#endregion Engine Hooks
-
-	#region Business Object Retrieval Methods
+	#region Data Management Methods
 
 	public InventoryItem FindItemWithName(string name)
 	{
-		if(string.IsNullOrEmpty(name))
-			throw new ArgumentNullException("Must specify an item name to find.");
+        InventoryItem result = null;
+        for (int i = 0; i < Items.Count; i++)
+        {
+            InventoryItem current = Items[i];
+            if (current.Name != name)
+                continue;
 
-		return Items.FirstOrDefault(i => i.Name == name);
+            result = current;
+            break;
+        }
+
+        return result;
 	}
 
-	#endregion Business Object Retrieval Methods
+	#endregion Data Management Methods
 
 	#region Data Access Methods
 
-	public void LoadItemsFromJson()
-	{
-		if(TryDownloadingBlob)
-			StartCoroutine(DownloadBlob());
-
-		if(string.IsNullOrEmpty(RawBlob))
-		{
-			RawBlob = FetchLocalBlob();
-			
-			if(string.IsNullOrEmpty(RawBlob))
-				return;
-			else
-				MapBlob();
-		}
-		else
-		{
-			MapBlob();
-		}
-	}
-
-	private IEnumerator DownloadBlob()
-	{
-		if(! TryDownloadingBlob)
-			yield break;
-		
-		WWW dataInterface = new WWW(RemoteBlobUrl);
-		
-		while(! dataInterface.isDone)
-			yield return 0;
-		
-		RawBlob = dataInterface.text;
-		
-		// TODO: Check that the blob has not been corrupted.
-		//       If it has, set the raw blob to empty.
-		
-		dataInterface.Dispose();
-	}
-
-	protected string FetchLocalBlob()
-	{
-		if(LocalBlob == null)
-			return string.Empty;
-		
-		return LocalBlob.text;
-	}
-
-	public void MapBlob()
+	protected override void MapBlob()
 	{
 		var parsed = JSON.Parse(RawBlob);
 		var items = parsed["Items"].AsArray;
@@ -139,6 +86,8 @@ public class ItemDatabase : ManagerBase<ItemDatabase>
 
 			Items.Add(newItem);
 		}
+
+        IsLoaded = Items.Count > 0;
 	}
 
 	#endregion Data Access Methods
