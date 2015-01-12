@@ -245,6 +245,26 @@
 				{
 					"ID":5,
 					"Speaker":"",
+					"Dialogue":"You received the Guard's Armor!",
+					"Options":[
+						{
+							"Text":"Continue",
+							"TargetID":6
+						}
+					],
+					"DialogueEvents":[
+						{
+							"MessageName":"GainItem",
+							"Args":[
+								"Guard Armor",
+								1
+							]
+						}
+					]
+				},
+				{
+					"ID":6,
+					"Speaker":"",
 					"Dialogue":"",
 					"Options":[],
 					"DialogueEvents":[

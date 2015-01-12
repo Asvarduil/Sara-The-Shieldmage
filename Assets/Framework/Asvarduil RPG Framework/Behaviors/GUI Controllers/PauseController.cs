@@ -20,6 +20,7 @@ public class PauseController : ManagerBase<PauseController>
     private float _toggleLockout = 0.5f;
 
 	private MagicPresenter _magic;
+    private QuestPresenter _quests;
 	private PauseInterface _interface;
 	private PausePresenter _presenter;
 	private InventoryPresenter _items;
@@ -48,13 +49,14 @@ public class PauseController : ManagerBase<PauseController>
 
 	public void Start()
 	{
+        _magic = GetComponentInChildren<MagicPresenter>();
+        _quests = GetComponentInChildren<QuestPresenter>();
 		_items = GetComponentInChildren<InventoryPresenter>();
 		_interface = GetComponentInChildren<PauseInterface>();
 		_presenter = GetComponentInChildren<PausePresenter>();
 		_settings = GetComponentInChildren<SettingsPresenter>();
 		_member = GetComponentInChildren<MemberStatPresenter>();
 		_equipment = GetComponentInChildren<EquipmentPresenter>();
-		_magic = GetComponentInChildren<MagicPresenter>();
 		_memberSelect = GetComponentInChildren<MemberSelectPresenter>();
 
 		_party = PartyManager.Instance;
@@ -177,6 +179,7 @@ public class PauseController : ManagerBase<PauseController>
 		
 		_equipment.SetVisibility(false);
 		_settings.SetVisibility(false);
+        _quests.SetVisibility(false);
 		_magic.SetVisibility(false);
 	}
 
@@ -217,8 +220,9 @@ public class PauseController : ManagerBase<PauseController>
 
 		// Hide the other presenters...
 		_items.SetVisibility(false);
+        _quests.SetVisibility(false);
+        _settings.SetVisibility(false);
 		_equipment.SetVisibility(false);
-		_settings.SetVisibility(false);
 	}
 
 	private void PrepMagicPresenter()
@@ -243,6 +247,7 @@ public class PauseController : ManagerBase<PauseController>
 		// Hide everything else...
 		_items.SetVisibility(false);
 		_magic.SetVisibility(false);
+        _quests.SetVisibility(false);
 		_member.SetVisibility(false);
 		_settings.SetVisibility(false);
 		_equipment.SetVisibility(false);
@@ -261,11 +266,25 @@ public class PauseController : ManagerBase<PauseController>
 		_memberSelect.SetVisibility(true);
 		_member.SetVisibility(true);
 		_presenter.SetVisibility(true);
-
+        _quests.SetVisibility(false);
 		_items.SetVisibility(false);
 		_magic.SetVisibility(false);
 		_settings.SetVisibility(false);
 	}
+
+    public void OpenQuests()
+    {
+        DebugMessage("Opening quests menu from game object: " + gameObject.name);
+        _quests.ShowPresenter();
+
+        _items.SetVisibility(false);
+        _magic.SetVisibility(false);
+        _member.SetVisibility(false);
+        _settings.SetVisibility(false);
+        _equipment.SetVisibility(false);
+        _interface.SetVisibility(false);
+        _memberSelect.SetVisibility(false);
+    }
 
 	public void OpenSettings()
 	{
@@ -276,10 +295,11 @@ public class PauseController : ManagerBase<PauseController>
 		_items.SetVisibility(false);
 		_magic.SetVisibility(false);
 		_member.SetVisibility(false);
+        _quests.SetVisibility(false);
 		_equipment.SetVisibility(false);
 		_interface.SetVisibility(false);
+        _presenter.SetVisibility(false);
 		_memberSelect.SetVisibility(false);
-		_presenter.SetVisibility(false);
 	}
 
 	public void EquipItem(InventoryItem item)

@@ -8,6 +8,7 @@ public class PausePresenter : PresenterBase
 	public AsvarduilButton EquipmentButton;
 	public AsvarduilButton ItemsButton;
 	public AsvarduilButton MagicButton;
+    public AsvarduilButton QuestButton;
 	public AsvarduilButton SettingsButton;
 	public AsvarduilButton SaveButton;
 	public AsvarduilButton ResumeButton;
@@ -35,6 +36,7 @@ public class PausePresenter : PresenterBase
 		EquipmentButton.TargetTint.a = opacity;
 		ItemsButton.TargetTint.a = opacity;
 		MagicButton.TargetTint.a = opacity;
+        QuestButton.TargetTint.a = opacity;
 		SettingsButton.TargetTint.a = opacity;
 		SaveButton.TargetTint.a = opacity;
 		ResumeButton.TargetTint.a = opacity;
@@ -63,6 +65,13 @@ public class PausePresenter : PresenterBase
 			_controller.OpenMagic();
 		}
 
+        if(QuestButton.IsClicked())
+        {
+            DebugMessage("The user is viewing active quests...");
+            _maestro.PlayOneShot(ButtonSound);
+            _controller.OpenQuests();
+        }
+
 		if(ResumeButton.IsClicked())
 		{
 			DebugMessage("The user is resuming play...");
@@ -89,6 +98,7 @@ public class PausePresenter : PresenterBase
 		ItemsButton.Tween();
 		EquipmentButton.Tween();
 		MagicButton.Tween();
+        QuestButton.Tween();
 		SettingsButton.Tween();
 		SaveButton.Tween();
 		ResumeButton.Tween();

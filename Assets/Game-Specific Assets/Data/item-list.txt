@@ -130,9 +130,24 @@
 					"FixedEffect":4,
 					"ScalingEffect":1.0,
 					"EffectDuration":0
-				},
+				}
 			],
 			"ConsumeEffects":[]
+		},
+		{
+			"Name":"Guard Armor",
+			"Description":"Armor worn by the Nuuria City Guard.",
+			"Value":35,
+			"ItemType":"Armor",
+			"EquipmentEffects":[
+				{
+					"TargetStat":"Max HP",
+					"FixedEffect":8,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				}
+			],
+			"ConsumeEffective":[]
 		},
 		{
 			"Name":"Antique Shield",

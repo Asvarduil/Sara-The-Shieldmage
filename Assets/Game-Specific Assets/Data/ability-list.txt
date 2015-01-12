@@ -63,7 +63,7 @@
 			"VisualEffect":"Attack (Basic)",
 			"ATBCost":50,
 			"ActionAnimation":"Cast Spell",
-			"ReceiptAnimation":"Idle",
+			"ReceiptAnimation":"Bad Effect",
 			"TargetType":"TargetEnemy",
 			"Effects":[
 				"Damage"
@@ -75,7 +75,7 @@
 			"VisualEffect":"",
 			"ATBCost":100,
 			"ActionAnimation":"Cast Spell",
-			"ReceiptAnimation":"Idle",
+			"ReceiptAnimation":"Good Effect",
 			"TargetType":"AllAlly",
 			"Effects":[
 				"Healing"
@@ -87,7 +87,7 @@
 			"VisualEffect":"",
 			"ATBCost":100,
 			"ActionAnimation":"Cast Spell",
-			"ReceiptAnimation":"Idle",
+			"ReceiptAnimation":"Good Effect",
 			"TargetType":"TargetAlly",
 			"Effects":[
 				"Shield",
@@ -100,7 +100,7 @@
 			"VisualEffect":"",
 			"ATBCost":100,
 			"ActionAnimation":"Cast Spell",
-			"ReceiptAnimation":"Idle",
+			"ReceiptAnimation":"Good Effect",
 			"TargetType":"TargetAlly",
 			"Effects":[
 				"Shield",
@@ -112,7 +112,7 @@
 			"Description":"Enemy attacks a player!",
 			"VisualEffect":"Attack (Basic)",
 			"ATBCost":50,
-			"ActionAnimation":"Idle",
+			"ActionAnimation":"Attack",
 			"ReceiptAnimation":"Bad Effect",
 			"TargetType":"TargetAlly",
 			"Effects":[
