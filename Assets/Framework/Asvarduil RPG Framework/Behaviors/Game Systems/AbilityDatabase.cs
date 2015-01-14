@@ -96,6 +96,8 @@ public class AbilityDatabase : DatabaseBase<AbilityDatabase>
             AbilityEffect abilityEffect = new AbilityEffect();
 
             abilityEffect.Name = effect["Name"];
+            abilityEffect.AffectsUser = effect["AffectsUser"].AsBool;
+            abilityEffect.AffectsDeadCharacters = effect["AffectsDeadCharacters"].AsBool;
             abilityEffect.IsBuff = effect["IsBuff"].AsBool;
             abilityEffect.Duration = effect["Duration"].AsFloat;
             abilityEffect.ApplyTime = 0.0f;

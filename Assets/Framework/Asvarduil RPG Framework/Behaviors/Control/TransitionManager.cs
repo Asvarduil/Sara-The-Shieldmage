@@ -50,6 +50,9 @@ public class TransitionManager : ManagerBase<TransitionManager>
         Fader fader = FindObjectOfType<Fader>();
 		fader.FadeOut(FadeRate);
 
+        Maestro maestro = Maestro.Instance;
+        maestro.FadeOut(FadeRate);
+
 		while (!fader.ScreenHidden)
 			yield return 0;
 			

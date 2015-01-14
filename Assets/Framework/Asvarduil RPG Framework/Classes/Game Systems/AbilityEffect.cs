@@ -9,6 +9,8 @@ public class AbilityEffect : ICloneable
 	#region Variables / Properties
 
 	public string Name;
+    public bool AffectsUser = false;
+    public bool AffectsDeadCharacters = false;
 
     public string PowerStat;
     public int EffectFloor;
@@ -44,6 +46,8 @@ public class AbilityEffect : ICloneable
         var clone = new AbilityEffect()
         {
             Name = this.Name,
+            AffectsDeadCharacters = this.AffectsDeadCharacters,
+            AffectsUser = this.AffectsUser,
             PowerStat = this.PowerStat,
             EffectFloor = this.EffectFloor,
             EffectMultiplier = this.EffectMultiplier,

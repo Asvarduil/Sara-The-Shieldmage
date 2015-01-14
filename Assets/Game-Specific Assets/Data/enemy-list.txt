@@ -64,6 +64,71 @@
 					"MaximumBonus":5
 				}
 			]
+		},
+		{
+			"Name":"Cave Bat",
+			"BattlePrefab":"Cave Bat",
+			"CounterAttackName":"Vampire Bite",
+
+			"HP":2,
+			"MaxHP":4,
+			"RegenRate":1,
+			"RegenAmount":0,
+
+			"Stats":[
+				{
+					"Name":"Attack",
+					"Value":1,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"Magic",
+					"Value":1,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"ATB",
+					"Value":0,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"Max ATB",
+					"Value":100,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"ATB Speed",
+					"Value":8,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"Counter Rate",
+					"Value":0,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				}
+			],
+
+			"Abilities":[
+				"Vampire Bite"
+			],
+
+			"ActiveEffects":[],
+
+			"Drops":[
+				{
+					"ItemName":"Saphirium",
+					"DropRate":100,
+					"BaseAmount":5,
+					"MinimumBonus":-1,
+					"MaximumBonus":1
+				}
+			]
 		}
 	]
 }

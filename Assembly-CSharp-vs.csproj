@@ -1,193 +1,192 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DCD7A882-BD21-2286-BC9C-36737881EB8F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>
-    </RootNamespace>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <BaseDirectory>Assets</BaseDirectory>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{DCD7A882-BD21-2286-BC9C-36737881EB8F}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>0169</NoWarn>
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>Temp\bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>0169</NoWarn>
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+	<Reference Include="System" />
     <Reference Include="System.XML" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
-    </Reference>
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Framework\Asvarduil Input Framework\Behaviors\ControlManager.cs" />
-    <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\AsvarduilAccelerometer.cs" />
-    <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\AsvarduilControlAxis.cs" />
-    <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\CharacterControlDirection.cs" />
-    <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\CharacterControlHook.cs" />
-    <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\ISuspendable.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\AudioManager.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\ConversationSoundEvents.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\Maestro.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\AIBase.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\AnimationSystemBase.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\DatabaseBase.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\DebuggableBehavior.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\JsonBlobLoaderBase.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\ManagerBase.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\PresenterBase.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\ResourceBitPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\CameraFreezeTrigger.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\CameraTrigger.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\Fader.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\RPGCamera.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\JrpgMapControlSystem.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\SceneChangeTrigger.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\SequenceDespawner.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\TransitionManager.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\DialogueLoader.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\EntityText.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\SequenceManager.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\TreasureEntity.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\DialogueController.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\PauseController.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ATBBitPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\CommandPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ControlsPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DefeatPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DialoguePresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\EntityTextInterface.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\EquipmentPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\HealthBitPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\InventoryPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\LootPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\MagicPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\MemberSelectPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\MemberStatPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PauseInterface.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PausePresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PlayerInformationPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\QuestPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\SettingsPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\TargetingPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\VictoryPresenter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\AbilityDatabase.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleEntity.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleManager.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleReferee.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleTrigger.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ConversationBattleEvents.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ConversationItemEvents.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ConversationQuestEvents.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\EnemyDatabase.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\InventoryManager.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ItemDatabase.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\PartyManager.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\TreasureManager.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\System\PersistentSingularObject.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\System\SaveFileAccess.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\AsvarduilSpriteSystem.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\MeshCombiner.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\ScrollTexture.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\IEnumerableExtensions.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Controls\PedestrianMovement.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilBox.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilButton.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilButtonGrid.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilCheckbox.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilGUIBase.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilGUIInterfaces.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilHorizontalElementPositioning.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilImage.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilImageButton.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilLabel.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilMessageBox.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilSlider.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilStaticImage.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilStaticLabel.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilTooltip.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilVerticalElementPositioning.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\FloatingButton.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\FloatingGUIBase.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\FloatingTexture.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\TweenableElement.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\Ability.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\AbilityEffect.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\CombatEntity.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\DialogueEvent.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\DialogueOption.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\Enemy.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\HealthSystem.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\InventoryItem.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\ItemDrop.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\ItemEffect.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\LevelupSystem.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\ManaSystem.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\ModifiableStat.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\PartyInventory.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\PlayableCharacter.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\QuestState.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\SceneState.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\SequenceRange.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\SequenceState.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\TextContent.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\TextThread.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Interfaces\INamed.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilAnimation.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilAnimationType.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilCursorAnimation.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilCursorFrame.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilFrame.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteAnimation.cs" />
-    <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteFrame.cs" />
-    <Compile Include="Assets\Game-Specific Assets\Scripts\AI\CaveSlimeAI.cs" />
-    <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-1.txt" />
-    <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
-    <None Include="Assets\Game-Specific Assets\Data\ability-list.txt" />
-    <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-chest.txt" />
-    <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-battle.txt" />
-    <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-2.txt" />
-    <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-items.txt" />
-    <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-basic.txt" />
-    <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-tonic-chest.txt" />
-    <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-3.txt" />
-    <None Include="Assets\Game-Specific Assets\Shaders\Particle-Additive-Backculled.shader" />
-    <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-branches.txt" />
-    <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-1.txt" />
-    <None Include="Assets\Game-Specific Assets\Data\enemy-list.txt" />
-    <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-2.txt" />
-    <None Include="Assets\Game-Specific Assets\Data\item-list.txt" />
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
-    </Reference>
+     <Compile Include="Assets\Framework\Asvarduil Input Framework\Behaviors\ControlManager.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\AsvarduilAccelerometer.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\AsvarduilControlAxis.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\CharacterControlDirection.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\CharacterControlHook.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\ISuspendable.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\AudioManager.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\ConversationSoundEvents.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Audio\Maestro.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\AIBase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\AnimationSystemBase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\DatabaseBase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\DebuggableBehavior.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\JsonBlobLoaderBase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\ManagerBase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\PresenterBase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\ResourceBitPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\CameraFreezeTrigger.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\CameraTrigger.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\Fader.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\RPGCamera.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\JrpgMapControlSystem.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\SceneChangeTrigger.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\SequenceDespawner.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\TransitionManager.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\DialogueLoader.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\EntityText.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\SequenceManager.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\TreasureEntity.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\DialogueController.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\PauseController.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ATBBitPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\CommandPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ControlsPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DefeatPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DialoguePresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\EntityTextInterface.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\EquipmentPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\HealthBitPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\InventoryPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\LootPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\MagicPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\MemberSelectPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\MemberStatPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PauseInterface.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PausePresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PlayerInformationPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\QuestPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\SettingsPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\TargetingPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\VictoryPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\AbilityDatabase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleEntity.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleManager.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleReferee.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleTrigger.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ConversationBattleEvents.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ConversationItemEvents.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ConversationQuestEvents.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\EnemyDatabase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\InventoryManager.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ItemDatabase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\PartyManager.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\TreasureManager.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\System\PersistentSingularObject.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\System\SaveFileAccess.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\AsvarduilSpriteSystem.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\MeshCombiner.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\ScrollTexture.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\IEnumerableExtensions.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Controls\PedestrianMovement.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilBox.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilButton.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilButtonGrid.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilCheckbox.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilGUIBase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilGUIInterfaces.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilHorizontalElementPositioning.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilImage.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilImageButton.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilLabel.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilMessageBox.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilSlider.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilStaticImage.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilStaticLabel.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilTooltip.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilVerticalElementPositioning.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\FloatingButton.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\FloatingGUIBase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\FloatingTexture.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\TweenableElement.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\Ability.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\AbilityEffect.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\CombatEntity.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\DialogueEvent.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\DialogueOption.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\Enemy.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\HealthSystem.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\InventoryItem.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\ItemDrop.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\ItemEffect.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\LevelupSystem.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\ManaSystem.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\ModifiableStat.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\PartyInventory.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\PlayableCharacter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\QuestState.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\SceneState.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\SequenceRange.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\SequenceState.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\TextContent.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\TextThread.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Interfaces\INamed.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilAnimation.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilAnimationType.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilCursorAnimation.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilCursorFrame.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilFrame.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteAnimation.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteFrame.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\AI\CaveSlimeAI.cs" />
+     <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-1.txt" />
+     <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\ability-list.txt" />
+     <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-chest.txt" />
+     <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-battle.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-2.txt" />
+     <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-items.txt" />
+     <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-basic.txt" />
+     <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-tonic-chest.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-3.txt" />
+     <None Include="Assets\Game-Specific Assets\Shaders\Particle-Additive-Backculled.shader" />
+     <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-branches.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-1.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\enemy-list.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-2.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\item-list.txt" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -197,4 +196,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>

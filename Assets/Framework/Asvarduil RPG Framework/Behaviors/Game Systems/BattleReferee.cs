@@ -404,12 +404,27 @@ public class BattleReferee : ManagerBase<BattleReferee>
         {
             AbilityEffect effect = ability.Effects[i];
 
+            // Stuff that can't affect dead characters shouldn't.
+            if (target.Health.IsDead && !effect.AffectsDeadCharacters)
+                continue;
+
             // First, make the appropriate effect calculation.
             effect.PerformEffectCalculation(source);
-            if (!effect.IsBuff)
-                ApplyEffectToTargetAsImmediate(effect, target);
+
+            if (effect.AffectsUser)
+            {
+                if (!effect.IsBuff)
+                    ApplyEffectToTargetAsImmediate(effect, source);
+                else
+                    ApplyEffectToTargetAsBuff(effect, source);
+            }
             else
-                ApplyEffectToTargetAsBuff(effect, target);
+            {
+                if (!effect.IsBuff)
+                    ApplyEffectToTargetAsImmediate(effect, target);
+                else
+                    ApplyEffectToTargetAsBuff(effect, target);
+            }
         }
     }
 
@@ -456,7 +471,31 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		{
 			Enemy enemy = Enemies[i];
 			List<InventoryItem> enemyLoot = enemy.RollForLoot().ToList();
-			loot.AddRange(enemyLoot);
+			//loot.AddRange(enemyLoot);
+
+            for(int j = 0; j < enemyLoot.Count; j++)
+            {
+                InventoryItem currentLoot = enemyLoot[j];
+                
+                // Try to find an item in the loot list that has the same name.
+                // If found, simply add onto the quantity.
+                bool lootingItAlready = false;
+                for(int k = 0; k < loot.Count; k++)
+                {
+                    InventoryItem existingLoot = loot[k];
+                    if (existingLoot.Name != currentLoot.Name)
+                        continue;
+
+                    lootingItAlready = true;
+                    existingLoot.Quantity += currentLoot.Quantity;
+                    break;
+                }
+
+                if (lootingItAlready)
+                    continue;
+
+                loot.Add(currentLoot);
+            }
 		}
 		
 		if(loot.Count == 0)

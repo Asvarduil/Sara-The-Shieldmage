@@ -2,6 +2,8 @@
 	"Effects":[
 		{
 			"Name":"Damage",
+			"AffectsUser":false,
+			"AffectsDeadCharacters":false,
 			"IsBuff":false,
 			"Duration":0,
 			"PowerStat":"Attack",
@@ -13,6 +15,21 @@
 		},
 		{
 			"Name":"Healing",
+			"AffectsUser":false,
+			"AffectsDeadCharacters":false,
+			"IsBuff":false,
+			"Duration":0,
+			"PowerStat":"Magic",
+			"TargetStat":"HP",
+			"EffectFloor":1,
+			"EffectMultiplier":4,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":1
+		},
+		{
+			"Name":"Drain",
+			"AffectsUser":true,
+			"AffectsDeadCharacters":false,
 			"IsBuff":false,
 			"Duration":0,
 			"PowerStat":"Attack",
@@ -23,7 +40,22 @@
 			"MaximumRandomEffect":1
 		},
 		{
+			"Name":"Resurrection",
+			"AffectsUser":false,
+			"AffectsDeadCharacters":true,
+			"IsBuff":false,
+			"Duration":0,
+			"PowerStat":"Magic",
+			"TargetStat":"HP",
+			"EffectFloor":1,
+			"EffectMultiplier":4,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":1
+		},
+		{
 			"Name":"Shield",
+			"AffectsUser":false,
+			"AffectsDeadCharacters":false,
 			"IsBuff":true,
 			"Duration":10,
 			"PowerStat":"",
@@ -35,6 +67,8 @@
 		},
 		{
 			"Name":"Regeneration",
+			"AffectsUser":false,
+			"AffectsDeadCharacters":false,
 			"IsBuff":true,
 			"Duration":10,
 			"PowerStat":"",
@@ -46,6 +80,8 @@
 		},
 		{
 			"Name":"Guarantee Counter",
+			"AffectsUser":false,
+			"AffectsDeadCharacters":false,
 			"IsBuff":true,
 			"Duration":10,
 			"PowerStat":"",
@@ -117,6 +153,19 @@
 			"TargetType":"TargetAlly",
 			"Effects":[
 				"Damage"
+			]
+		},
+		{
+			"Name":"Vampire Bite",
+			"Description":"Enemy drains a player's health!",
+			"VisualEffect":"Attack (Basic)",
+			"ATBCost":100,
+			"ActionAnimation":"Attack",
+			"ReceiptAnimation":"Bad Effect",
+			"TargetType":"TargetAlly",
+			"Effects":[
+				"Damage",
+				"Drain"
 			]
 		}
 	]
