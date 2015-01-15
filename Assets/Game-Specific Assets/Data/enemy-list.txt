@@ -129,6 +129,144 @@
 					"MaximumBonus":1
 				}
 			]
+		},
+		{
+			"Name":"Bandit Henchman",
+			"BattlePrefab":"Bandit Henchman",
+			"CounterAttackName":"Attack",
+
+			"HP":8,
+			"MaxHP":8,
+			"RegenRate":1,
+			"RegenAmount":0,
+
+			"Stats":[
+				{
+					"Name":"Attack",
+					"Value":1,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"Magic",
+					"Value":1,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"ATB",
+					"Value":0,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"Max ATB",
+					"Value":100,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"ATB Speed",
+					"Value":8,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"Counter Rate",
+					"Value":0,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				}
+			],
+
+			"Abilities":[
+				"Attack"
+			],
+
+			"ActiveEffects":[],
+
+			"Drops":[
+				{
+					"ItemName":"Saphirium",
+					"DropRate":100,
+					"BaseAmount":15,
+					"MinimumBonus":-5,
+					"MaximumBonus":5
+				}
+			]
+		},
+		{
+			"Name":"Bandit Leader",
+			"BattlePrefab":"Bandit Leader",
+			"CounterAttackName":"Attack",
+
+			"HP":32,
+			"MaxHP":32,
+			"RegenRate":1,
+			"RegenAmount":0,
+
+			"Stats":[
+				{
+					"Name":"Attack",
+					"Value":1,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"Magic",
+					"Value":1,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"ATB",
+					"Value":0,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"Max ATB",
+					"Value":100,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"ATB Speed",
+					"Value":9,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"Counter Rate",
+					"Value":0,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				}
+			],
+
+			"Abilities":[
+				"Attack",
+				"Enemy Potion"
+			],
+
+			"ActiveEffects":[],
+
+			"Drops":[
+				{
+					"ItemName":"Saphirium",
+					"DropRate":100,
+					"BaseAmount":35,
+					"MinimumBonus":0,
+					"MaximumBonus":0
+				},
+				{
+					"ItemName":"Antique Shield",
+					"DropRate":100,
+					"BaseAmount":1,
+					"MinimumBonus":0,
+					"MaximumBonus":0
+				}
+			]
 		}
 	]
 }

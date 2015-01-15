@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using Random = UnityEngine.Random;
 
-public class CaveSlimeAI : AIBase
+public class AttackerAI : AIBase
 {
     #region Variables / Properties
 
@@ -26,7 +26,7 @@ public class CaveSlimeAI : AIBase
 
     public override CombatEntity DetermineTarget(List<CombatEntity> availableTargets)
     {
-        List<CombatEntity> playerList = availableTargets.Where(t => t is PlayableCharacter).ToList();
+        List<CombatEntity> playerList = availableTargets.Where(t => t is PlayableCharacter && !t.Health.IsDead).ToList();
 
         int targetIndex = Random.Range(0, playerList.Count - 1);
         return availableTargets[targetIndex];

@@ -14,6 +14,19 @@
 			"MaximumRandomEffect":1
 		},
 		{
+			"Name":"Fixed Minor Healing",
+			"AffectsUser":false,
+			"AffectsDeadCharacters":false,
+			"IsBuff":false,
+			"Duration":0,
+			"PowerStat":"",
+			"TargetStat":"HP",
+			"EffectFloor":1,
+			"EffectMultiplier":4,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":1
+		},
+		{
 			"Name":"Healing",
 			"AffectsUser":false,
 			"AffectsDeadCharacters":false,
@@ -153,6 +166,18 @@
 			"TargetType":"TargetAlly",
 			"Effects":[
 				"Damage"
+			]
+		},
+		{
+			"Name":"Enemy Potion",
+			"Description":"Enemy drinks a potion, restoring HP.",
+			"VisualEffect":"",
+			"ATBCost":100,
+			"ActionAnimation":"Attack",
+			"ReceiptAnimation":"Good Effect",
+			"TargetType":"TargetEnemy",
+			"Effects":[
+				"Fixed Minor Healing"
 			]
 		},
 		{

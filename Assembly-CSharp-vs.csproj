@@ -167,7 +167,8 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilFrame.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteAnimation.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteFrame.cs" />
-     <Compile Include="Assets\Game-Specific Assets\Scripts\AI\CaveSlimeAI.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\AI\AttackerAI.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\AI\HealerAI.cs" />
      <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-1.txt" />
      <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
      <None Include="Assets\Game-Specific Assets\Data\ability-list.txt" />

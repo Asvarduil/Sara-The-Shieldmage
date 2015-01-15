@@ -11,38 +11,15 @@
 			"TextContent":[
 				{
 					"ID":0,
-					"Speaker":"",
-					"Dialogue":"You found an Antique Shield!  This was likely stolen from someone.",
+					"Speaker":"????",
+					"Dialogue":"Hey, you!  That's our loot!",
 					"Options":[
 						{ 
 							"Text":"Continue", 
 							"TargetID":1 
 						}
 					],
-					"DialogueEvents":[
-						{
-							"MessageName":"HaltThenPlay",
-							"Args":[
-								"Item Get Fanfare",
-								1.0
-							]
-						},
-						{
-							"MessageName":"GainItem",
-							"Args":[
-								"Antique Shield",
-								1
-							]
-						},
-						{
-							"MessageName":"UpdateQuest",
-							"Args":[
-								"A Favor Repaid",
-								"You've found the stolen shield.  Return it to Captain Gardor in Nuuria City.",
-								2
-							]
-						}
-					]
+					"DialogueEvents":[]
 				},
 				{
 					"ID":1,
@@ -51,8 +28,20 @@
 					"Options":[],
 					"DialogueEvents":[
 						{
-							"MessageName":"ResumeBGM",
-							"Args":[]
+							"MessageName":"UpdateQuest",
+							"Args":[
+								"A Favor Repaid",
+								"You've found the stolen shield.  Return it to Captain Gardor in Nuuria City.",
+								2
+							]
+						},
+						{
+							"MessageName":"TriggerBattle",
+							"Args":[
+								"BossBattle",
+								"Cave Battle",
+								"Bandit Leader|Bandit Henchman|Bandit Henchman"
+							]
 						},
 						{
 							"MessageName":"EndConversation",
