@@ -53,7 +53,7 @@ public class BattleTrigger : DebuggableBehavior
 
 		_lastCheck = Time.time;
 		
-		if (Random.Range(0.0f, 1.0f) > BattleLikelihood)
+		if (Random.Range(0.0f, 1.0f) > (BattleLikelihood * _battleManager.BattleRate))
 			return;
 
         List<string> enemyFormation = RollEnemySet();

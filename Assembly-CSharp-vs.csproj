@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Framework\Asvarduil Disco Blocks\Scripts\DiscoBlockPuzzleManager.cs" />
+     <Compile Include="Assets\Framework\Asvarduil Disco Blocks\Scripts\DiscoBlockSwitch.cs" />
      <Compile Include="Assets\Framework\Asvarduil Input Framework\Behaviors\ControlManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\AsvarduilAccelerometer.cs" />
      <Compile Include="Assets\Framework\Asvarduil Input Framework\Classes\AsvarduilControlAxis.cs" />
@@ -179,6 +181,7 @@
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-basic.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-tonic-chest.txt" />
      <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-3.txt" />
+     <None Include="Assets\Framework\Asvarduil Disco Blocks\Shaders\Tinted Unlit.shader" />
      <None Include="Assets\Game-Specific Assets\Shaders\Particle-Additive-Backculled.shader" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-branches.txt" />
      <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-1.txt" />

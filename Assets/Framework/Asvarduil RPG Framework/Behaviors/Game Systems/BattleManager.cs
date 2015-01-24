@@ -8,6 +8,7 @@ public class BattleManager : ManagerBase<BattleManager>
 	#region Variables / Properties
 
 	public string PlayerTag = "Player";
+    public float BattleRate = 1.0f;
 	public List<string> EnemyNames;
 	public string BattleScene;
 	public AudioClip BattleTheme;
