@@ -43,31 +43,15 @@ public class DiscoBlockSwitch : DebuggableBehavior
     public void Start()
     {
         _maestro = Maestro.Instance;
-        _material = renderer.material;
 
-        switch (State)
-        {
-            case DiscoBlockState.Untouched:
-                _material.SetColor(MaterialColorProperty, UntouchedColor);
-                break;
-
-            case DiscoBlockState.Activatable:
-                _material.SetColor(MaterialColorProperty, ActivatableColor);
-                break;
-
-            case DiscoBlockState.Active:
-                _material.SetColor(MaterialColorProperty, ActiveColor);
-                break;
-
-            case DiscoBlockState.Passed:
-                _material.SetColor(MaterialColorProperty, ActivatedColors[0]);
-                _lastColorUpdate = Time.time;
-                break;
-        }
+        UpdateColor();
     }
 
     public void Update()
     {
+        if (State != DiscoBlockState.Passed)
+            return;
+
         UpdateColor();
     }
 
@@ -87,32 +71,58 @@ public class DiscoBlockSwitch : DebuggableBehavior
         if(State == DiscoBlockState.Activatable)
         {
             _maestro.PlayOneShot(ActivationSoundEffect);
-
-            _lastColorUpdate = Time.time;
-            _material.SetColor(MaterialColorProperty, ActiveColor);
             Manager.ActivateSwitch(this);
         }
+    }
+
+    public void Activate()
+    {
+        State = DiscoBlockState.Active;
+        _material.SetColor(MaterialColorProperty, ActiveColor);
+    }
+
+    public void SetPassed()
+    {
+        _lastColorUpdate = Time.time;
+        State = DiscoBlockState.Passed;
     }
 
     #endregion Hooks
 
     #region Methods
 
-    private void UpdateColor()
+    public void UpdateColor()
     {
-        if (State != DiscoBlockState.Passed)
-            return;
+        if(_material == null)
+            _material = renderer.material;
 
-        if (Time.time < _lastColorUpdate + ColorSwitchRate)
-            return;
+        switch (State)
+        {
+            case DiscoBlockState.Untouched:
+                _material.SetColor(MaterialColorProperty, UntouchedColor);
+                break;
 
-        // Loop the disco colors!
-        _currentColorId++;
-        if (_currentColorId > ActivatedColors.Count - 1)
-            _currentColorId = 0;
+            case DiscoBlockState.Activatable:
+                _material.SetColor(MaterialColorProperty, ActivatableColor);
+                break;
 
-        _material.SetColor(MaterialColorProperty, ActivatedColors[_currentColorId]);
-        _lastColorUpdate = Time.time;
+            case DiscoBlockState.Active:
+                _material.SetColor(MaterialColorProperty, ActiveColor);
+                break;
+
+            case DiscoBlockState.Passed:
+                if (Time.time < _lastColorUpdate + ColorSwitchRate)
+                    return;
+
+                // Loop the disco colors!
+                _currentColorId++;
+                if (_currentColorId > ActivatedColors.Count - 1)
+                    _currentColorId = 0;
+
+                _material.SetColor(MaterialColorProperty, ActivatedColors[_currentColorId]);
+                _lastColorUpdate = Time.time;
+                break;
+        }
     }
 
     #endregion Methods

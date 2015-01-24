@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class DiscoBlockPuzzleManager : DebuggableBehavior
 {
     #region Variables / Properties
+
+    public string TreasureKey;
+    public List<PuzzleSolvedObjectBase> AffectedObjects;
 
     public bool IsSolved
     {
@@ -28,36 +32,86 @@ public class DiscoBlockPuzzleManager : DebuggableBehavior
     private DiscoBlockSwitch _currentSwitch;
     private List<DiscoBlockSwitch> _switches;
 
+    private TreasureManager _treasures;
+
     #endregion Variables / Properties
 
     #region Hooks
 
-    // Use this for initialization
-	public void Awake () 
+	public void Awake() 
     {
-        IntroduceManagerToChildren();
+        _treasures = TreasureManager.Instance;
+
+        if (_treasures.ObtainedTreasures.Contains(TreasureKey))
+        {
+            ActivateAll();
+            PuzzleIsComplete();
+        }
+        else
+        {
+            IntroduceManagerToChildren();
+        }
 	}
 
     public void ActivateSwitch(DiscoBlockSwitch currentSwitch)
     {
+        // Check the argument first.
+        if (currentSwitch == null)
+            throw new ArgumentNullException("currentSwitch", "currentSwitch cannot be null!");
+
+        // Only set the current switch to 'passed', and reset its neighbors, if it exists.
         if (_currentSwitch != null)
         {
-            _currentSwitch.State = DiscoBlockState.Passed;
-            SetStateOfCurrentBlockNeighbors(DiscoBlockState.Untouched);
+            _currentSwitch.SetPassed();
+            SetNeighboringBlockState(DiscoBlockState.Untouched);
         }
 
         // Update the current switch...
         _currentSwitch = currentSwitch;
-        _currentSwitch.State = DiscoBlockState.Active;
-        SetStateOfCurrentBlockNeighbors(DiscoBlockState.Activatable);
+        _currentSwitch.Activate();
+        SetNeighboringBlockState(DiscoBlockState.Activatable);
         DebugMessage("Disco Block Switch " + _currentSwitch.name + " has been activated!");
+
+        CheckForCompletion();
     }
 
     #endregion Hooks
 
     #region Methods
 
-    private void SetStateOfCurrentBlockNeighbors(DiscoBlockState newState)
+    private void ActivateAll()
+    {
+        _switches = GetComponentsInChildren<DiscoBlockSwitch>().ToList();
+
+        for (int i = 0; i < _switches.Count; i++)
+        {
+            DiscoBlockSwitch currentSwitch = _switches[i];
+            currentSwitch.Manager = this;
+
+            currentSwitch.State = DiscoBlockState.Passed;
+            currentSwitch.UpdateColor();
+        }
+    }
+
+    private void IntroduceManagerToChildren()
+    {
+        _switches = GetComponentsInChildren<DiscoBlockSwitch>().ToList();
+        DebugMessage("There are " + _switches.Count + " switches in this puzzle.");
+
+        for (int i = 0; i < _switches.Count; i++)
+        {
+            DiscoBlockSwitch currentSwitch = _switches[i];
+            currentSwitch.Manager = this;
+
+            if (currentSwitch.State == DiscoBlockState.Active)
+            {
+                _currentSwitch = currentSwitch;
+                SetNeighboringBlockState(DiscoBlockState.Activatable);
+            }
+        }
+    }
+
+    private void SetNeighboringBlockState(DiscoBlockState state)
     {
         if (_currentSwitch == null)
             return;
@@ -70,24 +124,38 @@ public class DiscoBlockPuzzleManager : DebuggableBehavior
             DiscoBlockSwitch currentAffected = _currentSwitch.ReadyWhenActivated[i];
 
             // Don't modify active or passed blocks!
-            if(currentAffected.State == DiscoBlockState.Untouched
-               || currentAffected.State == DiscoBlockState.Activatable)
-                currentAffected.State = newState;
+            if (currentAffected.State == DiscoBlockState.Active
+                || currentAffected.State == DiscoBlockState.Passed)
+                continue;
+
+            currentAffected.State = state;
+            currentAffected.UpdateColor();
         }
     }
 
-    private void IntroduceManagerToChildren()
+    private void PuzzleIsComplete()
     {
-        _switches = GetComponentsInChildren<DiscoBlockSwitch>().ToList();
-
-        for (int i = 0; i < _switches.Count; i++)
+        for(int i = 0; i < AffectedObjects.Count; i++)
         {
-            DiscoBlockSwitch currentSwitch = _switches[i];
-            currentSwitch.Manager = this;
+            PuzzleSolvedObjectBase current = AffectedObjects[i];
+            current.OnPuzzleAlreadySolved();
+        }
+    }
 
-            // If the block is active, it'll be our first current switch.  Activate!
-            if (currentSwitch.State == DiscoBlockState.Active)
-                ActivateSwitch(currentSwitch);
+    private void CheckForCompletion()
+    {
+        if (!IsSolved)
+            return;
+
+        if (AffectedObjects.Count == 0)
+            return;
+
+        _treasures.MarkTreasureAsObtained(TreasureKey);
+
+        for(int i = 0; i < AffectedObjects.Count; i++)
+        {
+            PuzzleSolvedObjectBase current = AffectedObjects[i];
+            current.OnPuzzleSolved();
         }
     }
 

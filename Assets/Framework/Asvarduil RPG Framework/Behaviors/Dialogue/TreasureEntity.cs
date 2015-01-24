@@ -57,8 +57,9 @@ public class TreasureEntity : EntityTextInterface
 		if(Time.time < _lastActivation + _activateLockout)
 			return;
 
-		if(InteractButton.IsClicked()
-		   || _controlManager.GetAxisUp("Interact"))
+		if(CanActivate 
+            && (InteractButton.IsClicked() 
+                || _controlManager.GetAxisUp("Interact")))
 		{
 			_maestro.PlayOneShot(ButtonSound);
 
