@@ -1,0 +1,86 @@
+{
+	"TextThreads":[
+		{
+			"IsDefaultThread":true,
+			"Name":"Minor NPC Text - Archaeologist Adventurer",
+			"SequenceState":{
+				"Name":"Main", 
+				"MinCounter":0,
+				"MaxCounter":0
+			},
+
+			"TextContent":[
+				{
+					"ID":0,
+					"Speaker":"Adventurer",
+					"Dialogue":"I just got done with a survey of an ancient ruin.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":1 
+						}
+					],
+          
+					"DialogueEvents":[
+						{
+							"MessageName":"CueSounds",
+							"Args":[
+								"Female Speaking Sound (Temp)",
+								1
+							]
+						}
+					]
+				},
+				{
+					"ID":1,
+					"Speaker":"Adventurer",
+					"Dialogue":"It's the third ruin I've seen that uses a defense mechanism called a 'Disco Block'.",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":2 
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":2,
+					"Speaker":"Adventurer",
+					"Dialogue":"Pretty much, you have to find a way to step on all of the tiles to undo the defense.",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":3 
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":3,
+					"Speaker":"Adventurer",
+					"Dialogue":"I guess it's no wonder those ruins got ruined, huh?  Seems like an impractical defense.",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":4 
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":4,
+					"Speaker":"",
+					"Dialogue":"",
+					"Options":[],
+					"DialogueEvents":[
+						{
+							"MessageName":"EndConversation",
+							"Args":[]
+						}
+					]
+				}
+			]
+		}
+	]
+}
