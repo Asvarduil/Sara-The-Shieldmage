@@ -253,7 +253,7 @@ public class PauseController : ManagerBase<PauseController>
 		_equipment.SetVisibility(false);
 		_presenter.SetVisibility(false);
 		_memberSelect.SetVisibility(false);
-		_memberSelect.SetButtonVisibility(_party.Characters.Count > 1);
+		_memberSelect.SetButtonVisibility(false);
 	}
 
 	public void OpenEquipment()
@@ -284,6 +284,7 @@ public class PauseController : ManagerBase<PauseController>
         _equipment.SetVisibility(false);
         _interface.SetVisibility(false);
         _memberSelect.SetVisibility(false);
+        _memberSelect.SetButtonVisibility(false);
     }
 
 	public void OpenSettings()
@@ -300,6 +301,7 @@ public class PauseController : ManagerBase<PauseController>
 		_interface.SetVisibility(false);
         _presenter.SetVisibility(false);
 		_memberSelect.SetVisibility(false);
+        _memberSelect.SetButtonVisibility(false);
 	}
 
 	public void EquipItem(InventoryItem item)
@@ -389,6 +391,9 @@ public class PauseController : ManagerBase<PauseController>
 		}
 
 		_memberSelect.UpdateMemberName(CurrentPartyMember);
+        PrepMemberStatPresenter();
+        PrepMagicPresenter();
+        PrepEquipmentPresenter();
 	}
 
 	#endregion Methods

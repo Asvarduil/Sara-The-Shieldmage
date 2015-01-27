@@ -14,6 +14,19 @@
 			"MaximumRandomEffect":1
 		},
 		{
+			"Name":"Mid Damage",
+			"AffectsUser":false,
+			"AffectsDeadCharacters":false,
+			"IsBuff":false,
+			"Duration":0,
+			"PowerStat":"Attack",
+			"TargetStat":"HP",
+			"EffectFloor":1,
+			"EffectMultiplier":-2,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":1
+		},
+		{
 			"Name":"Fixed Minor Healing",
 			"AffectsUser":false,
 			"AffectsDeadCharacters":false,
@@ -92,6 +105,45 @@
 			"MaximumRandomEffect":0
 		},
 		{
+			"Name":"Bleed",
+			"AffectsUser":false,
+			"AffectsDeadCharacters":false,
+			"IsBuff":true,
+			"Duration":10,
+			"PowerStat":"",
+			"TargetStat":"HP Regen",
+			"EffectFloor":1,
+			"EffectMultiplier":-1,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":0
+		},
+		{
+			"Name":"Haste",
+			"AffectsUser":false,
+			"AffectsDeadCharacters":false,
+			"IsBuff":true,
+			"Duration":10,
+			"PowerStat":"",
+			"TargetStat":"ATB Speed",
+			"EffectFloor":1,
+			"EffectMultiplier":1,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":0
+		},
+		{
+			"Name":"Slow",
+			"AffectsUser":false,
+			"AffectsDeadCharacters":false,
+			"IsBuff":true,
+			"Duration":10,
+			"PowerStat":"",
+			"TargetStat":"ATB Speed",
+			"EffectFloor":1,
+			"EffectMultiplier":-1,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":0
+		},
+		{
 			"Name":"Guarantee Counter",
 			"AffectsUser":false,
 			"AffectsDeadCharacters":false,
@@ -154,6 +206,56 @@
 			"Effects":[
 				"Shield",
 				"Guarantee Counter"
+			]
+		},
+		{
+			"Name":"Thrust",
+			"Description":"Davis thrusts his sword, dealing an enemy moderate damage.",
+			"VisualEffect":"Attack (Basic)",
+			"ATBCost":100,
+			"ActionAnimation":"Cast Spell",
+			"ReceiptAnimation":"Bad Effect",
+			"TargetType":"TargetEnemy",
+			"Effects":[
+				"Mid Damage"
+			]
+		},
+		{
+			"Name":"War Cry",
+			"Description":"Davis shouts, raising an ally's morale and ATB speed.",
+			"VisualEffect":"Attack (Basic)",
+			"ATBCost":100,
+			"ActionAnimation":"Cast Spell",
+			"ReceiptAnimation":"Good Effect",
+			"TargetType":"TargetAlly",
+			"Effects":[
+				"Haste"
+			]
+		},
+		{
+			"Name":"Hamstring",
+			"Description":"Davis slices an enemy so that it's harder to move, slowing their ATB speed.",
+			"VisualEffect":"Attack (Basic)",
+			"ATBCost":100,
+			"ActionAnimation":"Cast Spell",
+			"ReceiptAnimation":"Bad Effect",
+			"TargetType":"TargetEnemy",
+			"Effects":[
+				"Damage",
+				"Slow"
+			]
+		},
+		{
+			"Name":"Exsanguinate",
+			"Description":"Davis slices an enemy so that they bleed more.  Drains HP over time.",
+			"VisualEffect":"Attack (Basic)",
+			"ATBCost":100,
+			"ActionAnimation":"Cast Spell",
+			"ReceiptAnimation":"Bad Effect",
+			"TargetType":"TargetEnemy",
+			"Effects":[
+				"Damage",
+				"Bleed"
 			]
 		},
 		{

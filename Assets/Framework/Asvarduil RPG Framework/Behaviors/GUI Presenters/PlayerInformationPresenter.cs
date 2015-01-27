@@ -77,15 +77,23 @@ public class PlayerInformationPresenter : PresenterBase
 
     public List<BattleCharacterInfo> BattleCharacterPresenters = new List<BattleCharacterInfo>();
 
+    private PartyManager _party;
+
 	#endregion Variables / Properties
 
 	#region Hooks
+
+    public override void Start()
+    {
+        base.Start();
+        _party = PartyManager.Instance;
+    }
 
 	public override void SetVisibility(bool isVisible)
 	{
 		float opacity = DetermineOpacity(isVisible);
 
-        for(int i = 0; i < BattleCharacterPresenters.Count; i++)
+        for(int i = 0; i < _party.Characters.Count; i++)
         {
             BattleCharacterPresenters[i].SetOpacity(opacity);
         }
@@ -93,7 +101,7 @@ public class PlayerInformationPresenter : PresenterBase
 
 	public override void DrawMe()
 	{
-		for (int i = 0; i < BattleCharacterPresenters.Count; i++)
+        for (int i = 0; i < _party.Characters.Count; i++)
         {
             BattleCharacterPresenters[i].DrawMe();
         }
@@ -101,7 +109,7 @@ public class PlayerInformationPresenter : PresenterBase
 
 	public override void Tween()
 	{
-        for (int i = 0; i < BattleCharacterPresenters.Count; i++)
+        for (int i = 0; i < _party.Characters.Count; i++)
         {
             BattleCharacterPresenters[i].Tween();
         }
