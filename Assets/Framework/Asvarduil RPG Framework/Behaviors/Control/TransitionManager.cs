@@ -10,7 +10,6 @@ public class TransitionManager : ManagerBase<TransitionManager>
 	public SceneState OriginalState;
 	public SceneState TargetState;
 
-	private bool _transitionStarted = false;
 	private string _targetSceneName;
 
 	#endregion Variables / Properties
@@ -27,8 +26,6 @@ public class TransitionManager : ManagerBase<TransitionManager>
 
 	public void ChangeScenes(bool toSource = false)
 	{
-		_transitionStarted = true;
-
 		if(toSource)
 		{
 			DebugMessage("Transitioning back to the source scene...");

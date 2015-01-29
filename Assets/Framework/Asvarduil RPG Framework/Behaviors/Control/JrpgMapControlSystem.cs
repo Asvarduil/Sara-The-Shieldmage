@@ -64,11 +64,15 @@ public class JrpgMapControlSystem : DebuggableBehavior, ISuspendable
 	public void Suspend()
 	{
 		CanMove = false;
+        IsIdle = true;
+        IsMoving = false;
+        _movement.CanMove = false;
 	}
 
 	public void Resume()
 	{
 		CanMove = true;
+        _movement.CanMove = true;
 	}
 
 	private void CollectInput()
