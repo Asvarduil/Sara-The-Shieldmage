@@ -7,20 +7,18 @@ public class ConversationCameraEvents : DebuggableBehavior
 {
     #region Variables / Properties
 
-    private Fader _fader;
+    private Fader Fader
+    {
+        get { return GameObject.FindObjectOfType<Fader>(); }
+    }
 
     #endregion Variables / Properties
 
     #region Methods
 
-    public void Start()
-    {
-        _fader = GameObject.FindObjectOfType<Fader>();
-    }
-
     public void FadeOut(List<string> args)
     {
-        float fadeRate = _fader.FadeRate;
+        float fadeRate = Fader.FadeRate;
         if(args != null
            && args.Count == 1)
         {
@@ -32,15 +30,15 @@ public class ConversationCameraEvents : DebuggableBehavior
 
     private IEnumerator ActuallyFadeOut(float fadeRate)
     {
-        _fader.FadeOut(fadeRate);
+        Fader.FadeOut(fadeRate);
 
-        while (_fader.ScreenShown)
+        while (Fader.ScreenShown)
             yield return 0;
     }
 
     public void FadeIn(List<string> args)
     {
-        float fadeRate = _fader.FadeRate;
+        float fadeRate = Fader.FadeRate;
         if (args != null
            && args.Count == 1)
         {
@@ -52,9 +50,9 @@ public class ConversationCameraEvents : DebuggableBehavior
 
     private IEnumerator ActuallyFadeIn(float fadeRate)
     {
-        _fader.FadeIn(fadeRate);
+        Fader.FadeIn(fadeRate);
 
-        while (_fader.ScreenHidden)
+        while (Fader.ScreenHidden)
             yield return 0;
     }
 

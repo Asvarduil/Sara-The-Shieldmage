@@ -177,6 +177,7 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\AttackerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\HealerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\PuzzleDoorObject.cs" />
+     <None Include="Assets\Game-Specific Assets\Data\feldhold-chest-3.txt" />
      <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-1.txt" />
      <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
      <None Include="Assets\Game-Specific Assets\Data\ability-list.txt" />
@@ -185,9 +186,11 @@
      <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-2.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-items.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-basic.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\feldhold-chest-2.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-tonic-chest.txt" />
      <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-3.txt" />
      <None Include="Assets\Framework\Asvarduil Disco Blocks\Shaders\Tinted Unlit.shader" />
+     <None Include="Assets\Game-Specific Assets\Data\feldhold-trigger-2.txt" />
      <None Include="Assets\Game-Specific Assets\Data\feldhold-trigger-1.txt" />
      <None Include="Assets\Game-Specific Assets\Shaders\Particle-Additive-Backculled.shader" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-branches.txt" />
@@ -196,6 +199,7 @@
      <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-2.txt" />
      <None Include="Assets\Game-Specific Assets\Data\item-list.txt" />
      <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-3.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\feldhold-chest-1.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
