@@ -176,6 +176,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteFrame.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\AttackerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\HealerAI.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\AI\SequenceAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\PuzzleDoorObject.cs" />
      <None Include="Assets\Game-Specific Assets\Data\feldhold-chest-3.txt" />
      <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-1.txt" />
