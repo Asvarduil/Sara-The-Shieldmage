@@ -24,7 +24,7 @@ public class ConversationQuestEvents : DebuggableBehavior
     public void UpdateQuest(List<string> args)
     {
         if (args.IsNullOrEmpty())
-            throw new ArgumentNullException("UpdateQuest requires a list containing the name of the quest, the new description, and the phase counter.");
+            throw new ArgumentNullException("UpdateQuest requires the name of the quest, the new description, and the phase counter.");
 
         string questName = args[0];
         string questDescription = args[1];

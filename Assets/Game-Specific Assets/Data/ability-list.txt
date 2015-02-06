@@ -27,6 +27,19 @@
 			"MaximumRandomEffect":1
 		},
 		{
+			"Name":"Major Damage",
+			"AffectsUser":false,
+			"AffectsDeadCharacters":false,
+			"IsBuff":false,
+			"Duration":0,
+			"PowerStat":"Attack",
+			"TargetStat":"HP",
+			"EffectFloor":1,
+			"EffectMultiplier":-3,
+			"MinimumRandomEffect":0,
+			"MaximumRandomEffect":1
+		},
+		{
 			"Name":"Fixed Minor Healing",
 			"AffectsUser":false,
 			"AffectsDeadCharacters":false,
@@ -259,6 +272,19 @@
 			]
 		},
 		{
+			"Name":"Exsanguinate (Enemy)",
+			"Description":"Enemy slices an ally so that they bleed more.  Drains HP over time.",
+			"VisualEffect":"Attack (Basic)",
+			"ATBCost":100,
+			"ActionAnimation":"Cast Spell",
+			"ReceiptAnimation":"Bad Effect",
+			"TargetType":"TargetAlly",
+			"Effects":[
+				"Damage",
+				"Bleed"
+			]
+		},
+		{
 			"Name":"Attack",
 			"Description":"Enemy attacks a player!",
 			"VisualEffect":"Attack (Basic)",
@@ -292,6 +318,19 @@
 			"TargetType":"TargetAlly",
 			"Effects":[
 				"Damage",
+				"Drain"
+			]
+		},
+		{
+			"Name":"Blood Sword",
+			"Description":"An evil sword art that drains a player's health!",
+			"VisualEffect":"Attack (Basic)",
+			"ATBCost":100,
+			"ActionAnimation":"Attack",
+			"ReceiptAnimation":"Bad Effect",
+			"TargetType":"TargetAlly",
+			"Effects":[
+				"Mid Damage",
 				"Drain"
 			]
 		}

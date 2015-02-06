@@ -267,6 +267,74 @@
 					"MaximumBonus":0
 				}
 			]
+		},
+		{
+			"Name":"Thanatos",
+			"BattlePrefab":"Thanatos",
+			"CounterAttackName":"Attack",
+
+			"HP":64,
+			"MaxHP":64,
+			"RegenRate":1,
+			"RegenAmount":0,
+
+			"Stats":[
+				{
+					"Name":"Attack",
+					"Value":4,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"Magic",
+					"Value":1,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"ATB",
+					"Value":0,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"Max ATB",
+					"Value":100,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"ATB Speed",
+					"Value":6,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				},
+				{
+					"Name":"Counter Rate",
+					"Value":0,
+					"FixedModifier":0,
+					"ScalingModifier":1.0
+				}
+			]
+
+			
+			"Abilities":[
+				"Attack",
+				"Exsanguinate (Enemy)",
+				"Blood Sword",
+			],
+
+			"ActiveEffects":[],
+
+			"Drops":[
+				{
+					"ItemName":"Saphirium",
+					"DropRate":100,
+					"BaseAmount":50,
+					"MinimumBonus":0,
+					"MaximumBonus":0
+				}
+			]
 		}
 	]
 }

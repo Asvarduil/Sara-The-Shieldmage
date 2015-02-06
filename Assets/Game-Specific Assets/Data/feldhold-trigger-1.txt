@@ -73,9 +73,9 @@
 						{
 							"MessageName":"UpdateQuest",
 							"Args":[
-								"The Red Winged Terror (Main)",
-								"Davis has told you about an ancient defense system called 'Disco Blocks'.  Disarm the defenses to obtain the Feldhold Shard.",
-								3
+								"The Feldhold Shard",
+								"You've entered the Ruins of Feldhold and found an ancient defense mechanism.  Solve the puzzles to get the Ancile Shard!",
+								"1"
 							]
 						},
 						{					

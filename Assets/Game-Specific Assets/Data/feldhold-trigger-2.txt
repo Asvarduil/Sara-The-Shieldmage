@@ -2,7 +2,7 @@
 	"TextThreads":[
 		{
 			"IsDefaultThread":true,
-			"Name":"Feldhold Ruins - Disco Block Explanation Trigger",
+			"Name":"Feldhold Ruins",
 			"SequenceState":{
 				"Name":"Main", 
 				"MinCounter":0,
@@ -12,8 +12,8 @@
 			"TextContent":[
 				{
 					"ID":0,
-					"Speaker":"Davis",
-					"Dialogue":"Hey Sara - see those blocks ahead?",
+					"Speaker":"????",
+					"Dialogue":"What are you doing here?",
           
 					"Options":[
 						{ 
@@ -26,45 +26,34 @@
 				},
 				{
 					"ID":1,
-					"Speaker":"Davis",
-					"Dialogue":"I've seen those before.  They're a defense system called Disco Blocks.",
+					"Speaker":"????",
+					"Dialogue":"...Whatever it is, it's not important.  I am your executioner...Lord Rosflugel's Knight of Death.",
+          
 					"Options":[
 						{ 
 							"Text":"Continue", 
 							"TargetID":2 
 						}
 					],
-
+          
 					"DialogueEvents":[]
 				},
 				{
 					"ID":2,
-					"Speaker":"Davis",
-					"Dialogue":"Pretty much, you have to step on them all to go any farther in this place.",
+					"Speaker":"Thanatos, the Death Knight",
+					"Dialogue":"I, Thanatos, will send you back to the Goddess a bit early.  It will be worse if you resist...",
+          
 					"Options":[
 						{ 
 							"Text":"Continue", 
 							"TargetID":3 
 						}
 					],
-
+          
 					"DialogueEvents":[]
 				},
 				{
 					"ID":3,
-					"Speaker":"Davis",
-					"Dialogue":"The dim orange squares are always the next squares that you can turn on.",
-					"Options":[
-						{ 
-							"Text":"Continue", 
-							"TargetID":4 
-						}
-					],
-
-					"DialogueEvents":[]
-				},
-				{
-					"ID":4,
 					"Speaker":"",
 					"Dialogue":"",
 					"Options":[],
@@ -73,9 +62,17 @@
 						{
 							"MessageName":"UpdateQuest",
 							"Args":[
-								"The Red Winged Terror (Main)",
-								"Davis has told you about an ancient defense system called 'Disco Blocks'.  Disarm the defenses to obtain the Feldhold Shard.",
-								3
+								"The Feldhold Shard",
+								"You faced down the Death Knight Thanatos in the Ruins of Feldhold.  The Ancile Shard lies just ahead...",
+								"2"
+							]
+						},
+						{
+							"MessageName":"TriggerBattle",
+							"Args":[
+								"BossBattle",
+								"Ruins Battle",
+								"Thanatos"
 							]
 						},
 						{					

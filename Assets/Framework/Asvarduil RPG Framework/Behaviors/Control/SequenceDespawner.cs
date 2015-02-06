@@ -15,7 +15,7 @@ public class SequenceDespawner : MonoBehaviour
 
 	#region Engine Hooks
 
-	public void Start()
+	public void Awake()
 	{
 		_sequenceManager = SequenceManager.Instance;
 
