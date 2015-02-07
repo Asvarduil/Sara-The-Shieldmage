@@ -305,7 +305,7 @@
 				},
 				{
 					"Name":"ATB Speed",
-					"Value":6,
+					"Value":7,
 					"FixedModifier":0,
 					"ScalingModifier":1.0
 				},
