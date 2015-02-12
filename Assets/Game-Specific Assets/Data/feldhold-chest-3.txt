@@ -12,7 +12,7 @@
 				{
 					"ID":0,
 					"Speaker":"",
-					"Dialogue":"You found 150 Saphirium!",
+					"Dialogue":"You found the Feldhold Shard of the Ancile!",
 					"Options":[
 						{ 
 							"Text":"Continue", 
@@ -28,16 +28,36 @@
 							]
 						},
 						{
+							"MessageName":"UpdateQuest",
+							"Args":[
+								"The Feldhold Shard",
+								"You found the Feldhold Ancile Shard.",
+								"2"
+							]
+						},
+						{
 							"MessageName":"GainItem",
 							"Args":[
-								"Saphirium",
-								150
+								"Feldhold Shard",
+								1
 							]
 						}
 					]
 				},
 				{
 					"ID":1,
+					"Speaker":"",
+					"Dialogue":"Find the other Ancile Shards, so you can stop Rosflugel!",
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":2
+						}
+					],
+					"DialogueEvents":[]
+				},
+				{
+					"ID":2,
 					"Speaker":"",
 					"Dialogue":"",
 					"Options":[],

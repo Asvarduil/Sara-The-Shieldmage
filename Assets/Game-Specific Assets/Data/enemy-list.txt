@@ -281,7 +281,7 @@
 			"Stats":[
 				{
 					"Name":"Attack",
-					"Value":4,
+					"Value":5,
 					"FixedModifier":0,
 					"ScalingModifier":1.0
 				},

@@ -86,6 +86,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\TreasureEntity.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\DialogueController.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\PauseController.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\TitleController.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ATBBitPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\CommandPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ControlsPresenter.cs" />
@@ -105,6 +106,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\QuestPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\SettingsPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\TargetingPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\TitlePresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\VictoryPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\AbilityDatabase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleEntity.cs" />
@@ -191,7 +193,6 @@
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-tonic-chest.txt" />
      <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-3.txt" />
      <None Include="Assets\Framework\Asvarduil Disco Blocks\Shaders\Tinted Unlit.shader" />
-     <None Include="Assets\Game-Specific Assets\Data\feldhold-trigger-2.txt" />
      <None Include="Assets\Game-Specific Assets\Data\feldhold-trigger-1.txt" />
      <None Include="Assets\Game-Specific Assets\Shaders\Particle-Additive-Backculled.shader" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-branches.txt" />
