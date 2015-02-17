@@ -10,6 +10,7 @@ public class TransitionManager : ManagerBase<TransitionManager>
 	public SceneState OriginalState;
 	public SceneState TargetState;
 
+    private string _currentSceneName;
 	private string _targetSceneName;
 
 	#endregion Variables / Properties
@@ -38,22 +39,46 @@ public class TransitionManager : ManagerBase<TransitionManager>
 			_targetSceneName = TargetState.SceneName;
 		}
 
-        ControlManager.Instance.RadiateSuspendCommand();
         StartCoroutine(SceneChangeProcess());
 	}
 
 	private IEnumerator SceneChangeProcess()
 	{
+        ControlManager.Instance.RadiateSuspendCommand();
+        _currentSceneName = Application.loadedLevelName;
+
         Fader fader = FindObjectOfType<Fader>();
 		fader.FadeOut(FadeRate);
 
-        Maestro maestro = Maestro.Instance;
-        maestro.FadeOut(FadeRate);
+        // If loading a different level, fade the music too.
+        if (_targetSceneName != _currentSceneName)
+        {
+            Maestro maestro = Maestro.Instance;
+            maestro.FadeOut(FadeRate);
+        }
 
+        // Wait for the fade...
 		while (!fader.ScreenHidden)
 			yield return 0;
-			
-		Application.LoadLevel(_targetSceneName);
+
+        // If loading a different level, load it.
+        if (_targetSceneName != _currentSceneName)
+        {
+            Application.LoadLevel(_targetSceneName);
+        }
+        // Otherwise, move the player.  Fade in and restore control once that's done.
+        else
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.transform.position = TargetState.Position;
+            player.transform.rotation = Quaternion.Euler(TargetState.Rotation);
+
+            fader.FadeIn(FadeRate);
+            while (!fader.ScreenShown)
+                yield return 0;
+
+            ControlManager.Instance.RadiateResumeCommand();
+        }
 	}
 
 	#endregion Methods
