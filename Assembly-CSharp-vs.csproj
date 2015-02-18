@@ -121,6 +121,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\TreasureManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\System\PersistentSingularObject.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\System\SaveFileAccess.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Utility\DoubleRemover.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\AsvarduilSpriteSystem.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\MeshCombiner.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\ScrollTexture.cs" />
