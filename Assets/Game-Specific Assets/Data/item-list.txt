@@ -120,6 +120,52 @@
 			"ConsumeEffects":[]
 		},
 		{
+			"Name":"Trenchward",
+			"Description":"A shield built for fighting in tunnels.",
+			"Value":150,
+			"ItemType":"Weapon",
+			"EquipmentEffects":[
+				{
+					"TargetStat":"Max HP",
+					"FixedEffect":4,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				},
+				{
+					"TargetStat":"Attack",
+					"FixedEffect":1,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				},
+				{
+					"TargetStat":"Magic",
+					"FixedEffect":1,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
+			"Name":"Fringeward",
+			"Description":"A shield built for frontline soldiers.",
+			"Value":150,
+			"ItemType":"Weapon",
+			"EquipmentEffects":[
+				{
+					"TargetStat":"Attack",
+					"FixedEffect":2,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				},
+				{
+					"TargetStat":"Magic",
+					"FixedEffect":2,
+					"ScalingEffect":1.0,
+					"EffectDuration":0
+				}
+			]
+		},
+		{
 			"Name":"Order Armor",
 			"Description":"Light armor worn by initiates of the Order of the Luminescent Shield.",			
 			"Value":25,
