@@ -1,23 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
-public class TitlePresenter : DebuggableBehavior
+public class TitlePresenter : UGUIPresenterBase
 {
-    #region Variables / Properties
-
-    //public Image TitlePane;
-    //public Button NewGameButton;
-    //public Button ContinueButton;
-    //public Button SettingsButton;
-
-    #endregion Variables / Properties
-
-    #region Hooks
-
-    public void PresentElements()
-    {
-
-    }
-
-    #endregion Hooks
 }

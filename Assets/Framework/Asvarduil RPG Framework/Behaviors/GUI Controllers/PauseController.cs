@@ -178,7 +178,7 @@ public class PauseController : ManagerBase<PauseController>
 		_items.SetVisibility(true);
 		
 		_equipment.SetVisibility(false);
-		_settings.SetVisibility(false);
+        _settings.PresentGUI(false);
         _quests.SetVisibility(false);
 		_magic.SetVisibility(false);
 	}
@@ -221,7 +221,7 @@ public class PauseController : ManagerBase<PauseController>
 		// Hide the other presenters...
 		_items.SetVisibility(false);
         _quests.SetVisibility(false);
-        _settings.SetVisibility(false);
+        _settings.PresentGUI(false);
 		_equipment.SetVisibility(false);
 	}
 
@@ -249,7 +249,7 @@ public class PauseController : ManagerBase<PauseController>
 		_magic.SetVisibility(false);
         _quests.SetVisibility(false);
 		_member.SetVisibility(false);
-		_settings.SetVisibility(false);
+        _settings.PresentGUI(false);
 		_equipment.SetVisibility(false);
 		_presenter.SetVisibility(false);
 		_memberSelect.SetVisibility(false);
@@ -269,7 +269,7 @@ public class PauseController : ManagerBase<PauseController>
         _quests.SetVisibility(false);
 		_items.SetVisibility(false);
 		_magic.SetVisibility(false);
-		_settings.SetVisibility(false);
+        _settings.PresentGUI(false);
 	}
 
     public void OpenQuests()
@@ -280,7 +280,7 @@ public class PauseController : ManagerBase<PauseController>
         _items.SetVisibility(false);
         _magic.SetVisibility(false);
         _member.SetVisibility(false);
-        _settings.SetVisibility(false);
+        _settings.PresentGUI(false);
         _equipment.SetVisibility(false);
         _interface.SetVisibility(false);
         _memberSelect.SetVisibility(false);
@@ -290,7 +290,7 @@ public class PauseController : ManagerBase<PauseController>
 	public void OpenSettings()
 	{
 		DebugMessage("Opening settings menu from game object: " + gameObject.name);
-		_settings.SetVisibility(true);
+        _settings.PresentGUI(true);
 
 		// Hide everything else...
 		_items.SetVisibility(false);

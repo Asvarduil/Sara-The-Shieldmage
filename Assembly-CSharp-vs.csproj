@@ -66,6 +66,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\ManagerBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\PresenterBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\ResourceBitPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\UGUIPresenterBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\CameraFreezeTrigger.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\CameraTrigger.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\Fader.cs" />
@@ -89,6 +90,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\TitleController.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ATBBitPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\CommandPresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ContinuePresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ControlsPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DefeatPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DialoguePresenter.cs" />
