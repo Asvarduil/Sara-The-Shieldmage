@@ -25,6 +25,7 @@ public class TitleController : ManagerBase<TitleController>
     public void PresentTitleScreen()
     {
         _title.PresentGUI(true);
+
         _continue.PresentGUI(false);
         _settings.PresentGUI(false);
     }
@@ -43,7 +44,6 @@ public class TitleController : ManagerBase<TitleController>
 
         _title.PresentGUI(false);
         _continue.PresentGUI(false);
-
     }
 
     #endregion Hooks
