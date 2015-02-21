@@ -25,9 +25,9 @@ public class PauseController : ManagerBase<PauseController>
 	private PausePresenter _presenter;
 	private InventoryPresenter _items;
 	private SettingsPresenter _settings;
-	private MemberStatPresenter _member;
-	private EquipmentPresenter _equipment;
-	private MemberSelectPresenter _memberSelect;
+    private StatPresenter _stats;
+	private EquippedItemsPresenter _equipment;
+    private SelectMemberPresenter _selectMember;
 
 	private PartyManager _party;
 	private ControlManager _controls;
@@ -55,9 +55,9 @@ public class PauseController : ManagerBase<PauseController>
 		_interface = GetComponentInChildren<PauseInterface>();
 		_presenter = GetComponentInChildren<PausePresenter>();
 		_settings = GetComponentInChildren<SettingsPresenter>();
-		_member = GetComponentInChildren<MemberStatPresenter>();
-		_equipment = GetComponentInChildren<EquipmentPresenter>();
-		_memberSelect = GetComponentInChildren<MemberSelectPresenter>();
+		_stats = GetComponentInChildren<StatPresenter>();
+		_equipment = GetComponentInChildren<EquippedItemsPresenter>();
+		_selectMember = GetComponentInChildren<SelectMemberPresenter>();
 
 		_party = PartyManager.Instance;
 		_controls = ControlManager.Instance;
@@ -135,19 +135,19 @@ public class PauseController : ManagerBase<PauseController>
 
 	public void PrepMemberStatPresenter()
 	{
-		_member.ReloadCharacterStats(CurrentPartyMember);
+		_stats.ReloadCharacterStats(CurrentPartyMember);
 	}
 
 	public void PrepMemberSelectPresenter()
 	{
-		_memberSelect.UpdateMemberName(CurrentPartyMember);
-		_memberSelect.SetButtonVisibility(_party.Characters.Count > 1);
+		_selectMember.UpdateMemberName(CurrentPartyMember);
+		_selectMember.PresentButtons(_party.Characters.Count > 1);
 	}
 
 	public void PrepEquipmentPresenter()
 	{
 		PlayableCharacter character = CurrentPartyMember;
-		_member.ReloadCharacterStats(character);
+		_stats.ReloadCharacterStats(character);
 		_equipment.ReloadCharacterEquipment(character);
 		
 		bool hasWeapons = _inventory.ActiveInventory.HasItemsOfType(ItemType.Weapon);
@@ -172,12 +172,12 @@ public class PauseController : ManagerBase<PauseController>
 
 	public void PresentItemInterface()
 	{
-		_memberSelect.SetButtonVisibility(_party.Characters.Count > 1);
-		_memberSelect.SetVisibility(true);
-		_member.SetVisibility(true);
+		_selectMember.PresentButtons(_party.Characters.Count > 1);
+        _selectMember.PresentGUI(true);
+		_stats.PresentGUI(true);
 		_items.SetVisibility(true);
 		
-		_equipment.SetVisibility(false);
+		_equipment.PresentGUI(false);
         _settings.PresentGUI(false);
         _quests.SetVisibility(false);
 		_magic.SetVisibility(false);
@@ -222,7 +222,7 @@ public class PauseController : ManagerBase<PauseController>
 		_items.SetVisibility(false);
         _quests.SetVisibility(false);
         _settings.PresentGUI(false);
-		_equipment.SetVisibility(false);
+		_equipment.PresentGUI(false);
 	}
 
 	private void PrepMagicPresenter()
@@ -248,23 +248,23 @@ public class PauseController : ManagerBase<PauseController>
 		_items.SetVisibility(false);
 		_magic.SetVisibility(false);
         _quests.SetVisibility(false);
-		_member.SetVisibility(false);
+		_stats.PresentGUI(false);
         _settings.PresentGUI(false);
-		_equipment.SetVisibility(false);
+		_equipment.PresentGUI(false);
 		_presenter.SetVisibility(false);
-		_memberSelect.SetVisibility(false);
-		_memberSelect.SetButtonVisibility(false);
+        _selectMember.PresentGUI(false);
+		_selectMember.PresentButtons(false);
 	}
 
 	public void OpenEquipment()
 	{
 		DebugMessage("Opening stats and equipment...");
 
-		_equipment.SetVisibility(true);
+		_equipment.PresentGUI(true);
 		PrepEquipmentPresenter();
 
-		_memberSelect.SetVisibility(true);
-		_member.SetVisibility(true);
+		_selectMember.PresentGUI(true);
+		_stats.PresentGUI(true);
 		_presenter.SetVisibility(true);
         _quests.SetVisibility(false);
 		_items.SetVisibility(false);
@@ -279,12 +279,12 @@ public class PauseController : ManagerBase<PauseController>
 
         _items.SetVisibility(false);
         _magic.SetVisibility(false);
-        _member.SetVisibility(false);
+        _stats.PresentGUI(false);
         _settings.PresentGUI(false);
-        _equipment.SetVisibility(false);
+        _equipment.PresentGUI(false);
         _interface.SetVisibility(false);
-        _memberSelect.SetVisibility(false);
-        _memberSelect.SetButtonVisibility(false);
+        _selectMember.PresentGUI(false);
+        _selectMember.PresentButtons(false);
     }
 
 	public void OpenSettings()
@@ -295,13 +295,13 @@ public class PauseController : ManagerBase<PauseController>
 		// Hide everything else...
 		_items.SetVisibility(false);
 		_magic.SetVisibility(false);
-		_member.SetVisibility(false);
+		_stats.PresentGUI(false);
         _quests.SetVisibility(false);
-		_equipment.SetVisibility(false);
+		_equipment.PresentGUI(false);
 		_interface.SetVisibility(false);
         _presenter.SetVisibility(false);
-		_memberSelect.SetVisibility(false);
-        _memberSelect.SetButtonVisibility(false);
+		_selectMember.PresentGUI(false);
+        _selectMember.PresentButtons(false);
 	}
 
 	public void EquipItem(InventoryItem item)
@@ -345,7 +345,7 @@ public class PauseController : ManagerBase<PauseController>
 		}
 
 		_inventory.LoseItem(item);
-		_member.ReloadCharacterStats(character);
+		_stats.ReloadCharacterStats(character);
 		OpenEquipment();
 	}
 
@@ -358,7 +358,7 @@ public class PauseController : ManagerBase<PauseController>
 			case ItemType.Consumable:
 				character.ApplyItem(item);
 				_inventory.LoseItem(item);
-				_member.ReloadCharacterStats(character);
+				_stats.ReloadCharacterStats(character);
 
 				if(! item.IsAvailable)
 				{
@@ -390,7 +390,7 @@ public class PauseController : ManagerBase<PauseController>
 			CurrentPartyMemberIndex = 0;
 		}
 
-		_memberSelect.UpdateMemberName(CurrentPartyMember);
+		_selectMember.UpdateMemberName(CurrentPartyMember);
         PrepMemberStatPresenter();
         PrepMagicPresenter();
         PrepEquipmentPresenter();

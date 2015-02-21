@@ -94,19 +94,26 @@ public class UGUIPresenterBase : DebuggableBehavior
         }
     }
 
+    public void ActivateButton(Button button, bool isActive)
+    {
+        DebugMessage("Turning button " + button.gameObject.name + " " + (isActive ? "on" : "off"));
+
+        button.interactable = isActive;
+        button.enabled = isActive;
+
+        Text childText = button.GetComponentInChildren<Text>();
+        if (childText == null)
+            return;
+
+        childText.CrossFadeAlpha(DetermineOpacity(isActive), FadeRate, false);
+    }
+
     protected void ActivateControls(bool isActive)
     {
         for (int i = 0; i < _buttons.Count; i++)
         {
             Button current = _buttons[i];
-            DebugMessage("Turning button " + current.gameObject.name + " " + (isActive ? "on" : "off"));
-            
-            current.interactable = isActive;
-            current.enabled = isActive;
-
-            // Hide child text, too!
-            Text childText = current.GetComponentInChildren<Text>();
-            childText.CrossFadeAlpha(DetermineOpacity(isActive), FadeRate, false);
+            ActivateButton(current, isActive);
         }
 
         for (int i = 0; i < _toggles.Count; i++)
