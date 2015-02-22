@@ -128,11 +128,7 @@ public class UGUIPresenterBase : DebuggableBehavior
         Image image = button.GetComponent<Image>();
         image.enabled = isActive;
 
-        Text childText = button.GetComponentInChildren<Text>();
-        if (childText == null)
-            return;
-
-        childText.enabled = isActive;
+        HideChildText(button, isActive);
     }
 
     public void ActivateSlider(Slider slider, bool isActive)
@@ -142,9 +138,7 @@ public class UGUIPresenterBase : DebuggableBehavior
         slider.interactable = isActive;
         slider.enabled = isActive;
 
-        // Hide child text, too!
-        Text childText = slider.GetComponentInChildren<Text>();
-        childText.enabled = isActive;
+        HideChildText(slider, isActive);
     }
 
     public void ActivateToggle(Toggle toggle, bool isActive)
@@ -154,8 +148,15 @@ public class UGUIPresenterBase : DebuggableBehavior
         toggle.interactable = isActive;
         toggle.enabled = isActive;
 
-        // Hide child text, too!
-        Text childText = toggle.GetComponentInChildren<Text>();
+        HideChildText(toggle, isActive);
+    }
+
+    protected void HideChildText(Selectable component, bool isActive)
+    {
+        Text childText = component.GetComponentInChildren<Text>();
+        if (childText == null)
+            return;
+
         childText.enabled = isActive;
     }
 

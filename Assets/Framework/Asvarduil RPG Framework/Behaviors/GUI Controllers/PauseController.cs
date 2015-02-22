@@ -19,11 +19,12 @@ public class PauseController : ManagerBase<PauseController>
     private ActiveQuestPresenter _quests;
 	private PauseInterface _interface;
 	private PauseMenuPresenter _presenter;
-	private InventoryPresenter _items;
+	private PartyInventoryPresenter _items;
 	private SettingsPresenter _settings;
     private StatPresenter _stats;
 	private EquippedItemsPresenter _equipment;
     private SelectMemberPresenter _selectMember;
+    private SelectedItemPresenter _selectedItem;
 
 	private PartyManager _party;
 	private ControlManager _controls;
@@ -50,7 +51,8 @@ public class PauseController : ManagerBase<PauseController>
         _selectMember = GetComponentInChildren<SelectMemberPresenter>();
         _stats = GetComponentInChildren<StatPresenter>();
         _equipment = GetComponentInChildren<EquippedItemsPresenter>();
-        _items = GetComponentInChildren<InventoryPresenter>();
+        _items = GetComponentInChildren<PartyInventoryPresenter>();
+        _selectedItem = GetComponentInChildren<SelectedItemPresenter>();
         _magic = GetComponentInChildren<MemberAbilityPresenter>();
         _quests = GetComponentInChildren<ActiveQuestPresenter>();
 		_settings = GetComponentInChildren<SettingsPresenter>();
@@ -70,6 +72,12 @@ public class PauseController : ManagerBase<PauseController>
 
 		if(_equipment == null)
 			DebugMessage("Could not find an Equipment Presenter in the children of " + gameObject.name + "!", LogLevel.Warning);
+
+        if (_items == null)
+            DebugMessage("Could not find an Inventory Presenter in the children of " + gameObject.name + "!", LogLevel.Warning);
+
+        if (_selectedItem == null)
+            DebugMessage("Could not find a Selected Item Presenter in the children of " + gameObject.name + "!", LogLevel.Warning);
 
 		if(_magic == null)
 			DebugMessage("Could not find an Magic Presenter in the children of " + gameObject.name + "!", LogLevel.Warning);
@@ -130,15 +138,15 @@ public class PauseController : ManagerBase<PauseController>
 	public void OpenItems()
 	{
 		DebugMessage("Opening inventory from game object: " + gameObject.name);
+        PresentItemInterface();
 		PrepItemsPresenter();
-		PresentItemInterface();
 	}
 
 	public void OpenFilteredItems(ItemType itemType)
 	{
 		DebugMessage("Opening inventory of " + itemType + "s from game object: " + gameObject.name);
+        PresentItemInterface();
 		PrepFilteredItemsPresenter(itemType);
-		PresentItemInterface();
 	}
 
 	public void PresentItemInterface()
@@ -146,7 +154,8 @@ public class PauseController : ManagerBase<PauseController>
 		_selectMember.PresentButtons(_party.Characters.Count > 1);
         _selectMember.PresentGUI(true);
 		_stats.PresentGUI(true);
-		_items.SetVisibility(true);
+		_items.PresentGUI(true);
+        _selectedItem.PresentGUI(false);
 		
 		_equipment.PresentGUI(false);
         _settings.PresentGUI(false);
@@ -154,33 +163,27 @@ public class PauseController : ManagerBase<PauseController>
 		_magic.PresentGUI(false);
 	}
 
+    public void SelectItem(InventoryItem item)
+    {
+        _selectedItem.PresentGUI(true);
+        _selectedItem.LoadItem(item);
+    }
+
 	public void PrepItemsPresenter()
 	{
-		List<INamed> namedObjects = new List<INamed>();
-		foreach(INamed item in _inventory.ActiveInventory.Items)
-		{
-			namedObjects.Add((INamed) item);
-		}
-
-		DebugMessage("Prepped " + namedObjects.Count + " items for the inventory presenter...");
-		_items.LoadItems(namedObjects);
-		DebugMessage("Loaded " + _items.ItemGrid.DataElements.Count + " items.");
-		DebugMessage("The Inventory Presenter's skill grid has " + _items.ItemGrid.ButtonCount + " buttons.");
+		_items.LoadItems(_inventory.ActiveInventory.Items);
 	}
 
 	public void PrepFilteredItemsPresenter(ItemType itemType)
 	{
-		List<INamed> namedObjects = new List<INamed>();
+		List<InventoryItem> filteredItems = new List<InventoryItem>();
 		foreach(InventoryItem item in _inventory.ActiveInventory.Items)
 		{
 			if(item.ItemType == itemType)
-				namedObjects.Add((INamed) item);
+				filteredItems.Add(item);
 		}
 
-		DebugMessage("Prepped " + namedObjects.Count + " items for the inventory presenter...");
-		_items.LoadItems(namedObjects);
-		DebugMessage("Loaded " + _items.ItemGrid.DataElements.Count + " items.");
-		DebugMessage("The Inventory Presenter's skill grid has " + _items.ItemGrid.ButtonCount + " buttons.");
+		_items.LoadItems(filteredItems);
 	}
 
 	public void OpenMagic()
@@ -191,7 +194,8 @@ public class PauseController : ManagerBase<PauseController>
         _magic.PresentGUI(true);
 
 		// Hide the other presenters...
-		_items.SetVisibility(false);
+		_items.PresentGUI(false);
+        _selectedItem.PresentGUI(false);
         _quests.PresentGUI(false);
         _settings.PresentGUI(false);
 		_equipment.PresentGUI(false);
@@ -203,7 +207,8 @@ public class PauseController : ManagerBase<PauseController>
         _interface.PreparePauseInterface();
 
 		// Hide everything else...
-		_items.SetVisibility(false);
+		_items.PresentGUI(false);
+        _selectedItem.PresentGUI(false);
 		_magic.PresentGUI(false);
         _quests.PresentGUI(false);
 		_stats.PresentGUI(false);
@@ -225,7 +230,8 @@ public class PauseController : ManagerBase<PauseController>
 		_stats.PresentGUI(true);
 		_presenter.PresentGUI(true);
         _quests.PresentGUI(false);
-		_items.SetVisibility(false);
+		_items.PresentGUI(false);
+        _selectedItem.PresentGUI(false);
 		_magic.PresentGUI(false);
         _settings.PresentGUI(false);
 	}
@@ -236,7 +242,8 @@ public class PauseController : ManagerBase<PauseController>
         _quests.ShowPresenter();
         _quests.PresentGUI(true);
 
-        _items.SetVisibility(false);
+        _items.PresentGUI(false);
+        _selectedItem.PresentGUI(false);
         _magic.PresentGUI(false);
         _stats.PresentGUI(false);
         _settings.PresentGUI(false);
@@ -252,7 +259,8 @@ public class PauseController : ManagerBase<PauseController>
         _settings.PresentGUI(true);
 
 		// Hide everything else...
-		_items.SetVisibility(false);
+		_items.PresentGUI(false);
+        _selectedItem.PresentGUI(false);
 		_magic.PresentGUI(false);
 		_stats.PresentGUI(false);
         _quests.PresentGUI(false);
@@ -320,11 +328,11 @@ public class PauseController : ManagerBase<PauseController>
 
 				if(! item.IsAvailable)
 				{
-					_items.HideCommandBar();
+					_selectedItem.PresentGUI(false);
 				}
 				else
 				{
-					_items.LoadItemInCommandBar(item);
+					_selectedItem.LoadItem(item);
 				}	
 
 				PrepItemsPresenter();

@@ -180,8 +180,10 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\ActiveQuestPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\EquippedItemsPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\MemberAbilityPresenter.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\PartyInventoryPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\PauseMenuPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\SelectMemberPresenter.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\SelectedItemPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\SettingsPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\StatPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\TitlePresenter.cs" />

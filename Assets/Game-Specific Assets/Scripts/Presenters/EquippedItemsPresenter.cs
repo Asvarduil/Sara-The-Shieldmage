@@ -14,9 +14,18 @@ public class EquippedItemsPresenter : UGUIPresenterBase
     public Text ArmorLabel;
     public Text AccessoryLabel;
 
+    private PauseController _controller;
+
     #endregion Variables / Properties
 
     #region Hooks
+
+    public override void Start()
+    {
+        base.Start();
+
+        _controller = PauseController.Instance;
+    }
 
     #endregion Hooks
 
@@ -34,6 +43,21 @@ public class EquippedItemsPresenter : UGUIPresenterBase
         ReloadWeaponStats(character.Weapon);
         ReloadArmorStats(character.Armor);
         ReloadAccessoryStats(character.Accessory);
+    }
+
+    public void SwapWeapon()
+    {
+        _controller.OpenFilteredItems(ItemType.Weapon);
+    }
+
+    public void SwapArmor()
+    {
+        _controller.OpenFilteredItems(ItemType.Armor);
+    }
+
+    public void SwapAccessory()
+    {
+        _controller.OpenFilteredItems(ItemType.Accessory);
     }
 
     public void ReloadWeaponStats(InventoryItem weapon)
