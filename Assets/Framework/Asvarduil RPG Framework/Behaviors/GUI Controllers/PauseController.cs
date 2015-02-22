@@ -15,14 +15,10 @@ public class PauseController : ManagerBase<PauseController>
 	public int LastArmorPosition = 0;
 	public int LastAccessoryPosition = 0;
 
-    private bool _pauseShown = false;
-    private float _lastToggle;
-    private float _toggleLockout = 0.5f;
-
-	private MagicPresenter _magic;
-    private QuestPresenter _quests;
+	private MemberAbilityPresenter _magic;
+    private ActiveQuestPresenter _quests;
 	private PauseInterface _interface;
-	private PausePresenter _presenter;
+	private PauseMenuPresenter _presenter;
 	private InventoryPresenter _items;
 	private SettingsPresenter _settings;
     private StatPresenter _stats;
@@ -49,15 +45,15 @@ public class PauseController : ManagerBase<PauseController>
 
 	public void Start()
 	{
-        _magic = GetComponentInChildren<MagicPresenter>();
-        _quests = GetComponentInChildren<QuestPresenter>();
-		_items = GetComponentInChildren<InventoryPresenter>();
-		_interface = GetComponentInChildren<PauseInterface>();
-		_presenter = GetComponentInChildren<PausePresenter>();
+        _interface = GetComponentInChildren<PauseInterface>();
+        _presenter = GetComponentInChildren<PauseMenuPresenter>();
+        _selectMember = GetComponentInChildren<SelectMemberPresenter>();
+        _stats = GetComponentInChildren<StatPresenter>();
+        _equipment = GetComponentInChildren<EquippedItemsPresenter>();
+        _items = GetComponentInChildren<InventoryPresenter>();
+        _magic = GetComponentInChildren<MemberAbilityPresenter>();
+        _quests = GetComponentInChildren<ActiveQuestPresenter>();
 		_settings = GetComponentInChildren<SettingsPresenter>();
-		_stats = GetComponentInChildren<StatPresenter>();
-		_equipment = GetComponentInChildren<EquippedItemsPresenter>();
-		_selectMember = GetComponentInChildren<SelectMemberPresenter>();
 
 		_party = PartyManager.Instance;
 		_controls = ControlManager.Instance;
@@ -83,25 +79,6 @@ public class PauseController : ManagerBase<PauseController>
 
 	#region Methods
 
-    public void TogglePause()
-    {
-        if (Time.time < _lastToggle + _toggleLockout)
-            return;
-
-        _lastToggle = Time.time;
-
-        if(! _pauseShown)
-        {
-            Pause();
-            _pauseShown = true;
-        }
-        else
-        {
-            Unpause();
-            _pauseShown = false;
-        }
-    }
-
 	public void Pause()
 	{
 		OpenPauseMenu();
@@ -114,11 +91,6 @@ public class PauseController : ManagerBase<PauseController>
 		_controls.RadiateResumeCommand();
 	}
 
-	public void PresentInterface(bool isVisible)
-	{
-		_interface.SetVisibility(isVisible);
-	}
-
 	public void OpenPauseMenu()
 	{
 		DebugMessage("Opening pause menu from game object: " + gameObject.name);
@@ -127,8 +99,7 @@ public class PauseController : ManagerBase<PauseController>
 		PrepMemberStatPresenter();
 		PrepMemberSelectPresenter();
 
-		_interface.SetVisibility(false);
-		_presenter.SetVisibility(true);
+		_presenter.PresentGUI(true);
 
 		OpenEquipment();
 	}
@@ -179,8 +150,8 @@ public class PauseController : ManagerBase<PauseController>
 		
 		_equipment.PresentGUI(false);
         _settings.PresentGUI(false);
-        _quests.SetVisibility(false);
-		_magic.SetVisibility(false);
+        _quests.PresentGUI(false);
+		_magic.PresentGUI(false);
 	}
 
 	public void PrepItemsPresenter()
@@ -215,43 +186,30 @@ public class PauseController : ManagerBase<PauseController>
 	public void OpenMagic()
 	{
 		DebugMessage("Opening magic from game object: " + gameObject.name);
-		PrepMagicPresenter();
-		_magic.SetVisibility(true);
+        _magic.LoadAbilities(CurrentPartyMember.Abilities);
+        _magic.LoadAbilityAtIndex(0);
+        _magic.PresentGUI(true);
 
 		// Hide the other presenters...
 		_items.SetVisibility(false);
-        _quests.SetVisibility(false);
+        _quests.PresentGUI(false);
         _settings.PresentGUI(false);
 		_equipment.PresentGUI(false);
-	}
-
-	private void PrepMagicPresenter()
-	{
-		List<INamed> namedSkills = new List<INamed>();
-		foreach(Ability ability in CurrentPartyMember.Abilities)
-		{
-			namedSkills.Add((INamed) ability);
-		}
-
-		DebugMessage("Prepped " + namedSkills.Count + " skills for the Ability Presenter!");
-		_magic.LoadSkills(namedSkills);
-		DebugMessage("Loaded " + _magic.Skills.DataElements.Count + " abilities.");
-		DebugMessage("The Ability Presenter's skill grid has " + _magic.Skills.ButtonCount + " buttons.");
 	}
 
 	public void ClosePauseMenu()
 	{
 		DebugMessage("Closing pause menu from game object: " + gameObject.name);
-		_interface.SetVisibility(true);
+        _interface.PreparePauseInterface();
 
 		// Hide everything else...
 		_items.SetVisibility(false);
-		_magic.SetVisibility(false);
-        _quests.SetVisibility(false);
+		_magic.PresentGUI(false);
+        _quests.PresentGUI(false);
 		_stats.PresentGUI(false);
         _settings.PresentGUI(false);
 		_equipment.PresentGUI(false);
-		_presenter.SetVisibility(false);
+		_presenter.PresentGUI(false);
         _selectMember.PresentGUI(false);
 		_selectMember.PresentButtons(false);
 	}
@@ -265,10 +223,10 @@ public class PauseController : ManagerBase<PauseController>
 
 		_selectMember.PresentGUI(true);
 		_stats.PresentGUI(true);
-		_presenter.SetVisibility(true);
-        _quests.SetVisibility(false);
+		_presenter.PresentGUI(true);
+        _quests.PresentGUI(false);
 		_items.SetVisibility(false);
-		_magic.SetVisibility(false);
+		_magic.PresentGUI(false);
         _settings.PresentGUI(false);
 	}
 
@@ -276,13 +234,14 @@ public class PauseController : ManagerBase<PauseController>
     {
         DebugMessage("Opening quests menu from game object: " + gameObject.name);
         _quests.ShowPresenter();
+        _quests.PresentGUI(true);
 
         _items.SetVisibility(false);
-        _magic.SetVisibility(false);
+        _magic.PresentGUI(false);
         _stats.PresentGUI(false);
         _settings.PresentGUI(false);
         _equipment.PresentGUI(false);
-        _interface.SetVisibility(false);
+        _presenter.PresentGUI(false);
         _selectMember.PresentGUI(false);
         _selectMember.PresentButtons(false);
     }
@@ -294,12 +253,11 @@ public class PauseController : ManagerBase<PauseController>
 
 		// Hide everything else...
 		_items.SetVisibility(false);
-		_magic.SetVisibility(false);
+		_magic.PresentGUI(false);
 		_stats.PresentGUI(false);
-        _quests.SetVisibility(false);
+        _quests.PresentGUI(false);
 		_equipment.PresentGUI(false);
-		_interface.SetVisibility(false);
-        _presenter.SetVisibility(false);
+        _presenter.PresentGUI(false);
 		_selectMember.PresentGUI(false);
         _selectMember.PresentButtons(false);
 	}
@@ -392,9 +350,23 @@ public class PauseController : ManagerBase<PauseController>
 
 		_selectMember.UpdateMemberName(CurrentPartyMember);
         PrepMemberStatPresenter();
-        PrepMagicPresenter();
+        _magic.LoadAbilities(CurrentPartyMember.Abilities);
+        _magic.LoadAbilityAtIndex(0);
         PrepEquipmentPresenter();
 	}
+
+    public Ability GetAbilityAtIndexOnCurrentMember(int index)
+    {
+        try
+        {
+            Ability ability = CurrentPartyMember.Abilities[index];
+            return ability;
+        }
+        catch
+        {
+            return null;
+        }
+    }
 
 	#endregion Methods
 }

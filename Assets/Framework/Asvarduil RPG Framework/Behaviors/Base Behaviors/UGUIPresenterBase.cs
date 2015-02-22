@@ -15,6 +15,8 @@ public class UGUIPresenterBase : DebuggableBehavior
     protected Maestro _maestro;
 
     protected List<GameObject> _children = new List<GameObject>();
+    protected List<Text> _labels = new List<Text>();
+    protected List<Image> _images = new List<Image>();
     protected List<Button> _buttons = new List<Button>();
     protected List<Toggle> _toggles = new List<Toggle>();
     protected List<Slider> _sliders = new List<Slider>();
@@ -31,11 +33,19 @@ public class UGUIPresenterBase : DebuggableBehavior
         for (int i = 0; i < childCount; i++)
         {
             Transform current = transform.GetChild(i);
+            Text text = current.GetComponent<Text>();
+            Image image = current.GetComponent<Image>();
             Button button = current.GetComponent<Button>();
             Toggle toggle = current.GetComponent<Toggle>();
             Slider slider = current.GetComponent<Slider>();
 
             _children.Add(current.gameObject);
+
+            if (text != null)
+                _labels.Add(text);
+
+            if (image != null)
+                _images.Add(image);
 
             if (button != null)
                 _buttons.Add(button);
@@ -55,8 +65,6 @@ public class UGUIPresenterBase : DebuggableBehavior
     public virtual void PresentGUI(bool isActive)
     {
         DebugMessage((isActive ? "Presenting " : "Hiding ") + gameObject.name);
-
-        ActivateControls(isActive);
         StartCoroutine(FadeCanvasGroup(isActive));
     }
 
@@ -76,6 +84,7 @@ public class UGUIPresenterBase : DebuggableBehavior
         float actualThreshold = isActive ? 1 - FadeThreshold : FadeThreshold;
         if (isActive)
         {
+            ActivateControls(isActive);
             while (group.alpha < actualThreshold)
             {
                 group.alpha = Mathf.Lerp(group.alpha, DetermineOpacity(isActive), FadeRate);
@@ -91,7 +100,22 @@ public class UGUIPresenterBase : DebuggableBehavior
                 yield return 0;
             }
             group.alpha = 0.0f;
+            ActivateControls(isActive);
         }
+    }
+
+    public void ActivateText(Text label, bool isActive)
+    {
+        DebugMessage("Turning image " + label.gameObject.name + " " + (isActive ? "on" : "off"));
+
+        label.enabled = isActive;
+    }
+
+    public void ActivateImage(Image image, bool isActive)
+    {
+        DebugMessage("Turning image " + image.gameObject.name + " " + (isActive ? "on" : "off"));
+
+        image.enabled = isActive;
     }
 
     public void ActivateButton(Button button, bool isActive)
@@ -101,15 +125,54 @@ public class UGUIPresenterBase : DebuggableBehavior
         button.interactable = isActive;
         button.enabled = isActive;
 
+        Image image = button.GetComponent<Image>();
+        image.enabled = isActive;
+
         Text childText = button.GetComponentInChildren<Text>();
         if (childText == null)
             return;
 
-        childText.CrossFadeAlpha(DetermineOpacity(isActive), FadeRate, false);
+        childText.enabled = isActive;
+    }
+
+    public void ActivateSlider(Slider slider, bool isActive)
+    {
+        DebugMessage("Turning slider " + slider.gameObject.name + " " + (isActive ? "on" : "off"));
+
+        slider.interactable = isActive;
+        slider.enabled = isActive;
+
+        // Hide child text, too!
+        Text childText = slider.GetComponentInChildren<Text>();
+        childText.enabled = isActive;
+    }
+
+    public void ActivateToggle(Toggle toggle, bool isActive)
+    {
+        DebugMessage("Turning toggle " + toggle.gameObject.name + " " + (isActive ? "on" : "off"));
+
+        toggle.interactable = isActive;
+        toggle.enabled = isActive;
+
+        // Hide child text, too!
+        Text childText = toggle.GetComponentInChildren<Text>();
+        childText.enabled = isActive;
     }
 
     protected void ActivateControls(bool isActive)
     {
+        for (int i = 0; i < _labels.Count; i++)
+        {
+            Text current = _labels[i];
+            ActivateText(current, isActive);
+        }
+
+        for (int i = 0; i < _images.Count; i++)
+        {
+            Image current = _images[i];
+            ActivateImage(current, isActive);
+        }
+
         for (int i = 0; i < _buttons.Count; i++)
         {
             Button current = _buttons[i];
@@ -119,27 +182,13 @@ public class UGUIPresenterBase : DebuggableBehavior
         for (int i = 0; i < _toggles.Count; i++)
         {
             Toggle current = _toggles[i];
-            DebugMessage("Turning toggle " + current.gameObject.name + " " + (isActive ? "on" : "off"));
-
-            current.interactable = isActive;
-            current.enabled = isActive;
-
-            // Hide child text, too!
-            Text childText = current.GetComponentInChildren<Text>();
-            childText.CrossFadeAlpha(DetermineOpacity(isActive), FadeRate, false);
+            ActivateToggle(current, isActive);
         }
 
         for (int i = 0; i < _sliders.Count; i++)
         {
             Slider current = _sliders[i];
-            DebugMessage("Turning slider " + current.gameObject.name + " " + (isActive ? "on" : "off"));
-
-            current.interactable = isActive;
-            current.enabled = isActive;
-
-            // Hide child text, too!
-            Text childText = current.GetComponentInChildren<Text>();
-            childText.CrossFadeAlpha(DetermineOpacity(isActive), FadeRate, false);
+            ActivateSlider(current, isActive);
         }
     }
 

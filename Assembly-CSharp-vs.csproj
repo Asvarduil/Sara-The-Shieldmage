@@ -100,7 +100,6 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\LootPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\MagicPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PauseInterface.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PausePresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PlayerInformationPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\QuestPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\TargetingPresenter.cs" />
@@ -178,7 +177,10 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\HealerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\SequenceAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\PuzzleDoorObject.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\ActiveQuestPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\EquippedItemsPresenter.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\MemberAbilityPresenter.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\PauseMenuPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\SelectMemberPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\SettingsPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\StatPresenter.cs" />

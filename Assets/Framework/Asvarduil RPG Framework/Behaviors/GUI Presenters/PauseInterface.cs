@@ -1,22 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PauseInterface : PresenterBase
+public class PauseInterface : DebuggableBehavior
 {
 	#region Variables / Properties
-	
-	public AsvarduilButton PauseButton;
 
+    public string PauseAxis = "Pause";
+    public float PauseLockout = 0.1f;
+    public AudioClip ButtonSound;
+
+    private Maestro _maestro;
     private ControlManager _controls;
 	private PauseController _controller;
+
+    private bool _pauseShown = false;
+    private float _lastPause;
 
 	#endregion Variables / Properties
 
 	#region Engine Hooks
 
-	public override void Start()
+	public void Start()
 	{
-		base.Start();
+        _maestro = Maestro.Instance;
         _controls = ControlManager.Instance;
 		_controller = PauseController.Instance;
 
@@ -24,36 +30,29 @@ public class PauseInterface : PresenterBase
 			DebugMessage("Could not find a Pause Controller instance!", LogLevel.Warning);
 	}
 
+    public void Update()
+    {
+        if (_controls.GetAxisDown(PauseAxis)
+            && Time.time > _lastPause + PauseLockout
+            && !_pauseShown)
+        {
+            _maestro.PlayOneShot(ButtonSound);
+            _controller.Pause();
+
+            _lastPause = Time.time;
+            _pauseShown = true;
+        }
+    }
+
 	#endregion Engine Hooks
 
 	#region Methods
 
-	public override void SetVisibility(bool isVisible)
-	{
-		float opacity = DetermineOpacity(isVisible);
-
-		PauseButton.TargetTint.a = opacity;
-	}
-
-	public override void DrawMe()
-	{
-        if(_controls.GetAxisDown("Pause"))
-        {
-            _maestro.PlayOneShot(ButtonSound);
-            _controller.TogglePause();
-        }
-
-        //if(PauseButton.IsClicked())
-        //{
-        //    _maestro.PlayOneShot(ButtonSound);
-        //    _controller.Pause();
-        //}
-	}
-
-	public override void Tween()
-	{
-		PauseButton.Tween();
-	}
+    public void PreparePauseInterface()
+    {
+        _pauseShown = false;
+        _lastPause = Time.time;
+    }
 
 	#endregion Methods
 }
