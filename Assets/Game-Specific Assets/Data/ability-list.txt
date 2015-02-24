@@ -174,7 +174,7 @@
 		{
 			"Name":"Shield Bash",
 			"Description":"Sara strikes an enemy for low damage.",
-			"VisualEffect":"Attack (Basic)",
+			"VisualEffect":"Shield Bash",
 			"ATBCost":50,
 			"ActionAnimation":"Cast Spell",
 			"ReceiptAnimation":"Bad Effect",
@@ -198,7 +198,7 @@
 		{
 			"Name":"Mediguard",
 			"Description":"Sara shields an ally.  The shield regenerates some life over time.",
-			"VisualEffect":"",
+			"VisualEffect":"Mediguard",
 			"ATBCost":100,
 			"ActionAnimation":"Cast Spell",
 			"ReceiptAnimation":"Good Effect",

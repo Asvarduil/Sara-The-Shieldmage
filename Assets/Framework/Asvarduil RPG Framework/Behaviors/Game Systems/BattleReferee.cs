@@ -62,9 +62,9 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	private BattleManager _battleManager;
 	private TransitionManager _transitionManager;
 
-    private PlayerInformationPresenter _playerInfo;
-	private TargetingPresenter _targeting;
-	private CommandPresenter _command;
+    private BattleStatPresenter _playerInfo;
+	private BattleTargetPresenter _targeting;
+	private BattleCommandPresenter _command;
 	private VictoryPresenter _victory;
 	private DefeatPresenter _defeat;
 	private LootPresenter _loot;
@@ -94,9 +94,9 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		_loot = GetComponentInChildren<LootPresenter>();
 		_defeat = GetComponentInChildren<DefeatPresenter>();
 		_victory = GetComponentInChildren<VictoryPresenter>();
-		_command = GetComponentInChildren<CommandPresenter>();
-		_targeting = GetComponentInChildren<TargetingPresenter>();
-        _playerInfo = GetComponentInChildren<PlayerInformationPresenter>();
+		_command = GetComponentInChildren<BattleCommandPresenter>();
+		_targeting = GetComponentInChildren<BattleTargetPresenter>();
+        _playerInfo = GetComponentInChildren<BattleStatPresenter>();
 
 		_maestro.ChangeTunes(_battleManager.BattleTheme);
 		LoadPlayers();
@@ -139,6 +139,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		if (Players.Count == 0)
 			return;
 		
+        // For each player, spawn their battle piece, and enable their character display.
 		for (int i = 0; i < Players.Count; i++) 
 		{
 			PlayableCharacter player = Players[i];
@@ -157,6 +158,12 @@ public class BattleReferee : ManagerBase<BattleReferee>
             _playerInfo.BindCharacterDisplay(player, i);
             player.Health.OnHealthChanged = () => _playerInfo.UpdateHealth(player);
 		}
+
+        // Hide all unused presenters.
+        for (int i = _playerInfo.CharacterStatPresenters.Count - 1; i > Players.Count - 1; i--)
+        {
+            _playerInfo.HideCharacterDisplay(i);
+        }
 	}
 	
 	private void LoadEnemies()
@@ -359,7 +366,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
         }
 
         _commandOpen = false;
-        _command.SetVisibility(false);
+        _command.PresentGUI(false);
 
         return targets;
     }
