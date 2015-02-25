@@ -56,6 +56,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
 	private bool _commandOpen = false;
 
+    private Fader _fader;
 	private Maestro _maestro;
 	private EnemyDatabase _enemies;
 	private PartyManager _partyManager;
@@ -65,9 +66,8 @@ public class BattleReferee : ManagerBase<BattleReferee>
     private BattleStatPresenter _playerInfo;
 	private BattleTargetPresenter _targeting;
 	private BattleCommandPresenter _command;
-	private VictoryPresenter _victory;
-	private DefeatPresenter _defeat;
-	private LootPresenter _loot;
+	private BattleVictoryPresenter _victory;
+	private BattleLootPresenter _loot;
 
 	#endregion Variables / Properties
 
@@ -91,12 +91,11 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		_battleManager = BattleManager.Instance;
 		_transitionManager = TransitionManager.Instance;
 
-		_loot = GetComponentInChildren<LootPresenter>();
-		_defeat = GetComponentInChildren<DefeatPresenter>();
-		_victory = GetComponentInChildren<VictoryPresenter>();
+		_loot = GetComponentInChildren<BattleLootPresenter>();
+        _playerInfo = GetComponentInChildren<BattleStatPresenter>();
 		_command = GetComponentInChildren<BattleCommandPresenter>();
 		_targeting = GetComponentInChildren<BattleTargetPresenter>();
-        _playerInfo = GetComponentInChildren<BattleStatPresenter>();
+        _victory = GetComponentInChildren<BattleVictoryPresenter>();
 
 		_maestro.ChangeTunes(_battleManager.BattleTheme);
 		LoadPlayers();
@@ -454,10 +453,12 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	private void Victory()
 	{
         ClearBattleEffects();
+        _command.PresentGUI(false);
+        _targeting.PresentGUI(false);
 
         // TODO: Victory animations...
 		_maestro.ChangeTunes(VictoryTheme);
-		_victory.SetVisibility(true);
+        _victory.PresentGUI(true);
 	}
 
     private void ClearBattleEffects()
@@ -528,9 +529,22 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	
 	private void Defeat()
 	{
-		_maestro.ChangeTunes(GameOverTheme);
-		_defeat.SetVisibility(true);
+        _command.PresentGUI(false);
+        _targeting.PresentGUI(false);
+
+        StartCoroutine(FadeToTitle());
 	}
+
+    private IEnumerator FadeToTitle()
+    {
+        _fader = FindObjectOfType<Fader>();
+        _fader.FadeOut();
+
+        while (!_fader.ScreenHidden)
+            yield return 0;
+
+        Application.LoadLevel("Title");
+    }
 	
 	private void ReturnToTitleScreen()
 	{
