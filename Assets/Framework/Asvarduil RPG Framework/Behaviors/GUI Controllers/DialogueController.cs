@@ -47,8 +47,7 @@ public class DialogueController : ManagerBase<DialogueController>
 		TextIndex = 0;
 		TextContentCount = thread.TextContent.Count;
 
-		//_pauseController.PresentInterface(false);
-		_dialogueGUI.SetVisibility(true);
+		_dialogueGUI.PresentGUI(true);
 		UpdateGUI();
 	}
 
@@ -61,7 +60,7 @@ public class DialogueController : ManagerBase<DialogueController>
 		TextContentCount = 0;
 
 		_controlManager.RadiateResumeCommand();
-		_dialogueGUI.SetVisibility(false);
+		_dialogueGUI.PresentGUI(false);
 	}
 
 	public void AdvanceThread(int targetID)

@@ -92,7 +92,6 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\TitleController.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ContinuePresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ControlsPresenter.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DialoguePresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\EntityTextInterface.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PauseInterface.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\AbilityDatabase.cs" />
@@ -174,6 +173,7 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Battle System\BattleStatPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Battle System\BattleTargetPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Battle System\BattleVictoryPresenter.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\DialoguePresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Main Menu\ActiveQuestPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Main Menu\EquippedItemsPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Main Menu\MemberAbilityPresenter.cs" />
