@@ -12,7 +12,7 @@ public class DialogueController : ManagerBase<DialogueController>
 	public int TextContentCount = 0;
 
 	private ControlManager _controlManager;
-	//private PauseController _pauseController;
+    private InteractionPresenter _interact;
 	private DialoguePresenter _dialogueGUI;
 
 	#endregion Variables / Properties
@@ -22,13 +22,25 @@ public class DialogueController : ManagerBase<DialogueController>
 	public void Start()
 	{
 		_controlManager = ControlManager.Instance;
-		//_pauseController = PauseController.Instance;
+        _interact = GetComponentInChildren<InteractionPresenter>();
 		_dialogueGUI = GetComponentInChildren<DialoguePresenter>();
 	}
 
 	#endregion Engine Hooks
 
 	#region Methods
+
+    public void PrepareInteraction(string interactText, Action onInteract)
+    {
+        _interact.SetInteractText(interactText);
+        _interact.ReadyInteractEvent(onInteract);
+        _interact.PresentGUI(true);
+    }
+
+    public void ClearInteraction()
+    {
+        _interact.PresentGUI(false);
+    }
 
 	public void PresentEntityText(EntityText entityText)
 	{

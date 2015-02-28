@@ -1,53 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EntityTextInterface : PresenterBase, ISuspendable
+public class EntityTextInterface : DebuggableBehavior
 {
 	#region Variables / Properties
 
-	public bool CanActivate = false;
 	public string AffectedTag = "Player";
-	public AsvarduilButton InteractButton;
+    public string InteractText = "Talk";
 	
 	protected EntityText _entityText;
-	protected ControlManager _controlManager;
-	protected DialogueController _dialogueController;
+	protected ControlManager _controls;
+	protected DialogueController _controller;
 
 	#endregion Variables / Properties
 
 	#region Engine Hooks
 
-	public override void Start()
+	public virtual void Start()
 	{
-		base.Start();
-
 		_entityText = GetComponent<EntityText>();
-		_controlManager = ControlManager.Instance;
-		_dialogueController = DialogueController.Instance;
+		_controller = DialogueController.Instance;
 	}
 
-	public override void OnGUI()
-	{
-		if(! CanActivate)
-			return;
-
-		base.OnGUI();
-	}
-
-	public override void SetVisibility(bool isVisible)
-	{
-		float opacity = DetermineOpacity(isVisible);
-		InteractButton.TargetTint.a = opacity;
-
-		CanActivate = isVisible;
-	}
+    public virtual void OnInteraction()
+    {
+        _controller.PresentEntityText(_entityText);
+    }
 
 	public void OnTriggerEnter(Collider who)
 	{
 		if(who.tag != AffectedTag)
 			return;
 
-		SetVisibility(true);
+        _controller.PrepareInteraction(InteractText, () => OnInteraction());
 	}
 
 	public void OnTriggerExit(Collider who)
@@ -55,37 +40,7 @@ public class EntityTextInterface : PresenterBase, ISuspendable
 		if(who.tag != AffectedTag)
 			return;
 
-		SetVisibility(false);
-	}
-	
-	public override void DrawMe()
-	{
-		if(CanActivate
-           && (InteractButton.IsClicked()
-		       || _controlManager.GetAxisUp("Interact")))
-		{
-			_maestro.PlayOneShot(ButtonSound);
-
-			CanActivate = false;
-			SetVisibility(false);
-
-			_dialogueController.PresentEntityText(_entityText);
-		}
-	}
-
-	public override void Tween()
-	{
-		InteractButton.Tween();
-	}
-
-	public virtual void Suspend()
-	{
-		CanActivate = false;
-	}
-
-	public virtual void Resume()
-	{
-		CanActivate = true;
+        _controller.ClearInteraction();
 	}
 
 	#endregion Engine Hooks

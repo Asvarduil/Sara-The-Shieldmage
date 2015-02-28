@@ -93,6 +93,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ContinuePresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ControlsPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\EntityTextInterface.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\InteractionPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PauseInterface.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\AbilityDatabase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleEntity.cs" />
