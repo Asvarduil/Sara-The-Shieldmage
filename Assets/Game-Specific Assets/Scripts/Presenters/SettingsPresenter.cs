@@ -22,7 +22,7 @@ public class SettingsPresenter : UGUIPresenterBase
 
     #region Hooks
 
-    public void Start()
+    public override void Start()
     {
         base.Start();
 

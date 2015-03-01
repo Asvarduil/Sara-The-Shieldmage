@@ -9,7 +9,6 @@ public class InteractionPresenter : UGUIPresenterBase
     public Button InteractButton;
 
     private Action _onInteract;
-    private DialogueController _controller;
 
     #endregion Variables / Properties
 
@@ -18,7 +17,6 @@ public class InteractionPresenter : UGUIPresenterBase
     public override void Start()
     {
         base.Start();
-        _controller = DialogueController.Instance;
     }
 
     public void SetInteractText(string interactText)

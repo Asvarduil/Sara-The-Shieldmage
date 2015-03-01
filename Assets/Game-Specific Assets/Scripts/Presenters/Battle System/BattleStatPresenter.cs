@@ -14,11 +14,6 @@ public class BattleStatPresenter : DebuggableBehavior
 
     #region Hooks
 
-    public void Start()
-    {
-        List<BattleCharacterStatPresenter> statPresenters = GetComponentsInChildren<BattleCharacterStatPresenter>().ToList();
-    }
-
     public void BindCharacterDisplay(CombatEntity entity, int displayId)
     {
         var presenter = CharacterStatPresenters[displayId];
