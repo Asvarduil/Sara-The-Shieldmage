@@ -30,7 +30,7 @@ public class BattleStatPresenter : DebuggableBehavior
 
     public void HideCharacterDisplay(int displayId)
     {
-        CharacterStatPresenters[displayId].PresentGUI(false);
+        CharacterStatPresenters[displayId].HideCanvasGroup();
     }
 
     public void UpdateHealth(CombatEntity character)

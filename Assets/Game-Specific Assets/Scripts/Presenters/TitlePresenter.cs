@@ -36,7 +36,8 @@ public class TitlePresenter : UGUIPresenterBase
 
     public void NewGame()
     {
-        StartCoroutine(BeginNewGame());
+        _transition.PrepareSceneChange(NewGameSceneState, false);
+        _transition.ChangeScenes();
     }
 
     public void ExitGame()
@@ -47,20 +48,6 @@ public class TitlePresenter : UGUIPresenterBase
     #endregion Hooks
 
     #region Methods
-
-    private IEnumerator BeginNewGame()
-    {
-        _fader = FindObjectOfType<Fader>();
-        _fader.FadeOut();
-
-        _maestro.FadeOut();
-
-        while (! _fader.ScreenHidden)
-            yield return 0;
-
-        _transition.PrepareSceneChange(NewGameSceneState, false);
-        _transition.ChangeScenes();
-    }
 
     private IEnumerator QuitGame()
     {

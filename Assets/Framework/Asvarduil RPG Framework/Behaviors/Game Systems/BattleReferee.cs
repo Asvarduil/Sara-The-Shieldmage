@@ -63,7 +63,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	private BattleManager _battleManager;
 	private TransitionManager _transitionManager;
 
-    private BattleStatPresenter _playerInfo;
+    private BattleStatPresenter _battleStats;
 	private BattleTargetPresenter _targeting;
 	private BattleCommandPresenter _command;
 	private BattleVictoryPresenter _victory;
@@ -92,7 +92,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		_transitionManager = TransitionManager.Instance;
 
 		_loot = GetComponentInChildren<BattleLootPresenter>();
-        _playerInfo = GetComponentInChildren<BattleStatPresenter>();
+        _battleStats = GetComponentInChildren<BattleStatPresenter>();
 		_command = GetComponentInChildren<BattleCommandPresenter>();
 		_targeting = GetComponentInChildren<BattleTargetPresenter>();
         _victory = GetComponentInChildren<BattleVictoryPresenter>();
@@ -154,14 +154,14 @@ public class BattleReferee : ManagerBase<BattleReferee>
 				DebugMessage(player.Name + " has no Battle Prefab!", LogLevel.LogicError);
 			}
 
-            _playerInfo.BindCharacterDisplay(player, i);
-            player.Health.OnHealthChanged = () => _playerInfo.UpdateHealth(player);
+            _battleStats.BindCharacterDisplay(player, i);
+            player.Health.OnHealthChanged = () => _battleStats.UpdateHealth(player);
 		}
 
         // Hide all unused presenters.
-        for (int i = _playerInfo.CharacterStatPresenters.Count - 1; i > Players.Count - 1; i--)
+        for (int i = _battleStats.CharacterStatPresenters.Count - 1; i > Players.Count - 1; i--)
         {
-            _playerInfo.HideCharacterDisplay(i);
+            _battleStats.HideCharacterDisplay(i);
         }
 	}
 	
@@ -239,12 +239,11 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			if(ATB.Value < maxATB.Value)
 			{
 				ATB.Value += speed.Value;
-                _playerInfo.UpdateATB(i);
+                _battleStats.UpdateATB(i);
 			}
 			
 			if(ATB.Value >= maxATB.Value)
 			{
-				//DebugMessage("Player " + player.Name + " is ready for a command.");
 				if(! _commandOpen)
 				{
 					DebugMessage("Player " + player.Name + " is being prompted for a command.");
@@ -387,7 +386,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
         atbStat.Value -= ability.AtbCost;
         DebugMessage("User " + source.Name + "'s ATB was reduced by " + ability.AtbCost + ", to " + atbStat.Value);
         if (source is PlayableCharacter)
-            _playerInfo.UpdateATB(source);
+            _battleStats.UpdateATB(source);
 	}
 
     private void CreateAbilityVisualEffect(Ability ability, CombatEntity target)

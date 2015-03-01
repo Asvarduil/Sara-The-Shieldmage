@@ -12,8 +12,10 @@ public class UGUIPresenterBase : DebuggableBehavior
 
     public AudioClip ButtonSound;
 
+    protected bool _isFading = false;
     protected Maestro _maestro;
 
+    protected CanvasGroup _group;
     protected List<GameObject> _children = new List<GameObject>();
     protected List<Text> _labels = new List<Text>();
     protected List<Image> _images = new List<Image>();
@@ -28,6 +30,7 @@ public class UGUIPresenterBase : DebuggableBehavior
     public virtual void Start()
     {
         _maestro = Maestro.Instance;
+        _group = GetComponent<CanvasGroup>();
 
         int childCount = transform.childCount;
         for (int i = 0; i < childCount; i++)
@@ -77,29 +80,48 @@ public class UGUIPresenterBase : DebuggableBehavior
 
     #region Methods
 
+    public void HideCanvasGroup()
+    {
+        _group.alpha = 0.0f;
+        ActivateControls(false);
+    }
+
+    public void ShowCanvasGroup()
+    {
+        _group.alpha = 1.0f;
+        ActivateControls(true);
+    }
+
     protected IEnumerator FadeCanvasGroup(bool isActive)
     {
-        CanvasGroup group = GetComponent<CanvasGroup>();
+        // Allow another fade to finish, before initiating a new fade.
+        while (_isFading)
+            yield return 0;
 
+        _isFading = true;
         float actualThreshold = isActive ? 1 - FadeThreshold : FadeThreshold;
         if (isActive)
         {
             ActivateControls(isActive);
-            while (group.alpha < actualThreshold)
+            while (_group.alpha < actualThreshold)
             {
-                group.alpha = Mathf.Lerp(group.alpha, DetermineOpacity(isActive), FadeRate);
+                _group.alpha = Mathf.Lerp(_group.alpha, DetermineOpacity(isActive), FadeRate);
                 yield return 0;
             }
-            group.alpha = 1.0f;
+
+            _isFading = false;
+            _group.alpha = 1.0f;
         }
         else
         {
-            while (group.alpha > actualThreshold)
+            while (_group.alpha > actualThreshold)
             {
-                group.alpha = Mathf.Lerp(group.alpha, DetermineOpacity(isActive), FadeRate);
+                _group.alpha = Mathf.Lerp(_group.alpha, DetermineOpacity(isActive), FadeRate);
                 yield return 0;
             }
-            group.alpha = 0.0f;
+
+            _isFading = false;
+            _group.alpha = 0.0f;
             ActivateControls(isActive);
         }
     }
