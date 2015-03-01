@@ -25,7 +25,6 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	public List<GameObject> EnemyPositions;
 
 	public AudioClip VictoryTheme;
-	public AudioClip GameOverTheme;
 
     public List<CombatEntity> AllCombatEntities
     {

@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_3;UNITY_4_6;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -65,8 +65,6 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\DebuggableBehavior.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\JsonBlobLoaderBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\ManagerBase.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\PresenterBase.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\ResourceBitPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Base Behaviors\UGUIPresenterBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\CameraFreezeTrigger.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\CameraTrigger.cs" />
@@ -91,7 +89,6 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\PauseController.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\TitleController.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ContinuePresenter.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ControlsPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\EntityTextInterface.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\InteractionPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PauseInterface.cs" />
@@ -108,6 +105,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\TreasureManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\System\PersistentSingularObject.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\System\SaveFileAccess.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Unity UI Helpers\Gauge.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Utility\DoubleRemover.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\AsvarduilSpriteSystem.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\MeshCombiner.cs" />
@@ -115,26 +113,6 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\IEnumerableExtensions.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Controls\PedestrianMovement.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilBox.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilButton.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilButtonGrid.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilCheckbox.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilGUIBase.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilGUIInterfaces.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilHorizontalElementPositioning.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilImage.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilImageButton.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilLabel.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilMessageBox.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilSlider.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilStaticImage.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilStaticLabel.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilTooltip.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\AsvarduilVerticalElementPositioning.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\FloatingButton.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\FloatingGUIBase.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\FloatingTexture.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\GUI Elements\TweenableElement.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\Ability.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\AbilityEffect.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\CombatEntity.cs" />
@@ -208,7 +186,7 @@
      <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-3.txt" />
      <None Include="Assets\Game-Specific Assets\Data\feldhold-chest-1.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.3/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

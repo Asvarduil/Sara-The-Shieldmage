@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class UGUIPresenterBase : DebuggableBehavior 
 {
@@ -23,6 +24,21 @@ public class UGUIPresenterBase : DebuggableBehavior
     protected List<Toggle> _toggles = new List<Toggle>();
     protected List<Slider> _sliders = new List<Slider>();
 
+    protected CanvasGroup Group
+    {
+        get 
+        { 
+            if(_group == null)
+                _group = GetComponent<CanvasGroup>();
+
+            // Second null check is intentional.
+            if (_group == null)
+                throw new Exception("Game Object " + gameObject.name + " requires a CanvasGroup to use a UGUI Presenter behavior!");
+
+            return _group;
+        }
+    }
+
     #endregion Variables / Properties
 
     #region Hooks
@@ -30,7 +46,6 @@ public class UGUIPresenterBase : DebuggableBehavior
     public virtual void Start()
     {
         _maestro = Maestro.Instance;
-        _group = GetComponent<CanvasGroup>();
 
         int childCount = transform.childCount;
         for (int i = 0; i < childCount; i++)
@@ -60,9 +75,7 @@ public class UGUIPresenterBase : DebuggableBehavior
                 _sliders.Add(slider);
         }
 
-        DebugMessage("Presenter " + gameObject.name
-                     + " has " + _buttons.Count + " buttons,"
-                     + " and a total of " + _children.Count + " child objects.");
+        DebugMessage("Presenter " + gameObject.name + " has a total of " + _children.Count + " child objects.");
     }
 
     public virtual void PresentGUI(bool isActive)
@@ -82,13 +95,13 @@ public class UGUIPresenterBase : DebuggableBehavior
 
     public void HideCanvasGroup()
     {
-        _group.alpha = 0.0f;
+        Group.alpha = 0.0f;
         ActivateControls(false);
     }
 
     public void ShowCanvasGroup()
     {
-        _group.alpha = 1.0f;
+        Group.alpha = 1.0f;
         ActivateControls(true);
     }
 
@@ -98,30 +111,32 @@ public class UGUIPresenterBase : DebuggableBehavior
         while (_isFading)
             yield return 0;
 
+        CanvasGroup group = Group;
+
         _isFading = true;
         float actualThreshold = isActive ? 1 - FadeThreshold : FadeThreshold;
         if (isActive)
         {
             ActivateControls(isActive);
-            while (_group.alpha < actualThreshold)
+            while (group.alpha < actualThreshold)
             {
-                _group.alpha = Mathf.Lerp(_group.alpha, DetermineOpacity(isActive), FadeRate);
+                group.alpha = Mathf.Lerp(group.alpha, DetermineOpacity(isActive), FadeRate);
                 yield return 0;
             }
 
             _isFading = false;
-            _group.alpha = 1.0f;
+            group.alpha = 1.0f;
         }
         else
         {
-            while (_group.alpha > actualThreshold)
+            while (Group.alpha > actualThreshold)
             {
-                _group.alpha = Mathf.Lerp(_group.alpha, DetermineOpacity(isActive), FadeRate);
+                group.alpha = Mathf.Lerp(group.alpha, DetermineOpacity(isActive), FadeRate);
                 yield return 0;
             }
 
             _isFading = false;
-            _group.alpha = 0.0f;
+            group.alpha = 0.0f;
             ActivateControls(isActive);
         }
     }

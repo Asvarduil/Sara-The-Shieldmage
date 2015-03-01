@@ -6,8 +6,8 @@ public class BattleCharacterStatPresenter : UGUIPresenterBase
     #region Variables / Properties
 
     public Image Thumbnail;
-    public Image HealthGauge;
-    public Image ATBGauge;
+    public Gauge HealthGauge;
+    public Gauge ATBGauge;
 
     public int MaxHealthGaugeSize = 100;
     public int MaxATBGaugeSize = 100;
@@ -31,14 +31,7 @@ public class BattleCharacterStatPresenter : UGUIPresenterBase
         int ATB = Character.GetStatByName("ATB").Value;
         int MaxATB = Character.GetStatByName("Max ATB").Value;
 
-        float gaugeSize = ((float) ATB / MaxATB);
-        if (gaugeSize - 1.0f > gaugeTheta)
-            gaugeSize = 1.0f;
-
-        gaugeSize *= MaxHealthGaugeSize;
-
-        ATBGauge.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, gaugeSize);
-        DebugMessage("Player " + Character.Name + "'s ATB bar should measure " + gaugeSize + "px. wide.");
+        ATBGauge.RecalculateGaugeSize(ATB, MaxATB);
     }
 
     public void UpdateHealth()
@@ -46,14 +39,7 @@ public class BattleCharacterStatPresenter : UGUIPresenterBase
         int HP = Character.Health.HP;
         int MaxHP = Character.Health.MaxHP;
 
-        float gaugeSize = ((float) HP / MaxHP);
-        if (gaugeSize - 1.0f > gaugeTheta)
-            gaugeSize = 1.0f;
-
-        gaugeSize *= MaxHealthGaugeSize;
-
-        HealthGauge.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, gaugeSize);
-        DebugMessage("Player " + Character.Name + "'s HP bar should measure " + gaugeSize + "px. wide.");
+        HealthGauge.RecalculateGaugeSize(HP, MaxHP);
     }
 
     #endregion Hooks
