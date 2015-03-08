@@ -1,9 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using UnityEngine.UI;
 
 public class ShopMainPresenter : UGUIPresenterBase
 {
     #region Variables / Properties
+
+    public Text CurrencyLabel;
 
     private ShopController _controller;
 
@@ -15,6 +16,12 @@ public class ShopMainPresenter : UGUIPresenterBase
     {
         base.Start();
         _controller = ShopController.Instance;
+    }
+
+    public void UpdateCurrencyLabel()
+    {
+        int funds = _controller.Currency.Quantity;
+        CurrencyLabel.text = string.Format("{0} {1}", funds, _controller.Currency.Name);
     }
 
     public void BuyItems()

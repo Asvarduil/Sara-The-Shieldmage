@@ -5,6 +5,8 @@ public class ShopController : ManagerBase<ShopController>
 {
     #region Variables / Properties
 
+    public string CurrencyName = "Saphirium";
+
     private ShopMainPresenter _main;
     private ShopGridPresenter _grid;
     private ShopItemPresenter _item;
@@ -14,6 +16,12 @@ public class ShopController : ManagerBase<ShopController>
 
     private ControlManager _controls;
     private InventoryManager _inventory;
+
+    private InventoryItem _currency;
+    public InventoryItem Currency
+    {
+        get { return _currency ?? (_currency = _inventory.ActiveInventory.FindItem(CurrencyName)); }
+    }
 
     #endregion Variables / Properties
 
@@ -45,6 +53,8 @@ public class ShopController : ManagerBase<ShopController>
         _houseInventory = inventory;
 
         _main.PresentGUI(true);
+        _main.UpdateCurrencyLabel();
+
         _grid.PresentGUI(false);
         _item.PresentGUI(false);
     }
@@ -54,7 +64,16 @@ public class ShopController : ManagerBase<ShopController>
         _grid.PresentGUI(true);
 
         _buyMode = isBuying;
-        List<InventoryItem> inventory = isBuying ? _houseInventory : _inventory.ActiveInventory.Items;
+        List<InventoryItem> inventory;
+        if (isBuying)
+        {
+            inventory = _houseInventory;
+        }
+        else
+        {
+            var items = _inventory.ActiveInventory.HeldItems();
+            inventory = FilterKeyItemsOut(items);
+        }
 
         _grid.LoadItems(inventory);
 
@@ -69,23 +88,43 @@ public class ShopController : ManagerBase<ShopController>
 
     public void PerformPurchase(InventoryItem item, int quantity, int price)
     {
-        // TODO: Remove [price] Saphirium
-        // TODO: Add [quantity] of [item]
+        Currency.Quantity -= price;
+        _inventory.ActiveInventory.GainItem(item, quantity);
 
         _item.PresentGUI(false);
+        PresentGrid(_buyMode);
+        _main.UpdateCurrencyLabel();
     }
 
     public void PerformSale(InventoryItem item, int quantity, int price)
     {
-        // TODO: Add [price] Saphirium
-        // TODO: Remove [quantity] of [item]
+        Currency.Quantity += price;
+        _inventory.ActiveInventory.LoseItem(item, quantity);
 
         _item.PresentGUI(false);
+        PresentGrid(_buyMode);
+        _main.UpdateCurrencyLabel();
     }
 
     #endregion Hooks
 
     #region Methods
+
+    public List<InventoryItem> FilterKeyItemsOut(List<InventoryItem> items)
+    {
+        List<InventoryItem> results = new List<InventoryItem>();
+
+        for(int i = 0; i < items.Count; i++)
+        {
+            InventoryItem current = items[i];
+            if (current.ItemType == ItemType.KeyItem)
+                continue;
+
+            results.Add(current);
+        }
+
+        return results;
+    }
 
     #endregion Methods
 }

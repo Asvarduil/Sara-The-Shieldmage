@@ -6,8 +6,6 @@ public class ShopItemPresenter : UGUIPresenterBase
 {
     #region Variables / Properties
 
-    public string CurrencyName = "Saphirium";
-
     public Text ItemName;
     public Text ItemDescription;
     public Text QuantityPriceLabel;
@@ -22,8 +20,6 @@ public class ShopItemPresenter : UGUIPresenterBase
 
     private InventoryItem _item;
 
-    private InventoryItem _currency;
-
     private ShopController _controller;
     private InventoryManager _inventory;
 
@@ -36,8 +32,6 @@ public class ShopItemPresenter : UGUIPresenterBase
         base.Start();
         _controller = ShopController.Instance;
         _inventory = InventoryManager.Instance;
-
-        _currency = _inventory.ActiveInventory.FindItem(CurrencyName);
     }
 
     public void LoadItem(InventoryItem item, bool buyMode)
@@ -49,6 +43,8 @@ public class ShopItemPresenter : UGUIPresenterBase
         UpdateBuySellButton();
         UpdateItemLabels();
         UpdateQuantityPriceLabel();
+        CheckIncreaseButtonAvailability();
+        CheckDecreaseButtonAvailability();
     }
 
     public void IncreaseQuantity(int step)
@@ -104,6 +100,12 @@ public class ShopItemPresenter : UGUIPresenterBase
     {
         _price = _item.Value * _quantity;
 
+        if (_price > _controller.Currency.Quantity)
+        {
+            QuantityPriceLabel.text = string.Format("Can't Afford! ({0})", _price);
+            return;
+        }
+
         string sign = _buyMode ? "-" : "+";
         QuantityPriceLabel.text = string.Format("x{0} ({1} {2})", _quantity, sign, _price);
     }
@@ -112,7 +114,7 @@ public class ShopItemPresenter : UGUIPresenterBase
     {
         bool showButton = false;
         if (_buyMode)
-            showButton = _price < _currency.Quantity;
+            showButton = _price < _controller.Currency.Quantity;
         else
             showButton = _quantity < _item.Quantity;
 
@@ -133,7 +135,7 @@ public class ShopItemPresenter : UGUIPresenterBase
             return;
         }
 
-        bool showButton = _price <= _currency.Quantity;
+        bool showButton = _price <= _controller.Currency.Quantity;
         ActivateButton(BuyButton, showButton);
     }
 

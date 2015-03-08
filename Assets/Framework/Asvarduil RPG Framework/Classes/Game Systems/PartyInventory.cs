@@ -153,5 +153,21 @@ public class PartyInventory
 		return -1;
 	}
 
+    public List<InventoryItem> HeldItems()
+    {
+        List<InventoryItem> results = new List<InventoryItem>();
+
+        for (int i = 0; i < Items.Count; i++)
+        {
+            InventoryItem current = Items[i];
+            if (current.Quantity == 0)
+                continue;
+
+            results.Add(current);
+        }
+
+        return results;
+    }
+
 	#endregion Methods
 }
