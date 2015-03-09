@@ -91,6 +91,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\ShopController.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Controllers\TitleController.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\ContinuePresenter.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\DoorInterface.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\EntityTextInterface.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\InteractionPresenter.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\GUI Presenters\PauseInterface.cs" />
@@ -106,6 +107,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\InventoryManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ItemDatabase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\PartyManager.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\PreviousSceneTrigger.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\SuspendBattleTrigger.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\TreasureManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\System\PersistentSingularObject.cs" />
