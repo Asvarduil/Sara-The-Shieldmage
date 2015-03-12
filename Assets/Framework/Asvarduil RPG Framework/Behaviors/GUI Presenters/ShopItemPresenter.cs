@@ -21,7 +21,6 @@ public class ShopItemPresenter : UGUIPresenterBase
     private InventoryItem _item;
 
     private ShopController _controller;
-    private InventoryManager _inventory;
 
     #endregion Variables / Properties
 
@@ -31,7 +30,6 @@ public class ShopItemPresenter : UGUIPresenterBase
     {
         base.Start();
         _controller = ShopController.Instance;
-        _inventory = InventoryManager.Instance;
     }
 
     public void LoadItem(InventoryItem item, bool buyMode)
@@ -100,7 +98,7 @@ public class ShopItemPresenter : UGUIPresenterBase
     {
         _price = _item.Value * _quantity;
 
-        if (_price > _controller.Currency.Quantity)
+        if (_buyMode && _price > _controller.Currency.Quantity)
         {
             QuantityPriceLabel.text = string.Format("Can't Afford! ({0})", _price);
             return;

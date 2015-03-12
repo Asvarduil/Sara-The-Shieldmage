@@ -12,6 +12,7 @@ public class DoorInterface : DebuggableBehavior
 
     private TransitionManager _transition;
     private DialogueController _controller;
+    private Transform _player;
 
     #endregion Variables / Properties
 
@@ -21,10 +22,20 @@ public class DoorInterface : DebuggableBehavior
     {
         _transition = TransitionManager.Instance;
         _controller = DialogueController.Instance;
+
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public virtual void OnInteraction()
     {
+        SceneState thisScene = new SceneState
+        {
+            SceneName = Application.loadedLevelName,
+            Position = _player.position,
+            Rotation = Vector3.zero
+        };
+
+        _transition.PrepareSceneChange(thisScene, true);
         _transition.PrepareSceneChange(TargetState);
         _transition.ChangeScenes();
     }

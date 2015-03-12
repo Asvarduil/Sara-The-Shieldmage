@@ -72,6 +72,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Camera\RPGCamera.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\ExpireAfterDuration.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\JrpgMapControlSystem.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\NPCControlSystem.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\SceneChangeTrigger.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\SequenceDespawner.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\TransitionManager.cs" />
@@ -107,6 +108,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\InventoryManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ItemDatabase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\PartyManager.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\PedestrianMovement.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\PreviousSceneTrigger.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\SuspendBattleTrigger.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\TreasureManager.cs" />
@@ -119,7 +121,8 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\ScrollTexture.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\IEnumerableExtensions.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Controls\PedestrianMovement.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Controls\NPCAnimationState.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Controls\NPCControlState.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\Ability.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\AbilityEffect.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\CombatEntity.cs" />
