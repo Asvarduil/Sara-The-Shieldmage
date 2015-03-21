@@ -179,6 +179,7 @@
      <None Include="Assets\Game-Specific Assets\Data\ability-list.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-chest.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-battle.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\nuuria-castle-npc-3.txt" />
      <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-2.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-items.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-basic.txt" />
@@ -189,12 +190,14 @@
      <None Include="Assets\Game-Specific Assets\Data\feldhold-trigger-1.txt" />
      <None Include="Assets\Game-Specific Assets\Shaders\Particle-Additive-Backculled.shader" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-branches.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\nuuria-castle-npc-1.txt" />
      <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-1.txt" />
      <None Include="Assets\Game-Specific Assets\Data\enemy-list.txt" />
      <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-2.txt" />
      <None Include="Assets\Game-Specific Assets\Data\item-list.txt" />
      <None Include="Assets\Game-Specific Assets\Data\nuuria-shopkeeper-items.txt" />
      <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-3.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\nuuria-castle-npc-2.txt" />
      <None Include="Assets\Game-Specific Assets\Data\feldhold-chest-1.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.3/UnityEngine.UI.dll</HintPath>
