@@ -178,11 +178,13 @@
      <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
      <None Include="Assets\Game-Specific Assets\Data\ability-list.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-chest.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\nuuria-castle-npc-5.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-battle.txt" />
      <None Include="Assets\Game-Specific Assets\Data\nuuria-castle-npc-3.txt" />
      <None Include="Assets\Game-Specific Assets\Data\nuuria-npc-2.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-items.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-basic.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\nuuria-castle-npc-4.txt" />
      <None Include="Assets\Game-Specific Assets\Data\feldhold-chest-2.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-tonic-chest.txt" />
      <None Include="Assets\Game-Specific Assets\Data\crystal-cave-chest-3.txt" />

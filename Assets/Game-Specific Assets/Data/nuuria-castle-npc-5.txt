@@ -1,0 +1,78 @@
+{
+	"TextThreads":[
+		{
+			"IsDefaultThread":true,
+			"Name":"Minor NPC Text - Castle Guard",
+			"SequenceState":{
+				"Name":"Main", 
+				"MinCounter":0,
+				"MaxCounter":0
+			},
+
+			"TextContent":[
+				{
+					"ID":0,
+					"Speaker":"Injured Nuurian Guard",
+					"Dialogue":"I can't believe those monsters got Jansen...he was going to retire tomorrow!",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":1 
+						}
+					],
+          
+					"DialogueEvents":[
+						{
+							"MessageName":"CueSounds",
+							"Args":[
+								"Female Speaking Sound (Temp)",
+								1
+							]
+						}
+					]
+				},
+				{
+					"ID":1,
+					"Speaker":"Injured Nuurian Guard",
+					"Dialogue":"The continent is free of monsters because of his sacrifice, and those of men like him.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":2 
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+				{
+					"ID":2,
+					"Speaker":"Injured Nuurian Guard",
+					"Dialogue":"The only remaining monsters are in caves and the depths of the forests.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":3 
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+				{
+					"ID":3,
+					"Speaker":"",
+					"Dialogue":"",
+					"Options":[],
+					"DialogueEvents":[
+						{
+							"MessageName":"EndConversation",
+							"Args":[]
+						}
+					]
+				}
+			]
+		}
+	]
+}

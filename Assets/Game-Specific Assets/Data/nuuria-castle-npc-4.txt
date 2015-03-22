@@ -1,0 +1,78 @@
+{
+	"TextThreads":[
+		{
+			"IsDefaultThread":true,
+			"Name":"Minor NPC Text - Castle Guard",
+			"SequenceState":{
+				"Name":"Main", 
+				"MinCounter":0,
+				"MaxCounter":0
+			},
+
+			"TextContent":[
+				{
+					"ID":0,
+					"Speaker":"Injured Nuurian Guard",
+					"Dialogue":"Shieldmage, I wish we'd brought one of your order along.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":1 
+						}
+					],
+          
+					"DialogueEvents":[
+						{
+							"MessageName":"CueSounds",
+							"Args":[
+								"Female Speaking Sound (Temp)",
+								1
+							]
+						}
+					]
+				},
+				{
+					"ID":1,
+					"Speaker":"Injured Nuurian Guard",
+					"Dialogue":"We were culling monsters from a nearby cave, and I took one hit too many.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":2 
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+				{
+					"ID":2,
+					"Speaker":"Injured Nuurian Guard",
+					"Dialogue":"Your Shield Magic can give allies a bit more time to finish the fight, without being seriously injured.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":3 
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+				{
+					"ID":3,
+					"Speaker":"",
+					"Dialogue":"",
+					"Options":[],
+					"DialogueEvents":[
+						{
+							"MessageName":"EndConversation",
+							"Args":[]
+						}
+					]
+				}
+			]
+		}
+	]
+}
