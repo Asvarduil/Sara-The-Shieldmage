@@ -41,10 +41,10 @@ public class HealerAI : AIBase
         return _selectedAbility;
     }
 
-    public override CombatEntity DetermineTarget(List<CombatEntity> availableTargets)
+    public override List<CombatEntity> DetermineTarget(List<CombatEntity> availableTargets)
     {
         int targetIndex = 0;
-        CombatEntity result;
+        List<CombatEntity> result = new List<CombatEntity>();
 
         if (!IsHealingThisTurn)
         {
@@ -55,7 +55,7 @@ public class HealerAI : AIBase
                 targetIndex = Random.Range(0, playerList.Count);
 
             DebugMessage("Target player is at position: " + targetIndex + "; there are " + playerList.Count + " living players to kill.");
-            result = playerList[targetIndex];
+            result.Add(playerList[targetIndex]);
         }
         else
         {
@@ -66,7 +66,7 @@ public class HealerAI : AIBase
                 targetIndex = Random.Range(0, enemyList.Count);
 
             DebugMessage("Target enemy is at position: " + targetIndex + "; there are " + enemyList.Count + " living enemies to heal.");
-            result = enemyList[targetIndex];
+            result.Add(enemyList[targetIndex]);
         }
 
         _turnCounter++;

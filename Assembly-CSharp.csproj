@@ -161,6 +161,7 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Battle System\BattleLootPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Battle System\BattleStatPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Battle System\BattleTargetPresenter.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Battle System\BattleTextPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Battle System\BattleVictoryPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\DialoguePresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Main Menu\ActiveQuestPresenter.cs" />

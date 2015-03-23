@@ -22,7 +22,7 @@ public class Enemy : CombatEntity, ICloneable
         }
     }
 
-    public Func<List<CombatEntity>, CombatEntity> DetermineTarget
+    public Func<List<CombatEntity>, List<CombatEntity>> DetermineTarget
     {
         get 
         {

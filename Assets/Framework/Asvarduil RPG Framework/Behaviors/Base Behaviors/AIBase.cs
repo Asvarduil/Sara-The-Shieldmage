@@ -15,7 +15,7 @@ public abstract class AIBase : DebuggableBehavior
 
     public abstract Ability DetermineAction(List<Ability> abilities);
 
-    public abstract CombatEntity DetermineTarget(List<CombatEntity> availableTargets);
+    public abstract List<CombatEntity> DetermineTarget(List<CombatEntity> availableTargets);
 
     #endregion Methods
 }

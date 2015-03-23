@@ -24,12 +24,15 @@ public class AttackerAI : AIBase
         return _selectedAbility;
     }
 
-    public override CombatEntity DetermineTarget(List<CombatEntity> availableTargets)
+    public override List<CombatEntity> DetermineTarget(List<CombatEntity> availableTargets)
     {
         List<CombatEntity> playerList = availableTargets.Where(t => t is PlayableCharacter && !t.Health.IsDead).ToList();
 
         int targetIndex = Random.Range(0, playerList.Count - 1);
-        return availableTargets[targetIndex];
+        return new List<CombatEntity>
+        {
+            playerList[targetIndex]
+        };
     }
 
     #endregion Hooks

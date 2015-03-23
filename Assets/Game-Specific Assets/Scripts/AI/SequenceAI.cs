@@ -38,30 +38,56 @@ public class SequenceAI : AIBase
         return _ability;
     }
 
-    public override CombatEntity DetermineTarget(System.Collections.Generic.List<CombatEntity> availableTargets)
+    public override List<CombatEntity> DetermineTarget(System.Collections.Generic.List<CombatEntity> availableTargets)
     {
         int index = 0;
+        List<CombatEntity> results = new List<CombatEntity>();
         List<CombatEntity> targets = availableTargets;
         
         switch(_ability.TargetType)
         {
             case AbilityTargetType.TargetAlly:
-                targets = availableTargets.Where(t => t is PlayableCharacter).ToList();
+                targets = availableTargets.Where(FilterPlayersByOnesStillAlive).ToList();
                 index = Random.Range(0, targets.Count);
+                results.Add(targets[index]);
                 break;
 
             case AbilityTargetType.TargetEnemy:
-                targets = availableTargets.Where(t => t is Enemy).ToList();
+                targets = availableTargets.Where(FilterEnemiesByOnesStillAlive).ToList();
                 index = Random.Range(0, targets.Count);
+                results.Add(targets[index]);
                 break;
 
-            // TODO: Support group- and all- attacks.
+            case AbilityTargetType.AllAlly:
+                targets = availableTargets.Where(FilterPlayersByOnesStillAlive).ToList();
+                results.AddRange(targets);
+                break;
+
+            case AbilityTargetType.AllEnemy:
+                targets = availableTargets.Where(FilterEnemiesByOnesStillAlive).ToList();
+                results.AddRange(targets);
+                break;
+
+            default:
+                throw new Exception("Unexpected Target Type: " + _ability.TargetType);
         }
 
-        return targets[index];
+        return results;
     }
 
     #region Methods
+
+    private bool FilterPlayersByOnesStillAlive(CombatEntity current)
+    {
+        return current is PlayableCharacter
+               && !current.Health.IsDead;
+    }
+
+    private bool FilterEnemiesByOnesStillAlive(CombatEntity current)
+    {
+        return current is Enemy
+               && !current.Health.IsDead;
+    }
 
     #endregion Methods
 }

@@ -124,6 +124,7 @@ public class AbilityDatabase : DatabaseBase<AbilityDatabase>
             newAbility.Name = ability["Name"];
             newAbility.Description = ability["Description"];
             newAbility.BattleEffect = GetVisualEffectByName(ability["VisualEffect"]);
+            newAbility.BattleText = ability["BattleText"] ?? string.Empty;
             newAbility.Available = true;
             newAbility.AtbCost = ability["ATBCost"].AsInt;
             newAbility.ActionAnimation = ability["ActionAnimation"];

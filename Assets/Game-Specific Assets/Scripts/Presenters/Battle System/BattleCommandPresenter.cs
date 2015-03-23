@@ -77,21 +77,20 @@ public class BattleCommandPresenter : UGUIPresenterBase
         _abilities = _character.AvailableAbilities;
 
         // Load available moves...
-        for(int i = 0; i < _abilities.Count; i++)
+        for(int i = 0; i < CommandButtons.Count; i++)
         {
             Button current = CommandButtons[i];
+
+            if(i > _abilities.Count - 1)
+            {
+                ActivateButton(current, false);
+                continue;
+            }
 
             Text childText = current.GetComponentInChildren<Text>();
             childText.text = _abilities[i].Name;
 
             ActivateButton(current, true);
-        }
-
-        // Hide unassigned buttons.
-        for (int i = CommandButtons.Count - 1; i > _abilities.Count - 1; i--)
-        {
-            Button current = CommandButtons[i];
-            ActivateButton(current, false);
         }
     }
 

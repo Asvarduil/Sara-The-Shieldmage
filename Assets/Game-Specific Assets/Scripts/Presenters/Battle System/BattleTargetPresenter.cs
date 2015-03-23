@@ -45,21 +45,21 @@ public class BattleTargetPresenter : UGUIPresenterBase
     private void LoadTargets()
     {
         // Load all targets...
-        for(int i = 0; i < _targets.Count; i++)
+        for(int i = 0; i < TargetButtons.Count; i++)
         {
             Button current = TargetButtons[i];
+
+            if(i > _targets.Count - 1
+               || _targets[i].Health.IsDead)
+            {
+                ActivateButton(current, false);
+                continue;
+            }
 
             Text childText = current.GetComponentInChildren<Text>();
             childText.text = _targets[i].Name;
 
             ActivateButton(current, true);
-        }
-
-        // Hide all unloaded buttons.
-        for (int i = TargetButtons.Count - 1; i > _targets.Count - 1; i--)
-        {
-            Button current = TargetButtons[i];
-            ActivateButton(current, false);
         }
     }
 

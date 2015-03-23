@@ -66,6 +66,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 	private BattleTargetPresenter _targeting;
 	private BattleCommandPresenter _command;
 	private BattleVictoryPresenter _victory;
+    private BattleTextPresenter _message;
 	private BattleLootPresenter _loot;
 
 	#endregion Variables / Properties
@@ -95,6 +96,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		_command = GetComponentInChildren<BattleCommandPresenter>();
 		_targeting = GetComponentInChildren<BattleTargetPresenter>();
         _victory = GetComponentInChildren<BattleVictoryPresenter>();
+        _message = GetComponentInChildren<BattleTextPresenter>();
 
 		_maestro.ChangeTunes(_battleManager.BattleTheme);
 		LoadPlayers();
@@ -280,9 +282,13 @@ public class BattleReferee : ManagerBase<BattleReferee>
 				DebugMessage("Enemy " + enemy.Name + " is acting!");
 
                 Ability selectedAbility = enemy.DetermineAction(enemy.Abilities);
-                CombatEntity target = enemy.DetermineTarget(AllCombatEntities);
+                List<CombatEntity> targets = enemy.DetermineTarget(AllCombatEntities);
 
-                UseAbility(selectedAbility, enemy, target);
+                for (int j = 0; j < targets.Count; j++)
+                {
+                    CombatEntity target = targets[j];
+                    UseAbility(selectedAbility, enemy, target);
+                }
 			}
 		}
 	}
@@ -375,6 +381,8 @@ public class BattleReferee : ManagerBase<BattleReferee>
         //      I need to do something where the action animations shows, then
         //      the effect appears, then the receipt animation shows, then
         //      all Ability Effects are applied and ATB deducted from the source.
+        _message.ShowMessage(ability.BattleText);
+
         source.BattlePiece.PlayAnimation(ability.ActionAnimation);
         CreateAbilityVisualEffect(ability, target);
 

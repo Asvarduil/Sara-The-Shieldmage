@@ -22,6 +22,7 @@ public class Ability : INamed, ICloneable
 	public string Name;
 	public string Description;
 	public GameObject BattleEffect;
+    public string BattleText;
 	public bool Available;
 	public int AtbCost;
 	public AbilityTargetType TargetType;
