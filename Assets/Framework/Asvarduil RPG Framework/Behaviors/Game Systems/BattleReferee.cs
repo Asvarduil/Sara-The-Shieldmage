@@ -57,7 +57,8 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
     private Fader _fader;
 	private Maestro _maestro;
-	private EnemyDatabase _enemies;
+    private EnemyDatabase _enemyDB;
+    private AbilityDatabase _abilityDB;
 	private PartyManager _partyManager;
 	private BattleManager _battleManager;
 	private TransitionManager _transitionManager;
@@ -86,7 +87,8 @@ public class BattleReferee : ManagerBase<BattleReferee>
     public void Start()
 	{
 		_maestro = Maestro.Instance;
-		_enemies = EnemyDatabase.Instance;
+		_enemyDB = EnemyDatabase.Instance;
+        _abilityDB = AbilityDatabase.Instance;
 		_partyManager = PartyManager.Instance;
 		_battleManager = BattleManager.Instance;
 		_transitionManager = TransitionManager.Instance;
@@ -142,6 +144,12 @@ public class BattleReferee : ManagerBase<BattleReferee>
         // For each player, spawn their battle piece, and enable their character display.
 		for (int i = 0; i < Players.Count; i++) 
 		{
+            if(i > _battleStats.CharacterStatPresenters.Count - 1)
+            {
+                _battleStats.HideCharacterDisplay(i);
+                continue;
+            }
+
 			PlayableCharacter player = Players[i];
 			
 			if(player.BattlePrefab != null)
@@ -157,13 +165,8 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
             _battleStats.BindCharacterDisplay(player, i);
             player.Health.OnHealthChanged = () => _battleStats.UpdateHealth(player);
+            player.Abilities = _abilityDB.GetListByAbilityNames(player.AbilityNames);
 		}
-
-        // Hide all unused presenters.
-        for (int i = _battleStats.CharacterStatPresenters.Count - 1; i > Players.Count - 1; i--)
-        {
-            _battleStats.HideCharacterDisplay(i);
-        }
 	}
 	
 	private void LoadEnemies()
@@ -187,8 +190,11 @@ public class BattleReferee : ManagerBase<BattleReferee>
 		Enemies = new List<Enemy>();
 		for(int i = 0; i < _battleManager.EnemyNames.Count; i++)
 		{
+            if (i > EnemyPositions.Count - 1)
+                throw new InvalidOperationException(string.Format("Enemy #{0} has nowhere to be spawned!", (i + 1)));
+
 			string enemyName = _battleManager.EnemyNames[i];
-			Enemy enemy = _enemies.FindEnemyByName(enemyName).Clone() as Enemy;
+			Enemy enemy = _enemyDB.FindEnemyByName(enemyName).Clone() as Enemy;
 			Enemies.Add(enemy);
 			
 			if(enemy.BattlePrefab != null)

@@ -18,6 +18,20 @@ public class AbilityDatabase : DatabaseBase<AbilityDatabase>
 
     #region Data Management Methods
 
+    public List<Ability> GetListByAbilityNames(List<string> names)
+    {
+        List<Ability> result = new List<Ability>();
+
+        for(int i = 0; i < names.Count; i++)
+        {
+            string currentName = names[i];
+            Ability ability = GetAbilityByName(currentName).Clone() as Ability;
+            result.Add(ability);
+        }
+
+        return result;
+    }
+
     public GameObject GetVisualEffectByName(string name)
     {
         GameObject result = null;

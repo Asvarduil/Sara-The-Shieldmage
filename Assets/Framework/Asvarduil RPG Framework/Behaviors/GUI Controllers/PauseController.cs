@@ -15,6 +15,7 @@ public class PauseController : ManagerBase<PauseController>
 	public int LastArmorPosition = 0;
 	public int LastAccessoryPosition = 0;
 
+    private AbilityDatabase _abilityDB;
 	private MemberAbilityPresenter _magic;
     private ActiveQuestPresenter _quests;
 	private PauseInterface _interface;
@@ -46,6 +47,8 @@ public class PauseController : ManagerBase<PauseController>
 
 	public void Start()
 	{
+        _abilityDB = AbilityDatabase.Instance;
+
         _interface = GetComponentInChildren<PauseInterface>();
         _presenter = GetComponentInChildren<PauseMenuPresenter>();
         _selectMember = GetComponentInChildren<SelectMemberPresenter>();
@@ -189,7 +192,10 @@ public class PauseController : ManagerBase<PauseController>
 	public void OpenMagic()
 	{
 		DebugMessage("Opening magic from game object: " + gameObject.name);
-        _magic.LoadAbilities(CurrentPartyMember.Abilities);
+        List<Ability> abilities = _abilityDB.GetListByAbilityNames(CurrentPartyMember.AbilityNames);
+        CurrentPartyMember.Abilities = abilities;
+
+        _magic.LoadAbilities(abilities);
         _magic.LoadAbilityAtIndex(0);
         _magic.PresentGUI(true);
 

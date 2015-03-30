@@ -13,10 +13,17 @@ public abstract class CombatEntity
     public GameObject BattlePrefab;
     public HealthSystem Health;
     public List<ModifiableStat> ModifiableStats;
-    public List<Ability> Abilities;
+    
     public string CounterAttackName;
-
+    public List<string> AbilityNames;
     public List<AbilityEffect> ActiveEffects;
+
+    private List<Ability> _abilities;
+    public List<Ability> Abilities
+    {
+        get { return _abilities; }
+        set { _abilities = value; }
+    }
 
     /// <summary>
     /// A List of abilities that the entity has and is capable of actually using.

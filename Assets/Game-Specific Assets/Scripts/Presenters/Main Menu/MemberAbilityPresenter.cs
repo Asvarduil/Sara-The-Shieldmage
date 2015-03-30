@@ -25,10 +25,16 @@ public class MemberAbilityPresenter : UGUIPresenterBase
 
     public void LoadAbilities(List<Ability> abilities)
     {
-        for (int i = 0; i < 4; i++)
-            MapAbilityToAbilityButton(abilities[i], AbilityButtons[i]);
+        DebugMessage(string.Format("Loading {0} abilities into {1} buttons.", abilities.Count, AbilityButtons.Count));
 
-        DebugMessage("Loaded " + abilities.Count + " abilities.");
+        for (int i = 0; i < AbilityButtons.Count; i++)
+        {
+            Ability current = (i < abilities.Count)
+                ? abilities[i]
+                : null;
+
+            MapAbilityToAbilityButton(current, AbilityButtons[i]);
+        }
     }
 
     public void LoadAbilityAtIndex(int index)

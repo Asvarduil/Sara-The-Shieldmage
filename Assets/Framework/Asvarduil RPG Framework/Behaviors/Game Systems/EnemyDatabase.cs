@@ -149,12 +149,15 @@ public class EnemyDatabase : DatabaseBase<EnemyDatabase>
     private void MapEnemyAbilities(JSONNode enemy, Enemy newEnemy)
     {
         var abilities = enemy["Abilities"].AsArray;
+
+        newEnemy.AbilityNames = new List<string>();
         newEnemy.Abilities = new List<Ability>();
         foreach (string abilityName in abilities.Childs)
         {
             DebugMessage("Loading ability " + abilityName + " into enemy " + newEnemy.Name);
             var ability = _abilityDB.GetAbilityByName(abilityName);
 
+            newEnemy.AbilityNames.Add(abilityName);
             newEnemy.Abilities.Add(ability);
         }
     }

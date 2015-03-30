@@ -50,6 +50,7 @@ public class Enemy : CombatEntity, ICloneable
             BattlePrefab = this.BattlePrefab,
             Health = new HealthSystem(),
             ModifiableStats = new List<ModifiableStat>(),
+            AbilityNames = new List<string>(),
             Abilities = new List<Ability>(),
             CounterAttackName = this.CounterAttackName,
             ActiveEffects = new List<AbilityEffect>(),
@@ -72,6 +73,12 @@ public class Enemy : CombatEntity, ICloneable
         }
 
         // Map Abilities
+        for (int i = 0; i < AbilityNames.Count; i++ )
+        {
+            var sourceName = AbilityNames[i];
+            clone.AbilityNames.Add(sourceName);
+        }
+
         for (int i = 0; i < Abilities.Count; i++)
         {
             var sourceAbility = Abilities[i];
@@ -101,11 +108,11 @@ public class Enemy : CombatEntity, ICloneable
         return clone;
     }
 
-	public IEnumerable<InventoryItem> RollForLoot()
-	{
-		List<InventoryItem> loot = new List<InventoryItem>();
-		for(int i = 0; i < Drops.Count; i++)
-		{
+    public IEnumerable<InventoryItem> RollForLoot()
+    {
+        List<InventoryItem> loot = new List<InventoryItem>();
+        for (int i = 0; i < Drops.Count; i++)
+        {
             var drop = Drops[i];
             if (drop.RollForThisDrop())
             {
@@ -113,10 +120,10 @@ public class Enemy : CombatEntity, ICloneable
                 item.Quantity = drop.RollForQuantity();
                 loot.Add(item);
             }
-		}
+        }
 
-		return loot;
-	}
+        return loot;
+    }
 
 	#endregion Methods
 }
