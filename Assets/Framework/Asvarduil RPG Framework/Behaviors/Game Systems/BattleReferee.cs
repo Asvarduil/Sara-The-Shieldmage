@@ -142,9 +142,9 @@ public class BattleReferee : ManagerBase<BattleReferee>
 			return;
 		
         // For each player, spawn their battle piece, and enable their character display.
-		for (int i = 0; i < Players.Count; i++) 
+        for (int i = 0; i < _battleStats.CharacterStatPresenters.Count; i++) 
 		{
-            if(i > _battleStats.CharacterStatPresenters.Count - 1)
+            if(i > Players.Count - 1)
             {
                 _battleStats.HideCharacterDisplay(i);
                 continue;
@@ -165,7 +165,7 @@ public class BattleReferee : ManagerBase<BattleReferee>
 
             _battleStats.BindCharacterDisplay(player, i);
             player.Health.OnHealthChanged = () => _battleStats.UpdateHealth(player);
-            player.Abilities = _abilityDB.GetListByAbilityNames(player.AbilityNames);
+            _abilityDB.HydrateCombatEntityAbilitiesFromList(player);
 		}
 	}
 	

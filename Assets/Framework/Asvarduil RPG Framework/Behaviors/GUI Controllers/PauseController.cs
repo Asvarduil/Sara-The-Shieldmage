@@ -16,7 +16,7 @@ public class PauseController : ManagerBase<PauseController>
 	public int LastAccessoryPosition = 0;
 
     private AbilityDatabase _abilityDB;
-	private MemberAbilityPresenter _magic;
+	private MemberAbilityPresenter _abilities;
     private ActiveQuestPresenter _quests;
 	private PauseInterface _interface;
 	private PauseMenuPresenter _presenter;
@@ -56,7 +56,7 @@ public class PauseController : ManagerBase<PauseController>
         _equipment = GetComponentInChildren<EquippedItemsPresenter>();
         _items = GetComponentInChildren<PartyInventoryPresenter>();
         _selectedItem = GetComponentInChildren<SelectedItemPresenter>();
-        _magic = GetComponentInChildren<MemberAbilityPresenter>();
+        _abilities = GetComponentInChildren<MemberAbilityPresenter>();
         _quests = GetComponentInChildren<ActiveQuestPresenter>();
 		_settings = GetComponentInChildren<SettingsPresenter>();
 
@@ -82,7 +82,7 @@ public class PauseController : ManagerBase<PauseController>
         if (_selectedItem == null)
             DebugMessage("Could not find a Selected Item Presenter in the children of " + gameObject.name + "!", LogLevel.Warning);
 
-		if(_magic == null)
+		if(_abilities == null)
 			DebugMessage("Could not find an Magic Presenter in the children of " + gameObject.name + "!", LogLevel.Warning);
 	}
 
@@ -138,6 +138,13 @@ public class PauseController : ManagerBase<PauseController>
 		_equipment.SetEquipmentButtonVisibilities(hasWeapons, hasArmor, hasAccessories);
 	}
 
+    public void PrepAbilityPresenter()
+    {
+        _abilityDB.HydrateCombatEntityAbilitiesFromList(CurrentPartyMember);
+        _abilities.LoadAbilities(CurrentPartyMember.Abilities);
+        _abilities.LoadAbilityAtIndex(0);
+    }
+
 	public void OpenItems()
 	{
 		DebugMessage("Opening inventory from game object: " + gameObject.name);
@@ -163,7 +170,7 @@ public class PauseController : ManagerBase<PauseController>
 		_equipment.PresentGUI(false);
         _settings.PresentGUI(false);
         _quests.PresentGUI(false);
-		_magic.PresentGUI(false);
+		_abilities.PresentGUI(false);
 	}
 
     public void SelectItem(InventoryItem item)
@@ -192,12 +199,9 @@ public class PauseController : ManagerBase<PauseController>
 	public void OpenMagic()
 	{
 		DebugMessage("Opening magic from game object: " + gameObject.name);
-        List<Ability> abilities = _abilityDB.GetListByAbilityNames(CurrentPartyMember.AbilityNames);
-        CurrentPartyMember.Abilities = abilities;
 
-        _magic.LoadAbilities(abilities);
-        _magic.LoadAbilityAtIndex(0);
-        _magic.PresentGUI(true);
+        PrepAbilityPresenter();
+        _abilities.PresentGUI(true);
 
 		// Hide the other presenters...
 		_items.PresentGUI(false);
@@ -215,7 +219,7 @@ public class PauseController : ManagerBase<PauseController>
 		// Hide everything else...
 		_items.PresentGUI(false);
         _selectedItem.PresentGUI(false);
-		_magic.PresentGUI(false);
+		_abilities.PresentGUI(false);
         _quests.PresentGUI(false);
 		_stats.PresentGUI(false);
         _settings.PresentGUI(false);
@@ -238,7 +242,7 @@ public class PauseController : ManagerBase<PauseController>
         _quests.PresentGUI(false);
 		_items.PresentGUI(false);
         _selectedItem.PresentGUI(false);
-		_magic.PresentGUI(false);
+		_abilities.PresentGUI(false);
         _settings.PresentGUI(false);
 	}
 
@@ -250,7 +254,7 @@ public class PauseController : ManagerBase<PauseController>
 
         _items.PresentGUI(false);
         _selectedItem.PresentGUI(false);
-        _magic.PresentGUI(false);
+        _abilities.PresentGUI(false);
         _stats.PresentGUI(false);
         _settings.PresentGUI(false);
         _equipment.PresentGUI(false);
@@ -267,7 +271,7 @@ public class PauseController : ManagerBase<PauseController>
 		// Hide everything else...
 		_items.PresentGUI(false);
         _selectedItem.PresentGUI(false);
-		_magic.PresentGUI(false);
+		_abilities.PresentGUI(false);
 		_stats.PresentGUI(false);
         _quests.PresentGUI(false);
 		_equipment.PresentGUI(false);
@@ -364,9 +368,8 @@ public class PauseController : ManagerBase<PauseController>
 
 		_selectMember.UpdateMemberName(CurrentPartyMember);
         PrepMemberStatPresenter();
-        _magic.LoadAbilities(CurrentPartyMember.Abilities);
-        _magic.LoadAbilityAtIndex(0);
         PrepEquipmentPresenter();
+        PrepAbilityPresenter();
 	}
 
     public Ability GetAbilityAtIndexOnCurrentMember(int index)

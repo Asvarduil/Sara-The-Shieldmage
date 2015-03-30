@@ -18,18 +18,18 @@ public class AbilityDatabase : DatabaseBase<AbilityDatabase>
 
     #region Data Management Methods
 
-    public List<Ability> GetListByAbilityNames(List<string> names)
+    public void HydrateCombatEntityAbilitiesFromList(CombatEntity entity)
     {
-        List<Ability> result = new List<Ability>();
+        List<Ability> abilities = new List<Ability>();
 
-        for(int i = 0; i < names.Count; i++)
+        for(int i = 0; i < entity.AbilityNames.Count; i++)
         {
-            string currentName = names[i];
+            string currentName = entity.AbilityNames[i];
             Ability ability = GetAbilityByName(currentName).Clone() as Ability;
-            result.Add(ability);
+            abilities.Add(ability);
         }
 
-        return result;
+        entity.Abilities = abilities;
     }
 
     public GameObject GetVisualEffectByName(string name)
