@@ -107,6 +107,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\EnemyDatabase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\InventoryManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ItemDatabase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\MapObjectPlacer.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\PartyManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\PedestrianMovement.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\PreviousSceneTrigger.cs" />
@@ -174,6 +175,7 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Main Menu\StatPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\SettingsPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\TitlePresenter.cs" />
+     <None Include="Assets\Resources\Data\Locales\item-shop.txt" />
      <None Include="Assets\Resources\Data\Treasure\feldhold-chest-3.txt" />
      <None Include="Assets\Resources\Data\Treasure\crystal-cave-chest-1.txt" />
      <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
