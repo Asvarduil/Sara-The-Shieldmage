@@ -175,7 +175,7 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Main Menu\StatPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\SettingsPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\TitlePresenter.cs" />
-     <None Include="Assets\Resources\Data\Locales\item-shop.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\Locales\item-shop.txt" />
      <None Include="Assets\Resources\Data\Treasure\feldhold-chest-3.txt" />
      <None Include="Assets\Resources\Data\Treasure\crystal-cave-chest-1.txt" />
      <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
