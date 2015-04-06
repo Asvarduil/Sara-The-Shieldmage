@@ -5,8 +5,31 @@
 			"MapObjects": [
 				{
 					"Object": "Doodads/Domestic/Chair",
-					"Position": { "x": 3, "y": -0.1, "z": 3 },
-					"Rotation": { "x": 0, "y": -45, "z": 0 }
+					"Position": { "x": 3, "y": -0.1, "z": 2 },
+					"Rotation": { "x": 0, "y": 90, "z": 0 }
+				},
+				{
+					"Object": "Doodads/Domestic/Dining Table",
+					"Position": { "x": 4.5, "y": 0, "z": 2 },
+					"Rotation": { "x": 0, "y": 0, "z": 0 }
+				},
+				{
+					"Object": "Doodads/Domestic/Chair",
+					"Position": { "x": -4.5, "y": -0.1, "z": 5 },
+					"Rotation": { "x": 0, "y": 180, "z": 0 }
+				},
+				{
+					"Object": "Doodads/Domestic/Desk",
+					"Position": { "x": -4.5, "y": 0, "z": 4 },
+					"Rotation": { "x": 0, "y": 180, "z": 0 }
+				},
+				{
+					"Object": "NPCs/Nuuria City Shopkeeper",
+					"Position": { "x": 0, "y": 0.1, "z": 5 },
+					"Rotation": { "x": 0, "y": 0, "z": 0 },
+					"ObjectState": {
+						"NPCState":"FaceRight"
+					}
 				}
 			]
 		}
