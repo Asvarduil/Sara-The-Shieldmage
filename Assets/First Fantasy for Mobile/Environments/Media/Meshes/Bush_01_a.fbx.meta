@@ -1,0 +1,110 @@
+fileFormatVersion: 2
+guid: d404b267b9f144a73977c51faebd7bb9
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: pPlane10
+    100004: pPlane2
+    100006: pPlane3
+    100008: pPlane4
+    100010: pPlane5
+    100012: pPlane6
+    100014: pPlane7
+    100016: pPlane8
+    100018: pPlane9
+    400000: //RootNode
+    400002: pPlane10
+    400004: pPlane2
+    400006: pPlane3
+    400008: pPlane4
+    400010: pPlane5
+    400012: pPlane6
+    400014: pPlane7
+    400016: pPlane8
+    400018: pPlane9
+    2300000: //RootNode
+    2300002: pPlane10
+    2300004: pPlane2
+    2300006: pPlane3
+    2300008: pPlane4
+    2300010: pPlane5
+    2300012: pPlane6
+    2300014: pPlane7
+    2300016: pPlane8
+    2300018: pPlane9
+    3300000: //RootNode
+    3300002: pPlane10
+    3300004: pPlane2
+    3300006: pPlane3
+    3300008: pPlane4
+    3300010: pPlane5
+    3300012: pPlane6
+    3300014: pPlane7
+    3300016: pPlane8
+    3300018: pPlane9
+    4300000: Bush_01_a
+    4300002: pPlane2
+    4300004: pPlane3
+    4300006: pPlane4
+    4300008: pPlane5
+    4300010: pPlane6
+    4300012: pPlane7
+    4300014: pPlane8
+    4300016: pPlane9
+    4300018: pPlane10
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 1
+  userData: 

@@ -1,0 +1,82 @@
+﻿------------------------------------------------------------------
+Tips for mobile project.
+------------------------------------------------------------------
+	
+	1. There are 3 sizes of Asset_01 shared textures (SD/HD/UD sizes). Use one of them according to the capability of your target device.
+	2. If you use Unity terrain paint tool these parameters should be set to white color.
+		- Terrain's grass tint
+		- Grass brush's Healthy & Dry 
+	3. More grass painted on terrain, more run-time draw calls.
+	4. Beast Lightmapping is very powerful. Use it when you have finished your scene.
+	5. Beast Lightmap parameters guide for good result and saving your time.
+		- Intensity: 0.25 - 1
+		- Bounce Intensity: 1
+		- Shadow Samples: 100
+		- Shadow Angle: 20
+		- Bake parameter
+			- Mode: Single Lightmaps
+			- Quality: High
+			- Bounces: 4
+			- Sky Light Intensity: 0.25
+			- Bounce Boost: 4
+			- Bounce Intensity: 0.5
+			- Final Gather Rays: 1500
+			- Contrast Threshold: 0.012
+			- Interpolation: 0
+			- Interpolation Points: 30
+			- Ambient Occlusion: 0
+			- Resolution: 32
+
+------------------------------------------------------------------
+Recommend Unity's manual for mobile project
+------------------------------------------------------------------
+
+	- Future & High End Devices:
+		http://docs.unity3d.com/Manual/MobileOptimizationFutureDevices.html
+	
+	- Graphics Methods
+		http://docs.unity3d.com/Manual/MobileOptimizationGraphicsMethods.html
+	
+	- Rendering Optimizations
+		http://docs.unity3d.com/Manual/MobileOptimizationPracticalRenderingOptimizations.html
+	
+	- Optimizing Graphics Performance
+		http://docs.unity3d.com/Manual/OptimizingGraphicsPerformance.html
+			
+	- Optimizing Physics Performance
+		http://docs.unity3d.com/Manual/iphone-Optimizing-Physics.html
+	
+	- Draw Call Batching
+		http://docs.unity3d.com/Manual/DrawCallBatching.html
+	
+	- Modeling Characters for Optimal Performance
+		http://docs.unity3d.com/Manual/ModelingOptimizedCharacters.html
+	
+	- Reducing File Size
+		http://docs.unity3d.com/Manual/ReducingFilesize.html		
+		
+	- Optimizing Performance in iOS.
+		http://docs.unity3d.com/Manual/iphone-performance.html
+	
+	- Optimizing the Size of the Built iOS Player
+		http://docs.unity3d.com/Manual/iphone-playerSizeOptimization.html
+		
+	- Troubleshooting on iOS devices
+		http://docs.unity3d.com/Manual/TroubleShootingIPhone.html
+		
+	- Features currently not supported by Unity Android
+		http://docs.unity3d.com/Manual/android-unsupported.html
+		
+	- Getting Started with Android Development
+		http://docs.unity3d.com/Manual/android-GettingStarted.html
+		
+	- Mobile Device Input
+		http://docs.unity3d.com/Manual/MobileInput.html
+
+------------------------------------------------------------------
+
+Thank you for your support,
+
+Gold Experience Team
+geteamdev@gmail.com (Please direct any bugs/comments/suggestions to this e-mail)
+www.ge-team.com

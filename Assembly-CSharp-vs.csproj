@@ -46,6 +46,14 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\First Fantasy for Mobile\Environments\Scripts\FFCloudFlow.cs" />
+     <Compile Include="Assets\First Fantasy for Mobile\Environments\Scripts\FFController.cs" />
+     <Compile Include="Assets\First Fantasy for Mobile\Environments\Scripts\FFFloatObject.cs" />
+     <Compile Include="Assets\First Fantasy for Mobile\Environments\Scripts\FFFollowObject.cs" />
+     <Compile Include="Assets\First Fantasy for Mobile\Environments\Scripts\FFOrbitCamera.cs" />
+     <Compile Include="Assets\First Fantasy for Mobile\Environments\Scripts\FFRandomMoveOnTerrain.cs" />
+     <Compile Include="Assets\First Fantasy for Mobile\Environments\Scripts\FFTestParticles.cs" />
+     <Compile Include="Assets\First Fantasy for Mobile\Environments\Scripts\FFWaterFlow.cs" />
      <Compile Include="Assets\Framework\Asvarduil Disco Blocks\Scripts\DiscoBlockPuzzleManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil Disco Blocks\Scripts\DiscoBlockSwitch.cs" />
      <Compile Include="Assets\Framework\Asvarduil Disco Blocks\Scripts\PuzzleSolvedObjectBase.cs" />
@@ -177,20 +185,26 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\TitlePresenter.cs" />
      <None Include="Assets\Game-Specific Assets\Data\Locales\item-shop.txt" />
      <None Include="Assets\Resources\Data\Treasure\feldhold-chest-3.txt" />
+     <None Include="Assets\First Fantasy for Mobile\Environments\Shaders\Mobile Transparent Vertex Color.shader" />
      <None Include="Assets\Resources\Data\Treasure\crystal-cave-chest-1.txt" />
      <None Include="Assets\Framework\Asvarduil 3D Tiles\User Manual.txt" />
      <None Include="Assets\Resources\Data\Game\ability-list.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-chest.txt" />
+     <None Include="Assets\First Fantasy for Mobile\Environments\Shaders\Water Diffuse.shader" />
      <None Include="Assets\Resources\Data\Dialogue\nuuria-castle-npc-5.txt" />
+     <None Include="Assets\First Fantasy for Mobile\Environments\Shaders\Water Heightmap.shader" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-battle.txt" />
      <None Include="Assets\Resources\Data\Dialogue\nuuria-castle-npc-3.txt" />
      <None Include="Assets\Resources\Data\Dialogue\nuuria-npc-2.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-items.txt" />
+     <None Include="Assets\First Fantasy for Mobile\Environments\Shaders\Water Simple.shader" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-basic.txt" />
      <None Include="Assets\Resources\Data\Dialogue\nuuria-castle-npc-4.txt" />
      <None Include="Assets\Resources\Data\Treasure\feldhold-chest-2.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-tonic-chest.txt" />
+     <None Include="Assets\First Fantasy for Mobile\!Tips.txt" />
      <None Include="Assets\Resources\Data\Treasure\crystal-cave-chest-3.txt" />
+     <None Include="Assets\First Fantasy for Mobile\Environments\Shaders\Mobile Particles Additive Culled.shader" />
      <None Include="Assets\Framework\Asvarduil Disco Blocks\Shaders\Tinted Unlit.shader" />
      <None Include="Assets\Resources\Data\Dialogue\feldhold-trigger-1.txt" />
      <None Include="Assets\Game-Specific Assets\Shaders\Particle-Additive-Backculled.shader" />
@@ -202,6 +216,7 @@
      <None Include="Assets\Resources\Data\Game\item-list.txt" />
      <None Include="Assets\Resources\Data\Vendors\nuuria-shopkeeper-items.txt" />
      <None Include="Assets\Resources\Data\Dialogue\nuuria-npc-3.txt" />
+     <None Include="Assets\First Fantasy for Mobile\!Readme.txt" />
      <None Include="Assets\Resources\Data\Dialogue\nuuria-castle-npc-2.txt" />
      <None Include="Assets\Resources\Data\Treasure\feldhold-chest-1.txt" />
  <Reference Include="UnityEngine.UI">
