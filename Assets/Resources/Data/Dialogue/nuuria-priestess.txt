@@ -1,0 +1,140 @@
+{
+	"TextThreads":[
+		{
+			"IsDefaultThread":true,
+			"Name":"Chatter",
+			"SequenceState":{
+				"Name":"Main",
+				"MinCounter":0,
+				"MaxCounter":0
+			}
+
+			"TextContent":[
+				{
+					"ID":0,
+					"Speaker":"High Priestess of Nuuria",
+					"Dialogue":"Our valiant Knights have cleared the surface of our land of monsters.",
+
+					"Options":[
+						{
+							"Text":"Continue",
+							"TargetID":1
+						}
+					],
+
+					"DialogueEvents":[]
+				},
+				{
+					"ID":1,
+					"Speaker":"High Priestess of Nuuria",
+					"Dialogue":"These days, travelers only die in the caves or forests...or, to their fellow man.",
+
+					"Options":[
+						{
+							"Text":"Continue",
+							"TargetID":2
+						}
+					],
+
+					"DialogueEvents":[]
+				},
+				{
+					"ID":2,
+					"Speaker":"",
+					"Dialogue":"",
+
+					"Options":[],
+
+					"DialogueEvents":[
+						{					
+							"MessageName":"EndConversation",
+							"Args":[]
+						}
+					]
+				}
+			]
+		},
+		{
+			"IsDefaultThread":false,
+			"Name":"Revive Party",
+			"SequenceState":{
+				"Name":"Main", 
+				"MinCounter":0,
+				"MaxCounter":0
+			},
+
+			"TextContent":[
+				{
+					"ID":0,
+					"Speaker":"High Priestess of Nuuria",
+					"Dialogue":"Greetings, my children...I see some of your are gravely wounded.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":1 
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+				{
+					"ID":1,
+					"Speaker":"High Priestess of Nuuria",
+					"Dialogue":"I beseech our loving Goddess, to recall the strength of these brave souls!",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":2 
+						}
+					],
+          
+					"DialogueEvents":[
+					]
+				},
+				{
+					"ID":2,
+					"Speaker":"High Priestess of Nuuria",
+					"Dialogue":"There...your wounds still need to mend, but at least you may stand again.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":3 
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+								{
+					"ID":3,
+					"Speaker":"High Priestess of Nuuria",
+					"Dialogue":"Please, rest in our basement dorms, and recover your strength.  Blessings of the Goddess be with you.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":4 
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+				{
+					"ID":4,
+					"Speaker":"",
+					"Dialogue":"",
+					"Options":[],
+
+					"DialogueEvents":[
+						{					
+							"MessageName":"EndConversation",
+							"Args":[]
+						}
+					]
+				}
+			]
+		}
+	]
+}

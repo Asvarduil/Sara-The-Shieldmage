@@ -164,6 +164,7 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\AttackerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\HealerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\SequenceAI.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\PriestNPC.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\PuzzleDoorObject.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Battle System\BattleCharacterStatPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Battle System\BattleCommandPresenter.cs" />
@@ -183,7 +184,8 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Main Menu\StatPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\SettingsPresenter.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\TitlePresenter.cs" />
-     <None Include="Assets\Game-Specific Assets\Data\Locales\item-shop.txt" />
+     <None Include="Assets\Resources\Data\Dialogue\nuuria-priestess.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\Locales\nuuria-item-shop.txt" />
      <None Include="Assets\Resources\Data\Treasure\feldhold-chest-3.txt" />
      <None Include="Assets\First Fantasy for Mobile\Environments\Shaders\Mobile Transparent Vertex Color.shader" />
      <None Include="Assets\Resources\Data\Treasure\crystal-cave-chest-1.txt" />
@@ -199,6 +201,7 @@
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-items.txt" />
      <None Include="Assets\First Fantasy for Mobile\Environments\Shaders\Water Simple.shader" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-basic.txt" />
+     <None Include="Assets\Game-Specific Assets\Data\Locales\nuuria-church.txt" />
      <None Include="Assets\Resources\Data\Dialogue\nuuria-castle-npc-4.txt" />
      <None Include="Assets\Resources\Data\Treasure\feldhold-chest-2.txt" />
      <None Include="Assets\Framework\Asvarduil RPG Framework\Data\test-blob-tonic-chest.txt" />
