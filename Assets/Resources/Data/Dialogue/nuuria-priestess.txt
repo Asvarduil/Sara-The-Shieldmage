@@ -91,6 +91,10 @@
 					],
           
 					"DialogueEvents":[
+						{
+							"MessageName":"ReviveDeadPlayers",
+							"Args":[]
+						}
 					]
 				},
 				{

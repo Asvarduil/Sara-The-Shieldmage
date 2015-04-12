@@ -95,7 +95,6 @@ public class MapObjectPlacer : JsonBlobLoaderBase
             {
                 PathPositionRotationSet currentObject = new PathPositionRotationSet();
 
-                var objectPath = current["Object"];
                 var rawPosition = current["Position"];
                 var rawRotation = current["Rotation"];
 

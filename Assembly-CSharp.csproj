@@ -88,6 +88,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationCameraEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationItemEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationNPCEvents.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationPlayerEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationQuestEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationShopEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Dialogue\DialogueLoader.cs" />
