@@ -162,7 +162,8 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilFrame.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteAnimation.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Visual\AsvarduilSpriteFrame.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Middleware\Floor Generator\FloorGenerator.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Middleware\Tile Map Generator\FloorGenerator.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Middleware\Tile Map Generator\WallGenerator.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\AttackerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\HealerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\SequenceAI.cs" />

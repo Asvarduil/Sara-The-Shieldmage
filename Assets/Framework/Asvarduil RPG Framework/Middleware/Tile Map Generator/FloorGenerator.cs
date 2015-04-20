@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class FloorGenerator : DebuggableBehavior
 {
@@ -9,6 +9,7 @@ public class FloorGenerator : DebuggableBehavior
     public Vector2 FloorDimensions;
 
     private Vector3 _offset;
+    private static List<GameObject> _generatedTiles;
 
     #endregion Variables / Properties
 
@@ -17,11 +18,10 @@ public class FloorGenerator : DebuggableBehavior
     [ContextMenu("Delete Floor")]
     public void DestroyFloor()
     {
-        int children = transform.childCount;
-        for(int i = 0; i < children; i++)
+        for(int i = 0; i < _generatedTiles.Count; i++)
         {
-            Transform current = transform.GetChild(i);
-            GameObject.DestroyImmediate(current.gameObject);
+            GameObject tile = _generatedTiles[i];
+            GameObject.DestroyImmediate(tile);
         }
     }
 
@@ -29,8 +29,9 @@ public class FloorGenerator : DebuggableBehavior
     public void GenerateFloor()
     {
         DetermineFloorOffset();
-
         Transform thisTransform = gameObject.transform;
+        _generatedTiles = new List<GameObject>();
+
         for(int xOffset = 0; xOffset < FloorDimensions.x; xOffset++)
         {
             for(int yOffset = 0; yOffset < FloorDimensions.y; yOffset++)
@@ -40,6 +41,8 @@ public class FloorGenerator : DebuggableBehavior
                 GameObject currentTile = GameObject.Instantiate(FloorTile, position, Quaternion.identity) as GameObject;
                 currentTile.transform.SetParent(thisTransform);
                 currentTile.name = currentTile.name.Substring(0, currentTile.name.Length - 7);
+
+                _generatedTiles.Add(currentTile);
             }
         }
     }
