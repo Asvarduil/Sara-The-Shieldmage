@@ -86,7 +86,7 @@ public class WallGenerator : DebuggableBehavior
     private void GenerateSideWalls(bool extendToEdges)
     {
         float leftX = transform.position.x + _offset.x;
-        float rightX = transform.position.x - ((WallDimensions.y % 2 > 0) ? (_offset.x - 1) : (_offset.x + 1));
+        float rightX = (transform.position.x + _offset.x) + ((WallDimensions.y % 2 > 0) ? WallDimensions.x - 1 : WallDimensions.x - 2);
 
         float minZ = extendToEdges 
             ? _offset.z 
@@ -125,7 +125,7 @@ public class WallGenerator : DebuggableBehavior
         float minX = transform.position.x - _offset.x;
         float maxX = transform.position.x + _offset.x;
 
-        for(float currentX = 0; currentX < WallDimensions.x; currentX++)
+        for (float currentX = 0; currentX < WallDimensions.x; currentX++)
         {
             for(float currentY = 0; currentY <= NearWallHeight; currentY++)
             {
@@ -151,7 +151,7 @@ public class WallGenerator : DebuggableBehavior
 
         for (float currentX = 0; currentX < WallDimensions.x; currentX++)
         {
-            for (float currentY = transform.position.y; currentY <= FarWallHeight; currentY++)
+            for (float currentY = 0; currentY <= FarWallHeight; currentY++)
             {
                 float actualX = transform.position.x + _offset.x + currentX;
                 float actualY = transform.position.y + currentY;
