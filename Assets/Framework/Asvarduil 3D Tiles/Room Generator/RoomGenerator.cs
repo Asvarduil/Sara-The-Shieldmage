@@ -5,8 +5,12 @@ using UnityEngine;
 public enum RoomShapes
 {
     Room,
+    Cap,
     StraightLongHall,
-    StraightWideHall
+    StraightWideHall,
+    Turn,
+    Intersection3,
+    Intersection4,
 }
 
 public class RoomGenerator : DebuggableBehavior
@@ -40,6 +44,12 @@ public class RoomGenerator : DebuggableBehavior
                     dimensions.y = RoomDimensions.y - 2;
                     break;
 
+                case RoomShapes.Cap:
+                    // TODO: Figure out how to make the offset work, so that dims.x can be roomdims.x - 1 instead.
+                    dimensions.x = RoomDimensions.x - 2;
+                    dimensions.y = RoomDimensions.y - 2;
+                    break;
+
                 case RoomShapes.StraightLongHall:
                     dimensions.x = RoomDimensions.x - 2;
                     dimensions.y = RoomDimensions.y;
@@ -47,6 +57,23 @@ public class RoomGenerator : DebuggableBehavior
 
                 case RoomShapes.StraightWideHall:
                     dimensions.x = RoomDimensions.x;
+                    dimensions.y = RoomDimensions.y - 2;
+                    break;
+
+                case RoomShapes.Turn:
+                    dimensions.x = RoomDimensions.x - 2;
+                    dimensions.y = RoomDimensions.y - 2;
+                    break;
+
+                case RoomShapes.Intersection3:
+                    // TODO: Figure out how to make the offset work, so that dims.x can be roomdims.x - 1 instead.
+                    dimensions.x = RoomDimensions.x - 2;
+                    dimensions.y = RoomDimensions.y - 2;
+                    break;
+
+                case RoomShapes.Intersection4:
+                    // TODO: In this case, instruct the floor generator to not generate the corners.
+                    dimensions.x = RoomDimensions.x - 2;
                     dimensions.y = RoomDimensions.y - 2;
                     break;
 
@@ -102,6 +129,15 @@ public class RoomGenerator : DebuggableBehavior
             : dimensions.y / 2;
     }
 
+    private GameObject SpawnTile(GameObject tile, Vector3 position, GameObject generateTarget)
+    {
+        var result = GameObject.Instantiate(tile, position, Quaternion.identity) as GameObject;
+        result.transform.SetParent(generateTarget.transform);
+        result.name = result.name.Substring(0, result.name.Length - 7);
+
+        return result;
+    }
+
     #endregion General Methods
 
     #region Wall Generation Methods
@@ -133,6 +169,11 @@ public class RoomGenerator : DebuggableBehavior
                 GenerateNearWall();
                 break;
 
+            case RoomShapes.Cap:
+                GenerateSideWalls(false);
+                GenerateFarWall();
+                break;
+
             case RoomShapes.StraightLongHall:
                 GenerateSideWalls(true);
                 break;
@@ -140,6 +181,16 @@ public class RoomGenerator : DebuggableBehavior
             case RoomShapes.StraightWideHall:
                 GenerateFarWall();
                 GenerateNearWall();
+                break;
+
+            case RoomShapes.Intersection3:
+                GenerateFarWall();
+                GenerateNearColumns();
+                break;
+
+            case RoomShapes.Intersection4:
+                GenerateFarColumns();
+                GenerateNearColumns();
                 break;
 
             default:
@@ -169,13 +220,8 @@ public class RoomGenerator : DebuggableBehavior
                 Vector3 leftPosition = new Vector3(leftX, actualY, actualZ);
                 Vector3 rightPosition = new Vector3(rightX, actualY, actualZ);
 
-                GameObject leftSegment = GameObject.Instantiate(WallTile, leftPosition, Quaternion.identity) as GameObject;
-                leftSegment.transform.SetParent(GeneratedWallTarget.transform);
-                leftSegment.name = leftSegment.name.Substring(0, leftSegment.name.Length - 7);
-
-                GameObject rightSegment = GameObject.Instantiate(WallTile, rightPosition, Quaternion.identity) as GameObject;
-                rightSegment.transform.SetParent(GeneratedWallTarget.transform);
-                rightSegment.name = rightSegment.name.Substring(0, rightSegment.name.Length - 7);
+                GameObject leftSegment = SpawnTile(WallTile, leftPosition, GeneratedWallTarget);
+                GameObject rightSegment = SpawnTile(WallTile, rightPosition, GeneratedWallTarget);
 
                 _generatedWallTiles.Add(leftSegment);
                 _generatedWallTiles.Add(rightSegment);
@@ -198,9 +244,7 @@ public class RoomGenerator : DebuggableBehavior
 
                 Vector3 tilePosition = new Vector3(actualX, actualY, minZ);
 
-                GameObject wallTile = GameObject.Instantiate(WallTile, tilePosition, Quaternion.identity) as GameObject;
-                wallTile.transform.SetParent(GeneratedWallTarget.transform);
-                wallTile.name = wallTile.name.Substring(0, wallTile.name.Length - 7);
+                GameObject wallTile = SpawnTile(WallTile, tilePosition, GeneratedWallTarget);
 
                 _generatedWallTiles.Add(wallTile);
             }
@@ -222,12 +266,50 @@ public class RoomGenerator : DebuggableBehavior
 
                 Vector3 tilePosition = new Vector3(actualX, actualY, maxZ);
 
-                GameObject wallTile = GameObject.Instantiate(WallTile, tilePosition, Quaternion.identity) as GameObject;
-                wallTile.transform.SetParent(GeneratedWallTarget.transform);
-                wallTile.name = wallTile.name.Substring(0, wallTile.name.Length - 7);
+                GameObject wallTile = SpawnTile(WallTile, tilePosition, GeneratedWallTarget);
 
                 _generatedWallTiles.Add(wallTile);
             }
+        }
+    }
+
+    private void GenerateFarColumns()
+    {
+        float minX = transform.position.x + _offset.x;
+        float maxX = transform.position.x + _offset.x + (RoomDimensions.x - 1);
+        float maxZ = transform.position.z - ((RoomDimensions.y % 2 > 0) ? (_offset.z - 1) : (_offset.z + 1));
+
+        for(float currentY = 0; currentY <= FarWallHeight; currentY++)
+        {
+            float actualY = transform.position.y + currentY;
+            Vector3 leftColumnPosition = new Vector3(minX, actualY, maxZ);
+            Vector3 rightColumnPosition = new Vector3(maxX, actualY, maxZ);
+
+            GameObject leftColumn = SpawnTile(WallTile, leftColumnPosition, GeneratedWallTarget);
+            GameObject rightColumn = SpawnTile(WallTile, rightColumnPosition, GeneratedWallTarget);
+
+            _generatedWallTiles.Add(leftColumn);
+            _generatedWallTiles.Add(rightColumn);
+        }
+    }
+
+    private void GenerateNearColumns()
+    {
+        float minX = transform.position.x + _offset.x;
+        float maxX = transform.position.x + _offset.x + (RoomDimensions.x - 1);
+        float minZ = transform.position.z + _offset.z;
+
+        for (float currentY = 0; currentY <= FarWallHeight; currentY++)
+        {
+            float actualY = transform.position.y + currentY;
+            Vector3 leftColumnPosition = new Vector3(minX, actualY, minZ);
+            Vector3 rightColumnPosition = new Vector3(maxX, actualY, minZ);
+
+            GameObject leftColumn = SpawnTile(WallTile, leftColumnPosition, GeneratedWallTarget);
+            GameObject rightColumn = SpawnTile(WallTile, rightColumnPosition, GeneratedWallTarget);
+
+            _generatedWallTiles.Add(leftColumn);
+            _generatedWallTiles.Add(rightColumn);
         }
     }
 
