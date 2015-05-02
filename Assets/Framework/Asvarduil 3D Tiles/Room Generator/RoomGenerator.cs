@@ -11,6 +11,7 @@ public enum RoomShapes
     Turn,
     Intersection3,
     Intersection4,
+    Floor
 }
 
 public class RoomGenerator : DebuggableBehavior
@@ -75,6 +76,11 @@ public class RoomGenerator : DebuggableBehavior
                     // TODO: In this case, instruct the floor generator to not generate the corners.
                     dimensions.x = RoomDimensions.x - 2;
                     dimensions.y = RoomDimensions.y - 2;
+                    break;
+
+                case RoomShapes.Floor:
+                    dimensions.x = RoomDimensions.x;
+                    dimensions.y = RoomDimensions.y;
                     break;
 
                 default:
@@ -191,6 +197,10 @@ public class RoomGenerator : DebuggableBehavior
             case RoomShapes.Intersection4:
                 GenerateFarColumns();
                 GenerateNearColumns();
+                break;
+
+            case RoomShapes.Floor:
+                // Don't generate walls for a floor.
                 break;
 
             default:
