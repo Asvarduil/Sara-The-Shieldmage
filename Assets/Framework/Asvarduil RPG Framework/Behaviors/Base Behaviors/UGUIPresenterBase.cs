@@ -126,6 +126,7 @@ public class UGUIPresenterBase : DebuggableBehavior
 
             _isFading = false;
             group.alpha = 1.0f;
+            DebugMessage("Fade-in complete.");
         }
         else
         {
@@ -138,6 +139,7 @@ public class UGUIPresenterBase : DebuggableBehavior
             _isFading = false;
             group.alpha = 0.0f;
             ActivateControls(isActive);
+            DebugMessage("Fade-out complete.");
         }
     }
 

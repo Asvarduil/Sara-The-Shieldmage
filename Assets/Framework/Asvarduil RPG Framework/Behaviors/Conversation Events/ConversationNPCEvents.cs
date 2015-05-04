@@ -2,11 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-public class ConversationNPCEvents : DebuggableBehavior
+public class ConversationNPCEvents : ManagerBase<ConversationNPCEvents>
 {
     #region Variables / Properties
-
-    public List<GameObject> NPCList;
 
     private List<GameObject> _npcPool = new List<GameObject>();
 
@@ -18,28 +16,21 @@ public class ConversationNPCEvents : DebuggableBehavior
     {
         if (args == null
            || args.Count == 0)
-            throw new ArgumentException("Spawn NPC requires the name of the NPC prefab, the coordinates to spawn at, and the NPC's scene name!");
+            throw new ArgumentException("Spawn NPC requires the path of the NPC prefab, the coordinates to spawn at, and the NPC's scene name!");
 
         string prefabName = args[0];
         string coords = args[1];
         string npcName = args[2];
 
-        GameObject npc = null;
-        for(int i = 0; i < NPCList.Count; i++)
-        {
-            GameObject current = NPCList[i];
-            if(current.name != prefabName)
-                continue;
+        DebugMessage("Given path: " + prefabName);
 
-            npc = current;
-            break;
-        }
+        GameObject npc = Resources.Load<GameObject>(args[0]);
 
         string[] coordComponents = coords.Split(',');
         Vector3 npcCoordinates = new Vector3();
-        npcCoordinates.x = Convert.ToSingle(coordComponents[0]);
-        npcCoordinates.y = Convert.ToSingle(coordComponents[1]);
-        npcCoordinates.z = Convert.ToSingle(coordComponents[2]);
+        npcCoordinates.x = Convert.ToSingle(coordComponents[0].Trim());
+        npcCoordinates.y = Convert.ToSingle(coordComponents[1].Trim());
+        npcCoordinates.z = Convert.ToSingle(coordComponents[2].Trim());
 
         GameObject newNPC = (GameObject) GameObject.Instantiate(npc, npcCoordinates, Quaternion.identity);
         newNPC.name = npcName;

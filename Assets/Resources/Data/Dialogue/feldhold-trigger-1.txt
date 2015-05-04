@@ -2,9 +2,9 @@
 	"TextThreads":[
 		{
 			"IsDefaultThread":true,
-			"Name":"Feldhold Ruins",
+			"Name":"Game Start",
 			"SequenceState":{
-				"Name":"The Feldhold Shard", 
+				"Name":"The Feldhold Codex", 
 				"MinCounter":0,
 				"MaxCounter":0
 			},
@@ -12,8 +12,8 @@
 			"TextContent":[
 				{
 					"ID":0,
-					"Speaker":"????",
-					"Dialogue":"What are you doing here?",
+					"Speaker":"Guard A",
+					"Dialogue":"...Aww crap.",
           
 					"Options":[
 						{ 
@@ -26,13 +26,21 @@
 				},
 				{
 					"ID":1,
-					"Speaker":"????",
-					"Dialogue":"...Whatever it is, it's not important.  I am your executioner...Lord Rosflugel's Knight of Death.",
+					"Speaker":"Guard B",
+					"Dialogue":"Lady Sara, we just missed a cave-in.  Are these ruins supposed to be this unstable?",
           
 					"Options":[
 						{ 
-							"Text":"Continue", 
+							"Text":"Maybe...", 
 							"TargetID":2 
+						},
+						{
+							"Text":"Can be",
+							"TargetID":3
+						},
+						{
+							"Text":"Always",
+							"TargetID":4
 						}
 					],
           
@@ -40,13 +48,13 @@
 				},
 				{
 					"ID":2,
-					"Speaker":"Thanatos, the Death Knight",
-					"Dialogue":"I, Thanatos, will send you back to the Goddess a bit early.  It will be worse if you resist...",
+					"Speaker":"Shieldmage Sara",
+					"Dialogue":"Ruins are always a bit dangerous, but these were supposed to be pretty solid...",
           
 					"Options":[
 						{ 
 							"Text":"Continue", 
-							"TargetID":3 
+							"TargetID":5
 						}
 					],
           
@@ -54,6 +62,76 @@
 				},
 				{
 					"ID":3,
+					"Speaker":"Shieldmage Sara",
+					"Dialogue":"Ruins are always a bit dangerous.  We had better be more careful.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":5
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+				{
+					"ID":4,
+					"Speaker":"Shieldmage Sara",
+					"Dialogue":"These are ruins; they are ruined.  Are you surprised by this?",
+
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":5
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+				{
+					"ID":5,
+					"Speaker":"Guard A",
+					"Dialogue":"I hope this is worth it...I'd rather be giving something to the Church, than getting buried by them.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":6
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+				{
+					"ID":6,
+					"Speaker":"Guard B",
+					"Dialogue":"This isn't just some relic; this is going to prove that the Goddess is real.  Lady Sara here has...",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":7
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+				{
+					"ID":7,
+					"Speaker":"Shieldmage Sara",
+					"Dialogue":"...Studied it for years.  Still, these ruins aren't safe.  We'd better move forward.",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":99
+						}
+					],
+          
+					"DialogueEvents":[]
+				},
+				{
+					"ID":99,
 					"Speaker":"",
 					"Dialogue":"",
 					"Options":[],
@@ -62,17 +140,9 @@
 						{
 							"MessageName":"UpdateQuest",
 							"Args":[
-								"The Feldhold Shard",
-								"You faced down the Death Knight Thanatos in the Ruins of Feldhold.  The Ancile Shard lies just ahead...",
+								"The Feldhold Codex",
+								"You've narrowly avoided a brush with death!  Continue into the Feldhold Ruins. ",
 								"1"
-							]
-						},
-						{
-							"MessageName":"TriggerBattle",
-							"Args":[
-								"BossBattle",
-								"Ruins Battle",
-								"Thanatos"
 							]
 						},
 						{					

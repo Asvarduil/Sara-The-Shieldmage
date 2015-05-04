@@ -166,6 +166,7 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\AttackerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\HealerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\SequenceAI.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\IntroSetup.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\PriestNPC.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\PuzzleDoorObject.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Battle System\BattleCharacterStatPresenter.cs" />

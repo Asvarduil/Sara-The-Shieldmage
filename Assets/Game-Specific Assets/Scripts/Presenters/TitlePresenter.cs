@@ -8,6 +8,7 @@ public class TitlePresenter : UGUIPresenterBase
     #region Variables / Properties
 
     public SceneState NewGameSceneState;
+    public AudioClip NewGameSoundEffect;
 
     private Fader _fader;
 
@@ -36,6 +37,7 @@ public class TitlePresenter : UGUIPresenterBase
 
     public void NewGame()
     {
+        _maestro.PlayOneShot(NewGameSoundEffect);
         _transition.PrepareSceneChange(NewGameSceneState, false);
         _transition.ChangeScenes();
     }
