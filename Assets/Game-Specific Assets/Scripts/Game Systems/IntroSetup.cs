@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,9 @@ public class IntroSetup : DialogueController
 
     private bool _hasStartedDialogue = false;
 
+    private Fader _fader;
     private EntityText _introText;
+    private ControlManager _controls;
     private DialogueController _dialogue;
     private ConversationNPCEvents _npcEvents;
 
@@ -18,8 +21,10 @@ public class IntroSetup : DialogueController
 
     public void Start()
     {
+        _fader = FindObjectOfType<Fader>();
         _introText = GetComponent<EntityText>();
 
+        _controls = ControlManager.Instance;
         _dialogue = DialogueController.Instance;
         _npcEvents = ConversationNPCEvents.Instance;
 
@@ -28,17 +33,11 @@ public class IntroSetup : DialogueController
 
     private void SetupScene()
     {
+        _controls.RadiateSuspendCommand();
+
         SpawnGuards();
-        InitiateIntroConversation();
+        StartCoroutine(InitiateIntroConversation());
     }
-
-    //public void Update()
-    //{
-    //    if (_hasStartedDialogue)
-    //        return;
-
-    //    InitiateIntroConversation();
-    //}
 
     #endregion Hooks
 
@@ -69,10 +68,12 @@ public class IntroSetup : DialogueController
         }
     }
 
-    private void InitiateIntroConversation()
+    private IEnumerator InitiateIntroConversation()
     {
+        while (_fader.ScreenHidden)
+            yield return null;
+
         _dialogue.PresentEntityText(_introText);
-        //Destroy(gameObject);
     }
 
     #endregion Methods

@@ -107,6 +107,8 @@ public class UGUIPresenterBase : DebuggableBehavior
 
     protected IEnumerator FadeCanvasGroup(bool isActive)
     {
+        DebugMessage("Fading " + gameObject + " " + (isActive ? "in" : "out"));
+
         // Allow another fade to finish, before initiating a new fade.
         while (_isFading)
             yield return 0;
@@ -201,30 +203,35 @@ public class UGUIPresenterBase : DebuggableBehavior
 
     protected void ActivateControls(bool isActive)
     {
+        DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _labels.Count + " labels...");
         for (int i = 0; i < _labels.Count; i++)
         {
             Text current = _labels[i];
             ActivateText(current, isActive);
         }
 
+        DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _images.Count + " images...");
         for (int i = 0; i < _images.Count; i++)
         {
             Image current = _images[i];
             ActivateImage(current, isActive);
         }
 
+        DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _buttons.Count + " buttons...");
         for (int i = 0; i < _buttons.Count; i++)
         {
             Button current = _buttons[i];
             ActivateButton(current, isActive);
         }
 
+        DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _toggles.Count + " toggles...");
         for (int i = 0; i < _toggles.Count; i++)
         {
             Toggle current = _toggles[i];
             ActivateToggle(current, isActive);
         }
 
+        DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _sliders.Count + " sliders...");
         for (int i = 0; i < _sliders.Count; i++)
         {
             Slider current = _sliders[i];
