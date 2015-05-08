@@ -30,7 +30,8 @@
 								1
 							]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":1,
@@ -42,7 +43,8 @@
 							"TargetID":2 
 						}
 					],
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":2,
@@ -54,7 +56,8 @@
 							"MessageName":"EndConversation",
 							"Args":[]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				}
 			]
 		}

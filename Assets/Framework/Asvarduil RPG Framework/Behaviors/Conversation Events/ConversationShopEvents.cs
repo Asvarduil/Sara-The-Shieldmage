@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+
+using System.Collections;
 using System.Collections.Generic;
 
-public class ConversationShopEvents : DebuggableBehavior
+public class ConversationShopEvents : ConversationEventBase
 {
     #region Variables / Properties
 
@@ -12,13 +14,20 @@ public class ConversationShopEvents : DebuggableBehavior
 
     #region Hooks
 
-    public void Start()
+    public override void Start()
     {
         _shop = ShopController.Instance;
         _itemDB = ItemDatabase.Instance;
+
+        base.Start();
     }
 
-    public void OpenShop(List<string> args)
+    protected override void RegisterEventHooks()
+    {
+        _controller.RegisterEventHook("OpenShop", OpenShop);
+    }
+
+    public IEnumerator OpenShop(List<string> args)
     {
         var shopInventory = new List<InventoryItem>();
         for(int i = 0; i < args.Count; i++)
@@ -36,6 +45,8 @@ public class ConversationShopEvents : DebuggableBehavior
         }
 
         _shop.PresentShop(shopInventory);
+
+        yield return null;
     }
 
     #endregion Hooks

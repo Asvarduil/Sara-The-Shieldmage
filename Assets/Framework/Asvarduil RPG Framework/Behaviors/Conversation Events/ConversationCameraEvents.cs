@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ConversationCameraEvents : DebuggableBehavior
+public class ConversationCameraEvents : ConversationEventBase
 {
     #region Variables / Properties
 
@@ -14,9 +14,19 @@ public class ConversationCameraEvents : DebuggableBehavior
 
     #endregion Variables / Properties
 
+    #region Hooks
+
+    protected override void RegisterEventHooks()
+    {
+        _controller.RegisterEventHook("FadeOut", FadeOut);
+        _controller.RegisterEventHook("FadeIn", FadeIn);
+    }
+
+    #endregion Hooks
+
     #region Methods
 
-    public void FadeOut(List<string> args)
+    public IEnumerator FadeOut(List<string> args)
     {
         float fadeRate = Fader.FadeRate;
         if(args != null
@@ -25,7 +35,7 @@ public class ConversationCameraEvents : DebuggableBehavior
             fadeRate = Convert.ToSingle(args[0]);
         }
 
-        StartCoroutine(ActuallyFadeOut(fadeRate));
+        yield return ActuallyFadeOut(fadeRate);
     }
 
     private IEnumerator ActuallyFadeOut(float fadeRate)
@@ -36,7 +46,7 @@ public class ConversationCameraEvents : DebuggableBehavior
             yield return 0;
     }
 
-    public void FadeIn(List<string> args)
+    public IEnumerator FadeIn(List<string> args)
     {
         float fadeRate = Fader.FadeRate;
         if (args != null
@@ -45,7 +55,7 @@ public class ConversationCameraEvents : DebuggableBehavior
             fadeRate = Convert.ToSingle(args[0]);
         }
 
-        StartCoroutine(ActuallyFadeIn(fadeRate));
+        yield return ActuallyFadeIn(fadeRate);
     }
 
     private IEnumerator ActuallyFadeIn(float fadeRate)

@@ -1,6 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System.Collections;
 using System.Collections.Generic;
+
+using UnityEngine;
+using UnityEngine.UI;
 
 public class DialoguePresenter : UGUIPresenterBase
 {
@@ -40,11 +42,16 @@ public class DialoguePresenter : UGUIPresenterBase
         // Load the contents of the buttons...
         for (int i = 0; i < _currentContent.Options.Count; i++)
         {
+            Button button = DialogueButtons[i];
             DialogueOption option = _currentContent.Options[i];
             if (string.IsNullOrEmpty(option.Text))
+            {
+                ActivateButton(button, false);
                 continue;
+            }
 
-            Text buttonText = DialogueButtons[i].GetComponentInChildren<Text>();
+            ActivateButton(button, true);
+            Text buttonText = button.GetComponentInChildren<Text>();
             buttonText.text = option.Text;
         }
 
@@ -61,13 +68,25 @@ public class DialoguePresenter : UGUIPresenterBase
             DialogueEvent dialogueEvent = content.DialogueEvents[i];
 
             DebugMessage("Firing conversation event: " + dialogueEvent.MessageName + "...");
-            _controller.SendMessage(dialogueEvent.MessageName, dialogueEvent.Args, SendMessageOptions.DontRequireReceiver);
+            _controller.ExecuteDialogueEvent(dialogueEvent.MessageName, dialogueEvent.Args);
         }
+
+        // Execute all sequential dialogue events for this piece of content...
+        StartCoroutine(ExecuteSequentialEvents(content.SequentialEvents));
     }
 
     #endregion Hooks
 
     #region Methods
+
+    private IEnumerator ExecuteSequentialEvents(List<DialogueEvent> events)
+    {
+        for (int i = 0; i < events.Count; i++)
+        {
+            DialogueEvent current = events[i];
+            yield return _controller.ExecuteDialogueEvent(current.MessageName, current.Args);
+        }
+    }
 
     #endregion Methods
 }

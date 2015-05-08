@@ -1,18 +1,36 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
-public class ConversationNPCEvents : ManagerBase<ConversationNPCEvents>
+public class ConversationNPCEvents : ConversationEventBase
 {
     #region Variables / Properties
 
-    private List<GameObject> _npcPool = new List<GameObject>();
+    private List<GameObject> _npcPool;
 
     #endregion Variables / Properties
 
+    #region Hooks
+
+    public override void Start()
+    {
+        _npcPool = new List<GameObject>();
+        base.Start();
+    }
+
+    protected override void RegisterEventHooks()
+    {
+        _controller.RegisterEventHook("SpawnNPC", SpawnNPC);
+        _controller.RegisterEventHook("DespawnNPC", DespawnNPC);
+        _controller.RegisterEventHook("DespawnAllNPCs", DespawnAllNPCs);
+    }
+
+    #endregion Hooks
+
     #region Methods
 
-    public void SpawnNPC(List<string> args)
+    public IEnumerator SpawnNPC(List<string> args)
     {
         if (args == null
            || args.Count == 0)
@@ -35,9 +53,11 @@ public class ConversationNPCEvents : ManagerBase<ConversationNPCEvents>
         GameObject newNPC = (GameObject) GameObject.Instantiate(npc, npcCoordinates, Quaternion.identity);
         newNPC.name = npcName;
         _npcPool.Add(newNPC);
+
+        yield return 0;
     }
 
-    public void DespawnNPC(List<string> args)
+    public IEnumerator DespawnNPC(List<string> args)
     {
         if (args == null
            || args.Count == 0
@@ -56,9 +76,11 @@ public class ConversationNPCEvents : ManagerBase<ConversationNPCEvents>
             _npcPool.Remove(npc);
             break;
         }
+
+        yield return 0;
     }
     
-    public void DespawnAllNPCs(List<string> args)
+    public IEnumerator DespawnAllNPCs(List<string> args)
     {
         for(int i = 0; i < _npcPool.Count; i++)
         {
@@ -66,6 +88,8 @@ public class ConversationNPCEvents : ManagerBase<ConversationNPCEvents>
             GameObject.Destroy(npc);
             _npcPool.Remove(npc);
         }
+
+        yield return 0;
     }
 
     #endregion Methods

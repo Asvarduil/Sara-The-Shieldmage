@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System;
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 
-public class ConversationPlayerEvents : DebuggableBehavior
+public class ConversationPlayerEvents : ConversationEventBase
 {
     #region Variables / Properties
 
@@ -13,12 +14,19 @@ public class ConversationPlayerEvents : DebuggableBehavior
 
     #region Hooks
 
-    public void Start()
+    public override void Start()
     {
         _party = PartyManager.Instance;
+        base.Start();
     }
 
-    public void FullyHealParty(List<string> args)
+    protected override void RegisterEventHooks()
+    {
+        _controller.RegisterEventHook("FullyHealParty", FullyHealParty);
+        _controller.RegisterEventHook("ReviveDeadPlayers", ReviveDeadPlayers);
+    }
+
+    public IEnumerator FullyHealParty(List<string> args)
     {
         List<PlayableCharacter> partyMembers = _party.FindAvailableCharacters().ToList();
 
@@ -27,9 +35,11 @@ public class ConversationPlayerEvents : DebuggableBehavior
             PlayableCharacter current = partyMembers[i];
             current.Health.Heal(current.Health.MaxHP);
         }
+
+        yield return null;
     }
 
-    public void ReviveDeadPlayers(List<string> args)
+    public IEnumerator ReviveDeadPlayers(List<string> args)
     {
         List<PlayableCharacter> partyMembers = _party.FindAvailableCharacters().ToList();
 
@@ -41,6 +51,8 @@ public class ConversationPlayerEvents : DebuggableBehavior
         }
 
         // TODO: Visual Effect!
+
+        yield return null;
     }
 
     #endregion Hooks

@@ -22,7 +22,26 @@
 						}
 					],
           
-					"DialogueEvents":[]
+					"DialogueEvents":[
+						{
+							"MessageName":"SpawnNPC",
+							"Args":[
+								"NPCs/Intro - Guard (Map)",
+								"-1.0, 1.0, -1.0",
+								"Intro - Guard A"
+							]
+						},
+						{
+							"MessageName":"SpawnNPC",
+							"Args":[
+								"NPCs/Intro - Guard (Map)",
+								"1.0, 1.0, -1.0",
+								"Intro - Guard B"
+							]
+						},
+					],
+					"SequentialEvents":[
+					]
 				},
 				{
 					"ID":1,
@@ -44,7 +63,8 @@
 						}
 					],
           
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":2,
@@ -58,7 +78,8 @@
 						}
 					],
           
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":3,
@@ -72,7 +93,8 @@
 						}
 					],
           
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":4,
@@ -86,7 +108,8 @@
 						}
 					],
           
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":5,
@@ -100,7 +123,8 @@
 						}
 					],
           
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":6,
@@ -114,7 +138,8 @@
 						}
 					],
           
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":7,
@@ -128,7 +153,8 @@
 						}
 					],
           
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":99,
@@ -144,11 +170,25 @@
 								"You've narrowly avoided a brush with death!  Continue into the Feldhold Ruins. ",
 								"1"
 							]
+						}
+					],
+					"SequentialEvents":[
+						{
+							"MessageName":"FadeOut",
+							"Args":[]
+						},
+						{
+							"MessageName":"DespawnAllNPCs",
+							"Args":[]
+						},
+						{
+							"MessageName":"FadeIn",
+							"Args":[]
 						},
 						{					
 							"MessageName":"EndConversation",
 							"Args":[]
-						},
+						}
 					]
 				}
 			]

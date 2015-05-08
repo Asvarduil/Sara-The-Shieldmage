@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 
 public enum BattleType
@@ -10,7 +11,7 @@ public enum BattleType
 	FinalBattle
 }
 
-public class ConversationBattleEvents : DebuggableBehavior
+public class ConversationBattleEvents : ConversationEventBase
 {
 	#region Variables / Properties
 	
@@ -27,13 +28,19 @@ public class ConversationBattleEvents : DebuggableBehavior
 	public void Start()
 	{
 		_battleManager = BattleManager.Instance;
+        base.Start();
 	}
+
+    protected override void RegisterEventHooks()
+    {
+        _controller.RegisterEventHook("TriggerBattle", TriggerBattle);
+    }
 
 	#endregion Engine Hooks
 
 	#region Messages
 
-	public void TriggerBattle(List<string> args)
+	public IEnumerator TriggerBattle(List<string> args)
 	{
 		if(args.Count < 3)
 			throw new Exception("TriggerBattle takes three string arguments!");
@@ -53,6 +60,7 @@ public class ConversationBattleEvents : DebuggableBehavior
 
 		_battleManager.PrepareBattle(enemyNames, battleScene, battleTheme);
 		_battleManager.InitiateBattle();
+        yield return null;
 	}
 
 	#endregion Messages

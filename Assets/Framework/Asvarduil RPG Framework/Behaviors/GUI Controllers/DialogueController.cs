@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System;
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 
 public class DialogueController : ManagerBase<DialogueController>
 {
@@ -15,6 +17,8 @@ public class DialogueController : ManagerBase<DialogueController>
     private InteractionPresenter _interact;
 	private DialoguePresenter _dialogueGUI;
 
+    private List<DialogueEventHook> _eventFunctions;
+
 	#endregion Variables / Properties
 
 	#region Engine Hooks
@@ -24,11 +28,38 @@ public class DialogueController : ManagerBase<DialogueController>
 		_controlManager = ControlManager.Instance;
         _interact = GetComponentInChildren<InteractionPresenter>();
 		_dialogueGUI = GetComponentInChildren<DialoguePresenter>();
+
+        _eventFunctions = new List<DialogueEventHook>();
 	}
+
+    public void OnDestroy()
+    {
+        // Cleanup code.
+        foreach(var hook in _eventFunctions)
+        {
+            if (hook == null)
+                continue;
+
+            hook.Function = null;
+        }
+
+        _eventFunctions = null;
+    }
 
 	#endregion Engine Hooks
 
 	#region Methods
+
+    public void RegisterEventHook(string eventName, Func<List<string>, IEnumerator> eventFunction)
+    {
+        DialogueEventHook newHook = new DialogueEventHook
+        {
+            Name = eventName,
+            Function = eventFunction
+        };
+
+        _eventFunctions.Add(newHook);
+    }
 
     public void PrepareInteraction(string interactText, Action onInteract)
     {
@@ -95,6 +126,19 @@ public class DialogueController : ManagerBase<DialogueController>
 			_dialogueGUI.PresentText(ActiveTextThread.TextContent[TextIndex]);
 		}
 	}
+
+    public IEnumerator ExecuteDialogueEvent(string eventName, List<string> eventArgs)
+    {
+        // Find the first coroutine on the child behaviors with a name that matches the event name.
+        DialogueEventHook coroutine = _eventFunctions.FirstOrDefault(f => f.Name == eventName);
+        if (coroutine == default(DialogueEventHook))
+        {
+            DebugMessage("Could not find an event named " + eventName + " in the registered event list.");
+            yield break;
+        }
+
+        yield return coroutine.Function(eventArgs);
+    }
 
 	#endregion Methods
 }

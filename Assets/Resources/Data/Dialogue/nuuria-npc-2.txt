@@ -30,7 +30,8 @@
 								1
 							]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":1,
@@ -42,7 +43,8 @@
 							"TargetID":2 
 						}
 					],
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":2,
@@ -54,7 +56,8 @@
 							"TargetID":3 
 						}
 					],
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":3,
@@ -66,7 +69,8 @@
 							"TargetID":4
 						}
 					],
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":4,
@@ -78,7 +82,8 @@
 							"TargetID":5
 						}
 					],
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":5,
@@ -98,7 +103,8 @@
 							"MessageName":"EndConversation",
 							"Args":[]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				}
 			]
 		},
@@ -132,7 +138,8 @@
 								1
 							]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":1,
@@ -146,7 +153,8 @@
 						}
 					],
           
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":2,
@@ -158,7 +166,8 @@
 							"MessageName":"EndConversation",
 							"Args":[]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				}
 			]
 		}
@@ -192,7 +201,8 @@
 								1
 							]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":1,
@@ -204,7 +214,8 @@
 							"TargetID":2 
 						}
 					],
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":2,
@@ -216,7 +227,8 @@
 							"TargetID":3 
 						}
 					],
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":3,
@@ -228,7 +240,8 @@
 							"TargetID":4
 						}
 					],
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":4,
@@ -240,7 +253,8 @@
 							"TargetID":5
 						}
 					],
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":5,
@@ -260,7 +274,8 @@
 								1
 							]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":6,
@@ -280,7 +295,8 @@
 							"MessageName":"EndConversation",
 							"Args":[]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				}
 			]
 		},
@@ -304,7 +320,8 @@
 							"TargetID":1
 						}
 					],
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				}
 				{
 					"ID":1,
@@ -316,7 +333,8 @@
 							"MessageName":"EndConversation",
 							"Args":[]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				}
 			]
 		}

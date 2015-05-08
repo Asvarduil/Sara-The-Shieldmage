@@ -13,7 +13,6 @@ public class IntroSetup : DialogueController
     private EntityText _introText;
     private ControlManager _controls;
     private DialogueController _dialogue;
-    private ConversationNPCEvents _npcEvents;
 
     #endregion Variables / Properties
 
@@ -26,7 +25,6 @@ public class IntroSetup : DialogueController
 
         _controls = ControlManager.Instance;
         _dialogue = DialogueController.Instance;
-        _npcEvents = ConversationNPCEvents.Instance;
 
         SetupScene();
     }
@@ -34,39 +32,12 @@ public class IntroSetup : DialogueController
     private void SetupScene()
     {
         _controls.RadiateSuspendCommand();
-
-        SpawnGuards();
         StartCoroutine(InitiateIntroConversation());
     }
 
     #endregion Hooks
 
     #region Methods
-
-    private void SpawnGuards()
-    {
-        List<List<string>> npcs = new List<List<string>>();
-
-        npcs.Add(new List<string>
-        {
-            "NPCs/Intro - Guard (Map)",
-            "0.0, 1.0, -1.0",
-            "Intro - Guard A"
-        });
-
-        npcs.Add(new List<string>
-        {
-            "NPCs/Intro - Guard (Map)",
-            "1.0, 1.0, -1.0",
-            "Intro - Guard B"
-        });
-
-        for (int i = 0; i < npcs.Count; i++)
-        {
-            List<string> currentNPC = npcs[i];
-            _npcEvents.SpawnNPC(currentNPC);
-        }
-    }
 
     private IEnumerator InitiateIntroConversation()
     {

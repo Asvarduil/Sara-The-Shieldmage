@@ -56,6 +56,7 @@ public class EntityText : DebuggableBehavior
 				newTextContent.Speaker = contentItem["Speaker"];
 				newTextContent.Dialogue = contentItem["Dialogue"];
 				newTextContent.DialogueEvents = new List<DialogueEvent>();
+                newTextContent.SequentialEvents = new List<DialogueEvent>();
 
 				// Map Dialogue Options...
 				newTextContent.Options = new List<DialogueOption>();
@@ -85,6 +86,22 @@ public class EntityText : DebuggableBehavior
 					
 					newTextContent.DialogueEvents.Add(newDialogueEvent);
 				}
+
+                var sequentialEvents = contentItem["SequentialEvents"].AsArray;
+                foreach(var sequentialEvent in sequentialEvents.Childs)
+                {
+                    DialogueEvent newDialogueEvent = new DialogueEvent();
+                    newDialogueEvent.MessageName = sequentialEvent["MessageName"];
+                    newDialogueEvent.Args = new List<string>();
+
+                    var eventArgs = sequentialEvent["Args"].AsArray;
+                    foreach (var eventArg in eventArgs.Childs)
+                    {
+                        newDialogueEvent.Args.Add(eventArg);
+                    }
+
+                    newTextContent.SequentialEvents.Add(newDialogueEvent);
+                }
 				
 				newThread.TextContent.Add(newTextContent);
 			}

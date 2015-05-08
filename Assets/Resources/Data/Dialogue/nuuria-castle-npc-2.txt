@@ -30,7 +30,8 @@
 								1
 							]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":1,
@@ -42,7 +43,8 @@
 							"MessageName":"EndConversation",
 							"Args":[]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				}
 			]
 		}

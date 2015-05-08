@@ -54,6 +54,7 @@
      <Compile Include="Assets\First Fantasy for Mobile\Environments\Scripts\FFRandomMoveOnTerrain.cs" />
      <Compile Include="Assets\First Fantasy for Mobile\Environments\Scripts\FFTestParticles.cs" />
      <Compile Include="Assets\First Fantasy for Mobile\Environments\Scripts\FFWaterFlow.cs" />
+     <Compile Include="Assets\Framework\Asvarduil 3D Tiles\MeshCombiner.cs" />
      <Compile Include="Assets\Framework\Asvarduil 3D Tiles\Room Generator\RoomGenerator.cs" />
      <Compile Include="Assets\Framework\Asvarduil Disco Blocks\Scripts\DiscoBlockPuzzleManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil Disco Blocks\Scripts\DiscoBlockSwitch.cs" />
@@ -87,6 +88,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\TransitionManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationBattleEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationCameraEvents.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationEventBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationItemEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationNPCEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationPlayerEvents.cs" />
@@ -128,7 +130,6 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Unity UI Helpers\Gauge.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Utility\DoubleRemover.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\AsvarduilSpriteSystem.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\MeshCombiner.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\ScrollTexture.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\IEnumerableExtensions.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson.cs" />
@@ -138,6 +139,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\AbilityEffect.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\CombatEntity.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\DialogueEvent.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\DialogueEventHook.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\DialogueOption.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\Enemy.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\HealthSystem.cs" />

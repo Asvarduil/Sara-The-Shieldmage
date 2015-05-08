@@ -22,7 +22,8 @@
 						}
 					],
 
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":1,
@@ -36,7 +37,8 @@
 						}
 					],
 
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":2,
@@ -50,7 +52,8 @@
 							"MessageName":"EndConversation",
 							"Args":[]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				}
 			]
 		},
@@ -76,7 +79,8 @@
 						}
 					],
           
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":1,
@@ -95,7 +99,8 @@
 							"MessageName":"ReviveDeadPlayers",
 							"Args":[]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":2,
@@ -109,7 +114,8 @@
 						}
 					],
           
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 								{
 					"ID":3,
@@ -123,7 +129,8 @@
 						}
 					],
           
-					"DialogueEvents":[]
+					"DialogueEvents":[],
+					"SequentialEvents":[]
 				},
 				{
 					"ID":4,
@@ -136,7 +143,8 @@
 							"MessageName":"EndConversation",
 							"Args":[]
 						}
-					]
+					],
+					"SequentialEvents":[]
 				}
 			]
 		}

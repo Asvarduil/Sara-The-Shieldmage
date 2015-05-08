@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
-public class ConversationQuestEvents : DebuggableBehavior
+public class ConversationQuestEvents : ConversationEventBase
 {
     #region Variables / Properties
 
@@ -12,16 +13,22 @@ public class ConversationQuestEvents : DebuggableBehavior
 
     #region Hooks
 
-    public void Start()
+    public override void Start()
     {
         _sequence = SequenceManager.Instance;
+        base.Start();
+    }
+
+    protected override void RegisterEventHooks()
+    {
+        _controller.RegisterEventHook("UpdateQuest", UpdateQuest);
     }
 
     #endregion Hooks
 
     #region Messages
 
-    public void UpdateQuest(List<string> args)
+    public IEnumerator UpdateQuest(List<string> args)
     {
         if (args.IsNullOrEmpty())
             throw new ArgumentNullException("UpdateQuest requires the name of the quest, the new description, and the phase counter.");
@@ -32,6 +39,8 @@ public class ConversationQuestEvents : DebuggableBehavior
 
         _sequence.UpdateQuest(questName, questDescription);
         _sequence.UpdateSequence(questName, questPhase);
+
+        yield return null;
     }
 
     #endregion Messages
