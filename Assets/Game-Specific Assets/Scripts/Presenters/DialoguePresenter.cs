@@ -62,16 +62,7 @@ public class DialoguePresenter : UGUIPresenterBase
             ActivateButton(current, false);
         }
 
-        // Execute all dialogue events for this piece of content...
-        for (int i = 0; i < content.DialogueEvents.Count; i++)
-        {
-            DialogueEvent dialogueEvent = content.DialogueEvents[i];
-
-            DebugMessage("Firing conversation event: " + dialogueEvent.MessageName + "...");
-            _controller.ExecuteDialogueEvent(dialogueEvent.MessageName, dialogueEvent.Args);
-        }
-
-        // Execute all sequential dialogue events for this piece of content...
+        ExecuteImmediateEvents(content.DialogueEvents);
         StartCoroutine(ExecuteSequentialEvents(content.SequentialEvents));
     }
 
@@ -79,12 +70,31 @@ public class DialoguePresenter : UGUIPresenterBase
 
     #region Methods
 
+    private void ExecuteImmediateEvents(List<DialogueEvent> events)
+    {
+        if (events.Count == 0)
+            return;
+
+        DebugMessage("Executing immediate events; processing " + events.Count + " events.");
+        for (int i = 0; i < events.Count; i++)
+        {
+            DialogueEvent dialogueEvent = events[i];
+
+            DebugMessage("Attempting to execute event: " + dialogueEvent.MessageName);
+            StartCoroutine(_controller.ExecuteDialogueEvent(dialogueEvent.MessageName, dialogueEvent.Args));
+        }
+    }
+
     private IEnumerator ExecuteSequentialEvents(List<DialogueEvent> events)
     {
+        if (events.Count == 0)
+            yield break;
+
+        DebugMessage("Executing sequential events; processing " + events.Count + " events.");
         for (int i = 0; i < events.Count; i++)
         {
             DialogueEvent current = events[i];
-            yield return _controller.ExecuteDialogueEvent(current.MessageName, current.Args);
+            yield return StartCoroutine(_controller.ExecuteDialogueEvent(current.MessageName, current.Args));
         }
     }
 

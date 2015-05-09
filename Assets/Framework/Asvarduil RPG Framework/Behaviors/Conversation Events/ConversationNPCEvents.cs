@@ -32,6 +32,8 @@ public class ConversationNPCEvents : ConversationEventBase
 
     public IEnumerator SpawnNPC(List<string> args)
     {
+        DebugMessage("Spawning a new NPC...");
+
         if (args == null
            || args.Count == 0)
             throw new ArgumentException("Spawn NPC requires the path of the NPC prefab, the coordinates to spawn at, and the NPC's scene name!");
@@ -42,7 +44,9 @@ public class ConversationNPCEvents : ConversationEventBase
 
         DebugMessage("Given path: " + prefabName);
 
-        GameObject npc = Resources.Load<GameObject>(args[0]);
+        GameObject npc = Resources.Load<GameObject>(prefabName);
+        if (npc == null)
+            throw new ArgumentException("Path " + prefabName + " is incorrect.");
 
         string[] coordComponents = coords.Split(',');
         Vector3 npcCoordinates = new Vector3();
@@ -53,8 +57,9 @@ public class ConversationNPCEvents : ConversationEventBase
         GameObject newNPC = (GameObject) GameObject.Instantiate(npc, npcCoordinates, Quaternion.identity);
         newNPC.name = npcName;
         _npcPool.Add(newNPC);
+        DebugMessage("Spawned NPC " + newNPC.name + " at " + newNPC.transform.position);
 
-        yield return 0;
+        yield return null;
     }
 
     public IEnumerator DespawnNPC(List<string> args)
@@ -77,7 +82,7 @@ public class ConversationNPCEvents : ConversationEventBase
             break;
         }
 
-        yield return 0;
+        yield return null;
     }
     
     public IEnumerator DespawnAllNPCs(List<string> args)
@@ -89,7 +94,7 @@ public class ConversationNPCEvents : ConversationEventBase
             _npcPool.Remove(npc);
         }
 
-        yield return 0;
+        yield return null;
     }
 
     #endregion Methods

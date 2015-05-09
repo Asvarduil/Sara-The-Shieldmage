@@ -128,7 +128,7 @@ public class UGUIPresenterBase : DebuggableBehavior
 
             _isFading = false;
             group.alpha = 1.0f;
-            DebugMessage("Fade-in complete.");
+            DebugMessage(gameObject + " has been faded in.");
         }
         else
         {
@@ -141,27 +141,27 @@ public class UGUIPresenterBase : DebuggableBehavior
             _isFading = false;
             group.alpha = 0.0f;
             ActivateControls(isActive);
-            DebugMessage("Fade-out complete.");
+            DebugMessage(gameObject + " has been faded out.");
         }
     }
 
     public void ActivateText(Text label, bool isActive)
     {
-        DebugMessage("Turning image " + label.gameObject.name + " " + (isActive ? "on" : "off"));
+        //DebugMessage("Turning image " + label.gameObject.name + " " + (isActive ? "on" : "off"));
 
         label.enabled = isActive;
     }
 
     public void ActivateImage(Image image, bool isActive)
     {
-        DebugMessage("Turning image " + image.gameObject.name + " " + (isActive ? "on" : "off"));
+        //DebugMessage("Turning image " + image.gameObject.name + " " + (isActive ? "on" : "off"));
 
         image.enabled = isActive;
     }
 
     public void ActivateButton(Button button, bool isActive)
     {
-        DebugMessage("Turning button " + button.gameObject.name + " " + (isActive ? "on" : "off"));
+        //DebugMessage("Turning button " + button.gameObject.name + " " + (isActive ? "on" : "off"));
 
         button.interactable = isActive;
         button.enabled = isActive;
@@ -174,7 +174,7 @@ public class UGUIPresenterBase : DebuggableBehavior
 
     public void ActivateSlider(Slider slider, bool isActive)
     {
-        DebugMessage("Turning slider " + slider.gameObject.name + " " + (isActive ? "on" : "off"));
+        //DebugMessage("Turning slider " + slider.gameObject.name + " " + (isActive ? "on" : "off"));
 
         slider.interactable = isActive;
         slider.enabled = isActive;
@@ -184,7 +184,7 @@ public class UGUIPresenterBase : DebuggableBehavior
 
     public void ActivateToggle(Toggle toggle, bool isActive)
     {
-        DebugMessage("Turning toggle " + toggle.gameObject.name + " " + (isActive ? "on" : "off"));
+        //DebugMessage("Turning toggle " + toggle.gameObject.name + " " + (isActive ? "on" : "off"));
 
         toggle.interactable = isActive;
         toggle.enabled = isActive;
@@ -203,35 +203,35 @@ public class UGUIPresenterBase : DebuggableBehavior
 
     protected void ActivateControls(bool isActive)
     {
-        DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _labels.Count + " labels...");
+        //DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _labels.Count + " labels...");
         for (int i = 0; i < _labels.Count; i++)
         {
             Text current = _labels[i];
             ActivateText(current, isActive);
         }
 
-        DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _images.Count + " images...");
+        //DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _images.Count + " images...");
         for (int i = 0; i < _images.Count; i++)
         {
             Image current = _images[i];
             ActivateImage(current, isActive);
         }
 
-        DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _buttons.Count + " buttons...");
+        //DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _buttons.Count + " buttons...");
         for (int i = 0; i < _buttons.Count; i++)
         {
             Button current = _buttons[i];
             ActivateButton(current, isActive);
         }
 
-        DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _toggles.Count + " toggles...");
+        //DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _toggles.Count + " toggles...");
         for (int i = 0; i < _toggles.Count; i++)
         {
             Toggle current = _toggles[i];
             ActivateToggle(current, isActive);
         }
 
-        DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _sliders.Count + " sliders...");
+        //DebugMessage((isActive ? "Activating" : "Deactivating") + " " + _sliders.Count + " sliders...");
         for (int i = 0; i < _sliders.Count; i++)
         {
             Slider current = _sliders[i];

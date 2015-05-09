@@ -35,11 +35,6 @@ public class ConversationCameraEvents : ConversationEventBase
             fadeRate = Convert.ToSingle(args[0]);
         }
 
-        yield return ActuallyFadeOut(fadeRate);
-    }
-
-    private IEnumerator ActuallyFadeOut(float fadeRate)
-    {
         Fader.FadeOut(fadeRate);
 
         while (Fader.ScreenShown)
@@ -55,11 +50,6 @@ public class ConversationCameraEvents : ConversationEventBase
             fadeRate = Convert.ToSingle(args[0]);
         }
 
-        yield return ActuallyFadeIn(fadeRate);
-    }
-
-    private IEnumerator ActuallyFadeIn(float fadeRate)
-    {
         Fader.FadeIn(fadeRate);
 
         while (Fader.ScreenHidden)

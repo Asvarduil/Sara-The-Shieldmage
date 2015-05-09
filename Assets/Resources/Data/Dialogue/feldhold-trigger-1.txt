@@ -27,7 +27,7 @@
 							"MessageName":"SpawnNPC",
 							"Args":[
 								"NPCs/Intro - Guard (Map)",
-								"-1.0, 1.0, -1.0",
+								"0.0, 0.0, -1.0",
 								"Intro - Guard A"
 							]
 						},
@@ -35,7 +35,7 @@
 							"MessageName":"SpawnNPC",
 							"Args":[
 								"NPCs/Intro - Guard (Map)",
-								"1.0, 1.0, -1.0",
+								"1.0, 0.0, -1.0",
 								"Intro - Guard B"
 							]
 						},
@@ -149,7 +149,7 @@
 					"Options":[
 						{ 
 							"Text":"Continue", 
-							"TargetID":99
+							"TargetID":8
 						}
 					],
           
@@ -157,7 +157,7 @@
 					"SequentialEvents":[]
 				},
 				{
-					"ID":99,
+					"ID":8,
 					"Speaker":"",
 					"Dialogue":"",
 					"Options":[],
@@ -178,14 +178,22 @@
 							"Args":[]
 						},
 						{
-							"MessageName":"DespawnAllNPCs",
-							"Args":[]
+							"MessageName":"DespawnNPC",
+							"Args":[
+								"Intro - Guard A"
+							]
+						},
+						{
+							"MessageName":"DespawnNPC",
+							"Args":[
+								"Intro - Guard B"
+							]
 						},
 						{
 							"MessageName":"FadeIn",
 							"Args":[]
 						},
-						{					
+						{
 							"MessageName":"EndConversation",
 							"Args":[]
 						}

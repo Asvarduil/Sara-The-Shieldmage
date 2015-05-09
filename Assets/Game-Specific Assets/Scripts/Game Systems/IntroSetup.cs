@@ -3,11 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntroSetup : DialogueController
+public class IntroSetup : DebuggableBehavior
 {
     #region Variables / Properties
-
-    private bool _hasStartedDialogue = false;
 
     private Fader _fader;
     private EntityText _introText;

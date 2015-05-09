@@ -59,6 +59,7 @@ public class DialogueController : ManagerBase<DialogueController>
         };
 
         _eventFunctions.Add(newHook);
+        DebugMessage("Registered event '" + eventName + "'.");
     }
 
     public void PrepareInteraction(string interactText, Action onInteract)
@@ -116,9 +117,12 @@ public class DialogueController : ManagerBase<DialogueController>
 	{
 		if(ActiveTextThread == null)
 			throw new Exception("The active text thread is unassigned, but trying to be advanced!");
-		
+
+        DebugMessage("TextIndex: " + TextIndex + "; TextContentCount: " + TextContentCount);
+
 		if(TextIndex > TextContentCount - 1)
 		{
+            DebugMessage("No more text to present; ending dialogue thread.");
 			EndConversation();
 		}
 		else
@@ -129,6 +133,8 @@ public class DialogueController : ManagerBase<DialogueController>
 
     public IEnumerator ExecuteDialogueEvent(string eventName, List<string> eventArgs)
     {
+        DebugMessage("Controller is executing dialogue event: " + eventName + "...");
+
         // Find the first coroutine on the child behaviors with a name that matches the event name.
         DialogueEventHook coroutine = _eventFunctions.FirstOrDefault(f => f.Name == eventName);
         if (coroutine == default(DialogueEventHook))
@@ -137,7 +143,8 @@ public class DialogueController : ManagerBase<DialogueController>
             yield break;
         }
 
-        yield return coroutine.Function(eventArgs);
+        DebugMessage(eventName + " is registered!  Doing it.");
+        yield return StartCoroutine(coroutine.Function(eventArgs));
     }
 
 	#endregion Methods

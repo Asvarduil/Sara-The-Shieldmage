@@ -242,8 +242,6 @@ public class RoomGenerator : DebuggableBehavior
     private void GenerateNearWall()
     {
         float minZ = transform.position.z + _offset.z;
-        float minX = transform.position.x - _offset.x;
-        float maxX = transform.position.x + _offset.x;
 
         for (float currentX = 0; currentX < RoomDimensions.x; currentX++)
         {
@@ -264,8 +262,6 @@ public class RoomGenerator : DebuggableBehavior
     private void GenerateFarWall()
     {
         float maxZ = transform.position.z - ((RoomDimensions.y % 2 > 0) ? (_offset.z - 1) : (_offset.z + 1));
-        float minX = transform.position.x - _offset.x;
-        float maxX = transform.position.x + _offset.x;
 
         for (float currentX = 0; currentX < RoomDimensions.x; currentX++)
         {

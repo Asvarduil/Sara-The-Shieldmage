@@ -25,7 +25,7 @@ public class ConversationBattleEvents : ConversationEventBase
 
 	#region Engine Hooks
 
-	public void Start()
+	public override void Start()
 	{
 		_battleManager = BattleManager.Instance;
         base.Start();
