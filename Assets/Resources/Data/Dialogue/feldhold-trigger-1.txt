@@ -46,7 +46,7 @@
 				{
 					"ID":1,
 					"Speaker":"Guard B",
-					"Dialogue":"Lady Sara, we just missed a cave-in.  Are these ruins supposed to be this unstable?",
+					"Dialogue":"Lady Sara, are these ruins supposed to be this unstable?",
           
 					"Options":[
 						{ 
@@ -114,7 +114,7 @@
 				{
 					"ID":5,
 					"Speaker":"Guard A",
-					"Dialogue":"I hope this is worth it...I'd rather be giving something to the Church, than getting buried by them.",
+					"Dialogue":"No ancient relic is worth this...",
           
 					"Options":[
 						{ 
@@ -129,7 +129,7 @@
 				{
 					"ID":6,
 					"Speaker":"Guard B",
-					"Dialogue":"This isn't just some relic; this is going to prove that the Goddess is real.  Lady Sara here has...",
+					"Dialogue":"This isn't just 'some ancient' relic; the Feldhold Codex is proof that the Goddess is real!",
           
 					"Options":[
 						{ 
@@ -144,7 +144,7 @@
 				{
 					"ID":7,
 					"Speaker":"Shieldmage Sara",
-					"Dialogue":"...Studied it for years.  Still, these ruins aren't safe.  We'd better move forward.",
+					"Dialogue":"Yep!  It's going to be the religious find to end them all!  But we have to actually find it, first.  Let's go.",
           
 					"Options":[
 						{ 
