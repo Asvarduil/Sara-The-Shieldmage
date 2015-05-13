@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -24,6 +25,7 @@ public class ConversationNPCEvents : ConversationEventBase
         _controller.RegisterEventHook("SpawnNPC", SpawnNPC);
         _controller.RegisterEventHook("DespawnNPC", DespawnNPC);
         _controller.RegisterEventHook("DespawnAllNPCs", DespawnAllNPCs);
+        _controller.RegisterEventHook("ForceNPCAnimation", ForceNPCAnimation);
     }
 
     #endregion Hooks
@@ -93,6 +95,31 @@ public class ConversationNPCEvents : ConversationEventBase
             GameObject.Destroy(npc);
             _npcPool.Remove(npc);
         }
+
+        yield return null;
+    }
+
+    public IEnumerator ForceNPCAnimation(List<string> args)
+    {
+        if (args == null || args.Count < 2)
+            throw new ArgumentException("ForceNPCAnimation requires the name of the NPC, and the name of the animation to force.");
+
+        string npcName = args[0];
+        string animationName = args[1];
+
+        GameObject npc = _npcPool.FirstOrDefault(n => n.name == npcName);
+        if (npc == default(GameObject))
+            throw new ArgumentException("NPC " + npcName + " has not been spawned yet!");
+
+        NPCControlSystem sprite = npc.GetComponent<NPCControlSystem>();
+        if(sprite == null)
+        {
+            DebugMessage("NPC " + npcName + " has no NPC Control System as a top-level component!");
+            yield break;
+        }
+
+        DebugMessage("NPC " + npcName + " is being set in pose: " + animationName + "...");
+        sprite.ActionState = (NPCControlState) Enum.Parse(typeof(NPCControlState), animationName);
 
         yield return null;
     }

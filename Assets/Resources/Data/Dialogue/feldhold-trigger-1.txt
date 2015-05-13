@@ -12,16 +12,7 @@
 			"TextContent":[
 				{
 					"ID":0,
-					"Speaker":"Guard A",
-					"Dialogue":"...Aww crap.",
-          
-					"Options":[
-						{ 
-							"Text":"Continue", 
-							"TargetID":1 
-						}
-					],
-          
+
 					"DialogueEvents":[
 						{
 							"MessageName":"SpawnNPC",
@@ -39,32 +30,58 @@
 								"Intro - Guard B"
 							]
 						},
+						{
+							"MessageName":"QuakeCamera",
+							"Args":[
+								"1.0",
+								"0.25"
+							]
+						}
 					],
 					"SequentialEvents":[
+					],
+
+					"Speaker":"Guard James",
+					"Dialogue":"That was close!",
+          
+					"Options":[
+						{ 
+							"Text":"Continue", 
+							"TargetID":1 
+						}
 					]
 				},
 				{
 					"ID":1,
-					"Speaker":"Guard B",
-					"Dialogue":"Lady Sara, are these ruins supposed to be this unstable?",
+          
+					"DialogueEvents":[
+						{
+							"MessageName":"ForceNPCAnimation",
+							"Args":[
+								"Intro - Guard B",
+								"IdleUp"
+							]
+						},
+					],
+					"SequentialEvents":[],
+
+					"Speaker":"Guard Mark",
+					"Dialogue":"Lady Sara, these ruins were supposed to be more stable!  That 'tip' was wrong!",
           
 					"Options":[
 						{ 
-							"Text":"Maybe...", 
+							"Text":"(Doubtful)", 
 							"TargetID":2 
 						},
 						{
-							"Text":"Can be",
+							"Text":"(Careful)",
 							"TargetID":3
 						},
 						{
-							"Text":"Always",
+							"Text":"(Disdainful)",
 							"TargetID":4
 						}
-					],
-          
-					"DialogueEvents":[],
-					"SequentialEvents":[]
+					]
 				},
 				{
 					"ID":2,
@@ -113,7 +130,7 @@
 				},
 				{
 					"ID":5,
-					"Speaker":"Guard A",
+					"Speaker":"Guard James",
 					"Dialogue":"No ancient relic is worth this...",
           
 					"Options":[
@@ -128,7 +145,7 @@
 				},
 				{
 					"ID":6,
-					"Speaker":"Guard B",
+					"Speaker":"Guard Mark",
 					"Dialogue":"This isn't just 'some ancient' relic; the Feldhold Codex is proof that the Goddess is real!",
           
 					"Options":[
