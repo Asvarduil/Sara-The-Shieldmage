@@ -89,6 +89,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationBattleEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationCameraEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationEventBase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationFactionEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationItemEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationNPCEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationPlayerEvents.cs" />
@@ -118,6 +119,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleReferee.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\BattleTrigger.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\EnemyDatabase.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\FactionManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\InventoryManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\ItemDatabase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Game Systems\MapObjectPlacer.cs" />
@@ -143,6 +145,8 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\DialogueEventHook.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\DialogueOption.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\Enemy.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\FactionRelationship.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\FactionReputation.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\HealthSystem.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\InventoryItem.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\ItemDrop.cs" />
