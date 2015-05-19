@@ -174,6 +174,13 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\HealerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\SequenceAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\IntroSetup.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Behaviors\ConversationNemesisEvents.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Behaviors\NemesisManager.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Classes\NemesisContingency.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Classes\NemesisEnemy.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Classes\NemesisObjective.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Classes\NemesisParty.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Classes\NemesisProgression.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\PriestNPC.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\PuzzleDoorObject.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Presenters\Battle System\BattleCharacterStatPresenter.cs" />
