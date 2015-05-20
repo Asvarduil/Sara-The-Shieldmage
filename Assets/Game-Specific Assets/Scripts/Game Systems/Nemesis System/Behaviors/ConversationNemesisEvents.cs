@@ -37,9 +37,9 @@ public class ConversationNemesisEvents : ConversationEventBase
 
         string nemesisPartyName = args[0];
         var nemesisParty = _nemesis.GetNemesisPartyByName(nemesisPartyName);
-        var newObjective = nemesisParty.ProceedToPlanOutcome(NemesisPlanOutcome.Success);
 
-        //_controller.ExecuteDialogueEvent()
+        var contingency = nemesisParty.ProceedToPlanOutcome(NemesisPlanOutcome.Success);
+        _controller.ExecuteDialogueEvent(contingency.OutcomeEvent, contingency.OutcomeEventParams);
 
         yield return null;
     }
@@ -51,7 +51,23 @@ public class ConversationNemesisEvents : ConversationEventBase
 
         string nemesisPartyName = args[0];
         var nemesisParty = _nemesis.GetNemesisPartyByName(nemesisPartyName);
-        var newObjective = nemesisParty.ProceedToPlanOutcome(NemesisPlanOutcome.Failed);
+        
+        var contingency = nemesisParty.ProceedToPlanOutcome(NemesisPlanOutcome.Failed);
+        _controller.ExecuteDialogueEvent(contingency.OutcomeEvent, contingency.OutcomeEventParams);
+
+        yield return null;
+    }
+
+    public IEnumerator NextNemesisPlan(List<string> args)
+    {
+        if (args.Count < 1)
+            throw new ArgumentException("NextNemesisPlan requires the name of the nemesis group for whom to fail their current plan.");
+
+        string nemesisPartyName = args[0];
+        var nemesisParty = _nemesis.GetNemesisPartyByName(nemesisPartyName);
+        
+        var contingency = nemesisParty.ProceedToPlanOutcome(NemesisPlanOutcome.NotApplicable);
+        _controller.ExecuteDialogueEvent(contingency.OutcomeEvent, contingency.OutcomeEventParams);
 
         yield return null;
     }

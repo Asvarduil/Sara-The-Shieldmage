@@ -9,26 +9,30 @@ public class NemesisProgression
     public int CurrentObjectiveId;
     public List<NemesisObjective> Objectives;
 
+    public NemesisObjective CurrentObjective
+    {
+        get { return Objectives[CurrentObjectiveId]; }
+    }
+
     #endregion Variables / Properties
 
     #region Methods
 
-    public NemesisObjective ProceedToPlanOutcome(NemesisPlanOutcome outcome)
+    public NemesisContingency ProceedToPlanOutcome(NemesisPlanOutcome outcome)
     {
-        NemesisObjective current = Objectives[CurrentObjectiveId];
-        NemesisObjective newObjective = null;
-        for(int i = 0; i < current.Outcomes.Count; i++)
+        NemesisContingency resultContingency = null;
+        for(int i = 0; i < CurrentObjective.Outcomes.Count; i++)
         {
-            NemesisContingency contingency = current.Outcomes[i];
+            NemesisContingency contingency = CurrentObjective.Outcomes[i];
             if(contingency.State == outcome)
             {
                 CurrentObjectiveId = contingency.NextObjectiveId;
-                newObjective = Objectives[CurrentObjectiveId];
+                resultContingency = contingency;
                 break;
             }
         }
 
-        return newObjective;
+        return resultContingency;
     }
 
     #endregion Methods

@@ -7,17 +7,23 @@ public class NemesisParty
     #region Variables / Properties
 
     public string NemesisPartyName;
+    public string CurrentLocation;
     public List<NemesisEnemy> NemesisPartyMembers;
     public NemesisProgression NemesisStrategy;
+
+    public NemesisObjective CurrentObjective
+    {
+        get { return NemesisStrategy.CurrentObjective; }
+    }
 
     #endregion Variables / Properties
 
     #region Methods
 
-    public NemesisObjective ProceedToPlanOutcome(NemesisPlanOutcome outcome)
+    public NemesisContingency ProceedToPlanOutcome(NemesisPlanOutcome outcome)
     {
-        var newObjective = NemesisStrategy.ProceedToPlanOutcome(outcome);
-        return newObjective;
+        var contingencyResult = NemesisStrategy.ProceedToPlanOutcome(outcome);
+        return contingencyResult;
     }
 
     #endregion Methods

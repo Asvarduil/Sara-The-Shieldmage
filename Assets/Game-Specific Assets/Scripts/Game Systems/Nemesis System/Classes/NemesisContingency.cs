@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 public enum NemesisPlanOutcome
 {
-    Pending,
-    InProgress,
+    NotApplicable,
     Failed,
-    Stalemate,
     Success
 }
 

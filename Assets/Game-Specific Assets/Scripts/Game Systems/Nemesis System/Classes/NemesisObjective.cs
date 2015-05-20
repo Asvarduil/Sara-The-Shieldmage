@@ -8,6 +8,8 @@ public class NemesisObjective
 
     public int ObjectiveId;
     public float DurationToCompletion;
+    public string Description;
+    public List<string> MisinformationDescriptions;
     public List<NemesisContingency> Outcomes;
 
     #endregion Variables / Properties
