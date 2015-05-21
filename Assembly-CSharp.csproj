@@ -173,6 +173,9 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\AttackerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\HealerAI.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\AI\SequenceAI.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\City State Events\Behaviors\CityStateEventManager.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\City State Events\Behaviors\ConversationCityStateEvents.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\City State Events\Classes\CityStateEvent.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\IntroSetup.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Behaviors\ConversationNemesisEvents.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Behaviors\NemesisManager.cs" />
