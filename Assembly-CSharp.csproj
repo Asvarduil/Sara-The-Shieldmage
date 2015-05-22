@@ -135,7 +135,13 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\AsvarduilSpriteSystem.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Visual\ScrollTexture.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\IEnumerableExtensions.cs" />
-     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson\JSON.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson\JSONArray.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson\JSONBinaryTag.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson\JSONClass.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson\JSONData.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson\JSONLazyCreator.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Business\SimpleJson\JSONNode.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Controls\NPCAnimationState.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Controls\NPCControlState.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Classes\Game Systems\Ability.cs" />

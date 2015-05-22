@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SimpleJSON;
 
 public class NemesisManager : ManagerBase<NemesisManager>
 {
@@ -28,6 +29,20 @@ public class NemesisManager : ManagerBase<NemesisManager>
         }
 
         return result;
+    }
+
+    public JSONClass ExportState()
+    {
+        JSONClass state = new JSONClass();
+
+        state["NemesisParties"] = new JSONArray();
+        for (int i = 0; i < NemesisParties.Count; i++)
+        {
+            NemesisParty current = NemesisParties[i];
+            state["NemesisParties"].Add(current.ExportState());
+        }
+
+        return state;
     }
 
     #endregion Methods

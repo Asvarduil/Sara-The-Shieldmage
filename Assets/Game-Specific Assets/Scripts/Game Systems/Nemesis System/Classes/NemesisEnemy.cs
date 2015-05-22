@@ -1,4 +1,5 @@
 ﻿using System;
+using SimpleJSON;
 
 [Serializable]
 public class NemesisEnemy : Enemy
@@ -12,6 +13,15 @@ public class NemesisEnemy : Enemy
     #endregion Hooks
 
     #region Methods
+
+    public JSONClass ExportState()
+    {
+        JSONClass state = new JSONClass();
+
+        // TODO: Implement...
+
+        return state;
+    }
 
     #endregion Methods
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SimpleJSON;
 
 [Serializable]
 public class NemesisParty
@@ -19,6 +20,25 @@ public class NemesisParty
     #endregion Variables / Properties
 
     #region Methods
+
+    public JSONClass ExportState()
+    {
+        JSONClass state = new JSONClass();
+
+        state["NemesisPartyName"] = new JSONData(NemesisPartyName);
+        state["CurrentLocation"] = new JSONData(CurrentLocation);
+
+        state["NemesisPartyMembers"] = new JSONArray();
+        for (int i = 0; i < NemesisPartyMembers.Count; i++)
+        {
+            NemesisEnemy current = NemesisPartyMembers[i];
+            state["NemesisPartyMembers"].Add(current.ExportState());
+        }
+
+        state["NemesisProgression"] = NemesisStrategy.ExportState();
+
+        return state;
+    }
 
     public NemesisContingency ProceedToPlanOutcome(NemesisPlanOutcome outcome)
     {

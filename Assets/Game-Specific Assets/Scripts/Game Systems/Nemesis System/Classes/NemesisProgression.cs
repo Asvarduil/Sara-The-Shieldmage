@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using SimpleJSON;
+
+using UnityRandom = UnityEngine.Random;
 
 [Serializable]
 public class NemesisProgression
@@ -17,6 +20,33 @@ public class NemesisProgression
     #endregion Variables / Properties
 
     #region Methods
+
+    public JSONClass ExportState()
+    {
+        // TODO: Serialize this object to a JSON blob.
+        JSONClass state = new JSONClass();
+        
+        state["CurrentObjectiveId"] = new JSONData(CurrentObjectiveId);
+
+        state["Objectives"] = new JSONArray();
+        for (int i = 0; i < Objectives.Count; i++)
+        {
+            NemesisObjective current = Objectives[i];
+            state["Objectives"].Add(current.ExportState());
+        }
+
+        return state;
+    }
+
+    public void RethinkCurrentStep()
+    {
+        // TODO: Rethink current step.
+    }
+
+    public void RethinkPlan()
+    {
+        // TODO: Rethink Nemesis plan.
+    }
 
     public NemesisContingency ProceedToPlanOutcome(NemesisPlanOutcome outcome)
     {
