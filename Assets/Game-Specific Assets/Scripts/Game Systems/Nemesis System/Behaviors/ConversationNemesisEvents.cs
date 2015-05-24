@@ -32,16 +32,17 @@ public class ConversationNemesisEvents : ConversationEventBase
 
     public IEnumerator CompleteNemesisPlan(List<string> args)
     {
+        DebugMessage("CompleteNemesisPlan is called!");
+
         if (args.Count < 1)
             throw new ArgumentException("CompleteNemesisPlan requires the name of the nemesis group for whom to complete their current plan.");
 
         string nemesisPartyName = args[0];
         var nemesisParty = _nemesis.GetNemesisPartyByName(nemesisPartyName);
+        DebugMessage("Completing nemesis party plan for party: " + nemesisPartyName);
 
         var contingency = nemesisParty.ProceedToPlanOutcome(NemesisPlanOutcome.Success);
-        _controller.ExecuteDialogueEvent(contingency.OutcomeEvent, contingency.OutcomeEventParams);
-
-        yield return null;
+        yield return StartCoroutine(_controller.ExecuteGameEventGroup(contingency.Events));
     }
 
     public IEnumerator FailNemesisPlan(List<string> args)
@@ -51,11 +52,10 @@ public class ConversationNemesisEvents : ConversationEventBase
 
         string nemesisPartyName = args[0];
         var nemesisParty = _nemesis.GetNemesisPartyByName(nemesisPartyName);
+        DebugMessage("Failing nemesis party plan for party: " + nemesisPartyName);
         
         var contingency = nemesisParty.ProceedToPlanOutcome(NemesisPlanOutcome.Failed);
-        _controller.ExecuteDialogueEvent(contingency.OutcomeEvent, contingency.OutcomeEventParams);
-
-        yield return null;
+        yield return StartCoroutine(_controller.ExecuteGameEventGroup(contingency.Events));
     }
 
     public IEnumerator NextNemesisPlan(List<string> args)
@@ -65,11 +65,10 @@ public class ConversationNemesisEvents : ConversationEventBase
 
         string nemesisPartyName = args[0];
         var nemesisParty = _nemesis.GetNemesisPartyByName(nemesisPartyName);
+        DebugMessage("Advancing nemesis party plan for party: " + nemesisPartyName);
         
         var contingency = nemesisParty.ProceedToPlanOutcome(NemesisPlanOutcome.NotApplicable);
-        _controller.ExecuteDialogueEvent(contingency.OutcomeEvent, contingency.OutcomeEventParams);
-
-        yield return null;
+        yield return StartCoroutine(_controller.ExecuteGameEventGroup(contingency.Events));
     }
 
     #endregion Methods

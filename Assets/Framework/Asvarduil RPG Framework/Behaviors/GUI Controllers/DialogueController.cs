@@ -131,6 +131,27 @@ public class DialogueController : ManagerBase<DialogueController>
 		}
 	}
 
+    public IEnumerator ExecuteGameEventGroup(List<GameEvent> gameEvents)
+    {
+        DebugMessage("Controller is executing a game event group with " + gameEvents.Count + " members...");
+
+        for(int i = 0; i < gameEvents.Count; i++)
+        {
+            GameEvent gameEvent = gameEvents[i];
+            yield return StartCoroutine(ExecuteDialogueEvent(gameEvent));
+        }
+    }
+
+    public IEnumerator ExecuteDialogueEvent(GameEvent gameEvent)
+    {
+        DebugMessage("Controller is executing game event: " + gameEvent.Event + "...");
+
+        string eventName = gameEvent.Event;
+        List<string> eventArgs = gameEvent.EventArgs;
+
+        yield return StartCoroutine(ExecuteDialogueEvent(eventName, eventArgs));
+    }
+
     public IEnumerator ExecuteDialogueEvent(string eventName, List<string> eventArgs)
     {
         DebugMessage("Controller is executing dialogue event: " + eventName + "...");
@@ -139,7 +160,7 @@ public class DialogueController : ManagerBase<DialogueController>
         DialogueEventHook coroutine = _eventFunctions.FirstOrDefault(f => f.Name == eventName);
         if (coroutine == default(DialogueEventHook))
         {
-            DebugMessage("Could not find an event named " + eventName + " in the registered event list.");
+            Debug.LogError("Could not find an event named " + eventName + " in the registered event list.");
             yield break;
         }
 

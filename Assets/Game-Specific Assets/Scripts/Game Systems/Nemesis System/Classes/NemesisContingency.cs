@@ -16,8 +16,7 @@ public class NemesisContingency
 
     public NemesisPlanOutcome State;
     public int NextObjectiveId;
-    public string OutcomeEvent;
-    public List<string> OutcomeEventParams;
+    public List<GameEvent> Events;
 
     #endregion Variables / Properties
 
@@ -29,13 +28,23 @@ public class NemesisContingency
 
         state["State"] = new JSONData(State.ToString());
         state["NextObjectiveId"] = new JSONData(NextObjectiveId);
-        state["OutcomeEvent"] = new JSONData(OutcomeEvent);
+        state["Events"] = new JSONArray();
 
-        state["OutcomeEventArgs"] = new JSONArray();
-        for (int i = 0; i < OutcomeEventParams.Count; i++)
+        for (int i = 0; i < Events.Count; i++)
         {
-            string current = OutcomeEventParams[i];
-            state["OutcomeEventArgs"] = new JSONData(current);
+            GameEvent current = Events[i];
+
+            JSONClass savedEvent = new JSONClass();
+            savedEvent["Event"] = new JSONData(current.Event);
+            savedEvent["EventArgs"] = new JSONArray();
+
+            for(int j = 0; j < current.EventArgs.Count; j++)
+            {
+                string currentArg = current.EventArgs[j];
+
+                JSONData arg = new JSONData(currentArg);
+                savedEvent["EventArgs"].Add(arg);
+            }
         }
 
         return state;

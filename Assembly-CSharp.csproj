@@ -88,6 +88,7 @@
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Control\TransitionManager.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationBattleEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationCameraEvents.cs" />
+     <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationDebugEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationEventBase.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationFactionEvents.cs" />
      <Compile Include="Assets\Framework\Asvarduil RPG Framework\Behaviors\Conversation Events\ConversationItemEvents.cs" />
@@ -185,6 +186,7 @@
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\IntroSetup.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Behaviors\ConversationNemesisEvents.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Behaviors\NemesisManager.cs" />
+     <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Classes\GameEvent.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Classes\NemesisContingency.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Classes\NemesisEnemy.cs" />
      <Compile Include="Assets\Game-Specific Assets\Scripts\Game Systems\Nemesis System\Classes\NemesisObjective.cs" />

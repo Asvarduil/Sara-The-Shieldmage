@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using SimpleJSON;
 
+public enum NemesisObjectiveDuration
+{
+    Short,
+    Medium,
+    Long
+}
+
 [Serializable]
 public class NemesisObjective
 {
     #region Variables / Properties
 
+    public string Name;
     public int ObjectiveId;
-    public float DurationToCompletion;
+    public NemesisObjectiveDuration Duration;
     public string Description;
     public List<string> MisinformationDescriptions;
     public List<NemesisContingency> Outcomes;
@@ -21,8 +29,9 @@ public class NemesisObjective
     {
         JSONClass state = new JSONClass();
 
+        state["Name"] = new JSONData(Name);
         state["ObjectiveId"] = new JSONData(ObjectiveId);
-        state["DurationToCompletion"] = new JSONData(DurationToCompletion);
+        state["DurationToCompletion"] = new JSONData(Duration.ToString());
         state["Description"] = new JSONData(Description);
 
         state["MisinformationDescriptions"] = new JSONArray();
