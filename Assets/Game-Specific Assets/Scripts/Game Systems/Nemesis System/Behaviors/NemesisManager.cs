@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using SimpleJSON;
 
-public class NemesisManager : ManagerBase<NemesisManager>
+public class NemesisManager : ManagerBase<NemesisManager>, IJsonSavable
 {
     #region Variables / Properties
 
@@ -16,6 +16,8 @@ public class NemesisManager : ManagerBase<NemesisManager>
     public void Start()
     {
         _dialogueController = DialogueController.Instance;
+
+        // TODO: Load existing state from the save file.
     }
 
     public void Update()
@@ -51,6 +53,20 @@ public class NemesisManager : ManagerBase<NemesisManager>
 
     #region Methods
 
+    public void ImportState(JSONClass state)
+    {
+        NemesisParties = state["NemesisParties"].AsArray.UnfoldJsonArray<NemesisParty>();
+    }
+
+    public JSONClass ExportState()
+    {
+        JSONClass state = new JSONClass();
+
+        state["NemesisParties"] = NemesisParties.FoldList();
+
+        return state;
+    }
+
     public NemesisParty GetNemesisPartyByName(string nemesisPartyName)
     {
         NemesisParty result = null;
@@ -65,20 +81,6 @@ public class NemesisManager : ManagerBase<NemesisManager>
         }
 
         return result;
-    }
-
-    public JSONClass ExportState()
-    {
-        JSONClass state = new JSONClass();
-
-        state["NemesisParties"] = new JSONArray();
-        for (int i = 0; i < NemesisParties.Count; i++)
-        {
-            NemesisParty current = NemesisParties[i];
-            state["NemesisParties"].Add(current.ExportState());
-        }
-
-        return state;
     }
 
     #endregion Methods

@@ -26,8 +26,8 @@
           
           "DialogueEvents":[
             {
-              "MessageName":"CueSounds",
-              "Args":[
+              "Event":"CueSounds",
+              "EventArgs":[
               	"Female Speaking Sound (Temp)",
               	1
               ]
@@ -41,8 +41,8 @@
           "Options":[],
           "DialogueEvents":[
             {
-              "MessageName":"TriggerBattle",
-              "Args":[
+              "Event":"TriggerBattle",
+              "EventArgs":[
               	"NormalBattle",
               	"Battle Scene",
               	"Test Enemy"

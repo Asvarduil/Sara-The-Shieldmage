@@ -10,7 +10,7 @@ public enum NemesisPlanOutcome
 }
 
 [Serializable]
-public class NemesisContingency
+public class NemesisContingency : IJsonSavable
 {
     #region Variables / Properties
 
@@ -20,7 +20,27 @@ public class NemesisContingency
 
     #endregion Variables / Properties
 
+    #region Constructors
+
+    public NemesisContingency()
+    {
+    }
+
+    public NemesisContingency(JSONClass state)
+    {
+        ImportState(state);
+    }
+
+    #endregion Constructors
+
     #region Methods
+
+    public void ImportState(JSONClass state)
+    {
+        State = (NemesisPlanOutcome) Enum.Parse(typeof(NemesisPlanOutcome), state["State"]);
+        NextObjectiveId = Int32.Parse(state["NextObjectiveId"]);
+        Events = state["Events"].AsArray.UnfoldJsonArray<GameEvent>();
+    }
 
     public JSONClass ExportState()
     {
@@ -28,24 +48,7 @@ public class NemesisContingency
 
         state["State"] = new JSONData(State.ToString());
         state["NextObjectiveId"] = new JSONData(NextObjectiveId);
-        state["Events"] = new JSONArray();
-
-        for (int i = 0; i < Events.Count; i++)
-        {
-            GameEvent current = Events[i];
-
-            JSONClass savedEvent = new JSONClass();
-            savedEvent["Event"] = new JSONData(current.Event);
-            savedEvent["EventArgs"] = new JSONArray();
-
-            for(int j = 0; j < current.EventArgs.Count; j++)
-            {
-                string currentArg = current.EventArgs[j];
-
-                JSONData arg = new JSONData(currentArg);
-                savedEvent["EventArgs"].Add(arg);
-            }
-        }
+        state["Events"] = Events.FoldList();
 
         return state;
     }

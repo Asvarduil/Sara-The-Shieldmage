@@ -5,7 +5,7 @@ using SimpleJSON;
 using UnityRandom = UnityEngine.Random;
 
 [Serializable]
-public class NemesisProgression
+public class NemesisProgression : IJsonSavable
 {
     #region Variables / Properties
 
@@ -19,21 +19,33 @@ public class NemesisProgression
 
     #endregion Variables / Properties
 
+    #region Constructor
+
+    public NemesisProgression()
+    {
+    }
+
+    public NemesisProgression(JSONClass state)
+    {
+        ImportState(state);
+    }
+
+    #endregion Constructor
+
     #region Methods
+
+    public void ImportState(JSONClass state)
+    {
+        CurrentObjectiveId = Int32.Parse(state["CurrentObjectiveId"]);
+        Objectives = state["Objectives"].AsArray.UnfoldJsonArray<NemesisObjective>();
+    }
 
     public JSONClass ExportState()
     {
-        // TODO: Serialize this object to a JSON blob.
         JSONClass state = new JSONClass();
         
         state["CurrentObjectiveId"] = new JSONData(CurrentObjectiveId);
-
-        state["Objectives"] = new JSONArray();
-        for (int i = 0; i < Objectives.Count; i++)
-        {
-            NemesisObjective current = Objectives[i];
-            state["Objectives"].Add(current.ExportState());
-        }
+        state["Objectives"] = Objectives.FoldList();
 
         return state;
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 using SimpleJSON;
 
 [Serializable]
-public class NemesisParty
+public class NemesisParty : IJsonSavable
 {
     #region Variables / Properties
 
@@ -47,7 +47,34 @@ public class NemesisParty
 
     #endregion Variables / Properties
 
+    #region Constructor
+
+    public NemesisParty()
+    {
+    }
+
+    public NemesisParty(JSONClass state)
+    {
+        ImportState(state);
+    }
+
+    #endregion Constructor
+
     #region Methods
+
+    public void ImportState(JSONClass state)
+    {
+        NemesisPartyName = state["NemesisPartyName"];
+        CurrentLocation = state["CurrentLocation"];
+
+        NemesisPartyMembers = state["NemesisPartyMembers"].AsArray.UnfoldJsonArray<NemesisEnemy>();
+        NemesisStrategy = new NemesisProgression(state["NemesisStrategy"].AsObject);
+
+        LastStepStarted = Single.Parse(state["LastStepStarted"]);
+        ShortDuration = Single.Parse(state["ShortDuration"]);
+        MediumDuration = Single.Parse(state["MediumDuration"]);
+        LongDuration = Single.Parse(state["LongDuration"]);
+    }
 
     public JSONClass ExportState()
     {
@@ -55,16 +82,8 @@ public class NemesisParty
 
         state["NemesisPartyName"] = new JSONData(NemesisPartyName);
         state["CurrentLocation"] = new JSONData(CurrentLocation);
-
-        state["NemesisPartyMembers"] = new JSONArray();
-        for (int i = 0; i < NemesisPartyMembers.Count; i++)
-        {
-            NemesisEnemy current = NemesisPartyMembers[i];
-            state["NemesisPartyMembers"].Add(current.ExportState());
-        }
-
+        state["NemesisPartyMembers"] = NemesisPartyMembers.FoldList();
         state["NemesisProgression"] = NemesisStrategy.ExportState();
-
         state["LastStepStarted"] = new JSONData(LastStepStarted);
         state["ShortDuration"] = new JSONData(ShortDuration);
         state["MediumDuration"] = new JSONData(MediumDuration);

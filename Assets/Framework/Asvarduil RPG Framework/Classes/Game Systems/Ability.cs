@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using SimpleJSON;
 
 public enum AbilityTargetType
 {
@@ -15,7 +16,7 @@ public enum AbilityTargetType
 }
 
 [Serializable]
-public class Ability : INamed, ICloneable
+public class Ability : INamed, ICloneable, IJsonSavable
 {
 	#region Variables / Properties
 
@@ -44,6 +45,14 @@ public class Ability : INamed, ICloneable
 
 	#endregion Variables / Properties
 
+    #region Constructor
+
+    public Ability()
+    {
+    }
+
+    #endregion Constructor
+
     #region Methods
 
     public object Clone()
@@ -70,6 +79,47 @@ public class Ability : INamed, ICloneable
         }
 
         return clone;
+    }
+
+    public void ImportState(JSONClass state)
+    {
+        Name = state["Name"];
+        Description = state["Description"];
+        BattleEffect = AbilityDatabase.Instance.GetVisualEffectByName(state["BattleEffect"]);
+        Available = true;
+        AtbCost = state["ATBCost"].AsInt;
+        TargetType = (AbilityTargetType)Enum.Parse(typeof(AbilityTargetType), state["TargetType"]);
+
+        var abilityEffects = state["AbilityEffects"];
+        Effects = new List<AbilityEffect>();
+        foreach (string effect in abilityEffects.Childs)
+        {
+            AbilityEffect newEffect = AbilityDatabase.Instance.GetAbilityEffectByName(effect).Clone() as AbilityEffect;
+            if (newEffect == null)
+                throw new InvalidOperationException("There is no ability effect named " + effect);
+
+            Effects.Add(newEffect);
+        }
+    }
+
+    public JSONClass ExportState()
+    {
+        JSONClass state = new JSONClass();
+
+        state["Name"] = new JSONData(Name);
+        state["Description"] = new JSONData(Description);
+        state["BattleEffect"] = new JSONData(BattleEffect.name);
+        state["ATBCost"] = new JSONData(AtbCost);
+        state["TargetType"] = new JSONData(TargetType.ToString());
+
+        state["AbilityEffects"] = new JSONArray();
+        for (int i = 0; i < Effects.Count; i++)
+        {
+            JSONData current = new JSONData(Effects[i].Name);
+            state["AbilityEffects"].Add(current);
+        }
+
+        return state;
     }
 
     #endregion Methods

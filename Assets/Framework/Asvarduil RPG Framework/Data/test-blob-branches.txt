@@ -30,8 +30,8 @@
           
           "DialogueEvents":[
             {
-              "MessageName":"CueSounds",
-              "Args":[
+              "Event":"CueSounds",
+              "EventArgs":[
               	"Female Speaking Sound (Temp)",
               	1
               ]
@@ -50,8 +50,8 @@
           ],
           "DialogueEvents":[
             {
-              "MessageName":"",
-              "Args":[]
+              "Event":"",
+              "EventArgs":[]
             }
           ]
         },
@@ -67,8 +67,8 @@
           ],
           "DialogueEvents":[
             {
-              "MessageName":"",
-              "Args":[]
+              "Event":"",
+              "EventArgs":[]
             }
           ]
         },
@@ -79,8 +79,8 @@
           "Options":[],
           "DialogueEvents":[
             {
-              "MessageName":"EndConversation",
-              "Args":[]
+              "Event":"EndConversation",
+              "EventArgs":[]
             }
           ]
         },

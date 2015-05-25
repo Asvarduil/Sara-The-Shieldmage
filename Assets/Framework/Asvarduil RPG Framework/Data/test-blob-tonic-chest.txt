@@ -23,8 +23,8 @@
           
           "DialogueEvents":[
             {
-              "MessageName":"GainItem",
-              "Args":[
+              "Event":"GainItem",
+              "EventArgs":[
               	"Tonic",
               	1
               ]
@@ -38,8 +38,8 @@
           "Options":[],
           "DialogueEvents":[
             {
-              "MessageName":"EndConversation",
-              "Args":[]
+              "Event":"EndConversation",
+              "EventArgs":[]
             }
           ]
         }
@@ -73,8 +73,8 @@
 				"Options":[],
 				"DialogueEvents":[
 					{
-					"MessageName":"EndConversation",
-					"Args":[]
+					"Event":"EndConversation",
+					"EventArgs":[]
 					}
 				]
         	}

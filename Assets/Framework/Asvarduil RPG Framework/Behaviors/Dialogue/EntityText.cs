@@ -32,82 +32,8 @@ public class EntityText : DebuggableBehavior
 	{
 		var parsed = JSON.Parse(blob);
 		var threads = parsed["TextThreads"].AsArray;
-		
-		TextThreads = new List<TextThread>();
-		foreach(var thread in threads.Childs)
-		{
-			TextThread newThread = new TextThread();
-			
-			newThread.IsDefaultThread = thread["IsDefaultThread"].AsBool;
-			newThread.Name = thread["Name"];
-			
-			var sequenceState = thread["SequenceState"].AsObject;
-			SequenceRange newState = new SequenceRange();
-			newState.Name = sequenceState["Name"];
-			newState.MinCounter = sequenceState["MinCounter"].AsInt;
-			newState.MaxCounter = sequenceState["MaxCounter"].AsInt;
-			newThread.SequenceRange = newState;
-			
-			newThread.TextContent = new List<TextContent>();
-			var content = thread["TextContent"].AsArray;
-			foreach(var contentItem in content.Childs)
-			{
-				TextContent newTextContent = new TextContent();
-				newTextContent.Speaker = contentItem["Speaker"];
-				newTextContent.Dialogue = contentItem["Dialogue"];
-				newTextContent.DialogueEvents = new List<DialogueEvent>();
-                newTextContent.SequentialEvents = new List<DialogueEvent>();
 
-				// Map Dialogue Options...
-				newTextContent.Options = new List<DialogueOption>();
-				var dialogueOptions = contentItem["Options"];
-				foreach(var dialogueOption in dialogueOptions.Childs)
-				{
-					DialogueOption newOption = new DialogueOption();
-					newOption.Text = dialogueOption["Text"];
-					newOption.TargetID = dialogueOption["TargetID"].AsInt;
-
-					newTextContent.Options.Add(newOption);
-				}
-
-				// Map Dialogue Events...
-				var dialogueEvents = contentItem["DialogueEvents"].AsArray;
-				foreach(var dialogueEvent in dialogueEvents.Childs)
-				{
-					DialogueEvent newDialogueEvent = new DialogueEvent();
-					newDialogueEvent.MessageName = dialogueEvent["MessageName"];
-					newDialogueEvent.Args = new List<string>();
-					
-					var eventArgs = dialogueEvent["Args"].AsArray;
-					foreach(var eventArg in eventArgs.Childs)
-					{
-						newDialogueEvent.Args.Add(eventArg);
-					}
-					
-					newTextContent.DialogueEvents.Add(newDialogueEvent);
-				}
-
-                var sequentialEvents = contentItem["SequentialEvents"].AsArray;
-                foreach(var sequentialEvent in sequentialEvents.Childs)
-                {
-                    DialogueEvent newDialogueEvent = new DialogueEvent();
-                    newDialogueEvent.MessageName = sequentialEvent["MessageName"];
-                    newDialogueEvent.Args = new List<string>();
-
-                    var eventArgs = sequentialEvent["Args"].AsArray;
-                    foreach (var eventArg in eventArgs.Childs)
-                    {
-                        newDialogueEvent.Args.Add(eventArg);
-                    }
-
-                    newTextContent.SequentialEvents.Add(newDialogueEvent);
-                }
-				
-				newThread.TextContent.Add(newTextContent);
-			}
-			
-			TextThreads.Add(newThread);
-		}
+        TextThreads = threads.AsArray.UnfoldJsonArray<TextThread>();
 	}
 
 	public TextThread GetThreadByName(string threadName)

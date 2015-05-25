@@ -24,8 +24,8 @@
           
 					"DialogueEvents":[
 						{
-							"MessageName":"CueSounds",
-							"Args":[
+							"Event":"CueSounds",
+							"EventArgs":[
 								"Female Speaking Sound (Temp)",
 								1
 							]
@@ -92,16 +92,16 @@
 					"Options":[],
 					"DialogueEvents":[
 						{
-							"MessageName":"UpdateQuest",
-							"Args":[
+							"Event":"UpdateQuest",
+							"EventArgs":[
 								"A Favor Repaid",
 								"Go to the Crystal Cave northeast of Nuuria.  Find the Antique Shield.",
 								1
 							]
 						},
 						{
-							"MessageName":"EndConversation",
-							"Args":[]
+							"Event":"EndConversation",
+							"EventArgs":[]
 						}
 					],
 					"SequentialEvents":[]
@@ -132,8 +132,8 @@
           
 					"DialogueEvents":[
 						{
-							"MessageName":"CueSounds",
-							"Args":[
+							"Event":"CueSounds",
+							"EventArgs":[
 								"Female Speaking Sound (Temp)",
 								1
 							]
@@ -163,8 +163,8 @@
 					"Options":[],
 					"DialogueEvents":[
 						{
-							"MessageName":"EndConversation",
-							"Args":[]
+							"Event":"EndConversation",
+							"EventArgs":[]
 						}
 					],
 					"SequentialEvents":[]
@@ -195,8 +195,8 @@
           
 					"DialogueEvents":[
 						{
-							"MessageName":"CueSounds",
-							"Args":[
+							"Event":"CueSounds",
+							"EventArgs":[
 								"Female Speaking Sound (Temp)",
 								1
 							]
@@ -268,8 +268,8 @@
 					],
 					"DialogueEvents":[
 						{
-							"MessageName":"GainItem",
-							"Args":[
+							"Event":"GainItem",
+							"EventArgs":[
 								"Guard Armor",
 								1
 							]
@@ -284,16 +284,16 @@
 					"Options":[],
 					"DialogueEvents":[
 						{
-							"MessageName":"UpdateQuest",
-							"Args":[
+							"Event":"UpdateQuest",
+							"EventArgs":[
 								"A Favor Repaid",
 								"You returned the Antique Shield to Captain Gardor, who rewarded you.",
 								3
 							]
 						},
 						{
-							"MessageName":"EndConversation",
-							"Args":[]
+							"Event":"EndConversation",
+							"EventArgs":[]
 						}
 					],
 					"SequentialEvents":[]
@@ -330,8 +330,8 @@
 					"Options":[],
 					"DialogueEvents":[
 						{
-							"MessageName":"EndConversation",
-							"Args":[]
+							"Event":"EndConversation",
+							"EventArgs":[]
 						}
 					],
 					"SequentialEvents":[]

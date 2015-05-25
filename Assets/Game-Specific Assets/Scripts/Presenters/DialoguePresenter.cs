@@ -12,6 +12,7 @@ public class DialoguePresenter : UGUIPresenterBase
     public Text SpeakerText;
     public List<Button> DialogueButtons;
 
+    //private GameEventController _events;
     private DialogueController _controller;
     private TextContent _currentContent;
 
@@ -22,6 +23,8 @@ public class DialoguePresenter : UGUIPresenterBase
     public override void Start()
     {
         base.Start();
+
+        //_events = GameEventController.Instance;
         _controller = DialogueController.Instance;
     }
 
@@ -62,7 +65,12 @@ public class DialoguePresenter : UGUIPresenterBase
             ActivateButton(current, false);
         }
 
+        // TODO: Use the GameEventController instead.
+        //_events.RunGameEventGroup(content.DialogueEvents);
         ExecuteImmediateEvents(content.DialogueEvents);
+
+        // TODO: Use the GameEventController instead.
+        //StartCoroutine(_events.ExecuteGameEventGroup(content.SequentialEvents);
         StartCoroutine(ExecuteSequentialEvents(content.SequentialEvents));
     }
 
@@ -70,7 +78,7 @@ public class DialoguePresenter : UGUIPresenterBase
 
     #region Methods
 
-    private void ExecuteImmediateEvents(List<DialogueEvent> events)
+    private void ExecuteImmediateEvents(List<GameEvent> events)
     {
         if (events.Count == 0)
             return;
@@ -78,14 +86,14 @@ public class DialoguePresenter : UGUIPresenterBase
         DebugMessage("Executing immediate events; processing " + events.Count + " events.");
         for (int i = 0; i < events.Count; i++)
         {
-            DialogueEvent dialogueEvent = events[i];
+            GameEvent dialogueEvent = events[i];
 
-            DebugMessage("Attempting to execute event: " + dialogueEvent.MessageName);
-            StartCoroutine(_controller.ExecuteDialogueEvent(dialogueEvent.MessageName, dialogueEvent.Args));
+            DebugMessage("Attempting to execute event: " + dialogueEvent.Event);
+            StartCoroutine(_controller.ExecuteDialogueEvent(dialogueEvent.Event, dialogueEvent.EventArgs));
         }
     }
 
-    private IEnumerator ExecuteSequentialEvents(List<DialogueEvent> events)
+    private IEnumerator ExecuteSequentialEvents(List<GameEvent> events)
     {
         if (events.Count == 0)
             yield break;
@@ -93,8 +101,8 @@ public class DialoguePresenter : UGUIPresenterBase
         DebugMessage("Executing sequential events; processing " + events.Count + " events.");
         for (int i = 0; i < events.Count; i++)
         {
-            DialogueEvent current = events[i];
-            yield return StartCoroutine(_controller.ExecuteDialogueEvent(current.MessageName, current.Args));
+            GameEvent current = events[i];
+            yield return StartCoroutine(_controller.ExecuteDialogueEvent(current.Event, current.EventArgs));
         }
     }
 

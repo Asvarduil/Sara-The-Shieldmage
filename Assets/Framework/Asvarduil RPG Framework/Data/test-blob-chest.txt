@@ -26,8 +26,8 @@
           
           "DialogueEvents":[
             {
-              "MessageName":"GainItem",
-              "Args":[
+              "Event":"GainItem",
+              "EventArgs":[
               	"[Insert Item Name Here]",
               	1
               ]
@@ -41,8 +41,8 @@
           "Options":[],
           "DialogueEvents":[
             {
-              "MessageName":"EndConversation",
-              "Args":[]
+              "Event":"EndConversation",
+              "EventArgs":[]
             }
           ]
         }
@@ -79,8 +79,8 @@
 				"Options":[],
 				"DialogueEvents":[
 					{
-					"MessageName":"EndConversation",
-					"Args":[]
+					"Event":"EndConversation",
+					"EventArgs":[]
 					}
 				]
         	}

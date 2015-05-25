@@ -28,24 +28,24 @@
 					"Options":[],
 					"DialogueEvents":[
 						{
-							"MessageName":"UpdateQuest",
-							"Args":[
+							"Event":"UpdateQuest",
+							"EventArgs":[
 								"A Favor Repaid",
 								"You've found the stolen shield.  Return it to Captain Gardor in Nuuria City.",
 								2
 							]
 						},
 						{
-							"MessageName":"TriggerBattle",
-							"Args":[
+							"Event":"TriggerBattle",
+							"EventArgs":[
 								"BossBattle",
 								"Cave Battle",
 								"Bandit Leader|Bandit Henchman|Bandit Henchman"
 							]
 						},
 						{
-							"MessageName":"EndConversation",
-							"Args":[]
+							"Event":"EndConversation",
+							"EventArgs":[]
 						}
 					]
 				}
@@ -79,8 +79,8 @@
 					"Options":[],
 					"DialogueEvents":[
 						{
-							"MessageName":"EndConversation",
-							"Args":[]
+							"Event":"EndConversation",
+							"EventArgs":[]
 						}
 					]
 				}

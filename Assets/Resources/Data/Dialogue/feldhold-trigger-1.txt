@@ -15,24 +15,24 @@
 
 					"DialogueEvents":[
 						{
-							"MessageName":"SpawnNPC",
-							"Args":[
+							"Event":"SpawnNPC",
+							"EventArgs":[
 								"NPCs/Intro - Guard (Map)",
 								"0.0, 0.0, -1.0",
 								"Intro - Guard A"
 							]
 						},
 						{
-							"MessageName":"SpawnNPC",
-							"Args":[
+							"Event":"SpawnNPC",
+							"EventArgs":[
 								"NPCs/Intro - Guard (Map)",
 								"1.0, 0.0, -1.0",
 								"Intro - Guard B"
 							]
 						},
 						{
-							"MessageName":"QuakeCamera",
-							"Args":[
+							"Event":"QuakeCamera",
+							"EventArgs":[
 								"1.0",
 								"0.25"
 							]
@@ -56,8 +56,8 @@
           
 					"DialogueEvents":[
 						{
-							"MessageName":"ForceNPCAnimation",
-							"Args":[
+							"Event":"ForceNPCAnimation",
+							"EventArgs":[
 								"Intro - Guard B",
 								"IdleUp"
 							]
@@ -181,8 +181,8 @@
 
 					"DialogueEvents":[
 						{
-							"MessageName":"UpdateQuest",
-							"Args":[
+							"Event":"UpdateQuest",
+							"EventArgs":[
 								"The Feldhold Codex",
 								"You've narrowly avoided a brush with death!  Continue into the Feldhold Ruins. ",
 								"1"
@@ -191,28 +191,28 @@
 					],
 					"SequentialEvents":[
 						{
-							"MessageName":"FadeOut",
-							"Args":[]
+							"Event":"FadeOut",
+							"EventArgs":[]
 						},
 						{
-							"MessageName":"DespawnNPC",
-							"Args":[
+							"Event":"DespawnNPC",
+							"EventArgs":[
 								"Intro - Guard A"
 							]
 						},
 						{
-							"MessageName":"DespawnNPC",
-							"Args":[
+							"Event":"DespawnNPC",
+							"EventArgs":[
 								"Intro - Guard B"
 							]
 						},
 						{
-							"MessageName":"FadeIn",
-							"Args":[]
+							"Event":"FadeIn",
+							"EventArgs":[]
 						},
 						{
-							"MessageName":"EndConversation",
-							"Args":[]
+							"Event":"EndConversation",
+							"EventArgs":[]
 						}
 					]
 				}

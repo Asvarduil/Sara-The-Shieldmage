@@ -103,64 +103,12 @@ public class AbilityDatabase : DatabaseBase<AbilityDatabase>
 
     private void MapAbilityEffects(JSONNode parsed)
     {
-        var effects = parsed["Effects"].AsArray;
-        AbilityEffects = new List<AbilityEffect>();
-        foreach (var effect in effects.Childs)
-        {
-            AbilityEffect abilityEffect = new AbilityEffect();
-
-            abilityEffect.Name = effect["Name"];
-            abilityEffect.AffectsUser = effect["AffectsUser"].AsBool;
-            abilityEffect.AffectsDeadCharacters = effect["AffectsDeadCharacters"].AsBool;
-            abilityEffect.IsBuff = effect["IsBuff"].AsBool;
-            abilityEffect.Duration = effect["Duration"].AsFloat;
-            abilityEffect.ApplyTime = 0.0f;
-
-            abilityEffect.PowerStat = effect["PowerStat"];
-            abilityEffect.TargetStat = effect["TargetStat"];
-            abilityEffect.EffectFloor = effect["EffectFloor"].AsInt;
-            abilityEffect.EffectMultiplier = effect["EffectMultiplier"].AsFloat;
-            abilityEffect.MinimumRandomEffect = effect["MinimumRandomEffect"].AsInt;
-            abilityEffect.MaximumRandomEffect = effect["MaximumRandomEffect"].AsInt;
-
-            AbilityEffects.Add(abilityEffect);
-        }
+        AbilityEffects = parsed["Effects"].AsArray.UnfoldJsonArray<AbilityEffect>();
     }
 
     private void MapAbilities(JSONNode parsed)
     {
-        var abilities = parsed["Abilities"].AsArray;
-        Abilities = new List<Ability>();
-        foreach (var ability in abilities.Childs)
-        {
-            Ability newAbility = new Ability();
-
-            newAbility.Name = ability["Name"];
-            newAbility.Description = ability["Description"];
-            newAbility.BattleEffect = GetVisualEffectByName(ability["VisualEffect"]);
-            newAbility.BattleText = ability["BattleText"] ?? string.Empty;
-            newAbility.Available = true;
-            newAbility.AtbCost = ability["ATBCost"].AsInt;
-            newAbility.ActionAnimation = ability["ActionAnimation"];
-            newAbility.ReceiptAnimation = ability["ReceiptAnimation"];
-
-            string targetType = ability["TargetType"];
-            newAbility.TargetType = (AbilityTargetType)Enum.Parse(typeof(AbilityTargetType), targetType);
-
-            var abilityEffects = ability["Effects"].AsArray;
-            newAbility.Effects = new List<AbilityEffect>();
-
-            foreach(string effect in abilityEffects.Childs)
-            {
-                AbilityEffect newEffect = GetAbilityEffectByName(effect).Clone() as AbilityEffect;
-                if (newEffect == null)
-                    throw new InvalidOperationException("There is no ability effect named " + effect);
-
-                newAbility.Effects.Add(newEffect);
-            }
-            
-            Abilities.Add(newAbility);
-        }
+        Abilities = parsed["Abilities"].AsArray.UnfoldJsonArray<Ability>();
     }
 
     #endregion Data Access Methods

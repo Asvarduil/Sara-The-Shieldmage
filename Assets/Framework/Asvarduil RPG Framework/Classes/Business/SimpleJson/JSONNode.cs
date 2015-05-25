@@ -42,7 +42,7 @@ namespace SimpleJSON
 
         public virtual string ToString(string aPrefix)
         {
-            return "JSONNode";
+            return ToString();
         }
 
         #endregion common interface

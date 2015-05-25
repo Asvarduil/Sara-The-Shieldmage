@@ -42,7 +42,7 @@ public class Enemy : CombatEntity, ICloneable
 
 	#region Methods
 
-    public object Clone()
+    public virtual object Clone()
     {
         var clone = new Enemy
         {

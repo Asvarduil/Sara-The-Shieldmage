@@ -10,7 +10,7 @@ public enum NemesisObjectiveDuration
 }
 
 [Serializable]
-public class NemesisObjective
+public class NemesisObjective : IJsonSavable
 {
     #region Variables / Properties
 
@@ -23,7 +23,36 @@ public class NemesisObjective
 
     #endregion Variables / Properties
 
+    #region Constructor
+
+    public NemesisObjective()
+    {
+    }
+
+    public NemesisObjective(JSONClass state)
+    {
+        ImportState(state);
+    }
+
+    #endregion Constructor
+
     #region Methods
+
+    public void ImportState(JSONClass state)
+    {
+        Name = state["Name"];
+        ObjectiveId = Int32.Parse(state["ObjectiveId"]);
+        Duration = (NemesisObjectiveDuration)Enum.Parse(typeof(NemesisObjectiveDuration), state["Duration"]);
+        Description = state["Description"];
+
+        MisinformationDescriptions = new List<string>();
+        foreach(var lie in state["MisinformationDescriptions"].Childs)
+        {
+            MisinformationDescriptions.Add(lie);
+        }
+
+        Outcomes = state["Outcomes"].AsArray.UnfoldJsonArray<NemesisContingency>();
+    }
 
     public JSONClass ExportState()
     {
@@ -31,7 +60,7 @@ public class NemesisObjective
 
         state["Name"] = new JSONData(Name);
         state["ObjectiveId"] = new JSONData(ObjectiveId);
-        state["DurationToCompletion"] = new JSONData(Duration.ToString());
+        state["Duration"] = new JSONData(Duration.ToString());
         state["Description"] = new JSONData(Description);
 
         state["MisinformationDescriptions"] = new JSONArray();
@@ -41,12 +70,7 @@ public class NemesisObjective
             state["MisinformationDescriptions"].Add(current);
         }
 
-        state["Outcomes"] = new JSONArray();
-        for (int i = 0; i < Outcomes.Count; i++)
-        {
-            NemesisContingency current = Outcomes[i];
-            state["Outcomes"].Add(current.ExportState());
-        }
+        state["Outcomes"] = Outcomes.FoldList();
 
         return state;
     }

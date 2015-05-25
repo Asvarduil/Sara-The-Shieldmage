@@ -115,10 +115,10 @@ public class MeshCombiner : DebuggableBehavior
 	 
 	    // hook up the mesh renderer        
 	    SkinnedMeshRenderer smr = gameObject.AddComponent(typeof(SkinnedMeshRenderer)) as SkinnedMeshRenderer;
-	 
 	    smr.sharedMesh = me;
 	    smr.bones = aBones;
-	    renderer.material = material;
+
+        renderer.material = material;
 	}
 	
 	public void OnDestroy()
@@ -133,6 +133,8 @@ public class MeshCombiner : DebuggableBehavior
 		smr.sharedMesh = null;
 
         meshFilters = null;
+
+        GameObject.Destroy(smr);
     }
 
     #endregion Hooks

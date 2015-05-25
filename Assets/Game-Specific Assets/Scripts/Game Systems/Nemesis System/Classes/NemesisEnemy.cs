@@ -2,17 +2,30 @@
 using SimpleJSON;
 
 [Serializable]
-public class NemesisEnemy : Enemy
+public class NemesisEnemy : Enemy, IJsonSavable
 {
     #region Variables / Properties
 
     #endregion Variables / Properties
+
+    #region Constructor
+
+    public NemesisEnemy()
+    {
+    }
+
+    #endregion Constructor
 
     #region Hooks
 
     #endregion Hooks
 
     #region Methods
+
+    public void ImportState(JSONClass state)
+    {
+        // TODO: Implement...
+    }
 
     public JSONClass ExportState()
     {

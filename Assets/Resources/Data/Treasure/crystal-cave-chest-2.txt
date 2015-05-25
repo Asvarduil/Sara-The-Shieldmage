@@ -21,15 +21,15 @@
 					],
 					"DialogueEvents":[
 						{
-							"MessageName":"HaltThenPlay",
-							"Args":[
+							"Event":"HaltThenPlay",
+							"EventArgs":[
 								"Item Get Fanfare",
 								1.0
 							]
 						},
 						{
-							"MessageName":"GainItem",
-							"Args":[
+							"Event":"GainItem",
+							"EventArgs":[
 								"Tonic",
 								2
 							]
@@ -43,12 +43,12 @@
 					"Options":[],
 					"DialogueEvents":[
 						{
-							"MessageName":"ResumeBGM",
-							"Args":[]
+							"Event":"ResumeBGM",
+							"EventArgs":[]
 						},
 						{
-							"MessageName":"EndConversation",
-							"Args":[]
+							"Event":"EndConversation",
+							"EventArgs":[]
 						}
 					]
 				}
@@ -82,8 +82,8 @@
 					"Options":[],
 					"DialogueEvents":[
 						{
-							"MessageName":"EndConversation",
-							"Args":[]
+							"Event":"EndConversation",
+							"EventArgs":[]
 						}
 					]
 				}

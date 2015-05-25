@@ -1,10 +1,11 @@
 ﻿using System;
 using UnityEngine;
+using SimpleJSON;
 
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class AbilityEffect : ICloneable
+public class AbilityEffect : ICloneable, IJsonSavable
 {
 	#region Variables / Properties
 
@@ -39,6 +40,14 @@ public class AbilityEffect : ICloneable
 
 	#endregion Variables / Properties
 
+    #region Constructor
+
+    public AbilityEffect()
+    {
+    }
+
+    #endregion Constructor
+
     #region Methods
 
     public object Clone()
@@ -59,6 +68,41 @@ public class AbilityEffect : ICloneable
         };
 
         return clone;
+    }
+
+    public void ImportState(JSONClass state)
+    {
+        Name = state["Name"];
+        AffectsDeadCharacters = state["AffectsDeadCharacters"].AsBool;
+        AffectsUser = state["AffectsUser"].AsBool;
+        PowerStat = state["PowerStat"];
+        EffectFloor = state["EffectFloor"].AsInt;
+        EffectMultiplier = state["EffectMultiplier"].AsFloat;
+        MinimumRandomEffect = state["MinimumRandomEffect"].AsInt;
+        MaximumRandomEffect = state["MaximumRandomEffect"].AsInt;
+        TargetStat = state["TargetStat"];
+        IsBuff = state["IsBuff"].AsBool;
+        Duration = state["Duration"].AsFloat;
+        ApplyTime = 0.0f;
+    }
+
+    public JSONClass ExportState()
+    {
+        JSONClass state = new JSONClass();
+
+        state["Name"] = new JSONData(Name);
+        state["AffectsDeadCharacters"] = new JSONData(AffectsDeadCharacters);
+        state["AffectsUser"] = new JSONData(AffectsUser);
+        state["PowerStat"] = new JSONData(PowerStat);
+        state["EffectFloor"] = new JSONData(EffectFloor);
+        state["EffectMultiplier"] = new JSONData(EffectMultiplier);
+        state["MinimumRandomEffect"] = new JSONData(MinimumRandomEffect);
+        state["MaximumRandomEffect"] = new JSONData(MaximumRandomEffect);
+        state["TargetStat"] = new JSONData(TargetStat);
+        state["IsBuff"] = new JSONData(IsBuff);
+        state["Duration"] = new JSONData(Duration);
+
+        return state;
     }
 
     public void PerformEffectCalculation(CombatEntity source)

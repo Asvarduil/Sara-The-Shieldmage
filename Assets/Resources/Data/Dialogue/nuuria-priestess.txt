@@ -49,8 +49,8 @@
 
 					"DialogueEvents":[
 						{					
-							"MessageName":"EndConversation",
-							"Args":[]
+							"Event":"EndConversation",
+							"EventArgs":[]
 						}
 					],
 					"SequentialEvents":[]
@@ -96,8 +96,8 @@
           
 					"DialogueEvents":[
 						{
-							"MessageName":"ReviveDeadPlayers",
-							"Args":[]
+							"Event":"ReviveDeadPlayers",
+							"EventArgs":[]
 						}
 					],
 					"SequentialEvents":[]
@@ -140,8 +140,8 @@
 
 					"DialogueEvents":[
 						{					
-							"MessageName":"EndConversation",
-							"Args":[]
+							"Event":"EndConversation",
+							"EventArgs":[]
 						}
 					],
 					"SequentialEvents":[]
