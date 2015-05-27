@@ -39,53 +39,7 @@ public class ItemDatabase : DatabaseBase<ItemDatabase>
 	protected override void MapBlob()
 	{
 		var parsed = JSON.Parse(RawBlob);
-		var items = parsed["Items"].AsArray;
-
-		Items = new List<InventoryItem>();
-		foreach(var item in items.Childs)
-		{
-			InventoryItem newItem = new InventoryItem();
-
-			newItem.Name = item["Name"];
-			newItem.Description = item["Description"];
-			newItem.Value = item["Value"].AsInt;
-
-			string itemType = item["ItemType"];
-			newItem.ItemType = (ItemType) Enum.Parse(typeof(ItemType), itemType);
-			newItem.Quantity = 0;
-
-			var equipEffects = item["EquipmentEffects"].AsArray;
-			newItem.EquipmentEffects = new List<ItemEffect>();
-
-			foreach(var effect in equipEffects.Childs)
-			{
-				ItemEffect newEquipEffect = new ItemEffect();
-
-				newEquipEffect.TargetStat = effect["TargetStat"];
-				newEquipEffect.FixedEffect = effect["FixedEffect"].AsInt;
-				newEquipEffect.ScalingEffect = effect["ScalingEffect"].AsFloat;
-				newEquipEffect.EffectDuration = effect["EffectDuration"].AsFloat;
-
-				newItem.EquipmentEffects.Add(newEquipEffect);
-			}
-
-			var consumeEffects = item["ConsumeEffects"].AsArray;
-			newItem.ConsumeEffects = new List<ItemEffect>();
-
-			foreach(var effect in consumeEffects.Childs)
-			{
-				ItemEffect newUseEffect = new ItemEffect();
-				
-				newUseEffect.TargetStat = effect["TargetStat"];
-				newUseEffect.FixedEffect = effect["FixedEffect"].AsInt;
-				newUseEffect.ScalingEffect = effect["ScalingEffect"].AsFloat;
-				newUseEffect.EffectDuration = effect["EffectDuration"].AsFloat;
-				
-				newItem.ConsumeEffects.Add(newUseEffect);
-			}
-
-			Items.Add(newItem);
-		}
+        Items = parsed["Items"].AsArray.UnfoldJsonArray<InventoryItem>();
 
         IsLoaded = Items.Count > 0;
 	}

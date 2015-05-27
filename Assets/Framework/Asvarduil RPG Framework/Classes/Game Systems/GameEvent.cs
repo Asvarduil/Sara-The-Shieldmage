@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using SimpleJSON;
 
 [Serializable]
-public class GameEvent : IJsonSavable
+public class GameEvent : ICloneable, IJsonSavable
 {
     #region Variables / Properties
 
@@ -28,6 +28,22 @@ public class GameEvent : IJsonSavable
     #endregion Constructors
 
     #region Methods
+
+    public object Clone()
+    {
+        var clone = new GameEvent
+        {
+            Event = this.Event,
+            EventArgs = new List<string>()
+        };
+
+        for (int i = 0; i < EventArgs.Count; i++)
+        {
+            clone.EventArgs.Add(EventArgs[i]);
+        }
+
+        return clone;
+    }
 
     public void ImportState(JSONClass state)
     {

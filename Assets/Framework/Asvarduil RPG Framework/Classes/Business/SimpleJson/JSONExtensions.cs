@@ -39,6 +39,11 @@ namespace SimpleJSON
             return result;
         }
 
+        public static T ToEnum<T>(this JSONNode node)
+        {
+            return (T)Enum.Parse(typeof(T), node);
+        }
+
         #endregion Extensions
     }
 }

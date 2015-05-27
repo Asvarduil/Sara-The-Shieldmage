@@ -17,6 +17,9 @@ public class NemesisProgression : IJsonSavable
         get { return Objectives[CurrentObjectiveId]; }
     }
 
+    // Delegate for the fitness function when a rethink occurs.
+    public Func<List<NemesisObjective>, bool> IsAcceptablePlan;
+
     #endregion Variables / Properties
 
     #region Constructor
@@ -52,12 +55,38 @@ public class NemesisProgression : IJsonSavable
 
     public void RethinkCurrentStep()
     {
-        // TODO: Rethink current step.
+        if (IsAcceptablePlan == null)
+            throw new InvalidOperationException("Cannot rethink a step without a fitness function for the plan.");
+
+        var plan = Objectives.CopyList();
+        do
+        {
+            // Generate new replacement step.
+
+            // Mutate the plan.
+            var newStep = (NemesisObjective) CurrentObjective.Clone();
+        } while (!IsAcceptablePlan(plan));
+
+        Objectives = plan;
     }
 
     public void RethinkPlan()
     {
         // TODO: Rethink Nemesis plan.
+        if (IsAcceptablePlan == null)
+            throw new InvalidOperationException("Cannot rethink a plan without a fitness function for the plan.");
+
+        List<NemesisObjective> plan = null;
+        do
+        {
+            // Regenerate plan.
+            plan = new List<NemesisObjective>();
+            int planStepCount = UnityRandom.Range(4, 8);
+
+            // Mutate the plan.
+        } while (!IsAcceptablePlan(plan));
+
+        Objectives = plan;
     }
 
     public NemesisContingency ProceedToPlanOutcome(NemesisPlanOutcome outcome)

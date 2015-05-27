@@ -10,7 +10,7 @@ public enum NemesisPlanOutcome
 }
 
 [Serializable]
-public class NemesisContingency : IJsonSavable
+public class NemesisContingency : ICloneable, IJsonSavable
 {
     #region Variables / Properties
 
@@ -35,9 +35,21 @@ public class NemesisContingency : IJsonSavable
 
     #region Methods
 
+    public object Clone()
+    {
+        var clone = new NemesisContingency
+        {
+            State = this.State,
+            NextObjectiveId = this.NextObjectiveId,
+            Events = this.Events.CopyList()
+        };
+
+        return clone;
+    }
+
     public void ImportState(JSONClass state)
     {
-        State = (NemesisPlanOutcome) Enum.Parse(typeof(NemesisPlanOutcome), state["State"]);
+        State = state["State"].ToEnum<NemesisPlanOutcome>();
         NextObjectiveId = Int32.Parse(state["NextObjectiveId"]);
         Events = state["Events"].AsArray.UnfoldJsonArray<GameEvent>();
     }

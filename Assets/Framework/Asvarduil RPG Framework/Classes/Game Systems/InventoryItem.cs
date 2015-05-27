@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using SimpleJSON;
 
 public enum ItemType 
 {
@@ -12,7 +13,7 @@ public enum ItemType
 }
 
 [Serializable]
-public class InventoryItem : INamed, ICloneable
+public class InventoryItem : INamed, ICloneable, IJsonSavable
 {
 	#region Variables / Properties
 
@@ -153,6 +154,7 @@ public class InventoryItem : INamed, ICloneable
 		var clone = new InventoryItem
 		{
 			Name = Name,
+            Description = Description,
 			Quantity = Quantity,
 			Value = Value,
 			ItemType = ItemType,
@@ -162,6 +164,32 @@ public class InventoryItem : INamed, ICloneable
 
         return clone;
 	}
+
+    public void ImportState(JSONClass state)
+    {
+        Name = state["Name"];
+        Description = state["Description"];
+        Quantity = 0;
+        Value = state["Value"].AsInt;
+        ItemType = state["ItemType"].ToEnum<ItemType>();
+        EquipmentEffects = state["EquipmentEffects"].AsArray.UnfoldJsonArray<ItemEffect>();
+        ConsumeEffects = state["ConsumeEffects"].AsArray.UnfoldJsonArray<ItemEffect>();
+    }
+
+    public JSONClass ExportState()
+    {
+        JSONClass state = new JSONClass();
+
+        state["Name"] = new JSONData(Name);
+        state["Description"] = new JSONData(Description);
+        state["Quantity"] = new JSONData(Quantity);
+        state["Value"] = new JSONData(Value);
+        state["ItemType"] = new JSONData(ItemType.ToString());
+        state["EquipmentEffects"] = EquipmentEffects.FoldList();
+        state["ConsumeEffects"] = ConsumeEffects.FoldList();
+
+        return state;
+    }
 
 	#endregion Methods
 }

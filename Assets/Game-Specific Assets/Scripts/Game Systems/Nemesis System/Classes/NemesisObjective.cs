@@ -10,7 +10,7 @@ public enum NemesisObjectiveDuration
 }
 
 [Serializable]
-public class NemesisObjective : IJsonSavable
+public class NemesisObjective : ICloneable, IJsonSavable
 {
     #region Variables / Properties
 
@@ -38,11 +38,31 @@ public class NemesisObjective : IJsonSavable
 
     #region Methods
 
+    public object Clone()
+    {
+        var clone = new NemesisObjective
+        {
+            Name = this.Name,
+            ObjectiveId = this.ObjectiveId,
+            Duration = this.Duration,
+            Description = this.Description,
+            MisinformationDescriptions = new List<string>(),
+            Outcomes = this.Outcomes.CopyList()
+        };
+
+        for (int i = 0; i < MisinformationDescriptions.Count; i++)
+        {
+            clone.MisinformationDescriptions.Add(MisinformationDescriptions[i]);
+        }
+
+        return clone;
+    }
+
     public void ImportState(JSONClass state)
     {
         Name = state["Name"];
         ObjectiveId = Int32.Parse(state["ObjectiveId"]);
-        Duration = (NemesisObjectiveDuration)Enum.Parse(typeof(NemesisObjectiveDuration), state["Duration"]);
+        Duration = state["Duration"].ToEnum<NemesisObjectiveDuration>();
         Description = state["Description"];
 
         MisinformationDescriptions = new List<string>();

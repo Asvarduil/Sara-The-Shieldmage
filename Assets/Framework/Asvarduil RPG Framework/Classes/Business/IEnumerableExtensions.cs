@@ -33,5 +33,27 @@ public static class IEnumerableExtensions
 		return ! enumerable.Any();
 	}
 
+    /// <summary>
+    /// Copies a list of ICloneable objects to a new list.
+    /// </summary>
+    /// <typeparam name="T">The type of the IEnumerable; this type must implement ICloneable.</typeparam>
+    /// <param name="enumerable">The enumerable, which may not be null</param>
+    /// <returns>A deep copy of the given list.</returns>
+    public static List<T> CopyList<T>(this IEnumerable<T> enumerable)
+        where T : ICloneable
+    {
+        if (enumerable == null)
+            throw new ArgumentNullException("enumerable");
+
+        var result = new List<T>();
+        foreach (var current in enumerable)
+        {
+            T clone = (T) current.Clone();
+            result.Add(clone);
+        }
+
+        return result;
+    }
+
 	#endregion Methods
 }

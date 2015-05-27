@@ -88,7 +88,7 @@ public class Ability : INamed, ICloneable, IJsonSavable
         BattleEffect = AbilityDatabase.Instance.GetVisualEffectByName(state["BattleEffect"]);
         Available = true;
         AtbCost = state["ATBCost"].AsInt;
-        TargetType = (AbilityTargetType)Enum.Parse(typeof(AbilityTargetType), state["TargetType"]);
+        TargetType = state["TargetType"].ToEnum<AbilityTargetType>();
 
         var abilityEffects = state["AbilityEffects"];
         Effects = new List<AbilityEffect>();
